@@ -1,20 +1,22 @@
 {% assign sky_photo = 'dispenser-sky.webp' | asset_url %}{% assign pink_photo = 'dispenser-pink.webp' | asset_url %}
-<section class="product-colors wrap">
-  <div class="product-colors-head">
-    <p class="eyebrow">DOS COLORES, MISMA IDEA</p>
-    <h2>Elige el que<br>más os pega.</h2>
+<section class="product-clean-colors wrap">
+  <div class="product-clean-heading">
+    <p class="eyebrow">AZUL CIELO · ROSA</p>
+    <h2>Dos colores.<br>Sin darle más vueltas.</h2>
   </div>
-  <div class="product-color-duo">
-    <figure class="color-card color-card--sky">
-      <div><img src="{{ sky_photo }}" alt="Dispensador Milo & Co en azul cielo" width="420" height="560" loading="lazy"></div>
-      <figcaption><span class="sky"></span><strong>Azul cielo</strong><small>Suave, limpio y fácil de llevar con todo.</small></figcaption>
+
+  <div class="product-clean-color-grid">
+    <figure>
+      <div class="product-clean-color-photo product-clean-color-photo--sky"><img src="{{ sky_photo }}" alt="Dispensador Milo & Co en azul cielo" width="420" height="560" loading="lazy"></div>
+      <figcaption><span class="sky"></span><strong>Azul cielo</strong></figcaption>
     </figure>
-    <figure class="color-card color-card--pink">
-      <div><img src="{{ pink_photo }}" alt="Dispensador Milo & Co en rosa" width="420" height="560" loading="lazy"></div>
-      <figcaption><span class="pink"></span><strong>Rosa</strong><small>Más cálido, con un punto alegre sin perder limpieza.</small></figcaption>
+    <figure>
+      <div class="product-clean-color-photo product-clean-color-photo--pink"><img src="{{ pink_photo }}" alt="Dispensador Milo & Co en rosa" width="420" height="560" loading="lazy"></div>
+      <figcaption><span class="pink"></span><strong>Rosa</strong></figcaption>
     </figure>
   </div>
 </section>
+
 {% schema %}
-{"name": "Dispenser Colors", "settings": []}
+{"name":"Dispenser Colors","settings":[]}
 {% endschema %}
