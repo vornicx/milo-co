@@ -1,4 +1,47 @@
-<section class="product-detail wrap"><div>{% render 'dispenser-gallery' %}<p class="photo-credit">Fotografías del producto facilitadas por el proveedor.</p></div><div class="product-detail-copy"><a class="back" href="{{ routes.root_url }}">Inicio / El dispensador</a><h1>Su agua.<br>Sus snacks.<br>Vuestro camino.</h1><h2 class="product-name">Dispensador de paseo 3 en 1</h2><p>Un accesorio para llevar agua, comida y un compartimento para residuos cuando salís juntos.</p><div class="spec-line"><span>400 ml de agua</span><span>150 ml de comida</span></div>{% render 'color-preview' %}<p class="launch-status"><span></span> Próximamente en Milo & Co</p><a class="text-link" href="#detalles">Ver todos los detalles {% render 'arrow' %}</a></div></section>
+<section class="product-showcase wrap">
+  <div class="product-showcase-media">
+    {% render 'dispenser-gallery' %}
+    <p class="photo-credit">Dos colores para el lanzamiento: azul cielo y rosa.</p>
+  </div>
+
+  <div class="product-showcase-copy">
+    <div class="product-panel">
+      <a class="back" href="{{ routes.root_url }}">Inicio / El dispensador</a>
+      <p class="eyebrow">MILO & CO · PRODUCTO 01</p>
+
+      <div class="product-title-row">
+        <h1>Menos cosas sueltas.<br>Más paseo.</h1>
+        <span class="product-launch-pill">Próximamente</span>
+      </div>
+
+      <p class="product-lead">Agua, comida y espacio para residuos en una sola pieza pensada para acompañaros en el paseo diario, el parque o una escapada improvisada.</p>
+
+      <div class="product-proof-grid" aria-label="Características principales">
+        <div><strong>400 ml</strong><span>para agua</span></div>
+        <div><strong>150 ml</strong><span>para snacks o comida</span></div>
+        <div><strong>3 en 1</strong><span>un solo accesorio</span></div>
+      </div>
+
+      {% render 'color-preview' %}
+
+      <div class="product-launch-box">
+        <div><span class="status-dot"></span><strong>Lanzamiento en preparación</strong></div>
+        <p>Estamos cerrando precio, stock y condiciones de envío antes de abrir la compra.</p>
+      </div>
+
+      <div class="product-actions">
+        <a class="button" href="#como-funciona">Ver cómo funciona {% render 'arrow' %}</a>
+        <a class="text-link" href="#detalles">Ver detalles</a>
+      </div>
+
+      <div class="product-micro-benefits">
+        <span>Fácil de llevar</span>
+        <span>Todo en un sitio</span>
+        <span>Sin baterías</span>
+      </div>
+    </div>
+  </div>
+</section>
 {% schema %}
 {"name": "Dispenser Detail", "settings": []}
 {% endschema %}
