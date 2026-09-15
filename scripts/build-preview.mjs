@@ -4,8 +4,11 @@ await import('./preview.mjs');
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
 await cp('.preview/assets', 'dist/assets', { recursive: true });
+const { cacheProductImages } = await import('./cache-product-images.mjs');
+const photos = await cacheProductImages();
 for (const name of ['index', 'cart', '404', 'page.dispensador', 'page.paseos']) {
   let html = await readFile(`.preview/${name}.html`, 'utf8');
+  for(const [source,local] of photos) html=html.replaceAll(source,local);
   html = html.replace('<head>', '<head><meta name="robots" content="noindex,nofollow">');
   html = html.replaceAll('href="index.html"', 'href="/"');
   html = html.replaceAll('href="index.html#', 'href="/#');

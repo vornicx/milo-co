@@ -56,3 +56,12 @@ Identidad: `docs/brand.md`. Fuente y discrepancias del producto: `docs/product-s
 ## Vista previa en Vercel
 
 Vercel compila `npm run build` y publica únicamente `dist/`. El proceso renderiza las mismas secciones Liquid, CSS e imagen del tema como HTML estático. Incluye portada, FAQ interactiva, carrito vacío y página 404. No es un backend de Shopify ni permite pagos; sirve para valorar el diseño antes de conectar la tienda. La vista previa indica «Próximamente» y queda excluida de indexación. No publica el código fuente, snippets o documentación.
+
+
+## Landings de producto y campañas
+
+- `/pages/dispensador`: ficha 3 en 1, galería, selección exploratoria de colores, capacidades, especificaciones y FAQ.
+- `/pages/paseos`: landing editorial de paseos y escapadas que conduce al producto.
+- Shopify: crear páginas con handles `dispensador` y `paseos` usando las plantillas `page.dispensador` y `page.paseos`, y seleccionarlas en Configuración del tema → Navegación.
+- Fotos: se usan los cuatro originales del proveedor, sin retoque ni logo de Milo inventado. Vercel intenta guardarlas como archivos estáticos durante el build; si el proveedor no responde conserva los enlaces originales. En Shopify, trasladar las fotos a su CDN antes del lanzamiento.
+- Los colores de la ficha de prelanzamiento no son inventario ni cambian el color de la fotografía; no se confirma disponibilidad ni precio.
