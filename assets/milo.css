@@ -7,7 +7,131 @@
 @media(max-width:900px){.walk-editorial-title,.walk-section-heading,.walk-ready-inner{grid-template-columns:1fr;gap:28px}.walk-editorial-title h1{font-size:68px}.walk-plan-grid{grid-template-columns:1fr}.walk-plan{min-height:0}.walk-plan-top{margin-bottom:36px}.walk-plan>p{min-height:0}.walk-ready-inner{gap:48px}}
 @media(max-width:760px){.walk-editorial{padding:20px 0 44px}.walk-editorial-title{margin-bottom:28px}.walk-editorial-title h1{font-size:52px}.walk-editorial-lead p{font-size:16px}.walk-editorial-image{aspect-ratio:4/3;border-radius:22px}.walk-editorial-image img{object-position:63% center}.walk-plans{padding-block:46px}.walk-section-heading{margin-bottom:28px}.walk-plan{padding:22px}.walk-plan h3{font-size:29px}.walk-ready{padding:52px 0}.walk-checklist strong{font-size:22px}.walk-manifesto{padding:58px 0}.walk-manifesto blockquote{font-size:44px}}
 
-/* Dispensador product page v3 — limpio */
-.product-clean-hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr);gap:84px;align-items:center;padding:42px 0 94px}.product-clean-media{min-width:0}.product-clean-media .dispenser-gallery{max-width:620px;margin-inline:auto}.product-clean-media .gallery-stage{border-radius:28px}.product-clean-copy{max-width:560px}.product-clean-copy h1{font-size:clamp(58px,6vw,92px);margin:0 0 24px}.product-clean-lead{font-size:18px;line-height:1.55;max-width:500px;margin-bottom:30px}.product-clean-specs{display:flex;gap:0;border-block:1px solid #d9d9cb;margin:0 0 28px}.product-clean-specs span{padding:15px 20px 15px 0;font-size:12px;color:#65736a}.product-clean-specs span+span{padding-left:20px;border-left:1px solid #d9d9cb}.product-clean-specs strong{display:block;font:400 23px/1.05 Georgia,serif;color:#193e32;margin-bottom:4px}.product-clean-copy .color-picker{margin:24px 0 18px}.product-clean-copy .color-picker .fine{display:none}.product-clean-status{display:flex;gap:12px;align-items:center;padding:15px 0;margin:0 0 22px;border-top:1px solid #d9d9cb}.product-clean-status>span{width:8px;height:8px;border-radius:50%;background:#193e32;flex:none}.product-clean-status strong,.product-clean-status small{display:block}.product-clean-status strong{font-size:13px}.product-clean-status small{font-size:12px;color:#65736a;margin-top:2px}.product-clean-benefits{padding:76px 0 88px;border-top:1px solid #d9d9cb}.product-clean-benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:46px;margin-top:40px}.product-clean-benefit-grid article{padding-top:22px;border-top:1px solid #cfd3c9}.product-clean-benefit-grid h2{font-size:34px;margin:0 0 14px}.product-clean-benefit-grid p{font-size:14px;max-width:320px;margin:0}.product-clean-colors,.product-clean-how,.product-clean-details{padding:88px 0;border-top:1px solid #d9d9cb}.product-clean-heading{display:grid;grid-template-columns:.62fr 1.38fr;gap:40px;align-items:start;margin-bottom:42px}.product-clean-heading h2{margin:0}.product-clean-color-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.product-clean-color-grid figure{margin:0}.product-clean-color-photo{height:470px;border-radius:24px;overflow:hidden;display:grid;place-items:center}.product-clean-color-photo--sky{background:#e2f2f3}.product-clean-color-photo--pink{background:#f7e0e8}.product-clean-color-photo img{height:100%;object-fit:contain}.product-clean-color-grid figcaption{display:flex;align-items:center;gap:10px;padding:14px 4px 0;font-size:13px}.product-clean-color-grid figcaption span{width:18px;height:18px;border-radius:50%;border:1px solid #193e3220}.product-clean-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:38px}.product-clean-steps article{padding-top:20px;border-top:1px solid #cfd3c9}.product-clean-steps article>span{font-size:10px;letter-spacing:.12em;color:#a64b27}.product-clean-steps h3{font:400 30px/1.08 Georgia,serif;margin:24px 0 12px}.product-clean-steps p{font-size:14px;max-width:300px;margin:0}.product-clean-detail-list{margin:0;border-top:1px solid #cfd3c9}.product-clean-detail-list>div{display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;padding:18px 0;border-bottom:1px solid #cfd3c9}.product-clean-detail-list dt{font-size:13px;color:#65736a}.product-clean-detail-list dd{margin:0;font:400 20px/1.25 Georgia,serif}.product-clean-source{margin-top:14px}.product-clean-details+.faq{border-top:1px solid #d9d9cb}
-@media(max-width:1000px){.product-clean-hero{gap:42px}.product-clean-copy h1{font-size:60px}.product-clean-color-photo{height:400px}}
-@media(max-width:760px){.product-clean-hero{grid-template-columns:1fr;gap:28px;padding:20px 0 58px}.product-clean-copy{order:-1}.product-clean-copy h1{font-size:50px}.product-clean-lead{font-size:16px}.product-clean-specs{display:grid;grid-template-columns:1fr 1fr}.product-clean-specs span{padding:14px 14px 14px 0}.product-clean-specs span:nth-child(2){padding-left:14px;border-left:1px solid #d9d9cb}.product-clean-specs span:nth-child(3){grid-column:1/-1;border-left:0;border-top:1px solid #d9d9cb;padding-left:0}.product-clean-benefits,.product-clean-colors,.product-clean-how,.product-clean-details{padding:54px 0}.product-clean-benefit-grid,.product-clean-color-grid,.product-clean-steps{grid-template-columns:1fr;gap:24px}.product-clean-heading{grid-template-columns:1fr;gap:12px;margin-bottom:28px}.product-clean-benefit-grid{margin-top:28px}.product-clean-benefit-grid article{padding-top:18px}.product-clean-benefit-grid h2{font-size:30px}.product-clean-color-photo{height:auto;aspect-ratio:4/3}.product-clean-steps h3{margin-top:16px}.product-clean-detail-list>div{grid-template-columns:1fr;gap:4px}.product-clean-detail-list dd{font-size:19px}.product-clean-media .gallery-stage{border-radius:20px}}
+/* Dispensador product page v4 — mobile first art direction */
+.product-clean-hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr);grid-template-areas:"media intro" "media buy";column-gap:84px;row-gap:24px;align-items:start;padding:42px 0 94px}.product-clean-intro{grid-area:intro;padding-top:36px;max-width:560px}.product-clean-media{grid-area:media;min-width:0}.product-clean-buy{grid-area:buy;max-width:560px}.product-clean-media .dispenser-gallery{max-width:620px;margin-inline:auto}.product-clean-media .gallery-stage{border-radius:28px}.product-clean-intro h1{font-size:clamp(58px,6vw,92px);margin:0 0 24px}.product-clean-lead{font-size:18px;line-height:1.55;max-width:500px;margin:0}.product-clean-specs{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid #d9d9cb;margin:0 0 26px}.product-clean-specs span{padding:15px 18px;font-size:12px;color:#65736a}.product-clean-specs span:first-child{padding-left:0}.product-clean-specs span+span{border-left:1px solid #d9d9cb}.product-clean-specs strong{display:block;font:400 23px/1.05 Georgia,serif;color:#193e32;margin-bottom:4px}.product-clean-buy .color-picker{margin:22px 0 16px}.product-clean-buy .color-picker .fine{display:none}.product-clean-status{display:flex;gap:12px;align-items:center;padding:15px 0;margin:0 0 22px;border-top:1px solid #d9d9cb}.product-clean-status>span{width:8px;height:8px;border-radius:50%;background:#193e32;flex:none}.product-clean-status strong,.product-clean-status small{display:block}.product-clean-status strong{font-size:13px}.product-clean-status small{font-size:12px;color:#65736a;margin-top:2px}.product-clean-benefits{padding:76px 0 88px;border-top:1px solid #d9d9cb}.product-clean-benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:46px;margin-top:40px}.product-clean-benefit-grid article{padding-top:22px;border-top:1px solid #cfd3c9}.product-clean-benefit-grid h2{font-size:34px;margin:0 0 14px}.product-clean-benefit-grid p{font-size:14px;max-width:320px;margin:0}.product-clean-colors,.product-clean-how,.product-clean-details{padding:88px 0;border-top:1px solid #d9d9cb}.product-clean-heading{display:grid;grid-template-columns:.62fr 1.38fr;gap:40px;align-items:start;margin-bottom:42px}.product-clean-heading h2{margin:0}.product-clean-color-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.product-clean-color-grid figure{margin:0}.product-clean-color-photo{height:470px;border-radius:24px;overflow:hidden;display:grid;place-items:center}.product-clean-color-photo--sky{background:#e2f2f3}.product-clean-color-photo--pink{background:#f7e0e8}.product-clean-color-photo img{height:100%;object-fit:contain}.product-clean-color-grid figcaption{display:flex;align-items:center;gap:10px;padding:14px 4px 0;font-size:13px}.product-clean-color-grid figcaption span{width:18px;height:18px;border-radius:50%;border:1px solid #193e3220}.product-clean-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:38px}.product-clean-steps article{padding-top:20px;border-top:1px solid #cfd3c9}.product-clean-steps article>span{font-size:10px;letter-spacing:.12em;color:#a64b27}.product-clean-steps h3{font:400 30px/1.08 Georgia,serif;margin:24px 0 12px}.product-clean-steps p{font-size:14px;max-width:300px;margin:0}.product-clean-detail-list{margin:0;border-top:1px solid #cfd3c9}.product-clean-detail-list>div{display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;padding:18px 0;border-bottom:1px solid #cfd3c9}.product-clean-detail-list dt{font-size:13px;color:#65736a}.product-clean-detail-list dd{margin:0;font:400 20px/1.25 Georgia,serif}.product-clean-source{margin-top:14px}.product-clean-details+.faq{border-top:1px solid #d9d9cb}
+@media(max-width:1000px){.product-clean-hero{column-gap:42px}.product-clean-intro h1{font-size:60px}.product-clean-color-photo{height:400px}}
+@media(max-width:760px){
+  body{font-size:15px}
+  .wrap{width:calc(100% - 40px)}
+  .header{min-height:auto;display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 16px;padding:14px 0 11px}
+  .header .wordmark{font-size:31px;line-height:1}
+  .header .bag{justify-self:end;min-width:44px;min-height:44px;justify-content:flex-end}
+  .header .bag svg{width:23px;height:23px}
+  .header nav{grid-column:1/-1;order:initial;width:100%;display:grid;grid-template-columns:1.3fr 1fr .7fr;gap:6px;margin-top:11px;padding-top:10px;border-top:1px solid #d9d9cb;font-size:11.5px;line-height:1.2}
+  .header nav a{display:flex;align-items:center;justify-content:center;min-height:34px;padding:5px 2px;white-space:nowrap}
+  .button{min-height:54px;padding:15px 22px;font-size:14px}
+  .eyebrow{font-size:10px;margin-bottom:14px}
+  .hero{padding:12px 0 42px;gap:22px}
+  .hero-copy{padding-top:4px}
+  .hero-copy h1{font-size:clamp(46px,13vw,58px);margin-bottom:17px}
+  .hero-copy p{font-size:16px;margin-bottom:22px}
+  .hero-media{height:auto;aspect-ratio:4/3;border-radius:42% 42% 4px 4px}
+  .product-section{padding:46px 0;gap:30px}
+  .product-story h2{font-size:39px;margin-bottom:24px}
+  .features{grid-template-columns:1fr}
+  .features>div,.features>div:first-child{display:grid;grid-template-columns:92px 1fr;grid-template-rows:auto auto;column-gap:18px;padding:16px 0;border:0;border-top:1px solid #d9d9cb}
+  .features>div:last-child{border-bottom:1px solid #d9d9cb}
+  .features strong{grid-row:1/3;align-self:center;font-size:31px}
+  .features strong.word-feature{font-size:25px}
+  .features h3{margin:0 0 4px}
+  .features p{max-width:none;font-size:13px}
+  .purchase{padding-top:26px}
+  .spotlight{padding:48px 0;gap:28px}
+  .spotlight-copy h2{font-size:42px}
+  .mini-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 26px}
+  .mini-specs span{font-size:10px}
+  .mini-specs strong{font-size:21px}
+  .walk-story{padding:48px 0}
+  .story-inner{gap:18px}
+  .story-inner h2{font-size:43px}
+  .faq{grid-template-columns:1fr;gap:24px;padding:48px 0 58px}
+  .faq h2{font-size:38px;margin-bottom:10px}
+  .faq>div:first-child p{margin-bottom:0}
+  .faq-list details:first-child{margin-top:2px}
+  .faq-list summary{display:flex;align-items:center;min-height:58px;padding:17px 36px 17px 0;font-size:15px;line-height:1.3}
+  .faq-list summary:after{top:50%;transform:translateY(-50%);right:2px}
+  .faq-list details p{font-size:14px;line-height:1.55;padding:0 28px 18px 0;margin:0}
+  .footer{padding:38px 0 18px}
+  .footer-top{gap:26px}
+  .footer .wordmark{font-size:31px}
+  .footer p{font-size:13px;margin-bottom:0}
+  .footer nav{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;font-size:13px}
+  .footer nav a{padding:7px 0}
+  .footer-bottom{margin-top:28px;padding-top:18px;gap:12px}
+  .footer-bottom>div{gap:10px 14px}
+  .product-clean-hero{grid-template-columns:1fr;grid-template-areas:"intro" "media" "buy";gap:0;padding:14px 0 52px}
+  .product-clean-intro{padding:7px 0 24px;max-width:none}
+  .product-clean-intro h1{font-size:clamp(46px,13vw,54px);line-height:.98;margin-bottom:17px}
+  .product-clean-lead{font-size:16px;line-height:1.5;max-width:34ch}
+  .product-clean-media{margin-bottom:22px}
+  .product-clean-media .dispenser-gallery{max-width:none}
+  .product-clean-media .gallery-stage{border-radius:20px}
+  .gallery-thumbnails{display:flex;grid-template-columns:none;gap:8px;margin-top:10px}
+  .gallery-thumbnails button{width:auto;flex:1;min-height:54px;aspect-ratio:auto;display:flex;align-items:center;gap:8px;padding:5px 9px 5px 5px;border:1px solid #d0d3c9;border-radius:14px;background:transparent}
+  .gallery-thumbnails button[aria-pressed=true]{border-color:#193e32;background:#fffaf2}
+  .gallery-thumbnails img{width:42px;height:42px;flex:none;border-radius:10px;object-fit:cover;background:#c7c5c9}
+  .gallery-thumbnails span{position:static;padding:0;background:transparent;font-size:11px;line-height:1.15}
+  .product-clean-buy{max-width:none}
+  .product-clean-specs{grid-template-columns:repeat(3,1fr);margin-bottom:22px}
+  .product-clean-specs span{padding:13px 10px;font-size:10px;line-height:1.25}
+  .product-clean-specs span:first-child{padding-left:0}
+  .product-clean-specs strong{font-size:20px;margin-bottom:3px}
+  .product-clean-buy .color-picker{margin:20px 0 14px}
+  .color-picker legend{font-size:13px}
+  .color-options{gap:12px;margin:12px 0}
+  .color-options label{min-width:46px;min-height:46px;display:grid;place-items:center}
+  .color-options label>span:not(.sr-only){width:40px;height:40px}
+  .product-clean-status{padding:14px 0;margin-bottom:18px;border-bottom:1px solid #d9d9cb}
+  .product-clean-buy .button{width:100%}
+  .product-clean-benefits,.product-clean-colors,.product-clean-how,.product-clean-details{padding:50px 0}
+  .product-clean-benefits>.eyebrow{margin-bottom:22px}
+  .product-clean-benefit-grid{grid-template-columns:1fr;gap:0;margin-top:0}
+  .product-clean-benefit-grid article{padding:20px 0 22px}
+  .product-clean-benefit-grid h2{font-size:29px;margin-bottom:9px}
+  .product-clean-benefit-grid p{font-size:14px;max-width:34ch}
+  .product-clean-heading{grid-template-columns:1fr;gap:8px;margin-bottom:26px}
+  .product-clean-heading h2{font-size:39px}
+  .product-clean-color-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .product-clean-color-photo{height:auto;aspect-ratio:3/4;border-radius:18px}
+  .product-clean-color-grid figcaption{justify-content:center;padding:11px 0 0;font-size:12px}
+  .product-clean-color-grid figcaption span{width:16px;height:16px}
+  .product-clean-steps{grid-template-columns:1fr;gap:0}
+  .product-clean-steps article{display:grid;grid-template-columns:32px 1fr;grid-template-rows:auto auto;column-gap:14px;padding:19px 0 20px}
+  .product-clean-steps article>span{grid-row:1/3;padding-top:4px}
+  .product-clean-steps h3{grid-column:2;margin:0 0 6px;font-size:26px}
+  .product-clean-steps p{grid-column:2;font-size:14px;max-width:34ch}
+  .product-clean-detail-list>div{grid-template-columns:minmax(105px,.8fr) 1.2fr;gap:18px;padding:16px 0;align-items:start}
+  .product-clean-detail-list dt{font-size:12px}
+  .product-clean-detail-list dd{font-size:17px;line-height:1.3;text-align:right}
+  .product-clean-source{font-size:11px}
+  .walk-editorial{padding:16px 0 42px}
+  .walk-editorial-title{gap:20px;margin-bottom:26px}
+  .walk-editorial-title h1{font-size:48px}
+  .walk-editorial-lead p{font-size:15px}
+  .walk-editorial-image{border-radius:20px}
+  .walk-plans{padding:46px 0}
+  .walk-section-heading{gap:10px;margin-bottom:26px}
+  .walk-section-heading h2{font-size:39px}
+  .walk-plan{padding:20px;border-radius:18px}
+  .walk-plan-top{margin-bottom:28px}
+  .walk-plan h3{font-size:28px}
+  .walk-ready{padding:50px 0}
+  .walk-ready-inner{gap:34px}
+  .walk-ready h2{font-size:46px}
+  .walk-checklist li{padding:18px 0}
+  .walk-checklist strong{font-size:21px}
+  .walk-manifesto{padding:52px 0}
+  .walk-manifesto blockquote{font-size:40px}
+}
+@media(max-width:380px){
+  .wrap{width:calc(100% - 32px)}
+  .header .wordmark,.footer .wordmark{font-size:29px}
+  .header nav{font-size:10.5px;gap:3px}
+  .product-clean-intro h1{font-size:44px}
+  .product-clean-heading h2,.faq h2{font-size:36px}
+  .product-clean-specs span{padding-inline:7px}
+  .product-clean-specs strong{font-size:18px}
+  .gallery-thumbnails button{padding-right:6px}
+  .gallery-thumbnails img{width:38px;height:38px}
+  .gallery-thumbnails span{font-size:10.5px}
+}
