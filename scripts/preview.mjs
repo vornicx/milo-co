@@ -8,7 +8,7 @@ for (const file of ['arrow','product-form','dispenser-gallery','color-preview'])
  await writeFile(`.preview/snippets/${file}.liquid`,text);
 }
 const engine = new Liquid({root: '.preview/snippets', extname: '.liquid'});
-engine.registerFilter('asset_url', x => `assets/${x}`);
+engine.registerFilter('asset_url', x => `/assets/${x}`);
 engine.registerFilter('stylesheet_tag', x => `<link rel="stylesheet" href="${x}">`);
 engine.registerFilter('money', x => new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(x/100));
 const clean = s => s.replace(/{% schema %}[\s\S]*?{% endschema %}/g,'');
