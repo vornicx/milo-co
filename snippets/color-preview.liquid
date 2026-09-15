@@ -1,1 +1,9 @@
-<fieldset class="color-picker" data-colors><legend>Color · <span data-color-name>Azul cielo</span></legend><div class="color-options"><label><input type="radio" name="color-{{ section.id }}" value="Azul cielo" checked><span class="sky"></span><span class="sr-only">Azul cielo</span></label><label><input type="radio" name="color-{{ section.id }}" value="Verde"><span class="grass"></span><span class="sr-only">Verde</span></label><label><input type="radio" name="color-{{ section.id }}" value="Rosa"><span class="pink"></span><span class="sr-only">Rosa</span></label><label><input type="radio" name="color-{{ section.id }}" value="Azul marino"><span class="navy"></span><span class="sr-only">Azul marino</span></label></div><p class="fine">Cuatro colores previstos. Las fotos muestran el modelo del proveedor y no cambian con esta selección.</p></fieldset>
+{% assign sky_photo = 'dispenser-sky.webp' | asset_url %}{% assign pink_photo = 'dispenser-pink.webp' | asset_url %}
+<fieldset class="color-picker" data-colors>
+  <legend>Color · <span data-color-name>Azul cielo</span></legend>
+  <div class="color-options">
+    <label><input type="radio" name="color-{{ section.id }}" value="Azul cielo" data-photo="{{ sky_photo }}" data-alt="Dispensador de paseo 3 en 1 en azul cielo" checked><span class="sky"></span><span class="sr-only">Azul cielo</span></label>
+    <label><input type="radio" name="color-{{ section.id }}" value="Rosa" data-photo="{{ pink_photo }}" data-alt="Dispensador de paseo 3 en 1 en rosa"><span class="pink"></span><span class="sr-only">Rosa</span></label>
+  </div>
+  <p class="fine">Dos colores para el lanzamiento: azul cielo y rosa.</p>
+</fieldset>

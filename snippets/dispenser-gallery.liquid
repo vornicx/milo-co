@@ -1,3 +1,15 @@
+{% assign sky_photo = 'dispenser-sky.webp' | asset_url %}{% assign pink_photo = 'dispenser-pink.webp' | asset_url %}
 <div class="dispenser-gallery" data-gallery>
-<div class="gallery-stage"><img data-gallery-main src="https://oss.teemdrop.com/goods-admin/2026/08/20/47496f24-4801-4ef1-afca-9294a987cce3.jpg" alt="Dispensador portátil 3 en 1: fotografía del proveedor" width="900" height="900" loading="eager"><p class="image-error" hidden>No se ha podido cargar esta fotografía.</p></div>
-<div class="gallery-thumbnails" aria-label="Fotografías del dispensador"><button type="button" data-photo="https://oss.teemdrop.com/goods-admin/2026/08/20/47496f24-4801-4ef1-afca-9294a987cce3.jpg" aria-label="Ver fotografía 1" aria-pressed="true"><img src="https://oss.teemdrop.com/goods-admin/2026/08/20/47496f24-4801-4ef1-afca-9294a987cce3.jpg" alt="" width="100" height="100" loading="lazy"><span>01</span></button><button type="button" data-photo="https://oss.teemdrop.com/goods-admin/2026/08/20/427ce113-d7bb-43eb-9651-8f3db4a44081.jpeg" aria-label="Ver fotografía 2" aria-pressed="false"><img src="https://oss.teemdrop.com/goods-admin/2026/08/20/427ce113-d7bb-43eb-9651-8f3db4a44081.jpeg" alt="" width="100" height="100" loading="lazy"><span>02</span></button><button type="button" data-photo="https://oss.teemdrop.com/goods-admin/2026/08/20/c7bba972-c46a-409d-a656-74dc0e2a6cbe.jpeg" aria-label="Ver fotografía 3" aria-pressed="false"><img src="https://oss.teemdrop.com/goods-admin/2026/08/20/c7bba972-c46a-409d-a656-74dc0e2a6cbe.jpeg" alt="" width="100" height="100" loading="lazy"><span>03</span></button><button type="button" data-photo="https://oss.teemdrop.com/goods-admin/2026/08/20/97125975-9154-4dcf-bd8b-aaf07d641ab0.jpeg" aria-label="Ver fotografía 4" aria-pressed="false"><img src="https://oss.teemdrop.com/goods-admin/2026/08/20/97125975-9154-4dcf-bd8b-aaf07d641ab0.jpeg" alt="" width="100" height="100" loading="lazy"><span>04</span></button></div></div>
+  <div class="gallery-stage">
+    <img data-gallery-main src="{{ sky_photo }}" alt="Dispensador de paseo 3 en 1 en azul cielo" width="420" height="560" loading="eager">
+    <p class="image-error" hidden>No se ha podido cargar esta fotografía.</p>
+  </div>
+  <div class="gallery-thumbnails" aria-label="Colores del dispensador">
+    <button type="button" data-photo="{{ sky_photo }}" data-alt="Dispensador de paseo 3 en 1 en azul cielo" data-color="Azul cielo" aria-label="Ver dispensador azul cielo" aria-pressed="true">
+      <img src="{{ sky_photo }}" alt="" width="105" height="140" loading="lazy"><span>Azul cielo</span>
+    </button>
+    <button type="button" data-photo="{{ pink_photo }}" data-alt="Dispensador de paseo 3 en 1 en rosa" data-color="Rosa" aria-label="Ver dispensador rosa" aria-pressed="false">
+      <img src="{{ pink_photo }}" alt="" width="105" height="140" loading="lazy"><span>Rosa</span>
+    </button>
+  </div>
+</div>
