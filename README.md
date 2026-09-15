@@ -52,3 +52,7 @@ npm run package
 Ver `docs/qa.md`. La inspección visual en navegador quedó bloqueada por la política de acceso del navegador al preview local. No se afirma fidelidad visual comprobada ni checkout validado. Ejecutar estas comprobaciones con Shopify antes de publicar.
 
 Identidad: `docs/brand.md`. Fuente y discrepancias del producto: `docs/product-source.md`.
+
+## Vista previa en Vercel
+
+Vercel compila `npm run build` y publica únicamente `dist/`. El proceso renderiza las mismas secciones Liquid, CSS e imagen del tema como HTML estático. Incluye portada, FAQ interactiva, carrito vacío y página 404. No es un backend de Shopify ni permite pagos; sirve para valorar el diseño antes de conectar la tienda. La vista previa indica «Próximamente» y queda excluida de indexación. No publica el código fuente, snippets o documentación.
