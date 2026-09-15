@@ -1,0 +1,17 @@
+{% if item != blank %}
+{% assign chosen = item.selected_or_first_available_variant %}
+{% if settings.sales_enabled %}
+<div data-product>
+<p class="price" data-price>{{ chosen.price | money }}</p>
+{% form 'product', item, class: 'product-form' %}
+<label for="Variant-{{ section.id }}">Color</label>
+<select name="id" id="Variant-{{ section.id }}" data-variant>
+{% for variant in item.variants %}<option value="{{ variant.id }}" data-price="{{ variant.price | money | escape }}" data-available="{{ variant.available }}" {% if variant.id == chosen.id %}selected{% endif %}>{{ variant.title | escape }}{% unless variant.available %} — Agotado{% endunless %}</option>{% endfor %}
+</select>
+<label for="Quantity-{{ section.id }}">Cantidad</label><input id="Quantity-{{ section.id }}" name="quantity" type="number" value="1" min="1" step="1" required>
+<button class="button" type="submit" data-add {% unless chosen.available %}disabled{% endunless %}>{% if chosen.available %}Añadir al carrito{% else %}Agotado{% endif %}</button>
+{% endform %}
+<p class="fine">El envío y los impuestos aplicables se calculan al finalizar la compra.</p>
+</div>
+{% else %}<p class="availability">Próximamente</p>{% endif %}
+{% else %}<div class="color-preview" aria-label="Colores previstos: azul cielo, verde, rosa y azul marino"><span class="sky"></span><span class="grass"></span><span class="pink"></span><span class="navy"></span></div><p class="availability">Próximamente</p>{% endif %}

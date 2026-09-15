@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "section0": {
+      "type": "hero",
+      "settings": {
+        "heading": "Su paseo favorito.\nTambién el tuyo.",
+        "text": "Agua, comida y un lugar para los residuos. Todo a mano para salir juntos."
+      }
+    },
+    "section1": {
+      "type": "featured-product",
+      "settings": {}
+    },
+    "section2": {
+      "type": "faq",
+      "settings": {}
+    }
+  },
+  "order": [
+    "section0",
+    "section1",
+    "section2"
+  ]
+}

@@ -1,0 +1,20 @@
+{% assign item = section.settings.product %}
+<section id="dispensador" class="product-section wrap">
+<div class="product-story"><h2>Un solo compañero.<br>Tres soluciones.</h2>
+<div class="features"><div><strong>400 <small>ml</small></strong><h3>Agua</h3><p>Una pausa para beber, donde os lleve el paseo.</p></div><div><strong>150 <small>ml</small></strong><h3>Comida</h3><p>Su comida o sus snacks, siempre a mano.</p></div><div><strong class="word-feature">Residuos</strong><h3>Compartimento</h3><p>Un espacio separado para recogerlos.</p></div></div>
+{% if item.featured_image %}<a class="product-photo" href="{{ item.url }}">{{ item.featured_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '400, 700, 1000', sizes: '(max-width: 760px) 100vw, 50vw' }}</a>{% endif %}
+</div>
+<div class="purchase"><h2>{% if item != blank %}<a href="{{ item.url }}">{{ item.title | escape }}</a>{% else %}Dispensador de paseo 3 en 1{% endif %}</h2><p>Para ese «una vuelta más». Y para todo lo que os encontréis por el camino.</p>{% render 'product-form', item: item %}</div>
+</section>
+{% schema %}
+{
+  "name": "Featured Product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Producto estrella"
+    }
+  ]
+}
+{% endschema %}

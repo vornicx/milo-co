@@ -1,0 +1,22 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Milo & Co",
+    "theme_version": "0.1.0",
+    "theme_author": "Milo & Co",
+    "theme_documentation_url": "https://github.com/vornicx/milo-co",
+    "theme_support_url": "https://github.com/vornicx/milo-co/issues"
+  },
+  {
+    "name": "Venta",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "sales_enabled",
+        "label": "Activar venta en el tema",
+        "default": false,
+        "info": "Activar tras configurar producto, precio, fotografías, envío y políticas. No sustituye la contraseña de Shopify."
+      }
+    ]
+  }
+]

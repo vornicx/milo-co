@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#193E32">
+<title>{{ page_title | escape }}{% unless page_title contains shop.name %} · {{ shop.name | escape }}{% endunless %}</title>
+{% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+<link rel="canonical" href="{{ canonical_url }}">
+{{ 'milo.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'milo.js' | asset_url }}" defer></script>
+{{ content_for_header }}
+</head><body>
+<a class="skip" href="#MainContent">Saltar al contenido</a>
+{% section 'header' %}
+<main id="MainContent">{{ content_for_layout }}</main>
+{% section 'footer' %}
+</body></html>

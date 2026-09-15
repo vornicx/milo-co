@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "section0": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "section1": {
+      "type": "faq",
+      "settings": {}
+    }
+  },
+  "order": [
+    "section0",
+    "section1"
+  ]
+}

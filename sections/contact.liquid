@@ -1,0 +1,7 @@
+<section class="page wrap"><h1>{{ page.title | default: 'Hablemos.' | escape }}</h1><div class="prose">{{ page.content }}</div>{% form 'contact' %}{% if form.posted_successfully? %}<p role="status">Gracias por escribirnos. Hemos recibido tu mensaje.</p>{% endif %}{{ form.errors | default_errors }}<label for="ContactName">Nombre</label><input id="ContactName" name="contact[name]" autocomplete="name" value="{{ form.name | escape }}" required><label for="ContactEmail">Correo electrónico</label><input id="ContactEmail" name="contact[email]" type="email" autocomplete="email" value="{{ form.email | escape }}" required><label for="ContactBody">¿Cómo podemos ayudarte?</label><textarea id="ContactBody" name="contact[body]" rows="6" required>{{ form.body | escape }}</textarea><button class="button" type="submit">Enviar mensaje</button>{% endform %}</section>
+{% schema %}
+{
+  "name": "Contact",
+  "settings": []
+}
+{% endschema %}
