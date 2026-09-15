@@ -14,11 +14,16 @@
     "section2": {
       "type": "faq",
       "settings": {}
+    },
+    "story": {
+      "type": "walk-story",
+      "settings": {}
     }
   },
   "order": [
     "section0",
     "section1",
+    "story",
     "section2"
   ]
 }

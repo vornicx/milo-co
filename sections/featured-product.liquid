@@ -1,20 +1,5 @@
-{% assign item = section.settings.product %}
-<section id="dispensador" class="product-section wrap">
-<div class="product-story"><h2>Un solo compañero.<br>Tres soluciones.</h2>
-<div class="features"><div><strong>400 <small>ml</small></strong><h3>Agua</h3><p>Una pausa para beber, donde os lleve el paseo.</p></div><div><strong>150 <small>ml</small></strong><h3>Comida</h3><p>Su comida o sus snacks, siempre a mano.</p></div><div><strong class="word-feature">Residuos</strong><h3>Compartimento</h3><p>Un espacio separado para recogerlos.</p></div></div>
-{% if item.featured_image %}<a class="product-photo" href="{{ item.url }}">{{ item.featured_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '400, 700, 1000', sizes: '(max-width: 760px) 100vw, 50vw' }}</a>{% endif %}
-</div>
-<div class="purchase"><h2>{% if item != blank %}<a href="{{ item.url }}">{{ item.title | escape }}</a>{% else %}Dispensador de paseo 3 en 1{% endif %}</h2><p>Para ese «una vuelta más». Y para todo lo que os encontréis por el camino.</p>{% render 'product-form', item: item %}</div>
-</section>
+{% assign item = section.settings.product %}{% assign product_link = item.url | default: settings.product_page.url | default: '/pages/dispensador' %}
+<section id="dispensador" class="spotlight wrap"><div class="spotlight-photo">{% if item.featured_image %}{{ item.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}{% else %}{% render 'dispenser-gallery' %}{% endif %}</div><div class="spotlight-copy"><p class="eyebrow">EL DISPENSADOR 3 EN 1</p><h2>Menos cosas.<br>Más paseo.</h2><p>Agua para una pausa. Comida para el camino. Y un compartimento para los residuos. Lo esencial, reunido en un solo dispensador.</p><div class="mini-specs"><span><strong>400 ml</strong> Agua</span><span><strong>150 ml</strong> Comida</span><span><strong>3 en 1</strong> Un solo accesorio</span></div><a class="button" href="{{ product_link }}">Conoce el dispensador {% render 'arrow' %}</a><p class="fine launch-note">Estamos preparando el lanzamiento.</p></div></section>
 {% schema %}
-{
-  "name": "Featured Product",
-  "settings": [
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Producto estrella"
-    }
-  ]
-}
+{"name": "Featured Product", "settings": [{"type": "product", "id": "product", "label": "Producto estrella"}]}
 {% endschema %}

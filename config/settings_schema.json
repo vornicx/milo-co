@@ -18,5 +18,20 @@
         "info": "Activar tras configurar producto, precio, fotografías, envío y políticas. No sustituye la contraseña de Shopify."
       }
     ]
+  },
+  {
+    "name": "Navegación",
+    "settings": [
+      {
+        "type": "page",
+        "id": "product_page",
+        "label": "Página del dispensador (plantilla page.dispensador)"
+      },
+      {
+        "type": "page",
+        "id": "walk_page",
+        "label": "Página de paseos (plantilla page.paseos)"
+      }
+    ]
   }
 ]

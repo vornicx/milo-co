@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "0": {
+      "type": "dispenser-detail",
+      "settings": {}
+    },
+    "1": {
+      "type": "dispenser-details",
+      "settings": {}
+    },
+    "2": {
+      "type": "faq",
+      "settings": {}
+    }
+  },
+  "order": [
+    "0",
+    "1",
+    "2"
+  ]
+}
