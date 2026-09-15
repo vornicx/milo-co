@@ -1,5 +1,83 @@
-<section class="walk-hero wrap"><div><p class="eyebrow">PASEOS Y ESCAPADAS</p><h1>Una vuelta más.<br>Un recuerdo más.</h1><p>Hay planes que no necesitan mucho. Un camino, tu perro y lo esencial para salir juntos.</p><a class="button" href="{{ settings.product_page.url | default: '/pages/dispensador' }}">Descubre el 3 en 1 {% render 'arrow' %}</a></div><img src="{{ 'paseo.jpg' | asset_url }}" alt="Un golden retriever en un paseo junto al lago" width="1536" height="1024" fetchpriority="high"></section>
-<section class="walk-moments wrap"><div><p class="eyebrow">DEL BARRIO AL FIN DE SEMANA</p><h2>El camino cambia.<br>La compañía, no.</h2></div><div class="moment-list"><article><span>01 / A DIARIO</span><h3>La vuelta de siempre.</h3><p>Agua y comida a mano para las pequeñas pausas del paseo.</p></article><article><span>02 / SIN PRISA</span><h3>Un rato en el parque.</h3><p>Una parada, unos snacks y tiempo para disfrutar juntos.</p></article><article><span>03 / MÁS LEJOS</span><h3>La próxima escapada.</h3><p>Un accesorio para reunir lo esencial. En salidas largas, lleva agua y comida adicionales según lo que necesite tu perro.</p></article></div></section>
+<section class="walk-editorial">
+  <div class="wrap walk-editorial-head">
+    <p class="eyebrow">PASEOS Y ESCAPADAS</p>
+    <div class="walk-editorial-title">
+      <h1>Salir bien no va<br>de llevar más.</h1>
+      <div class="walk-editorial-lead">
+        <p>Va de llevar lo que toca. Esta página no es otra portada de Milo & Co: es una guía sencilla para pensar el paseo según el plan, el tiempo y vuestro ritmo.</p>
+        <a class="text-link" href="#planes">Ver los planes {% render 'arrow' %}</a>
+      </div>
+    </div>
+    <div class="walk-editorial-image">
+      <img src="{{ 'paseo.jpg' | asset_url }}" alt="Un golden retriever durante una escapada junto al lago" width="1536" height="1024" fetchpriority="high">
+      <span>Paseo corto · parque · escapada</span>
+    </div>
+  </div>
+</section>
+
+<section id="planes" class="walk-plans wrap">
+  <div class="walk-section-heading">
+    <p class="eyebrow">SEGÚN EL PLAN</p>
+    <h2>No todos los paseos<br>piden lo mismo.</h2>
+  </div>
+
+  <div class="walk-plan-grid">
+    <article class="walk-plan walk-plan--sky">
+      <div class="walk-plan-top"><span>01</span><small>VUELTA CORTA</small></div>
+      <h3>Salir, despejarse y volver.</h3>
+      <p>Para el paseo diario, menos preparación y acceso rápido a lo básico.</p>
+      <ul>
+        <li>Agua si hace calor o vais a parar</li>
+        <li>Bolsas o espacio para residuos</li>
+        <li>Un snack si forma parte de vuestra rutina</li>
+      </ul>
+    </article>
+
+    <article class="walk-plan walk-plan--pink">
+      <div class="walk-plan-top"><span>02</span><small>PARQUE Y SIN PRISA</small></div>
+      <h3>Cuando una vuelta se alarga.</h3>
+      <p>Si vais a estar un rato fuera, compensa llevarlo ordenado y a mano.</p>
+      <ul>
+        <li>Agua para una pausa</li>
+        <li>Snacks o pequeña ración</li>
+        <li>Algo cómodo de transportar</li>
+      </ul>
+    </article>
+
+    <article class="walk-plan walk-plan--cream">
+      <div class="walk-plan-top"><span>03</span><small>ESCAPADA</small></div>
+      <h3>Más lejos, con más previsión.</h3>
+      <p>Para salidas largas, el dispensador ayuda a reunir lo esencial, pero no sustituye la cantidad extra que vuestro perro pueda necesitar.</p>
+      <ul>
+        <li>Agua adicional según duración y calor</li>
+        <li>Comida suficiente para el plan</li>
+        <li>Correa, identificación y lo habitual</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="walk-ready">
+  <div class="wrap walk-ready-inner">
+    <div>
+      <p class="eyebrow">ANTES DE SALIR</p>
+      <h2>Treinta segundos<br>que ayudan.</h2>
+      <p>Una revisión rápida evita acabar cargando de más o echando algo en falta.</p>
+    </div>
+    <ol class="walk-checklist">
+      <li><span>01</span><div><strong>¿Cuánto vais a estar fuera?</strong><p>No prepara igual una vuelta de veinte minutos que una tarde entera.</p></div></li>
+      <li><span>02</span><div><strong>¿Qué tiempo hace?</strong><p>El calor cambia la cantidad de agua que puede hacer falta.</p></div></li>
+      <li><span>03</span><div><strong>¿Vais a parar?</strong><p>Si habrá parque, terraza o descanso, llevar agua y snacks accesibles tiene más sentido.</p></div></li>
+      <li><span>04</span><div><strong>¿Está todo en un solo sitio?</strong><p>Cuantas menos cosas sueltas, más fácil salir y volver sin pensar demasiado.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="walk-manifesto wrap">
+  <p class="eyebrow">LA IDEA DE MILO & CO</p>
+  <blockquote>Que preparar el paseo ocupe menos.<br>Y el paseo, un poco más.</blockquote>
+</section>
+
 {% schema %}
 {"name": "Walk Landing", "settings": []}
 {% endschema %}

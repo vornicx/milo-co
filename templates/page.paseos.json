@@ -5,22 +5,12 @@
       "settings": {}
     },
     "1": {
-      "type": "featured-product",
-      "settings": {}
-    },
-    "2": {
-      "type": "faq",
-      "settings": {}
-    },
-    "3": {
       "type": "product-cta",
       "settings": {}
     }
   },
   "order": [
     "0",
-    "1",
-    "2",
-    "3"
+    "1"
   ]
 }
