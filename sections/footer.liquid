@@ -8,11 +8,12 @@
       <a href="{{ settings.products_page.url | default: "/pages/productos" }}">Productos</a>
       <a href="{{ settings.walk_page.url | default: "/pages/paseos" }}">Paseos y escapadas</a>
       <a href="{{ settings.brand_page.url | default: "/pages/nosotros" }}">Nuestra idea</a>
-      {% if section.settings.contact_page != blank %}<a href="{{ section.settings.contact_page.url }}">Contacto</a>{% endif %}
+      {% assign contact_page = section.settings.contact_page | default: pages['contacto'] %}
+      {% if contact_page != blank %}<a href="{{ contact_page.url }}">Contacto</a>{% endif %}
     </nav>
   </div>
   <div class="wrap footer-bottom">
-    <small>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}</small>
+    <small>© {{ 'now' | date: '%Y' }} Milo & Co</small>
     <div>{% for policy in shop.policies %}{% if policy.body != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}</div>
   </div>
 </footer>

@@ -5,11 +5,18 @@
   </div>
 
   <figure class="campaign-media">
+    <picture>
+      {% if section.settings.mobile_image != blank %}
+        <source media="(max-width: 760px)" srcset="{{ section.settings.mobile_image | image_url: width: 1000 }}">
+      {% elsif section.settings.image == blank %}
+        <source media="(max-width: 760px)" srcset="{{ 'paseo-pausa.webp' | asset_url }}">
+      {% endif %}
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 2200 | image_tag: widths: '640, 900, 1300, 1800, 2200', sizes: '(max-width: 1440px) 100vw, 1440px', loading: 'eager', fetchpriority: 'high', alt: 'Dispensador Milo & Co preparado para un paseo' }}
     {% else %}
-      <img src="{{ 'paseo.jpg' | asset_url }}" width="1536" height="1024" alt="Un golden retriever junto al lago durante un paseo" fetchpriority="high">
+      <img src="{{ 'paseo.jpg' | asset_url }}" width="1536" height="1024" alt="Un momento de paseo en compañía de tu perro" fetchpriority="high">
     {% endif %}
+    </picture>
   </figure>
 </section>
 {% schema %}
@@ -18,7 +25,8 @@
   "settings":[
     {"type":"textarea","id":"heading","label":"Título","default":"Fuera, juntos."},
     {"type":"textarea","id":"text","label":"Texto","default":"Lo esencial del paseo, siempre contigo."},
-    {"type":"image_picker","id":"image","label":"Fotografía de portada"}
+    {"type":"image_picker","id":"image","label":"Fotografía de portada"},
+    {"type":"image_picker","id":"mobile_image","label":"Fotografía de portada en móvil"}
   ]
 }
 {% endschema %}
