@@ -4,9 +4,20 @@
     <h2>Azul cielo.<br>O rosa.</h2>
   </div>
 
-  <figure class="color-editorial"><img src="{{ 'paseo-colores.webp' | asset_url }}" alt="Dispensadores azul cielo y rosa preparados para una escapada" width="1500" height="1000" loading="lazy"></figure>
+  <figure class="color-editorial">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), calc(100vw - 96px)', loading: 'lazy', alt: 'Dispensadores azul cielo y rosa' }}
+    {% else %}
+      <img src="{{ 'paseo-colores.webp' | asset_url }}" alt="Dispensadores azul cielo y rosa preparados para una escapada" width="1500" height="1000" loading="lazy">
+    {% endif %}
+  </figure>
 </section>
 
 {% schema %}
-{"name":"Dispenser Colors","settings":[]}
+{
+  "name":"Dispensador · colores",
+  "settings":[
+    {"type":"image_picker","id":"image","label":"Fotografía de colores"}
+  ]
+}
 {% endschema %}

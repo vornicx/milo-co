@@ -366,3 +366,100 @@ p{color:var(--milo-muted)}
 @media(prefers-reduced-motion:reduce){
   .spotlight:hover .spotlight-photo>img{transform:none}
 }
+
+
+/* Photography system — reusable across future Milo & Co products */
+.product-use-gallery{
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(0,.775fr) minmax(0,.775fr);
+  gap:16px;
+  align-items:end;
+}
+.product-use-shot{margin:0}
+.product-use-shot img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:22px;
+  background:var(--milo-paper-2);
+}
+.product-use-shot--primary img{aspect-ratio:5/6}
+.product-use-shot figcaption{
+  display:flex;align-items:center;gap:11px;
+  padding:12px 2px 0;
+}
+.product-use-shot figcaption span{
+  font-size:9px;letter-spacing:.12em;color:var(--milo-orange)
+}
+.product-use-shot figcaption strong{
+  font:400 18px/1.2 var(--milo-serif);color:var(--milo-ink)
+}
+.product-use-facts{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  margin-top:38px;border-block:1px solid var(--milo-line)
+}
+.product-use-facts span{
+  display:flex;align-items:baseline;gap:8px;
+  padding:17px 24px 16px 0;
+  font-size:10px;color:var(--milo-muted);text-transform:uppercase;letter-spacing:.06em
+}
+.product-use-facts span+span{padding-left:24px;border-left:1px solid var(--milo-line)}
+.product-use-facts strong{
+  font:400 24px/1 var(--milo-serif);
+  color:var(--milo-ink);text-transform:none;letter-spacing:-.03em
+}
+.mobile-product-bar{display:none}
+
+@media(max-width:760px){
+  .product-use-gallery{
+    grid-template-columns:84% 84% 84%;
+    gap:10px;
+    overflow-x:auto;
+    margin-right:-16px;
+    padding-right:16px;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .product-use-gallery::-webkit-scrollbar{display:none}
+  .product-use-shot{scroll-snap-align:start}
+  .product-use-shot img,.product-use-shot--primary img{
+    aspect-ratio:4/5;border-radius:18px
+  }
+  .product-use-shot figcaption{padding-top:10px}
+  .product-use-shot figcaption strong{font-size:17px}
+  .product-use-facts{
+    grid-template-columns:1fr;
+    margin-top:28px
+  }
+  .product-use-facts span{
+    padding:14px 0;
+  }
+  .product-use-facts span+span{
+    padding-left:0;border-left:0;border-top:1px solid var(--milo-line)
+  }
+  .product-use-facts strong{font-size:21px}
+
+  .mobile-product-bar{
+    position:fixed;left:10px;right:10px;bottom:10px;z-index:80;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:10px 10px 10px 16px;
+    background:rgba(245,242,233,.96);
+    border:1px solid var(--milo-line);
+    border-radius:20px;
+    box-shadow:0 10px 35px rgba(25,62,50,.13);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+  }
+  .mobile-product-bar>div{display:flex;flex-direction:column;min-width:0}
+  .mobile-product-bar small{
+    max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    color:var(--milo-muted);font-size:10px
+  }
+  .mobile-product-bar strong{
+    font:400 18px/1.2 var(--milo-serif);color:var(--milo-ink)
+  }
+  .mobile-product-bar .button{
+    min-height:46px;padding:11px 20px;font-size:13px
+  }
+  body:has(.mobile-product-bar){padding-bottom:82px}
+}

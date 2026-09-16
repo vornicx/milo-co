@@ -2,14 +2,14 @@
   <div class="product-clean-intro">
     <p class="eyebrow">DISPENSADOR 3 EN 1</p>
     <h1>Menos cosas.<br>Más paseo.</h1>
-    <p class="product-clean-lead">Agua y snacks, siempre a mano.</p>
+    <p class="product-clean-lead">Agua, snacks y residuos. Siempre a mano.</p>
   </div>
 
   <div class="product-clean-media">
     {% render 'dispenser-gallery' %}
   </div>
 
-  <div class="product-clean-buy">
+  <div class="product-clean-buy" id="product-purchase">
     <div class="product-clean-specs" aria-label="Características principales">
       <span><strong>400 ml</strong>agua</span>
       <span><strong>150 ml</strong>comida</span>
@@ -17,20 +17,34 @@
     </div>
 
     {% if settings.featured_product != blank and settings.sales_enabled %}
-    {% render 'product-form', item: settings.featured_product %}
+      {% render 'product-form', item: settings.featured_product %}
     {% else %}
-    {% render 'color-preview' %}
-
-    <div class="product-clean-status">
-      <span></span>
-      <div><strong>Próximamente</strong></div>
-    </div>
-
-    <a class="button" href="#como-funciona">Verlo en el paseo {% render 'arrow' %}</a>
+      {% render 'color-preview' %}
+      <div class="product-clean-status">
+        <span></span>
+        <div><strong>Próximamente</strong></div>
+      </div>
+      <a class="button" href="#como-funciona">Verlo en el paseo {% render 'arrow' %}</a>
     {% endif %}
   </div>
 </section>
-<nav class="product-jump wrap" aria-label="Explora el dispensador"><a href="#como-funciona">Paseo</a><a href="#colores">Colores</a><a href="#detalles">Detalles</a></nav>
+
+<nav class="product-jump wrap" aria-label="Explora el dispensador">
+  <a href="#como-funciona">Uso</a>
+  <a href="#colores">Colores</a>
+  <a href="#detalles">Detalles</a>
+  <a href="#preguntas">Preguntas</a>
+</nav>
+
+{% if settings.featured_product != blank and settings.sales_enabled %}
+  <div class="mobile-product-bar" aria-label="Compra rápida">
+    <div>
+      <small>{{ settings.featured_product.title | escape }}</small>
+      <strong>{{ settings.featured_product.selected_or_first_available_variant.price | money }}</strong>
+    </div>
+    <a class="button" href="#product-purchase">Comprar</a>
+  </div>
+{% endif %}
 
 {% schema %}
 {"name":"Dispenser Detail","settings":[]}

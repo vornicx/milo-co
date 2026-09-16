@@ -4,25 +4,48 @@
     <h2>Lo esencial.<br>En una mano.</h2>
   </div>
 
-  <div class="product-use-visual">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), calc(100vw - 96px)', loading: 'lazy', alt: 'El dispensador Milo & Co en uso durante un paseo' }}
-    {% else %}
-      <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa durante el paseo">
-    {% endif %}
+  <div class="product-use-gallery">
+    <figure class="product-use-shot product-use-shot--primary">
+      {% if section.settings.image_water != blank %}
+        {{ section.settings.image_water | image_url: width: 1600 | image_tag: widths: '520, 820, 1200, 1600', sizes: '(max-width: 760px) 84vw, 56vw', loading: 'lazy', alt: 'El dispensador durante una pausa para beber' }}
+      {% else %}
+        <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa durante el paseo">
+      {% endif %}
+      <figcaption><span>01</span><strong>Agua</strong></figcaption>
+    </figure>
+
+    <figure class="product-use-shot">
+      {% if section.settings.image_food != blank %}
+        {{ section.settings.image_food | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 84vw, 28vw', loading: 'lazy', alt: 'El compartimento de comida o snacks del dispensador' }}
+      {% else %}
+        <img src="{{ 'paseo-esenciales.webp' | asset_url }}" width="1254" height="1254" loading="lazy" alt="El dispensador preparado para salir">
+      {% endif %}
+      <figcaption><span>02</span><strong>Snacks</strong></figcaption>
+    </figure>
+
+    <figure class="product-use-shot">
+      {% if section.settings.image_waste != blank %}
+        {{ section.settings.image_waste | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 84vw, 28vw', loading: 'lazy', alt: 'El compartimento de residuos del dispensador' }}
+      {% else %}
+        <img src="{{ 'dispensador-detalle.webp' | asset_url }}" width="1254" height="1254" loading="lazy" alt="Detalle del dispensador">
+      {% endif %}
+      <figcaption><span>03</span><strong>Residuos</strong></figcaption>
+    </figure>
   </div>
 
-  <div class="product-use-functions" aria-label="Funciones del dispensador">
-    <article><span>01</span><div><h3>Agua</h3><p>400 ml y bebedero integrado.</p></div></article>
-    <article><span>02</span><div><h3>Snacks</h3><p>150 ml para llevar una pequeña ración.</p></div></article>
-    <article><span>03</span><div><h3>Residuos</h3><p>Compartimento separado para el paseo.</p></div></article>
+  <div class="product-use-facts" aria-label="Características de uso">
+    <span><strong>400 ml</strong> agua</span>
+    <span><strong>150 ml</strong> comida</span>
+    <span><strong>3 en 1</strong> un accesorio</span>
   </div>
 </section>
 {% schema %}
 {
   "name":"Dispensador en uso",
   "settings":[
-    {"type":"image_picker","id":"image","label":"Fotografía principal de producto en uso"}
+    {"type":"image_picker","id":"image_water","label":"Foto · agua / bebedero"},
+    {"type":"image_picker","id":"image_food","label":"Foto · comida / snacks"},
+    {"type":"image_picker","id":"image_waste","label":"Foto · residuos"}
   ]
 }
 {% endschema %}
