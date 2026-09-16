@@ -1,4 +1,12 @@
-<section class="walk-story"><div class="wrap story-inner"><p class="eyebrow">PARA VUESTRA VIDA FUERA</p><h2>El mejor plan<br>tiene cuatro patas.</h2><div><p>La vuelta de siempre. El parque. Una escapada sin mirar el reloj.</p><a class="text-link" href="{{ settings.brand_page.url | default: '/pages/nosotros' }}">Nuestra idea {% render 'arrow' %}</a></div></div></section>
+<section class="walk-story">
+  <div class="wrap story-inner">
+    <p class="eyebrow">PARA VUESTRA VIDA FUERA</p>
+    <h2>El mejor plan<br>tiene cuatro patas.</h2>
+    <div>
+      <a class="text-link" href="{{ settings.walk_page.url | default: '/pages/paseos' }}">Paseos y escapadas {% render 'arrow' %}</a>
+    </div>
+  </div>
+</section>
 {% schema %}
-{"name": "Walk Story", "settings": []}
+{"name":"Walk Story","settings":[]}
 {% endschema %}

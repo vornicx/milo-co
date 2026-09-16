@@ -1,0 +1,45 @@
+<section class="home-moments wrap" aria-labelledby="home-moments-title">
+  <div class="home-moments-head">
+    <p class="eyebrow">HECHO PARA USARLO</p>
+    <h2 id="home-moments-title">Sale contigo.<br>Vuelve contigo.</h2>
+  </div>
+
+  <div class="home-moments-grid">
+    <figure class="home-moment home-moment--hero">
+      {% if section.settings.image_water != blank %}
+        {{ section.settings.image_water | image_url: width: 1600 | image_tag: widths: '480, 800, 1200, 1600', sizes: '(max-width: 760px) calc(100vw - 32px), 60vw', loading: 'lazy', alt: 'El dispensador durante una pausa para beber' }}
+      {% else %}
+        <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa durante el paseo">
+      {% endif %}
+      <figcaption><span>01</span><strong>Una pausa.</strong></figcaption>
+    </figure>
+
+    <figure class="home-moment">
+      {% if section.settings.image_carry != blank %}
+        {{ section.settings.image_carry | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) calc(100vw - 32px), 32vw', loading: 'lazy', alt: 'El dispensador preparado para salir' }}
+      {% else %}
+        <img src="{{ 'paseo-esenciales.webp' | asset_url }}" width="1254" height="1254" loading="lazy" alt="El dispensador preparado para salir">
+      {% endif %}
+      <figcaption><span>02</span><strong>Todo a mano.</strong></figcaption>
+    </figure>
+
+    <figure class="home-moment">
+      {% if section.settings.image_detail != blank %}
+        {{ section.settings.image_detail | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) calc(100vw - 32px), 32vw', loading: 'lazy', alt: 'Detalle del dispensador Milo & Co' }}
+      {% else %}
+        <img src="{{ 'dispensador-detalle.webp' | asset_url }}" width="1254" height="1254" loading="lazy" alt="Detalle del dispensador Milo & Co">
+      {% endif %}
+      <figcaption><span>03</span><strong>Sin cargar de más.</strong></figcaption>
+    </figure>
+  </div>
+</section>
+{% schema %}
+{
+  "name":"Momentos de uso",
+  "settings":[
+    {"type":"image_picker","id":"image_water","label":"Foto · pausa / agua"},
+    {"type":"image_picker","id":"image_carry","label":"Foto · transporte / paseo"},
+    {"type":"image_picker","id":"image_detail","label":"Foto · detalle / uso"}
+  ]
+}
+{% endschema %}

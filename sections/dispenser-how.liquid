@@ -1,13 +1,28 @@
-<section class="product-ritual wrap" id="como-funciona">
-  <div class="product-ritual-photo"><img src="{{ 'paseo-pausa.webp' | asset_url }}" alt="Un perro hace una pausa para beber del dispensador durante el paseo" width="1122" height="1402" loading="lazy"></div>
-  <div class="product-ritual-copy"><p class="eyebrow">EN EL PASEO</p><h2>Una pausa.<br>Y seguimos.</h2>
-    <ol class="product-ritual-steps">
-      <li><span>01</span><div><h3>Llena.</h3><p>Agua y snacks antes de salir.</p></div></li>
-      <li><span>02</span><div><h3>Llévalo.</h3><p>La cuerda lo mantiene a mano.</p></div></li>
-      <li><span>03</span><div><h3>Para.</h3><p>Bebedero listo cuando toca descansar.</p></div></li>
-    </ol>
+<section class="product-use wrap" id="como-funciona">
+  <div class="product-use-head">
+    <p class="eyebrow">EN EL PASEO</p>
+    <h2>Lo esencial.<br>En una mano.</h2>
+  </div>
+
+  <div class="product-use-visual">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), calc(100vw - 96px)', loading: 'lazy', alt: 'El dispensador Milo & Co en uso durante un paseo' }}
+    {% else %}
+      <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa durante el paseo">
+    {% endif %}
+  </div>
+
+  <div class="product-use-functions" aria-label="Funciones del dispensador">
+    <article><span>01</span><div><h3>Agua</h3><p>400 ml y bebedero integrado.</p></div></article>
+    <article><span>02</span><div><h3>Snacks</h3><p>150 ml para llevar una pequeña ración.</p></div></article>
+    <article><span>03</span><div><h3>Residuos</h3><p>Compartimento separado para el paseo.</p></div></article>
   </div>
 </section>
 {% schema %}
-{"name":"Dispenser How","settings":[]}
+{
+  "name":"Dispensador en uso",
+  "settings":[
+    {"type":"image_picker","id":"image","label":"Fotografía principal de producto en uso"}
+  ]
+}
 {% endschema %}

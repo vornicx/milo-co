@@ -1,28 +1,25 @@
 <section id="paseo" class="hero wrap">
-<div class="hero-copy"><p class="eyebrow">MILO & CO · LA VIDA FUERA</p><h1>{{ section.settings.heading | escape | newline_to_br }}</h1><p>{{ section.settings.text | escape }}</p><a class="button" href="#dispensador">Descubre el dispensador {% render 'arrow' %}</a></div>
-<div class="hero-media">{% if section.settings.image != blank %}{{ section.settings.image | image_url: width: 1600 | image_tag: widths: '480, 800, 1200, 1600', sizes: '(max-width: 760px) 100vw, 55vw', loading: 'eager', fetchpriority: 'high', alt: 'Un perro disfrutando de un paseo al aire libre' }}{% else %}<img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" alt="Una pausa para beber juntos durante el paseo" fetchpriority="high">{% endif %}</div>
+  <div class="hero-copy">
+    <p class="eyebrow">MILO & CO · PARA LA VIDA FUERA</p>
+    <h1>{{ section.settings.heading | escape | newline_to_br }}</h1>
+    <p>{{ section.settings.text | escape }}</p>
+    <a class="button" href="#dispensador">Descubre el dispensador {% render 'arrow' %}</a>
+  </div>
+  <div class="hero-media">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '480, 760, 1100, 1500, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 57vw', loading: 'eager', fetchpriority: 'high', alt: 'Un paseo con perro al aire libre' }}
+    {% else %}
+      <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" alt="Una pausa durante el paseo" fetchpriority="high">
+    {% endif %}
+  </div>
 </section>
 {% schema %}
 {
-  "name": "Hero",
-  "settings": [
-    {
-      "type": "textarea",
-      "id": "heading",
-      "label": "Título",
-      "default": "Su paseo favorito.\nTambién el tuyo."
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Texto",
-      "default": "Agua, comida y un lugar para los residuos. Todo a mano para salir juntos."
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Fotografía de portada"
-    }
+  "name":"Hero",
+  "settings":[
+    {"type":"textarea","id":"heading","label":"Título","default":"Su paseo favorito.\nTambién el tuyo."},
+    {"type":"textarea","id":"text","label":"Texto","default":"Agua, snacks y residuos. En un solo accesorio."},
+    {"type":"image_picker","id":"image","label":"Fotografía de portada"}
   ]
 }
 {% endschema %}

@@ -4,15 +4,15 @@
       "type": "hero",
       "settings": {
         "heading": "Su paseo favorito.\nTambién el tuyo.",
-        "text": "Agua, comida y un lugar para los residuos. Todo a mano para salir juntos."
+        "text": "Agua, snacks y residuos. En un solo accesorio."
       }
     },
     "section1": {
       "type": "featured-product",
       "settings": {}
     },
-    "section2": {
-      "type": "faq",
+    "moments": {
+      "type": "home-moments",
       "settings": {}
     },
     "story": {
@@ -23,7 +23,7 @@
   "order": [
     "section0",
     "section1",
-    "story",
-    "section2"
+    "moments",
+    "story"
   ]
 }
