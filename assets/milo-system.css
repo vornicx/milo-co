@@ -241,6 +241,39 @@ textarea{resize:vertical}
 .footer-bottom{display:flex;justify-content:space-between;gap:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:10px;color:#c9d1cb}
 .footer-bottom div{display:flex;gap:16px}
 
+/* Three distinct home moments: brand opening, product study, signature. */
+.home-hero{max-width:1180px;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;overflow:visible;margin-top:40px}
+.home-hero-media{min-height:0;aspect-ratio:4/5;max-width:500px;width:100%;justify-self:end;border-radius:4px}
+.home-hero-media img{object-fit:contain}
+.home-hero-copy{padding-block:30px}
+.home-hero-copy h1{font-size:clamp(48px,5.4vw,74px);max-width:9.5em;letter-spacing:-.055em}
+.home-hero-lead{max-width:none}
+.home-product{padding:100px 0}
+.home-product-grid{max-width:1180px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);border-radius:0;background:transparent;align-items:center;overflow:visible}
+.home-product-media{grid-column:1;grid-row:1;min-height:0;aspect-ratio:1;max-width:560px;border-radius:4px;overflow:hidden}
+.home-product-media img{object-fit:contain}
+.home-product-copy{grid-column:2;grid-row:1;padding:24px 0}
+.home-product-copy h2{font-size:clamp(42px,4.6vw,62px);line-height:1.03;margin-bottom:20px}
+.home-product-specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0 0 28px;padding:20px 0;border-block:1px solid var(--line);gap:16px}
+.home-product-specs dt{font-size:11px;color:var(--muted);margin-bottom:6px}
+.home-product-specs dd{margin:0;font:400 26px/1.1 var(--serif);letter-spacing:-.04em}
+.home-brand{background:var(--forest);color:var(--cream);padding:80px 0 72px}
+.home-brand-manifesto{max-width:1180px}
+.home-brand-manifesto .eyebrow{color:#f1b28e;margin-bottom:32px}
+.home-brand-manifesto h2{font-size:clamp(48px,6vw,82px);line-height:1.04;margin-bottom:44px;letter-spacing:-.045em}
+.home-brand-bottom{display:flex;justify-content:space-between;align-items:center;gap:24px;border-top:1px solid #ffffff30;padding-top:26px}
+.home-brand-bottom p{color:#d7ded8;margin:0;font-size:14px}
+.home-brand-bottom .text-link{flex-shrink:0}
+.home-brand+.footer{border-top:1px solid #ffffff30}
+.product-story-intro{margin-bottom:0}
+.product-story-intro figure img{aspect-ratio:1;object-fit:contain}
+.product-preparation{list-style:none;padding:0;margin:30px 0 0;max-width:36ch}
+.product-preparation li{display:flex;gap:18px;border-top:1px solid var(--line);padding:18px 0;font-size:14px;color:var(--muted)}
+.product-preparation span{color:var(--orange);font-size:11px;padding-top:3px}
+.gallery-stage{height:auto;min-height:0;aspect-ratio:4/5;max-height:700px}
+.gallery-stage>img{position:absolute;inset:0;object-fit:contain}
+.product-index-media img{aspect-ratio:4/5;object-fit:contain}
+/* Intermediate widths */
 /* Intermediate widths must not inherit desktop minimum columns. */
 @media(min-width:761px) and (max-width:1050px){
  .header{grid-template-columns:1fr auto}.header-note{display:none}
@@ -349,3 +382,23 @@ textarea{resize:vertical}
 }
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+@media(max-width:760px){
+ .home-hero{margin-top:12px;gap:0;overflow:visible}
+ .home-hero-copy{padding:24px 4px 30px}
+ .home-hero-copy h1{font-size:clamp(40px,11.2vw,54px)}
+ .home-hero-media{max-width:100%;aspect-ratio:4/5;border-radius:4px}
+ .home-product{padding:64px 0}
+ .home-product-grid{grid-template-columns:1fr;gap:24px;border-radius:0}
+ .home-product-media{grid-column:1;grid-row:1;max-width:100%;aspect-ratio:1}
+ .home-product-copy{grid-column:1;grid-row:2;padding:0 4px}
+ .home-product-copy h2{font-size:42px}
+ .home-product-copy .eyebrow{margin-bottom:12px}
+ .home-product-specs{gap:12px}
+ .home-brand{padding:56px 0}
+ .home-brand-manifesto h2{font-size:clamp(38px,10.4vw,52px);margin-bottom:32px}
+ .home-brand-bottom{flex-direction:column;align-items:flex-start;gap:22px}
+ .product-story-intro{margin-bottom:0}
+ .product-story-intro figure img{aspect-ratio:1}
+ .product-details-media img{aspect-ratio:1;object-fit:contain}
+}

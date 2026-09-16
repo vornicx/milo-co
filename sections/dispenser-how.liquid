@@ -6,52 +6,17 @@
     <div>
       <p class="eyebrow">UN SOLO OBJETO</p>
       <h2>Todo en su sitio.</h2>
-      <p>Lo que suele ir repartido entre bolsillos y bolsas, junto en un solo accesorio.</p>
+      <ol class="product-preparation">
+        <li><span>01</span>Prepara el agua y la comida en sus depósitos.</li>
+        <li><span>02</span>Guarda las bolsas en el compartimento inferior.</li>
+        <li><span>03</span>Monta las piezas y llévalo por la cuerda.</li>
+      </ol>
     </div>
     <figure>
       <img src="{{ parts_src | strip }}" width="1254" height="1254" loading="lazy" alt="Dispensador Milo & Co desmontado con sus piezas">
     </figure>
   </div>
 
-  <div class="product-use-head">
-    <p class="eyebrow">LISTO PARA CADA MOMENTO</p>
-    <h2>Agua, comida<br>y residuos.</h2>
-  </div>
-
-  <div class="product-use-grid">
-    <article>
-      <figure>
-        {% if section.settings.image_water != blank %}
-          {{ section.settings.image_water | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 82vw, 33vw', loading: 'lazy', alt: 'Una pausa para beber durante el paseo' }}
-        {% else %}
-          <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa para beber durante el paseo">
-        {% endif %}
-      </figure>
-      <h3>Agua</h3><p>400 ml y bebedero integrado.</p>
-    </article>
-
-    <article>
-      <figure>
-        {% if section.settings.image_food != blank %}
-          {{ section.settings.image_food | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 82vw, 33vw', loading: 'lazy', alt: 'Comida dentro del dispensador' }}
-        {% else %}
-          <img src="{{ food_src | strip }}" width="1122" height="1402" loading="lazy" alt="Comida dentro del dispensador">
-        {% endif %}
-      </figure>
-      <h3>Comida</h3><p>150 ml para comida o snacks.</p>
-    </article>
-
-    <article>
-      <figure>
-        {% if section.settings.image_waste != blank %}
-          {{ section.settings.image_waste | image_url: width: 1400 | image_tag: widths: '480, 800, 1100, 1400', sizes: '(max-width: 760px) 82vw, 33vw', loading: 'lazy', alt: 'Bolsa de residuos saliendo de su compartimento' }}
-        {% else %}
-          <img src="{{ waste_src | strip }}" width="1536" height="1024" loading="lazy" alt="Bolsa de residuos saliendo de su compartimento">
-        {% endif %}
-      </figure>
-      <h3>Residuos</h3><p>Compartimento separado para las bolsas.</p>
-    </article>
-  </div>
 </section>
 {% schema %}
 {

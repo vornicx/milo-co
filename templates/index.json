@@ -7,9 +7,18 @@
         "text": "Lo esencial del paseo, siempre contigo."
       }
     },
-    "section1": {"type": "featured-product","settings": {}},
-    "moments": {"type": "home-moments","settings": {}},
-    "story": {"type": "walk-story","settings": {}}
+    "section1": {
+      "type": "featured-product",
+      "settings": {}
+    },
+    "story": {
+      "type": "walk-story",
+      "settings": {}
+    }
   },
-  "order": ["section0","section1","moments","story"]
+  "order": [
+    "section0",
+    "section1",
+    "story"
+  ]
 }

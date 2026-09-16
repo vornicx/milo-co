@@ -3,9 +3,14 @@
 <section id="dispensador" class="home-product">
   <div class="wrap home-product-grid">
     <div class="home-product-copy">
-      <p class="eyebrow">OBJETO 01</p>
+      <p class="eyebrow">EL DISPENSADOR</p>
       <h2>Dispensador<br>de paseo 3 en 1</h2>
       <p>Agua, comida y bolsas en un solo diseño.</p>
+      <dl class="home-product-specs">
+        <div><dt>Agua</dt><dd>400 ml</dd></div>
+        <div><dt>Comida</dt><dd>150 ml</dd></div>
+        <div><dt>Para llevar</dt><dd>29 cm</dd></div>
+      </dl>
       <a class="button" href="{{ product_link }}">Descubrir producto {% render 'arrow' %}</a>
       {% unless settings.sales_enabled %}<span class="home-product-status">Próximamente</span>{% endunless %}
     </div>
@@ -14,7 +19,7 @@
       {% if section.settings.image != blank %}
         {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 59vw', loading: 'lazy', alt: 'Piezas del dispensador Milo & Co' }}
       {% else %}
-        <img src="{{ 'milo-parts-use.avif' | asset_url }}" width="1254" height="1254" loading="lazy" alt="Dispensador Milo & Co desmontado con sus piezas">
+        <img src="{{ 'milo-parts-original.jpg' | asset_url }}" width="1254" height="1254" loading="lazy" alt="Dispensador Milo & Co desmontado con sus piezas">
       {% endif %}
     </figure>
   </div>

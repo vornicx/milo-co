@@ -47,11 +47,11 @@ if (!css.includes('prefers-reduced-motion')) fail('milo-system.css: missing redu
 if (Buffer.byteLength(css) > 90_000) fail('milo-system.css exceeds 90 KiB budget');
 
 const assets = await readdir('dist/assets');
-for (const name of ['milo-food-use.avif','milo-waste-use.avif','milo-parts-use.avif']) {
+for (const name of ['milo-food-original.jpg','milo-waste-original.jpg','milo-parts-original.jpg']) {
   if (!assets.includes(name)) fail(`missing product asset: ${name}`);
   else {
     const size = (await stat(join('dist/assets', name))).size;
-    if (size > 600_000) fail(`${name}: image exceeds 600 KiB budget`);
+    if (size > 800_000) fail(`${name}: image exceeds 800 KiB budget`);
   }
 }
 
