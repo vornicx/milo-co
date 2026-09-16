@@ -18,20 +18,15 @@
 })();
 
 (() => {
- const setGalleryPhoto = (gallery, photo, alt = '', tone = '') => {
+ const setGalleryPhoto = (gallery, photo, alt = '') => {
   if (!gallery || !photo) return;
   const main = gallery.querySelector('[data-gallery-main]');
-  const stage = gallery.querySelector('[data-gallery-stage]');
   const error = gallery.querySelector('.image-error');
   if (!main) return;
-
   main.src = photo;
   main.alt = alt;
-  if (tone && stage) stage.dataset.tone = tone;
-
   if (error) error.hidden = true;
   main.style.visibility = 'visible';
-
   gallery.querySelectorAll('[data-photo]').forEach(button => {
    button.setAttribute('aria-pressed', String(button.dataset.photo === photo));
   });
@@ -56,9 +51,8 @@
    main.addEventListener('error', showError);
    main.addEventListener('load', () => { if (error) error.hidden = true; main.style.visibility = 'visible'; });
    if(main.complete && !main.naturalWidth) showError();
-
    gallery.querySelectorAll('[data-photo]').forEach(button => button.addEventListener('click', () => {
-    setGalleryPhoto(gallery, button.dataset.photo, button.dataset.alt || '', button.dataset.tone || '');
+    setGalleryPhoto(gallery, button.dataset.photo, button.dataset.alt || '');
     syncPicker(gallery.closest('section'), button.dataset.color);
    }));
   });
@@ -70,7 +64,7 @@
     if(!event.target.matches('input[type=radio]')) return;
     picker.querySelector('[data-color-name]').textContent = event.target.value;
     const gallery = picker.closest('section')?.querySelector('[data-gallery]');
-    setGalleryPhoto(gallery, event.target.dataset.photo, event.target.dataset.alt || '', event.target.dataset.tone || '');
+    setGalleryPhoto(gallery, event.target.dataset.photo, event.target.dataset.alt || '');
    });
   });
  };
