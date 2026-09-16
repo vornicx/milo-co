@@ -1,31 +1,15 @@
 {% assign sky_photo = 'dispenser-sky.webp' | asset_url %}{% assign pink_photo = 'dispenser-pink.webp' | asset_url %}
 <div class="dispenser-gallery" data-gallery>
-  <div class="gallery-stage" data-gallery-stage data-tone="sky">
-    <div class="gallery-art" aria-hidden="true">
-      <span class="gallery-brand">MILO <i>&</i> CO.</span>
-      <span class="gallery-series">WALK / 01</span>
-      <span class="gallery-orbit"></span>
-      <span class="gallery-sun"></span>
-    </div>
-
+  <div class="gallery-stage">
     <img data-gallery-main src="{{ sky_photo }}" alt="Dispensador de paseo 3 en 1 en azul cielo" width="420" height="560" loading="eager">
-
-    <div class="gallery-meta" aria-hidden="true">
-      <span><strong>400 ml</strong> agua</span>
-      <span><strong>150 ml</strong> snacks</span>
-    </div>
-
     <p class="image-error" hidden>No se ha podido cargar esta fotografía.</p>
   </div>
-
   <div class="gallery-thumbnails" aria-label="Colores del dispensador">
-    <button type="button" data-photo="{{ sky_photo }}" data-alt="Dispensador de paseo 3 en 1 en azul cielo" data-color="Azul cielo" data-tone="sky" aria-label="Ver dispensador azul cielo" aria-pressed="true">
-      <span class="gallery-thumb-media gallery-thumb-media--sky"><img src="{{ sky_photo }}" alt="" width="105" height="140" loading="lazy"></span>
-      <span class="gallery-thumb-copy"><small>01</small>Azul cielo</span>
+    <button type="button" data-photo="{{ sky_photo }}" data-alt="Dispensador de paseo 3 en 1 en azul cielo" data-color="Azul cielo" aria-label="Ver dispensador azul cielo" aria-pressed="true">
+      <img src="{{ sky_photo }}" alt="" width="105" height="140" loading="lazy"><span>Azul cielo</span>
     </button>
-    <button type="button" data-photo="{{ pink_photo }}" data-alt="Dispensador de paseo 3 en 1 en rosa" data-color="Rosa" data-tone="pink" aria-label="Ver dispensador rosa" aria-pressed="false">
-      <span class="gallery-thumb-media gallery-thumb-media--pink"><img src="{{ pink_photo }}" alt="" width="105" height="140" loading="lazy"></span>
-      <span class="gallery-thumb-copy"><small>02</small>Rosa</span>
+    <button type="button" data-photo="{{ pink_photo }}" data-alt="Dispensador de paseo 3 en 1 en rosa" data-color="Rosa" aria-label="Ver dispensador rosa" aria-pressed="false">
+      <img src="{{ pink_photo }}" alt="" width="105" height="140" loading="lazy"><span>Rosa</span>
     </button>
   </div>
 </div>
