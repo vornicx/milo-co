@@ -37,6 +37,7 @@
   const main = gallery.querySelector('[data-gallery-main]');
   const error = gallery.querySelector('.image-error');
   if (!main) return;
+  main.removeAttribute('srcset');
   main.src = photo;
   main.alt = alt;
   if (error) error.hidden = true;
@@ -65,10 +66,20 @@
    main.addEventListener('error', showError);
    main.addEventListener('load', () => { if (error) error.hidden = true; main.style.visibility = 'visible'; });
    if(main.complete && !main.naturalWidth) showError();
-   gallery.querySelectorAll('[data-photo]').forEach(button => button.addEventListener('click', () => {
+   gallery.querySelectorAll('[data-photo]').forEach(button => {
+    button.addEventListener('keydown', event => {
+      const buttons = [...gallery.querySelectorAll('[data-photo]')];
+      const index = buttons.indexOf(button);
+      const step = {ArrowRight:1, ArrowDown:1, ArrowLeft:-1, ArrowUp:-1}[event.key];
+      if (!step && event.key !== 'Home' && event.key !== 'End') return;
+      event.preventDefault();
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length-1 : (index+step+buttons.length)%buttons.length;
+      buttons[next].focus(); buttons[next].click();
+    });
+    button.addEventListener('click', () => {
     setGalleryPhoto(gallery, button.dataset.photo, button.dataset.alt || '');
     syncPicker(gallery.closest('section'), button.dataset.color);
-   }));
+   }); });
   });
 
   root.querySelectorAll('[data-colors]').forEach(picker => {

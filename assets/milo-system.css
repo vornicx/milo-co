@@ -508,3 +508,56 @@ textarea{resize:vertical}
  .campaign-copy h1{max-width:none;font-size:clamp(46px,12vw,64px)}
  .campaign-copy .button{min-width:0;min-height:48px;padding:12px 18px;font-size:12px}
 }
+
+/* Page audit: hierarchy, image fidelity, reading rhythm and touch targets. */
+.product-index-intro,.walk-v2-intro{grid-template-columns:minmax(0,1fr) minmax(0,.5fr);gap:16px 48px}
+.product-index-intro>.eyebrow,.walk-v2-intro>.eyebrow{grid-column:1/-1;margin:0}
+.product-index-intro h1,.walk-v2-intro h1{margin:0;font-size:clamp(44px,5vw,68px)}
+.product-index-intro>p:last-child,.walk-v2-intro>p:last-child{grid-column:2;max-width:26ch}
+.product-index-card{grid-template-columns:minmax(0,.9fr) minmax(0,1fr);align-items:center;gap:clamp(32px,6vw,80px)}
+.product-index-media{max-width:470px}
+.product-index-meta{min-height:0}
+.product-index-meta h2{font-size:clamp(38px,4vw,56px);margin-bottom:18px;line-height:1.05}
+.product-index-action{margin-top:28px}
+.product-section-links{display:flex;flex-wrap:wrap;gap:4px 20px;margin:-14px 0 18px;font-size:12px}
+.product-section-links a{padding:10px 0;text-decoration:underline;text-underline-offset:5px}
+.gallery-thumbnails img{object-fit:contain}
+.gallery-thumbnails button:hover{opacity:1}
+.product-spec-list dd{font-family:var(--sans);font-size:14px;line-height:1.6;letter-spacing:0}
+.brand-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 64px;align-content:center;align-items:center;padding-block:64px 80px}
+.brand-intro>.eyebrow{grid-column:1;margin:0;align-self:end}
+.brand-intro h1{grid-column:1;margin:0;font-size:clamp(44px,5vw,68px)}
+.brand-lead{grid-column:1;align-self:start;margin:0;font-size:16px}
+.brand-photo{grid-column:2;grid-row:1/4;margin:0}
+.brand-photo img{aspect-ratio:1;object-fit:contain}
+.brand-principles{padding-block:0 72px;gap:32px}
+.brand-closing{padding:60px 0 72px}
+.brand-closing h2{font-size:clamp(38px,4vw,58px);line-height:1.05}
+.walk-v2{padding-bottom:64px}
+.walk-v2-hero img{aspect-ratio:2/1;object-position:50% 40%}
+.walk-v2-gallery{grid-template-columns:1fr 1fr 1fr;align-items:center;padding-bottom:48px}
+.walk-v2-gallery img,.walk-v2-gallery-main img{aspect-ratio:1;object-fit:cover}
+.walk-v2-gallery-main img{object-position:50% 45%}
+.walk-v2-moments h2{margin-top:20px}
+.walk-v2-moments p{font-size:14px;line-height:1.65}
+.footer nav a{display:inline-flex;align-items:center;min-height:36px}
+@media(max-width:760px){
+ .product-index-intro,.walk-v2-intro{grid-template-columns:1fr;gap:14px}
+ .product-index-intro>p:last-child,.walk-v2-intro>p:last-child{grid-column:1;max-width:32ch}
+ .product-index-card{grid-template-columns:1fr;gap:26px}
+ .product-index-media{max-width:100%}
+ .product-index-meta h2{font-size:38px}
+ .product-section-links{gap:4px 18px}
+ .product-section-links a{min-height:44px;display:flex;align-items:center}
+ .brand-intro{grid-template-columns:1fr;gap:18px;padding:36px 0 52px}
+ .brand-intro h1{font-size:clamp(40px,10vw,54px)}
+ .brand-photo{grid-column:1;grid-row:auto;margin-top:12px}
+ .brand-principles{padding-bottom:48px}
+ .brand-closing{padding:44px 0 56px}
+ .walk-v2-hero img{aspect-ratio:1;object-position:68% center}
+ .walk-v2-gallery{grid-template-columns:1fr 1fr;gap:12px;padding-bottom:24px}
+ .walk-v2-gallery-main{grid-column:1/-1}
+ .walk-v2-gallery-main img{aspect-ratio:4/5}
+ .product-spec-list>div{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:18px}
+ .footer nav a{min-height:44px}
+}
