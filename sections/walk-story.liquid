@@ -1,10 +1,14 @@
-<section class="walk-story">
-  <div class="wrap story-inner">
-    <p class="eyebrow">PARA VUESTRA VIDA FUERA</p>
-    <h2>El mejor plan<br>tiene cuatro patas.</h2>
-    <div>
-      <a class="text-link text-link--light" href="{{ settings.walk_page.url | default: '/pages/paseos' }}">Paseos y escapadas {% render 'arrow' %}</a>
+<section class="home-brand">
+  <div class="wrap home-brand-grid">
+    <div class="home-brand-copy">
+      <p class="eyebrow">NUESTRA IDEA</p>
+      <h2>Paseos más simples<br>para una vida más bonita.</h2>
+      <p>Diseñamos alrededor de esos pequeños momentos que compartís fuera.</p>
+      <a class="text-link" href="{{ settings.brand_page.url | default: '/pages/nosotros' }}">Conoce nuestra idea {% render 'arrow' %}</a>
     </div>
+    <figure class="home-brand-media">
+      <img src="{{ 'paseo.jpg' | asset_url }}" alt="Un perro durante una escapada al aire libre" width="1536" height="1024" loading="lazy">
+    </figure>
   </div>
 </section>
 {% schema %}

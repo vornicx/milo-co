@@ -1,11 +1,9 @@
 {
   "sections": {
     "0": {"type":"dispenser-detail","settings":{}},
-    "1": {"type":"dispenser-benefits","settings":{}},
-    "2": {"type":"dispenser-colors","settings":{}},
     "3": {"type":"dispenser-how","settings":{}},
     "4": {"type":"dispenser-details","settings":{}},
     "5": {"type":"faq","settings":{}}
   },
-  "order": ["0","3","2","4","5"]
+  "order": ["0","3","4","5"]
 }

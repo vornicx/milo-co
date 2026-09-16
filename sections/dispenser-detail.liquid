@@ -1,47 +1,38 @@
-<section class="product-editorial-hero wrap" data-product-page>
-  <div class="product-editorial-head">
-    <div>
-      <p class="eyebrow">OBJETO 01 · DISPENSADOR 3 EN 1</p>
-      <h1>Menos cosas.<br>Más paseo.</h1>
-    </div>
-    <p>Agua, snacks y residuos. Siempre a mano.</p>
-  </div>
+<section class="product-top wrap" data-product-page>
+  <nav class="breadcrumbs" aria-label="Migas de pan">
+    <a href="{{ routes.root_url }}">Inicio</a><span>/</span>
+    <a href="{{ settings.products_page.url | default: '/pages/productos' }}">Productos</a><span>/</span>
+    <span aria-current="page">Dispensador 3 en 1</span>
+  </nav>
 
-  <div class="product-editorial-body">
-    <div class="product-editorial-gallery">
+  <div class="product-top-grid">
+    <div class="product-top-gallery">
       {% render 'dispenser-gallery' %}
     </div>
 
-    <aside class="product-editorial-buy" id="product-purchase">
-      <div class="product-clean-specs" aria-label="Características principales">
-        <span><strong>400 ml</strong>agua</span>
-        <span><strong>150 ml</strong>comida</span>
-        <span><strong>29 cm</strong>de alto</span>
+    <aside class="product-top-info" id="product-purchase">
+      <p class="eyebrow">OBJETO 01</p>
+      <h1>Dispensador<br>de paseo 3 en 1</h1>
+      <p class="product-top-lead">Agua, comida y bolsas en un solo diseño.</p>
+
+      <div class="product-icon-specs" aria-label="Características principales">
+        <div>{% render 'milo-icon', name: 'water' %}<span><strong>400 ml</strong><small>agua</small></span></div>
+        <div>{% render 'milo-icon', name: 'food' %}<span><strong>150 ml</strong><small>comida</small></span></div>
+        <div>{% render 'milo-icon', name: 'ruler' %}<span><strong>29 cm</strong><small>de alto</small></span></div>
       </div>
 
       {% if settings.featured_product != blank and settings.sales_enabled %}
         {% render 'product-form', item: settings.featured_product %}
       {% else %}
-        <div class="product-buy-row">
-          <small>Color</small>
+        <div class="product-color-row">
+          <span>Color</span>
           {% render 'color-preview' %}
         </div>
-        <div class="product-clean-status">
-          <span aria-hidden="true"></span>
-          <strong>Próximamente</strong>
-        </div>
-        <a class="button" href="#como-funciona">Verlo en el paseo {% render 'arrow' %}</a>
+        <div class="product-availability" role="status"><span aria-hidden="true"></span>Próximamente</div>
       {% endif %}
     </aside>
   </div>
 </section>
-
-<nav class="product-jump wrap" aria-label="Explora el dispensador">
-  <a href="#como-funciona">Paseo</a>
-  <a href="#colores">Colores</a>
-  <a href="#detalles">Detalles</a>
-  <a href="#preguntas">Preguntas</a>
-</nav>
 
 {% if settings.featured_product != blank and settings.sales_enabled %}
   <div class="mobile-product-bar" aria-label="Compra rápida">

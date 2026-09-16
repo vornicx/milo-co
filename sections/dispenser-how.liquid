@@ -1,28 +1,65 @@
-<section class="product-use wrap" id="como-funciona">
+{% capture food_src %}{% render 'milo-photo-src', name: 'food' %}{% endcapture %}
+{% capture waste_src %}{% render 'milo-photo-src', name: 'waste' %}{% endcapture %}
+{% capture parts_src %}{% render 'milo-photo-src', name: 'parts' %}{% endcapture %}
+<section class="product-story wrap" id="como-funciona">
+  <div class="product-story-intro">
+    <div>
+      <p class="eyebrow">UN SOLO OBJETO</p>
+      <h2>Todo en su sitio.</h2>
+      <p>Lo que suele ir repartido entre bolsillos y bolsas, junto en un solo accesorio.</p>
+    </div>
+    <figure>
+      <img src="{{ parts_src | strip }}" width="1254" height="1254" loading="lazy" alt="Dispensador Milo & Co desmontado con sus piezas">
+    </figure>
+  </div>
+
   <div class="product-use-head">
-    <p class="eyebrow">EN EL PASEO</p>
-    <h2>Lo esencial.<br>En una mano.</h2>
+    <p class="eyebrow">LISTO PARA CADA MOMENTO</p>
+    <h2>Agua, comida<br>y residuos.</h2>
   </div>
 
-  <div class="product-use-visual">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), calc(100vw - 96px)', loading: 'lazy', alt: 'El dispensador Milo & Co en uso durante un paseo' }}
-    {% else %}
-      <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa durante el paseo">
-    {% endif %}
-  </div>
+  <div class="product-use-grid">
+    <article>
+      <figure>
+        {% if section.settings.image_water != blank %}
+          {{ section.settings.image_water | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 82vw, 33vw', loading: 'lazy', alt: 'Una pausa para beber durante el paseo' }}
+        {% else %}
+          <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa para beber durante el paseo">
+        {% endif %}
+      </figure>
+      <h3>Agua</h3><p>400 ml y bebedero integrado.</p>
+    </article>
 
-  <div class="product-use-functions" aria-label="Funciones del dispensador">
-    <article><span>01</span><div><h3>Agua</h3><p>400 ml y bebedero integrado.</p></div></article>
-    <article><span>02</span><div><h3>Comida</h3><p>150 ml para una pequeña ración o snacks.</p></div></article>
-    <article><span>03</span><div><h3>Residuos</h3><p>Compartimento separado para las bolsas.</p></div></article>
+    <article>
+      <figure>
+        {% if section.settings.image_food != blank %}
+          {{ section.settings.image_food | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 82vw, 33vw', loading: 'lazy', alt: 'Comida dentro del dispensador' }}
+        {% else %}
+          <img src="{{ food_src | strip }}" width="1122" height="1402" loading="lazy" alt="Comida dentro del dispensador">
+        {% endif %}
+      </figure>
+      <h3>Comida</h3><p>150 ml para comida o snacks.</p>
+    </article>
+
+    <article>
+      <figure>
+        {% if section.settings.image_waste != blank %}
+          {{ section.settings.image_waste | image_url: width: 1400 | image_tag: widths: '480, 800, 1100, 1400', sizes: '(max-width: 760px) 82vw, 33vw', loading: 'lazy', alt: 'Bolsa de residuos saliendo de su compartimento' }}
+        {% else %}
+          <img src="{{ waste_src | strip }}" width="1536" height="1024" loading="lazy" alt="Bolsa de residuos saliendo de su compartimento">
+        {% endif %}
+      </figure>
+      <h3>Residuos</h3><p>Compartimento separado para las bolsas.</p>
+    </article>
   </div>
 </section>
 {% schema %}
 {
   "name":"Dispensador en uso",
   "settings":[
-    {"type":"image_picker","id":"image","label":"Fotografía principal de producto en uso"}
+    {"type":"image_picker","id":"image_water","label":"Foto · agua"},
+    {"type":"image_picker","id":"image_food","label":"Foto · comida"},
+    {"type":"image_picker","id":"image_waste","label":"Foto · residuos"}
   ]
 }
 {% endschema %}

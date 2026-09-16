@@ -1,25 +1,22 @@
 {% assign item = section.settings.product | default: settings.featured_product %}
 {% assign product_link = item.url | default: settings.product_page.url | default: '/pages/dispensador' %}
-<section id="dispensador" class="spotlight wrap">
-  <div class="spotlight-photo">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '500, 800, 1100, 1600', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: 'Dispensador Milo & Co preparado para salir' }}
-    {% elsif item.featured_image %}
-      {{ item.featured_image | image_url: width: 1600 | image_tag: widths: '500, 800, 1100, 1600', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: item.title }}
-    {% else %}
-      <img src="{{ 'paseo-esenciales.webp' | asset_url }}" width="1254" height="1254" loading="lazy" alt="El dispensador Milo & Co listo para salir">
-    {% endif %}
-  </div>
-  <div class="spotlight-copy">
-    <p class="eyebrow">OBJETO 01 · DISPENSADOR 3 EN 1</p>
-    <h2>Menos cosas.<br>Más paseo.</h2>
-    <div class="mini-specs" aria-label="Datos principales">
-      <span><strong>400 ml</strong> Agua</span>
-      <span><strong>150 ml</strong> Snacks</span>
-      <span><strong>3 en 1</strong> Un accesorio</span>
+<section id="dispensador" class="home-product">
+  <div class="wrap home-product-grid">
+    <div class="home-product-copy">
+      <p class="eyebrow">OBJETO 01</p>
+      <h2>Dispensador<br>de paseo 3 en 1</h2>
+      <p>Agua, comida y bolsas en un solo diseño.</p>
+      <a class="button" href="{{ product_link }}">Descubrir producto {% render 'arrow' %}</a>
+      {% unless settings.sales_enabled %}<span class="home-product-status">Próximamente</span>{% endunless %}
     </div>
-    <a class="button" href="{{ product_link }}">Ver el dispensador {% render 'arrow' %}</a>
-    {% unless settings.sales_enabled %}<p class="fine launch-note">Próximamente.</p>{% endunless %}
+
+    <figure class="home-product-media">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 59vw', loading: 'lazy', alt: 'Piezas del dispensador Milo & Co' }}
+      {% else %}
+        <img src="{{ 'milo-parts-use.avif' | asset_url }}" width="1254" height="1254" loading="lazy" alt="Dispensador Milo & Co desmontado con sus piezas">
+      {% endif %}
+    </figure>
   </div>
 </section>
 {% schema %}
