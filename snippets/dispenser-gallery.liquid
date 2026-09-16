@@ -4,6 +4,7 @@
 <div class="product-gallery" data-gallery>
   <div class="gallery-thumbnails" aria-label="Fotografías del dispensador">
     <button type="button" data-photo="{{ food_src | strip }}" data-alt="Dispensador Milo & Co con agua y comida preparado para salir" aria-label="Producto completo" aria-pressed="true"><img src="{{ food_src | strip }}" alt="" width="80" height="100" loading="lazy"></button>
+    <button type="button" data-photo="{{ 'paseo-colores.webp' | asset_url }}" data-alt="Dispensadores Milo & Co en azul cielo y rosa" aria-label="Azul cielo y rosa" aria-pressed="false"><img src="{{ 'paseo-colores.webp' | asset_url }}" alt="" width="120" height="80" loading="lazy"></button>
     <button type="button" data-photo="{{ parts_src | strip }}" data-alt="Dispensador desmontado con sus piezas y accesorios" aria-label="Piezas del dispensador" aria-pressed="false"><img src="{{ parts_src | strip }}" alt="" width="80" height="80" loading="lazy"></button>
     <button type="button" data-photo="{{ 'paseo-pausa.webp' | asset_url }}" data-alt="Dispensador durante una pausa del paseo" aria-label="Uso durante el paseo" aria-pressed="false"><img src="{{ 'paseo-pausa.webp' | asset_url }}" alt="" width="80" height="100" loading="lazy"></button>
     <button type="button" data-photo="{{ waste_src | strip }}" data-alt="Compartimento para bolsas de residuos en uso" aria-label="Compartimento para residuos" aria-pressed="false"><img src="{{ waste_src | strip }}" alt="" width="100" height="67" loading="lazy"></button>

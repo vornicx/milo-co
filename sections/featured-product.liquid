@@ -15,11 +15,11 @@
       {% unless settings.sales_enabled %}<span class="home-product-status">Próximamente</span>{% endunless %}
     </div>
 
-    <figure class="home-product-media">
+    <figure class="home-product-media home-product-colors">
       {% if section.settings.image != blank %}
-        {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 59vw', loading: 'lazy', alt: 'Piezas del dispensador Milo & Co' }}
+        {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 59vw', loading: 'lazy', alt: 'Dispensadores Milo & Co en azul cielo y rosa' }}
       {% else %}
-        <img src="{{ 'milo-parts-original.jpg' | asset_url }}" width="1254" height="1254" loading="lazy" alt="Dispensador Milo & Co desmontado con sus piezas">
+        <img src="{{ 'paseo-colores.webp' | asset_url }}" width="1500" height="1000" loading="lazy" alt="Dispensadores Milo & Co en azul cielo y rosa">
       {% endif %}
     </figure>
   </div>

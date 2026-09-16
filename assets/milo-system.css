@@ -402,3 +402,6 @@ textarea{resize:vertical}
  .product-story-intro figure img{aspect-ratio:1}
  .product-details-media img{aspect-ratio:1;object-fit:contain}
 }
+
+/* Preserve both colorways in the original landscape composition. */
+.home-product-media.home-product-colors{aspect-ratio:3/2}
