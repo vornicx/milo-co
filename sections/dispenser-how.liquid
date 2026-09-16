@@ -1,65 +1,28 @@
-{% capture food_src %}{% render 'milo-photo-src', name: 'food' %}{% endcapture %}
-{% capture waste_src %}{% render 'milo-photo-src', name: 'waste' %}{% endcapture %}
-<section class="product-story" id="como-funciona">
-  <div class="wrap">
-    <div class="section-intro">
-      <p class="eyebrow">EN EL PASEO</p>
-      <h2>Tres cosas.<br>Una mano.</h2>
-    </div>
+<section class="product-use wrap" id="como-funciona">
+  <div class="product-use-head">
+    <p class="eyebrow">EN EL PASEO</p>
+    <h2>Lo esencial.<br>En una mano.</h2>
+  </div>
 
-    <article class="product-chapter">
-      <div class="product-chapter-copy">
-        <span class="chapter-number">01</span>
-        <h3>Agua.</h3>
-        <p>400 ml y el bebedero integrado para parar, beber y seguir.</p>
-      </div>
-      <figure class="product-chapter-media">
-        {% if section.settings.image_water != blank %}
-          {{ section.settings.image_water | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 62vw', loading: 'lazy', alt: 'Una pausa para beber durante el paseo' }}
-        {% else %}
-          <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa durante el paseo">
-        {% endif %}
-      </figure>
-    </article>
+  <div class="product-use-visual">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), calc(100vw - 96px)', loading: 'lazy', alt: 'El dispensador Milo & Co en uso durante un paseo' }}
+    {% else %}
+      <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa durante el paseo">
+    {% endif %}
+  </div>
 
-    <article class="product-chapter product-chapter--reverse">
-      <div class="product-chapter-copy">
-        <span class="chapter-number">02</span>
-        <h3>Algo para picar.</h3>
-        <p>150 ml para una pequeña ración de comida o snacks.</p>
-      </div>
-      <figure class="product-chapter-media">
-        {% if section.settings.image_food != blank %}
-          {{ section.settings.image_food | image_url: width: 1600 | image_tag: widths: '520, 820, 1200, 1600', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: 'Comida guardada en el dispensador' }}
-        {% else %}
-          <img src="{{ food_src | strip }}" width="1122" height="1402" loading="lazy" alt="Comida guardada en el dispensador">
-        {% endif %}
-      </figure>
-    </article>
-
-    <article class="product-chapter">
-      <div class="product-chapter-copy">
-        <span class="chapter-number">03</span>
-        <h3>Cuando toca recoger.</h3>
-        <p>El compartimento para residuos también viaja contigo.</p>
-      </div>
-      <figure class="product-chapter-media">
-        {% if section.settings.image_waste != blank %}
-          {{ section.settings.image_waste | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 62vw', loading: 'lazy', alt: 'Bolsa de residuos saliendo de su compartimento' }}
-        {% else %}
-          <img src="{{ waste_src | strip }}" width="1536" height="1024" loading="lazy" alt="Bolsa de residuos saliendo de su compartimento">
-        {% endif %}
-      </figure>
-    </article>
+  <div class="product-use-functions" aria-label="Funciones del dispensador">
+    <article><span>01</span><div><h3>Agua</h3><p>400 ml y bebedero integrado.</p></div></article>
+    <article><span>02</span><div><h3>Comida</h3><p>150 ml para una pequeña ración o snacks.</p></div></article>
+    <article><span>03</span><div><h3>Residuos</h3><p>Compartimento separado para las bolsas.</p></div></article>
   </div>
 </section>
 {% schema %}
 {
   "name":"Dispensador en uso",
   "settings":[
-    {"type":"image_picker","id":"image_water","label":"Foto · agua / bebedero"},
-    {"type":"image_picker","id":"image_food","label":"Foto · comida / snacks"},
-    {"type":"image_picker","id":"image_waste","label":"Foto · residuos"}
+    {"type":"image_picker","id":"image","label":"Fotografía principal de producto en uso"}
   ]
 }
 {% endschema %}

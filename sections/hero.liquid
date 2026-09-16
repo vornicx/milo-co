@@ -1,27 +1,25 @@
-<section id="paseo" class="home-hero">
-  <div class="wrap home-hero-inner">
-    <div class="home-hero-copy">
-      <p class="eyebrow">MILO & CO · LA VIDA FUERA</p>
-      <h1>{{ section.settings.heading | escape | newline_to_br }}</h1>
-      <p class="lead">{{ section.settings.text | escape }}</p>
-      <a class="button button--dark" href="#dispensador">Descubrir Objeto 01 {% render 'arrow' %}</a>
-    </div>
-    <figure class="home-hero-media">
-      {% if section.settings.image != blank %}
-        {{ section.settings.image | image_url: width: 2200 | image_tag: widths: '600, 900, 1400, 1800, 2200', sizes: '(max-width: 760px) calc(100vw - 32px), calc(100vw - 64px)', loading: 'eager', fetchpriority: 'high', alt: 'Un paseo con perro al aire libre' }}
-      {% else %}
-        <img src="{{ 'paseo.jpg' | asset_url }}" width="1536" height="1024" alt="Un perro durante una escapada al aire libre" fetchpriority="high">
-      {% endif %}
-    </figure>
+<section id="paseo" class="hero wrap">
+  <div class="hero-copy">
+    <p class="eyebrow">MILO & CO · PARA LA VIDA FUERA</p>
+    <h1>{{ section.settings.heading | escape | newline_to_br }}</h1>
+    <p>{{ section.settings.text | escape }}</p>
+    <a class="button" href="#dispensador">Descubre el dispensador {% render 'arrow' %}</a>
+  </div>
+  <div class="hero-media">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '480, 760, 1100, 1500, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 57vw', loading: 'eager', fetchpriority: 'high', alt: 'Un paseo con perro al aire libre' }}
+    {% else %}
+      <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" alt="Una pausa durante el paseo" fetchpriority="high">
+    {% endif %}
   </div>
 </section>
 {% schema %}
 {
   "name":"Hero",
   "settings":[
-    {"type":"textarea","id":"heading","label":"Título","default":"La vida fuera.\nEn buena compañía."},
-    {"type":"textarea","id":"text","label":"Texto","default":"Objetos bien pensados para salir juntos."},
-    {"type":"image_picker","id":"image","label":"Fotografía de campaña"}
+    {"type":"textarea","id":"heading","label":"Título","default":"Su paseo favorito.\nTambién el tuyo."},
+    {"type":"textarea","id":"text","label":"Texto","default":"Agua, snacks y residuos. En un solo accesorio."},
+    {"type":"image_picker","id":"image","label":"Fotografía de portada"}
   ]
 }
 {% endschema %}

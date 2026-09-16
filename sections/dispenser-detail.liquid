@@ -1,41 +1,46 @@
-<section class="product-intro wrap">
-  <p class="eyebrow">OBJETO 01 · DISPENSADOR 3 EN 1</p>
-  <h1>Menos cosas.<br>Más paseo.</h1>
-  <p class="lead">Agua, snacks y residuos. Siempre a mano.</p>
-</section>
-
-<section class="product-gallery-shell wrap" data-product-page>
-  {% render 'dispenser-gallery' %}
-</section>
-
-<section class="product-rail wrap" id="product-purchase">
-  <div class="product-rail-specs" aria-label="Características principales">
-    <span><strong>400 ml</strong><small>agua</small></span>
-    <span><strong>150 ml</strong><small>comida</small></span>
-    <span><strong>29 cm</strong><small>de alto</small></span>
+<section class="product-editorial-hero wrap" data-product-page>
+  <div class="product-editorial-head">
+    <div>
+      <p class="eyebrow">OBJETO 01 · DISPENSADOR 3 EN 1</p>
+      <h1>Menos cosas.<br>Más paseo.</h1>
+    </div>
+    <p>Agua, snacks y residuos. Siempre a mano.</p>
   </div>
 
-  {% if settings.featured_product != blank and settings.sales_enabled %}
-    <div class="product-rail-purchase">
-      {% render 'product-form', item: settings.featured_product %}
+  <div class="product-editorial-body">
+    <div class="product-editorial-gallery">
+      {% render 'dispenser-gallery' %}
     </div>
-  {% else %}
-    <div class="product-rail-color">
-      <small>Color</small>
-      {% render 'color-preview' %}
-    </div>
-    <div class="product-rail-status"><span aria-hidden="true"></span>Próximamente</div>
-    <a class="button button--dark" href="#como-funciona">Verlo en uso {% render 'arrow' %}</a>
-  {% endif %}
+
+    <aside class="product-editorial-buy" id="product-purchase">
+      <div class="product-clean-specs" aria-label="Características principales">
+        <span><strong>400 ml</strong>agua</span>
+        <span><strong>150 ml</strong>comida</span>
+        <span><strong>29 cm</strong>de alto</span>
+      </div>
+
+      {% if settings.featured_product != blank and settings.sales_enabled %}
+        {% render 'product-form', item: settings.featured_product %}
+      {% else %}
+        <div class="product-buy-row">
+          <small>Color</small>
+          {% render 'color-preview' %}
+        </div>
+        <div class="product-clean-status">
+          <span aria-hidden="true"></span>
+          <strong>Próximamente</strong>
+        </div>
+        <a class="button" href="#como-funciona">Verlo en el paseo {% render 'arrow' %}</a>
+      {% endif %}
+    </aside>
+  </div>
 </section>
 
-<nav class="product-local-nav" aria-label="Explora el dispensador">
-  <div class="wrap">
-    <a href="#como-funciona">Uso</a>
-    <a href="#colores">Colores</a>
-    <a href="#detalles">Detalles</a>
-    <a href="#preguntas">Preguntas</a>
-  </div>
+<nav class="product-jump wrap" aria-label="Explora el dispensador">
+  <a href="#como-funciona">Paseo</a>
+  <a href="#colores">Colores</a>
+  <a href="#detalles">Detalles</a>
+  <a href="#preguntas">Preguntas</a>
 </nav>
 
 {% if settings.featured_product != blank and settings.sales_enabled %}
@@ -44,7 +49,7 @@
       <small>{{ settings.featured_product.title | escape }}</small>
       <strong>{{ settings.featured_product.selected_or_first_available_variant.price | money }}</strong>
     </div>
-    <a class="button button--dark" href="#product-purchase">Comprar</a>
+    <a class="button" href="#product-purchase">Comprar</a>
   </div>
 {% endif %}
 

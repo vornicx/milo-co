@@ -3,8 +3,8 @@
     "section0": {
       "type": "hero",
       "settings": {
-        "heading": "La vida fuera.\nEn buena compañía.",
-        "text": "Objetos bien pensados para salir juntos."
+        "heading": "Su paseo favorito.\nTambién el tuyo.",
+        "text": "Agua, snacks y residuos. En un solo accesorio."
       }
     },
     "section1": {
@@ -20,10 +20,5 @@
       "settings": {}
     }
   },
-  "order": [
-    "section0",
-    "section1",
-    "moments",
-    "story"
-  ]
+  "order": ["section0","section1","moments","story"]
 }
