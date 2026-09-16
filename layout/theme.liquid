@@ -6,8 +6,7 @@
 <title>{{ page_title | escape }}{% unless page_title contains shop.name %} · {{ shop.name | escape }}{% endunless %}</title>
 {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
 <link rel="canonical" href="{{ canonical_url | escape }}">
-{{ 'milo.css' | asset_url | stylesheet_tag }}
-{{ 'milo-v2.css' | asset_url | stylesheet_tag }}
+{{ 'milo-system.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'milo.js' | asset_url }}" defer></script>
 {{ content_for_header }}
 </head><body>

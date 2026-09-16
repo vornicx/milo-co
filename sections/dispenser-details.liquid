@@ -1,30 +1,32 @@
 {% capture parts_src %}{% render 'milo-photo-src', name: 'parts' %}{% endcapture %}
-<section id="detalles" class="product-clean-details wrap">
-  <div class="product-clean-heading">
-    <p class="eyebrow">DETALLES</p>
-    <h2>Todo en su sitio.</h2>
-  </div>
-
-  <div class="product-detail-composition">
-    <div class="product-macro">
-      {% if section.settings.image != blank %}
-        {{ section.settings.image | image_url: width: 1400 | image_tag: widths: '480, 800, 1100, 1400', sizes: '(max-width: 760px) calc(100vw - 32px), 54vw', loading: 'lazy', alt: 'Piezas del dispensador Milo & Co' }}
-      {% else %}
-        <img src="{{ parts_src | strip }}" alt="Dispensador Milo & Co desmontado con sus piezas y accesorios" width="1254" height="1254" loading="lazy">
-      {% endif %}
+<section id="detalles" class="product-details">
+  <div class="wrap">
+    <div class="section-intro">
+      <p class="eyebrow">CONSTRUCCIÓN</p>
+      <h2>Todo en<br>su sitio.</h2>
     </div>
-    <dl class="product-clean-detail-list">
-      <div><dt>Agua</dt><dd>400 ml</dd></div>
-      <div><dt>Comida o snacks</dt><dd>150 ml</dd></div>
-      <div><dt>Dimensiones</dt><dd>29 × 7,5 × 7,5 cm</dd></div>
-      <div><dt>Incluye</dt><dd>Dispensador, cuerda de transporte y caja para residuos</dd></div>
-      <div><dt>Material declarado</dt><dd>TPE</dd></div>
-      <div><dt>Colores</dt><dd>Azul cielo y rosa</dd></div>
-    </dl>
-  </div>
-  <p class="fine product-clean-source">Especificaciones basadas en la ficha del proveedor.</p>
-</section>
 
+    <div class="product-details-grid">
+      <figure class="product-details-media">
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 57vw', loading: 'lazy', alt: 'Piezas del dispensador Milo & Co' }}
+        {% else %}
+          <img src="{{ parts_src | strip }}" alt="Dispensador Milo & Co desmontado con sus piezas y accesorios" width="1254" height="1254" loading="lazy">
+        {% endif %}
+      </figure>
+
+      <dl class="product-spec-list">
+        <div><dt>Agua</dt><dd>400 ml</dd></div>
+        <div><dt>Comida o snacks</dt><dd>150 ml</dd></div>
+        <div><dt>Dimensiones</dt><dd>29 × 7,5 × 7,5 cm</dd></div>
+        <div><dt>Incluye</dt><dd>Dispensador, cuerda de transporte y caja para residuos</dd></div>
+        <div><dt>Material declarado</dt><dd>TPE</dd></div>
+        <div><dt>Colores</dt><dd>Azul cielo y rosa</dd></div>
+      </dl>
+    </div>
+    <p class="source-note">Especificaciones basadas en la ficha del proveedor.</p>
+  </div>
+</section>
 {% schema %}
 {
   "name":"Dispensador · detalles",

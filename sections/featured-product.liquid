@@ -1,26 +1,34 @@
 {% assign item = section.settings.product | default: settings.featured_product %}
 {% assign product_link = item.url | default: settings.product_page.url | default: '/pages/dispensador' %}
 {% capture food_src %}{% render 'milo-photo-src', name: 'food' %}{% endcapture %}
-<section id="dispensador" class="spotlight wrap">
-  <div class="spotlight-photo">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '500, 800, 1100, 1600', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: 'Dispensador Milo & Co preparado para salir' }}
-    {% elsif item.featured_image %}
-      {{ item.featured_image | image_url: width: 1600 | image_tag: widths: '500, 800, 1100, 1600', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: item.title }}
-    {% else %}
-      <img src="{{ food_src | strip }}" width="1122" height="1402" loading="lazy" alt="Dispensador Milo & Co con agua y comida preparado para salir">
-    {% endif %}
-  </div>
-  <div class="spotlight-copy">
-    <p class="eyebrow">OBJETO 01 · DISPENSADOR 3 EN 1</p>
-    <h2>Menos cosas.<br>Más paseo.</h2>
-    <div class="mini-specs" aria-label="Datos principales">
-      <span><strong>400 ml</strong> Agua</span>
-      <span><strong>150 ml</strong> Snacks</span>
-      <span><strong>3 en 1</strong> Un accesorio</span>
+<section id="dispensador" class="home-object">
+  <div class="wrap">
+    <div class="section-intro section-intro--split">
+      <div>
+        <p class="eyebrow">OBJETO 01 · DISPENSADOR 3 EN 1</p>
+        <h2>Menos cosas.<br>Más paseo.</h2>
+      </div>
+      <div class="section-intro-action">
+        <a class="text-link" href="{{ product_link }}">Ver producto {% render 'arrow' %}</a>
+      </div>
     </div>
-    <a class="button" href="{{ product_link }}">Ver producto {% render 'arrow' %}</a>
-    {% unless settings.sales_enabled %}<p class="fine launch-note">Próximamente.</p>{% endunless %}
+
+    <div class="home-object-stage">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '520, 820, 1200, 1600, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 62vw', loading: 'lazy', alt: 'Dispensador Milo & Co preparado para salir' }}
+      {% elsif item.featured_image %}
+        {{ item.featured_image | image_url: width: 1800 | image_tag: widths: '520, 820, 1200, 1600, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 62vw', loading: 'lazy', alt: item.title }}
+      {% else %}
+        <img src="{{ food_src | strip }}" width="1122" height="1402" loading="lazy" alt="Dispensador Milo & Co con agua y comida preparado para salir">
+      {% endif %}
+    </div>
+
+    <div class="home-object-meta">
+      <div><strong>400 ml</strong><span>agua</span></div>
+      <div><strong>150 ml</strong><span>comida</span></div>
+      <div><strong>3 en 1</strong><span>un accesorio</span></div>
+      <div class="home-object-status">{% unless settings.sales_enabled %}<span></span>Próximamente{% endunless %}</div>
+    </div>
   </div>
 </section>
 {% schema %}
