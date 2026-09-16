@@ -1,30 +1,37 @@
-<section class="product-clean-hero product-editorial-hero wrap">
-  <div class="product-clean-intro">
-    <p class="eyebrow">DISPENSADOR 3 EN 1</p>
-    <h1>Menos cosas.<br>Más paseo.</h1>
-    <p class="product-clean-lead">Agua, snacks y residuos. Siempre a mano.</p>
-  </div>
-
-  <div class="product-clean-media">
+<section class="product-hero-v2 wrap" data-product-page>
+  <div class="product-hero-gallery">
     {% render 'dispenser-gallery' %}
   </div>
 
-  <div class="product-clean-buy" id="product-purchase">
-    <div class="product-clean-specs" aria-label="Características principales">
-      <span><strong>400 ml</strong>agua</span>
-      <span><strong>150 ml</strong>comida</span>
-      <span><strong>29 cm</strong>de alto</span>
+  <div class="product-hero-panel" id="product-purchase">
+    <div class="product-hero-heading">
+      <p class="eyebrow">OBJETO 01 · DISPENSADOR 3 EN 1</p>
+      <h1>Menos cosas.<br>Más paseo.</h1>
+      <p class="product-hero-lead">Agua, snacks y residuos. Siempre a mano.</p>
+    </div>
+
+    <div class="product-hero-specs" aria-label="Características principales">
+      <span><strong>400 ml</strong><small>agua</small></span>
+      <span><strong>150 ml</strong><small>comida</small></span>
+      <span><strong>29 cm</strong><small>de alto</small></span>
     </div>
 
     {% if settings.featured_product != blank and settings.sales_enabled %}
-      {% render 'product-form', item: settings.featured_product %}
-    {% else %}
-      {% render 'color-preview' %}
-      <div class="product-clean-status">
-        <span></span>
-        <div><strong>Próximamente</strong></div>
+      <div class="product-hero-purchase">
+        {% render 'product-form', item: settings.featured_product %}
       </div>
-      <a class="button" href="#como-funciona">Verlo en el paseo {% render 'arrow' %}</a>
+    {% else %}
+      <div class="product-hero-option">
+        <span class="product-hero-option-label">Color</span>
+        {% render 'color-preview' %}
+      </div>
+
+      <div class="product-hero-status">
+        <span aria-hidden="true"></span>
+        <strong>Próximamente</strong>
+      </div>
+
+      <a class="button product-hero-cta" href="#como-funciona">Verlo en el paseo {% render 'arrow' %}</a>
     {% endif %}
   </div>
 </section>
