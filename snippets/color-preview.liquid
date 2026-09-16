@@ -1,9 +1,1 @@
-{% assign sky_photo = 'paseo-colores.webp' | asset_url %}{% assign pink_photo = 'paseo-colores.webp' | asset_url %}
-<fieldset class="color-picker color-picker-v2" data-colors>
-  <legend>Elige color · <strong data-color-name>Azul cielo</strong></legend>
-  <div class="color-options">
-    <label><input type="radio" name="color-{{ section.id }}" value="Azul cielo" data-photo="{{ sky_photo }}" data-alt="Los dispensadores azul y rosa junto a la bolsa de paseo" checked><span class="sky"></span><span class="sr-only">Azul cielo</span></label>
-    <label><input type="radio" name="color-{{ section.id }}" value="Rosa" data-photo="{{ pink_photo }}" data-alt="Los dispensadores azul y rosa junto a la bolsa de paseo"><span class="pink"></span><span class="sr-only">Rosa</span></label>
-  </div>
-  <p class="fine">Azul cielo o rosa. Tú eliges.</p>
-</fieldset>
+<div class="product-color-note"><span class="sky" aria-hidden="true"></span><span class="pink" aria-hidden="true"></span><p>Azul cielo y rosa</p></div>

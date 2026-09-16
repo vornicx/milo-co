@@ -7,5 +7,5 @@
     "4": {"type":"dispenser-details","settings":{}},
     "5": {"type":"faq","settings":{}}
   },
-  "order": ["0","1","2","3","4","5"]
+  "order": ["0","3","2","4","5"]
 }
