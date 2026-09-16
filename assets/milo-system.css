@@ -473,3 +473,19 @@ textarea{resize:vertical}
  .home-brand{padding:52px 0}
  .footer{padding-top:40px}
 }
+
+/* Photo-led campaign opening. Text stays outside the photograph. */
+.campaign-hero{display:flex;flex-direction:column;margin-top:24px}
+.campaign-media{order:0;width:100%;height:clamp(420px,47vw,620px);overflow:hidden;border-radius:4px;background:var(--cream-2)}
+.campaign-media img{width:100%;height:100%;object-fit:cover;object-position:50% 43%}
+.campaign-copy{order:1;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px 0 0}
+.campaign-copy h1{font-size:clamp(54px,6vw,82px);line-height:1.04;margin:0;letter-spacing:-.055em}
+.campaign-copy .button{flex-shrink:0;min-width:235px;width:auto}
+@media(max-width:760px){
+ .campaign-hero{margin-top:12px}
+ .campaign-media{height:auto;aspect-ratio:4/5}
+ .campaign-media img{object-position:50% 50%}
+ .campaign-copy{flex-direction:column;align-items:flex-start;gap:20px;padding-top:24px}
+ .campaign-copy h1{font-size:clamp(46px,12vw,64px)}
+ .campaign-copy .button{min-width:0;align-self:flex-start}
+}

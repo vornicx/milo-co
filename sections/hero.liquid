@@ -1,13 +1,12 @@
-<section id="paseo" class="home-hero wrap">
-  <div class="home-hero-copy">
+<section id="paseo" class="campaign-hero wrap">
+  <div class="campaign-copy">
     <h1>{{ section.settings.heading | escape | newline_to_br }}</h1>
-    <p class="home-hero-lead">{{ section.settings.text | escape }}</p>
-    <a class="button" href="#dispensador">Ver el dispensador {% render 'arrow' %}</a>
+    <a class="button" href="#dispensador">Descubrir el dispensador {% render 'arrow' %}</a>
   </div>
 
-  <figure class="home-hero-media">
+  <figure class="campaign-media">
     {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2200 | image_tag: widths: '640, 900, 1300, 1800, 2200', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'eager', fetchpriority: 'high', alt: 'Dispensador Milo & Co preparado para un paseo' }}
+      {{ section.settings.image | image_url: width: 2200 | image_tag: widths: '640, 900, 1300, 1800, 2200', sizes: '(max-width: 760px) calc(100vw - 40px), min(1180px, 92vw)', loading: 'eager', fetchpriority: 'high', alt: 'Dispensador Milo & Co preparado para un paseo' }}
     {% else %}
       <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" alt="Un perro bebiendo del dispensador Milo & Co durante el paseo" fetchpriority="high">
     {% endif %}
@@ -17,7 +16,7 @@
 {
   "name":"Hero",
   "settings":[
-    {"type":"textarea","id":"heading","label":"Título","default":"La vida fuera.\nEn buena compañía."},
+    {"type":"textarea","id":"heading","label":"Título","default":"Fuera, juntos."},
     {"type":"textarea","id":"text","label":"Texto","default":"Lo esencial del paseo, siempre contigo."},
     {"type":"image_picker","id":"image","label":"Fotografía de portada"}
   ]
