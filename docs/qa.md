@@ -1,35 +1,81 @@
-# Verificación — 16 septiembre 2026
+# Archic Gate — Milo & Co
 
-## Cambios preparados
-- Cuatro fotografías aportadas por el propietario, convertidas a WebP; portada, galería de uso/detalle y composición de colores.
-- Conservación de crema/bosque, tipografía editorial y composición sencilla. Ajustes de miniaturas, carrito móvil y movimiento reducido.
-- Producto global configurable en Shopify para navegación y página del dispensador. Estados de lanzamiento condicionados a venta y producto configurados.
-- Formulario nativo de producto con errores de Shopify, precio/stock por variante, reglas de cantidad y fotografía por variante.
-- Carrito nativo con descuentos globales y estado fiscal. El checkout permanece alojado en Shopify.
-- CSP restrictiva, bloqueo de marcos y permisos del navegador en la vista previa Vercel. Esta CSP NO se aplica al tema Shopify, donde bloquearía scripts de plataforma.
+Última revisión: 16 septiembre 2026.
 
-## Comprobado
-- Compilación de las seis páginas de vista previa: correcta.
-- Shopify Theme Check: 42 archivos, sin incidencias.
-- Auditoría npm completa, incluidas dependencias de desarrollo: cero vulnerabilidades notificadas en esta ejecución.
-- Tres pruebas automatizadas: cantidad/precio, variante agotada y límite obsoleto, texto no interpretado como HTML.
-- Sintaxis JavaScript y diff: correctos.
+## Hard gate activo
 
-## Pendiente, sin declarar verificado
-- El navegador bloqueó la vista previa local con ERR_BLOCKED_BY_CLIENT. No se ha comprobado visualmente esta versión en móvil/escritorio.
-- La versión pública consultada sigue siendo la anterior: publicación bloqueada por revisión automática a la espera de autorización explícita.
-- Sin acceso a una tienda Shopify: pendientes render nativo, persistencia de carrito, stock concurrente, envío, descuentos, contacto y pedido de prueba hasta confirmación.
-- El interruptor sales_enabled es presentación, no un control de seguridad: proteger la tienda con la contraseña nativa antes del lanzamiento.
-- No se garantiza ausencia de vulnerabilidades; auditoría de dependencias y revisión de tema no equivalen a una prueba de penetración.
+Milo & Co se trata como un producto de producción, aunque Shopify todavía no esté conectado. Ningún cambio importante se considera listo solo porque compile o se vea bien.
 
-## Fase actual: diseño sin conexión
-- Shopify se conectará cuando el propietario apruebe el diseño. No se solicita acceso ni se activa la venta en esta fase.
-- Carrito oculto en navegación con ventas desactivadas; nueva página Nuestra idea, enlazada desde portada y pie.
-- Verificados los enlaces y recursos locales de las seis páginas generadas; todas contienen un único H1.
+### Diseño
+- Un único sistema visual cargado: `assets/milo-system.css`.
+- Home, índice de productos, landing del dispensador, páginas editoriales, carrito, contacto y producto nativo comparten tokens y componentes.
+- Mobile tiene composición propia, no un simple apilado de desktop.
+- Sin copy de relleno, reseñas, descuentos, precio, certificaciones o disponibilidad inventados.
 
-## Configuración para continuar en Shopify
-1. Conectar el repositorio/tema en Tienda online y seleccionar el producto en Ajustes del tema → Venta → Dispensador de la tienda.
-2. Crear variantes con sus precios, imágenes e inventario real; configurar pagos, mercados, impuestos, envío y políticas desde Shopify.
-3. Asignar las páginas del dispensador y paseos en Ajustes del tema → Navegación.
-4. Activar venta para probar en una tienda protegida; verificar añadir, cambiar cantidad, eliminar, agotado y un pedido con pasarela de prueba.
-5. Publicar la tienda únicamente tras completar esas pruebas. Vercel sigue siendo una vista previa sin cobros.
+### Accesibilidad
+- Un H1 por página de preview.
+- Skip link funcional.
+- Tratamiento global `:focus-visible`.
+- `prefers-reduced-motion`.
+- Todas las imágenes renderizadas en la preview deben incluir atributo `alt`.
+- Controles de galería con nombre accesible y estado `aria-pressed`.
+
+### Rendimiento
+- Las fotografías principales del producto son assets AVIF cacheables; no data URI dentro del HTML.
+- Gate automático: ninguna página estática puede superar 254 KiB de HTML.
+- CSS principal: presupuesto máximo 90 KiB.
+- Fotografías de producto incluidas en el gate: máximo 600 KiB por asset.
+
+### Seguridad / plataforma
+- Vercel es solo preview y no procesa pagos ni datos de Shopify.
+- CSP de preview: scripts, estilos, imágenes y conexiones limitados a origen propio; formularios bloqueados.
+- HSTS, frame blocking, nosniff, permissions policy, COOP y noindex activos en preview.
+- La CSP de Vercel NO debe copiarse sin revisión a Shopify, porque puede interferir con scripts y checkout de plataforma.
+- `sales_enabled` es solo presentación. El control real de lanzamiento debe ser contraseña/canales de venta de Shopify.
+
+### Datos y ecommerce
+Pendiente hasta conectar Shopify:
+- variantes e inventario reales;
+- precio final;
+- IVA/mercados;
+- envío España/UE;
+- persistencia de carrito;
+- estados de agotado;
+- concurrencia de stock;
+- checkout y pasarela de prueba;
+- pedido, cancelación y reembolso de prueba.
+
+No publicar la tienda hasta completar estos checks en Shopify.
+
+## Gate automático del repositorio
+
+`npm run build` genera la preview y ejecuta `scripts/validate-preview.mjs`.
+
+Valida:
+1. render sin Liquid residual;
+2. exactamente un H1 por página;
+3. idioma y viewport;
+4. contrato del skip link;
+5. IDs duplicados;
+6. imágenes con `alt`;
+7. ausencia de data URI;
+8. presupuesto de HTML;
+9. presencia de focus-visible y reduced-motion;
+10. presupuesto de CSS;
+11. existencia y tamaño de los assets principales.
+
+Para la revisión completa con Shopify CLI:
+
+```sh
+npm ci
+npm run check
+npm run build
+```
+
+## No declarado como verificado
+
+- Checkout real.
+- Autenticación/pagos de Shopify.
+- Core Web Vitals de una tienda Shopify publicada.
+- Navegadores/dispositivos físicos fuera de las capturas revisadas.
+- Ausencia absoluta de vulnerabilidades.

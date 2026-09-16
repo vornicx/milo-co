@@ -686,3 +686,118 @@ p{color:var(--muted)}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
+
+
+/* Archic gate — interaction, forms and native Shopify surfaces */
+:where(a,button,input,select,textarea,summary):focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:4px;
+}
+:where(input,select,textarea):focus-visible{outline-offset:2px}
+::selection{background:var(--ink);color:var(--paper)}
+button:disabled{cursor:not-allowed;opacity:.5}
+a,button,summary{-webkit-tap-highlight-color:transparent}
+
+.page{padding:clamp(72px,9vw,130px) 0}
+.page-heading{max-width:900px;margin-bottom:clamp(38px,5vw,70px)}
+.page-heading h1,.password-copy h1{
+  margin:0;
+  font-size:var(--title);
+  line-height:.94;
+}
+.prose{max-width:72ch}
+.prose>*:first-child{margin-top:0}
+.prose h2,.prose h3{margin-top:1.7em}
+.prose a{text-decoration:underline;text-underline-offset:3px}
+.prose--page{font-size:16px}
+.prose ul,.prose ol{padding-left:1.25em}
+
+.page--form{
+  display:grid;
+  grid-template-columns:minmax(0,.78fr) minmax(360px,.72fr);
+  gap:clamp(60px,9vw,150px);
+  align-items:start;
+}
+.milo-form{display:grid;gap:20px}
+.field{display:grid;gap:8px}
+.field label,.product-form label{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.milo-form input,.milo-form textarea,.product-form input,.product-form select{
+  width:100%;
+  min-height:50px;
+  padding:13px 14px;
+  border:1px solid var(--line-strong);
+  border-radius:12px;
+  background:rgba(255,255,255,.18);
+  color:var(--ink);
+}
+.milo-form textarea{resize:vertical;min-height:150px}
+.form-success{
+  padding:14px 16px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  color:var(--ink);
+}
+.errors{margin:0;padding:14px 18px;border:1px solid #9f4b37;border-radius:12px}
+
+.password-page{min-height:calc(100vh - 160px)}
+.password-page>.wordmark{display:inline-block;margin-bottom:clamp(70px,10vw,140px)}
+.password-copy{max-width:850px}
+.password-copy p:last-child{max-width:32ch}
+.password-form{max-width:480px;margin-top:44px}
+
+.native-product{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
+  gap:clamp(50px,7vw,110px);
+  align-items:start;
+  padding:clamp(60px,8vw,110px) 0 var(--section);
+}
+.native-product-media{
+  display:grid;
+  gap:14px;
+}
+.native-product-media img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:contain;
+  border-radius:var(--radius);
+  background:var(--paper-2);
+}
+.native-product-panel{
+  position:sticky;
+  top:120px;
+}
+.native-product-panel h1{
+  margin:0 0 24px;
+  font-size:var(--title);
+  line-height:.94;
+}
+.native-product-panel .prose{margin-bottom:32px}
+.native-product-panel [data-product]{display:grid;gap:18px}
+.native-product-panel .product-form{display:grid;gap:12px}
+
+@media(hover:hover){
+  .gallery-thumbnails button:hover{opacity:.86}
+  .header nav a:hover,.product-local-nav a:hover{color:var(--accent)}
+}
+
+@media(max-width:760px){
+  :where(a,button,input,select,textarea,summary):focus-visible{outline-offset:3px}
+  .header nav a{min-height:44px;display:flex;align-items:center}
+  .product-local-nav a{min-height:44px;display:flex;align-items:center}
+
+  .page--form{grid-template-columns:1fr;gap:0}
+  .page-heading{margin-bottom:34px}
+  .milo-form{gap:16px}
+  .native-product{grid-template-columns:1fr;gap:34px;padding:48px 0 72px}
+  .native-product-panel{position:static}
+  .native-product-media img{border-radius:18px}
+  .password-page>.wordmark{margin-bottom:72px}
+  .password-form{margin-top:32px}
+}

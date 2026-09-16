@@ -1,4 +1,27 @@
-<section class="page wrap"><h1>{{ page.title | default: 'Hablemos.' | escape }}</h1><div class="prose">{{ page.content }}</div>{% form 'contact' %}{% if form.posted_successfully? %}<p role="status">Gracias por escribirnos. Hemos recibido tu mensaje.</p>{% endif %}{{ form.errors | default_errors }}<label for="ContactName">Nombre</label><input id="ContactName" name="contact[name]" autocomplete="name" value="{{ form.name | escape }}" required><label for="ContactEmail">Correo electrónico</label><input id="ContactEmail" name="contact[email]" type="email" autocomplete="email" value="{{ form.email | escape }}" required><label for="ContactBody">¿Cómo podemos ayudarte?</label><textarea id="ContactBody" name="contact[body]" rows="6" required>{{ form.body | escape }}</textarea><button class="button" type="submit">Enviar mensaje</button>{% endform %}</section>
+<section class="page page--form wrap">
+  <div class="page-heading">
+    <p class="eyebrow">CONTACTO</p>
+    <h1>{{ page.title | default: 'Hablemos.' | escape }}</h1>
+    <div class="prose">{{ page.content }}</div>
+  </div>
+  {% form 'contact', class: 'milo-form' %}
+    {% if form.posted_successfully? %}<p class="form-success" role="status">Gracias por escribirnos. Hemos recibido tu mensaje.</p>{% endif %}
+    {{ form.errors | default_errors }}
+    <div class="field">
+      <label for="ContactName">Nombre</label>
+      <input id="ContactName" name="contact[name]" autocomplete="name" value="{{ form.name | escape }}" required>
+    </div>
+    <div class="field">
+      <label for="ContactEmail">Correo electrónico</label>
+      <input id="ContactEmail" name="contact[email]" type="email" autocomplete="email" inputmode="email" value="{{ form.email | escape }}" required>
+    </div>
+    <div class="field">
+      <label for="ContactBody">¿Cómo podemos ayudarte?</label>
+      <textarea id="ContactBody" name="contact[body]" rows="7" required>{{ form.body | escape }}</textarea>
+    </div>
+    <button class="button button--dark" type="submit">Enviar mensaje</button>
+  {% endform %}
+</section>
 {% schema %}
 {
   "name": "Contact",

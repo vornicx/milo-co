@@ -1,0 +1,58 @@
+import { readFile, readdir, stat } from 'node:fs/promises';
+import { join } from 'node:path';
+
+const pages = [
+  'index.html',
+  'cart.html',
+  '404.html',
+  'pages/productos.html',
+  'pages/dispensador.html',
+  'pages/paseos.html',
+  'pages/nosotros.html'
+];
+
+const fail = (message) => {
+  console.error(`ARCHIC GATE: ${message}`);
+  process.exitCode = 1;
+};
+
+for (const file of pages) {
+  const path = join('dist', file);
+  const html = await readFile(path, 'utf8');
+
+  const h1Count = (html.match(/<h1\b/gi) || []).length;
+  if (h1Count !== 1) fail(`${file}: expected exactly one H1, found ${h1Count}`);
+
+  if (/data:image\//i.test(html)) fail(`${file}: inline base64 image found`);
+  if (/{[{%]/.test(html)) fail(`${file}: unrendered Liquid found`);
+  if (!/<html\s[^>]*lang="es"/i.test(html)) fail(`${file}: missing Spanish lang attribute`);
+  if (!/<meta\s[^>]*name="viewport"/i.test(html)) fail(`${file}: missing viewport meta`);
+  if (!/href="#MainContent"/.test(html) || !/id="MainContent"/.test(html)) fail(`${file}: skip-link contract broken`);
+
+  const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]);
+  const duplicates = ids.filter((id, i) => ids.indexOf(id) !== i);
+  if (duplicates.length) fail(`${file}: duplicate id(s): ${[...new Set(duplicates)].join(', ')}`);
+
+  for (const match of html.matchAll(/<img\b[^>]*>/gi)) {
+    if (!/\salt="[^"]*"/i.test(match[0])) fail(`${file}: image without alt attribute`);
+  }
+
+  const bytes = Buffer.byteLength(html);
+  if (bytes > 260_000) fail(`${file}: HTML is ${Math.round(bytes / 1024)} KiB; budget is 254 KiB`);
+}
+
+const css = await readFile('dist/assets/milo-system.css', 'utf8');
+if (!css.includes(':focus-visible')) fail('milo-system.css: missing focus-visible treatment');
+if (!css.includes('prefers-reduced-motion')) fail('milo-system.css: missing reduced-motion treatment');
+if (Buffer.byteLength(css) > 90_000) fail('milo-system.css exceeds 90 KiB budget');
+
+const assets = await readdir('dist/assets');
+for (const name of ['milo-food-use.avif','milo-waste-use.avif','milo-parts-use.avif']) {
+  if (!assets.includes(name)) fail(`missing product asset: ${name}`);
+  else {
+    const size = (await stat(join('dist/assets', name))).size;
+    if (size > 600_000) fail(`${name}: image exceeds 600 KiB budget`);
+  }
+}
+
+if (!process.exitCode) console.log('ARCHIC GATE: preview structure, accessibility and performance budgets passed.');
