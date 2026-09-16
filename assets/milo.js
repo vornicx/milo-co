@@ -10,6 +10,20 @@
         product.querySelector('[data-price]').textContent = variant.dataset.price;
         button.disabled = variant.dataset.available !== 'true';
         button.textContent = button.disabled ? 'Agotado' : 'Añadir al carrito';
+        const hero = product.closest('[data-product-page]')?.querySelector('[data-variant-image]');
+        if (hero && variant.dataset.image) {
+          hero.removeAttribute('srcset');
+          hero.src = variant.dataset.image;
+          hero.alt = variant.dataset.imageAlt || '';
+        }
+        const quantity = product.querySelector('[name="quantity"]');
+        if (quantity) {
+          quantity.min = variant.dataset.min || '1';
+          quantity.step = variant.dataset.step || '1';
+          if (variant.dataset.max) quantity.max = variant.dataset.max;
+          else quantity.removeAttribute('max');
+          quantity.value = quantity.min;
+        }
       });
     });
   };
@@ -70,4 +84,11 @@
  };
  initialize();
  document.addEventListener('shopify:section:load', event => initialize(event.target));
+})();
+
+(() => {
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('.header nav a').forEach(link => {
+    if (!link.hash && (new URL(link.href).pathname.replace(/\/$/, '') || '/') === path) link.setAttribute('aria-current', 'page');
+  });
 })();

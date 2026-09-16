@@ -1,4 +1,4 @@
-<section class="detail wrap"><div class="gallery">{% for image in product.images %}{{ image | image_url: width: 1400 | image_tag: widths: '400, 800, 1400', sizes: '(max-width: 760px) 100vw, 55vw', loading: 'lazy' }}{% endfor %}</div><div class="detail-copy"><a class="back" href="{{ routes.root_url }}">Volver a Milo & Co</a><h1>{{ product.title | escape }}</h1><div class="prose">{{ product.description }}</div>{% render 'product-form', item: product %}</div></section>
+<section class="detail wrap" data-product-page><div class="gallery">{% for image in product.images %}{{ image | image_url: width: 1400 | image_tag: widths: '400, 800, 1400', sizes: '(max-width: 760px) 100vw, 55vw', loading: 'lazy', data-variant-image: '' }}{% endfor %}</div><div class="detail-copy"><a class="back" href="{{ routes.root_url }}">Volver a Milo & Co</a><h1>{{ product.title | escape }}</h1><div class="prose">{{ product.description }}</div>{% render 'product-form', item: product %}</div></section>
 {% schema %}
 {
   "name": "Main Product",

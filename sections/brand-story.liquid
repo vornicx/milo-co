@@ -1,0 +1,19 @@
+<section class="brand-intro wrap">
+  <p class="eyebrow">NUESTRA IDEA</p>
+  <h1>La vida, en<br>buena compañía.</h1>
+  <p class="brand-lead">Hay días en los que el mejor plan empieza con una correa en la mano.</p>
+  <figure class="brand-photo"><img src="{{ 'paseo-esenciales.webp' | asset_url }}" alt="El dispensador, la correa y las llaves preparados para salir" width="1254" height="1254" fetchpriority="high"><figcaption>Lo cotidiano también merece estar bien pensado.</figcaption></figure>
+</section>
+<section class="brand-purpose wrap">
+  <p class="eyebrow">POR QUÉ MILO & CO</p>
+  <div><h2>Menos preparativos.<br>Más tiempo juntos.</h2><p>El paseo de cada mañana. Una vuelta que acaba en el parque. Esa escapada que llevabais toda la semana esperando.</p><p>Milo & Co nace alrededor de esos ratos. Queremos reunir accesorios prácticos, agradables de usar y fáciles de llevar. Cosas que encajen en vuestra rutina y os acompañen fuera.</p></div>
+</section>
+<section class="brand-principles wrap" aria-label="Nuestra forma de elegir">
+  <article><span>01 / UTILIDAD</span><h2>Que tenga sentido.</h2><p>Cada producto empieza con una pregunta: ¿hace más sencillo salir juntos?</p></article>
+  <article><span>02 / DISEÑO</span><h2>Que apetezca llevarlo.</h2><p>Colores tranquilos, formas sencillas y atención a los pequeños detalles.</p></article>
+  <article><span>03 / CLARIDAD</span><h2>Que sepas qué llevas.</h2><p>Capacidades, dimensiones y contenido explicados con claridad, para elegir según vuestro plan.</p></article>
+</section>
+<section class="brand-closing wrap"><p class="eyebrow">EMPEZAMOS POR LO ESENCIAL</p><h2>Un dispensador.<br>Muchos paseos por delante.</h2><a class="button" href="{{ settings.featured_product.url | default: settings.product_page.url | default: '/pages/dispensador' }}">Conoce el dispensador {% render 'arrow' %}</a></section>
+{% schema %}
+{"name":"Nuestra idea","settings":[]}
+{% endschema %}

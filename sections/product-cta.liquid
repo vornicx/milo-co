@@ -1,4 +1,4 @@
-<section class="closing-cta wrap"><h2>¿Salimos?</h2><p>Conoce el primer compañero de paseo de Milo & Co.</p><a class="button" href="{{ settings.product_page.url | default: '/pages/dispensador' }}">Ver el dispensador {% render 'arrow' %}</a></section>
+<section class="closing-cta wrap"><h2>¿Salimos?</h2><p>Conoce el primer compañero de paseo de Milo & Co.</p><a class="button" href="{{ settings.featured_product.url | default: settings.product_page.url | default: '/pages/dispensador' }}">Ver el dispensador {% render 'arrow' %}</a></section>
 {% schema %}
 {"name": "Product Cta", "settings": []}
 {% endschema %}

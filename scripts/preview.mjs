@@ -21,7 +21,7 @@ async function section(type,id,settings={}) {
 }
 await mkdir('.preview',{recursive:true});
 await cp('assets','.preview/assets',{recursive:true});
-for(const name of ['index','cart','404','page.dispensador','page.paseos']) {
+for(const name of ['index','cart','404','page.dispensador','page.paseos','page.nosotros']) {
  const template=JSON.parse(await readFile(`templates/${name}.json`,'utf8'));
  let content='';for(const id of template.order){const s=template.sections[id];content+=await section(s.type,id,s.settings);}
  let layout=await readFile('layout/theme.liquid','utf8');

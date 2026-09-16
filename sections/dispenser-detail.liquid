@@ -16,6 +16,9 @@
       <span><strong>29 cm</strong>de alto</span>
     </div>
 
+    {% if settings.featured_product != blank and settings.sales_enabled %}
+    {% render 'product-form', item: settings.featured_product %}
+    {% else %}
     {% render 'color-preview' %}
 
     <div class="product-clean-status">
@@ -24,6 +27,7 @@
     </div>
 
     <a class="button" href="#detalles">Conocer el producto {% render 'arrow' %}</a>
+    {% endif %}
   </div>
 </section>
 

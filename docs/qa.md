@@ -1,24 +1,35 @@
-# Verificación — 15 septiembre 2026
+# Verificación — 16 septiembre 2026
 
-## Realizado
-- Shopify Theme Check sobre las plantillas, secciones y snippets.
-- Render local Liquid de portada, carrito vacío y 404.
-- JavaScript de selección de variante: actualización de precio y bloqueo de variante agotada; revisión estática y sintaxis.
-- Precio, stock e IDs proceden de Shopify, no del cliente.
-- Formularios POST nativos; no tokens privados, servicios de pago propios, base de datos, sesiones propias ni procesamiento de tarjetas.
-- Políticas de tienda solo se enlazan cuando existen. No se inventan identidad fiscal, plazos ni reseñas.
+## Cambios preparados
+- Cuatro fotografías aportadas por el propietario, convertidas a WebP; portada, galería de uso/detalle y composición de colores.
+- Conservación de crema/bosque, tipografía editorial y composición sencilla. Ajustes de miniaturas, carrito móvil y movimiento reducido.
+- Producto global configurable en Shopify para navegación y página del dispensador. Estados de lanzamiento condicionados a venta y producto configurados.
+- Formulario nativo de producto con errores de Shopify, precio/stock por variante, reglas de cantidad y fotografía por variante.
+- Carrito nativo con descuentos globales y estado fiscal. El checkout permanece alojado en Shopify.
+- CSP restrictiva, bloqueo de marcos y permisos del navegador en la vista previa Vercel. Esta CSP NO se aplica al tema Shopify, donde bloquearía scripts de plataforma.
 
-## Bloqueos
-- El navegador rechazó el acceso al preview local por política de URL. No se intentó sortear la restricción. Sin capturas de implementación ni inspección desktop/móvil en navegador.
-- Sin tienda Shopify conectada: pendiente verificar ejecución real de Liquid, edición de tema, variantes, carrito, formularios de contacto, contraseña y checkout de prueba.
-- Fotos reales inaccesibles desde el entorno. Sin imagen inventada del producto; deben cargarse antes del lanzamiento.
+## Comprobado
+- Compilación de las seis páginas de vista previa: correcta.
+- Shopify Theme Check: 42 archivos, sin incidencias.
+- Auditoría npm completa, incluidas dependencias de desarrollo: cero vulnerabilidades notificadas en esta ejecución.
+- Tres pruebas automatizadas: cantidad/precio, variante agotada y límite obsoleto, texto no interpretado como HTML.
+- Sintaxis JavaScript y diff: correctos.
 
-## Comparación de diseño: intención, no aprobación visual
-1. Copy: se conserva titular, descripción, CTA, producto y capacidades. Se eliminan slogans extra del generador.
-2. Tipografía: Georgia editorial y Arial en controles, wordmark serif en minúsculas.
-3. Paleta: crema #F5F2E9, bosque #193E32 y naranja #D66A38.
-4. Composición: hero a dos columnas, capacidades y compra con divisoria, FAQ y pie bosque. Foto de hero separada con marco arqueado en vez del degradado del concepto.
-5. Móvil: una columna, navegación en segunda fila, capacidades compactas y botones táctiles; pendiente comprobar overflow y legibilidad con navegador.
-6. Imágenes: foto editorial independiente; no textos rasterizados como interfaz ni producto inventado. Galería conectada a medios de Shopify.
+## Pendiente, sin declarar verificado
+- El navegador bloqueó la vista previa local con ERR_BLOCKED_BY_CLIENT. No se ha comprobado visualmente esta versión en móvil/escritorio.
+- La versión pública consultada sigue siendo la anterior: publicación bloqueada por revisión automática a la espera de autorización explícita.
+- Sin acceso a una tienda Shopify: pendientes render nativo, persistencia de carrito, stock concurrente, envío, descuentos, contacto y pedido de prueba hasta confirmación.
+- El interruptor sales_enabled es presentación, no un control de seguridad: proteger la tienda con la contraseña nativa antes del lanzamiento.
+- No se garantiza ausencia de vulnerabilidades; auditoría de dependencias y revisión de tema no equivalen a una prueba de penetración.
 
-No se declara equivalencia visual 10/10. Las diferencias deliberadas están documentadas en brand.md y las verificaciones bloqueadas deben completarse en Shopify.
+## Fase actual: diseño sin conexión
+- Shopify se conectará cuando el propietario apruebe el diseño. No se solicita acceso ni se activa la venta en esta fase.
+- Carrito oculto en navegación con ventas desactivadas; nueva página Nuestra idea, enlazada desde portada y pie.
+- Verificados los enlaces y recursos locales de las seis páginas generadas; todas contienen un único H1.
+
+## Configuración para continuar en Shopify
+1. Conectar el repositorio/tema en Tienda online y seleccionar el producto en Ajustes del tema → Venta → Dispensador de la tienda.
+2. Crear variantes con sus precios, imágenes e inventario real; configurar pagos, mercados, impuestos, envío y políticas desde Shopify.
+3. Asignar las páginas del dispensador y paseos en Ajustes del tema → Navegación.
+4. Activar venta para probar en una tienda protegida; verificar añadir, cambiar cantidad, eliminar, agotado y un pedido con pasarela de prueba.
+5. Publicar la tienda únicamente tras completar esas pruebas. Vercel sigue siendo una vista previa sin cobros.

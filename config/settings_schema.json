@@ -16,6 +16,12 @@
         "label": "Activar venta en el tema",
         "default": false,
         "info": "Activar tras configurar producto, precio, fotografías, envío y políticas. No sustituye la contraseña de Shopify."
+      },
+      {
+        "type": "product",
+        "id": "featured_product",
+        "label": "Dispensador de la tienda",
+        "info": "Producto utilizado en la portada, navegación y página del dispensador."
       }
     ]
   },
@@ -31,6 +37,11 @@
         "type": "page",
         "id": "walk_page",
         "label": "Página de paseos (plantilla page.paseos)"
+      },
+      {
+        "type": "page",
+        "id": "brand_page",
+        "label": "Página Nuestra idea (plantilla page.nosotros)"
       }
     ]
   }

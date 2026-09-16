@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "brand-story",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

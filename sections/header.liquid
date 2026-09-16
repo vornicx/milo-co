@@ -1,7 +1,7 @@
 <header class="header wrap">
 <a class="wordmark" href="{{ routes.root_url }}" aria-label="Milo & Co, inicio">milo & co<span class="brand-dot">.</span></a>
-<nav aria-label="Navegación principal"><a href="{{ settings.walk_page.url | default: "/pages/paseos" }}">Paseos y escapadas</a><a href="{{ settings.product_page.url | default: "/pages/dispensador" }}">El dispensador</a><a href="{{ routes.root_url }}#preguntas">Preguntas</a></nav>
-<a class="bag" href="{{ routes.cart_url }}" aria-label="Carrito, {{ cart.item_count }} artículos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z M8 8V5a4 4 0 0 1 8 0v3"/></svg><span>{{ cart.item_count }}</span></a>
+<nav aria-label="Navegación principal"><a href="{{ settings.walk_page.url | default: "/pages/paseos" }}">Paseos y escapadas</a><a href="{{ settings.featured_product.url | default: settings.product_page.url | default: "/pages/dispensador" }}">El dispensador</a><a href="{{ routes.root_url }}#preguntas">Preguntas</a></nav>
+{% if settings.sales_enabled %}<a class="bag" href="{{ routes.cart_url }}" aria-label="Carrito, {{ cart.item_count }} artículos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z M8 8V5a4 4 0 0 1 8 0v3"/></svg><span>{{ cart.item_count }}</span></a>{% else %}<span class="header-note">Para salir juntos</span>{% endif %}
 </header>
 {% schema %}
 {
