@@ -1,0 +1,47 @@
+{% assign item = section.settings.product | default: settings.featured_product %}
+{% assign product_link = item.url | default: settings.product_page.url | default: '/pages/dispensador' %}
+{% capture food_src %}{% render 'milo-photo-src', name: 'food' %}{% endcapture %}
+<section class="product-index wrap">
+  <div class="product-index-intro">
+    <p class="eyebrow">PRODUCTOS</p>
+    <h1>Objetos para<br>salir juntos.</h1>
+    <p>Accesorios pensados para la vida fuera.</p>
+  </div>
+
+  <a class="product-index-card" href="{{ product_link }}" aria-label="Ver dispensador 3 en 1">
+    <div class="product-index-media">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '520, 820, 1200, 1600, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 62vw', loading: 'eager', fetchpriority: 'high', alt: 'Dispensador Milo & Co preparado para salir' }}
+      {% elsif item.featured_image %}
+        {{ item.featured_image | image_url: width: 1800 | image_tag: widths: '520, 820, 1200, 1600, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 62vw', loading: 'eager', fetchpriority: 'high', alt: item.title }}
+      {% else %}
+        <img src="{{ food_src | strip }}" width="1122" height="1402" fetchpriority="high" alt="Dispensador Milo & Co con agua y comida preparado para salir">
+      {% endif %}
+    </div>
+
+    <div class="product-index-meta">
+      <div>
+        <p class="eyebrow">OBJETO 01</p>
+        <h2>{{ item.title | default: 'Dispensador 3 en 1' }}</h2>
+        <p class="product-index-summary">Agua, snacks y residuos.</p>
+      </div>
+      <div class="product-index-action">
+        {% if settings.sales_enabled and item != blank %}
+          <span class="product-index-price">{{ item.price | money }}</span>
+        {% else %}
+          <span class="product-index-status">Próximamente</span>
+        {% endif %}
+        <span class="text-link">Ver producto {% render 'arrow' %}</span>
+      </div>
+    </div>
+  </a>
+</section>
+{% schema %}
+{
+  "name":"Índice de productos",
+  "settings":[
+    {"type":"product","id":"product","label":"Producto destacado"},
+    {"type":"image_picker","id":"image","label":"Fotografía editorial"}
+  ]
+}
+{% endschema %}

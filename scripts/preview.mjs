@@ -13,7 +13,7 @@ engine.registerFilter('asset_url', x => `/assets/${x}`);
 engine.registerFilter('stylesheet_tag', x => `<link rel="stylesheet" href="${x}">`);
 engine.registerFilter('money', x => new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(x/100));
 const clean = s => s.replace(/{% schema %}[\s\S]*?{% endschema %}/g,'');
-const base = {request:{locale:{iso_code:'es'}},routes:{root_url:'index.html',cart_url:'cart.html'},cart:{item_count:0},shop:{name:'Milo & Co',policies:[]},settings:{sales_enabled:false,product_page:{url:'/pages/dispensador'},walk_page:{url:'/pages/paseos'}},page_title:'Milo & Co',canonical_url:'',content_for_header:''};
+const base = {request:{locale:{iso_code:'es'}},routes:{root_url:'index.html',cart_url:'cart.html'},cart:{item_count:0},shop:{name:'Milo & Co',policies:[]},settings:{sales_enabled:false,products_page:{url:'/pages/productos'},product_page:{url:'/pages/dispensador'},walk_page:{url:'/pages/paseos'},brand_page:{url:'/pages/nosotros'}},page_title:'Milo & Co',canonical_url:'',content_for_header:''};
 async function section(type,id,settings={}) {
  const raw=clean(await readFile(`sections/${type}.liquid`,'utf8'));
  const schema=JSON.parse((await readFile(`sections/${type}.liquid`,'utf8')).match(/{% schema %}([\s\S]*?){% endschema %}/)[1]);
@@ -22,7 +22,7 @@ async function section(type,id,settings={}) {
 }
 await mkdir('.preview',{recursive:true});
 await cp('assets','.preview/assets',{recursive:true});
-for(const name of ['index','cart','404','page.dispensador','page.paseos','page.nosotros']) {
+for(const name of ['index','cart','404','page.productos','page.dispensador','page.paseos','page.nosotros']) {
  const template=JSON.parse(await readFile(`templates/${name}.json`,'utf8'));
  let content='';for(const id of template.order){const s=template.sections[id];content+=await section(s.type,id,s.settings);}
  let layout=await readFile('layout/theme.liquid','utf8');

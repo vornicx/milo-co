@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Milo & Co",
-    "theme_version": "0.1.0",
+    "theme_version": "0.2.0",
     "theme_author": "Milo & Co",
     "theme_documentation_url": "https://github.com/vornicx/milo-co",
     "theme_support_url": "https://github.com/vornicx/milo-co/issues"
@@ -20,14 +20,19 @@
       {
         "type": "product",
         "id": "featured_product",
-        "label": "Dispensador de la tienda",
-        "info": "Producto utilizado en la portada, navegación y página del dispensador."
+        "label": "Producto destacado",
+        "info": "Producto utilizado en portada, índice de productos y página del dispensador."
       }
     ]
   },
   {
     "name": "Navegación",
     "settings": [
+      {
+        "type": "page",
+        "id": "products_page",
+        "label": "Página de productos (plantilla page.productos)"
+      },
       {
         "type": "page",
         "id": "product_page",

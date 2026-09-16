@@ -1,8 +1,8 @@
 <header class="header wrap">
 <a class="wordmark" href="{{ routes.root_url }}" aria-label="Milo & Co, inicio">milo & co<span class="brand-dot">.</span></a>
 <nav aria-label="Navegación principal">
+  <a href="{{ settings.products_page.url | default: "/pages/productos" }}">Productos</a>
   <a href="{{ settings.walk_page.url | default: "/pages/paseos" }}">Paseos</a>
-  <a href="{{ settings.featured_product.url | default: settings.product_page.url | default: "/pages/dispensador" }}">Dispensador</a>
   <a href="{{ settings.brand_page.url | default: "/pages/nosotros" }}">Nuestra idea</a>
 </nav>
 {% if settings.sales_enabled %}
