@@ -40,7 +40,7 @@
   <div class="mobile-product-bar" aria-label="Compra rápida">
     <div>
       <small>{{ dispenser.title | escape }}</small>
-      <strong>{{ dispenser.selected_or_first_available_variant.price | money }}</strong>
+      <strong data-mobile-price>{{ dispenser.selected_or_first_available_variant.price | money }}</strong>
     </div>
     <a class="button" href="#product-purchase">Comprar</a>
   </div>

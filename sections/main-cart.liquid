@@ -2,17 +2,17 @@
   <p class="eyebrow">CARRITO</p>
   <h1>Vuestro próximo paseo.</h1>
   {% if cart.item_count == 0 %}
-    <p>Tu carrito está vacío.</p>
+    <div class="cart-empty"><p>Tu carrito está vacío.</p><p class="cart-empty-note">Lo esencial para vuestro próximo paseo empieza aquí.</p></div>
     <a class="button button--dark" href="{{ settings.products_page.url | default: '/pages/productos' }}">Ver productos {% render 'arrow' %}</a>
   {% else %}
-    <form action="{{ routes.cart_url }}" method="post">
+    <form class="cart-layout" action="{{ routes.cart_url }}" method="post">
       <div class="cart-items">
         {% for item in cart.items %}
           <article class="cart-row">
             {% if item.image %}{{ item.image | image_url: width: 240 | image_tag: loading: 'lazy', alt: item.title }}{% endif %}
             <div>
               <a href="{{ item.url }}">{{ item.product.title | escape }}</a>
-              <p>{{ item.variant.title | escape }}</p>
+              <p>{% unless item.product.has_only_default_variant %}{{ item.variant.title | escape }}{% endunless %}</p>
               <a href="{{ item.url_to_remove }}" class="fine">Eliminar</a>
             </div>
             <label>Cantidad<input name="updates[]" type="number" min="0" step="1" required value="{{ item.quantity }}" aria-label="Cantidad de {{ item.title | escape }}"></label>
@@ -20,13 +20,14 @@
           </article>
         {% endfor %}
       </div>
-      <div class="cart-total">
+      <aside class="cart-total"><h2>Tu pedido</h2>
         {% for discount in cart.cart_level_discount_applications %}<p>{{ discount.title | escape }}: −{{ discount.total_allocated_amount | money }}</p>{% endfor %}
-        <p>Total: {{ cart.total_price | money }}</p>
+        <p class="cart-subtotal"><span>Subtotal</span><strong>{{ cart.total_price | money }}</strong></p>
         <p class="fine">{% if cart.taxes_included %}Impuestos incluidos. {% endif %}Envío calculado al finalizar la compra.</p>
         <button class="button secondary" name="update" type="submit">Actualizar carrito</button>
         {% if settings.sales_enabled %}<button class="button button--dark" name="checkout" type="submit">Finalizar compra {% render 'arrow' %}</button>{% endif %}
-      </div>
+        <a class="cart-continue" href="{{ settings.products_page.url | default: "/pages/productos" }}">Seguir explorando</a>
+      </aside>
     </form>
   {% endif %}
 </section>

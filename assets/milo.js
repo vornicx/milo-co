@@ -4,10 +4,68 @@
       const select = product.querySelector('[data-variant]');
       if (!select || select.dataset.bound) return;
       select.dataset.bound = 'true';
+      const form = product.querySelector('form');
+      const quantity = product.querySelector('[name="quantity"]');
+      const choices = document.createElement('fieldset');
+      choices.className = 'variant-choices';
+      const legend = document.createElement('legend');
+      legend.textContent = product.querySelector('[data-variant-label]')?.textContent || 'Elige una opción';
+      choices.append(legend);
+      [...select.options].forEach(option => {
+        const label = document.createElement('label');
+        label.className = 'variant-choice';
+        const input = document.createElement('input');
+        input.type = 'radio'; input.name = 'variant-choice-' + select.id;
+        input.value = option.value; input.checked = option.selected;
+        const name = document.createElement('span');
+        name.textContent = option.dataset.title || option.textContent;
+        if (option.dataset.available !== 'true') {
+          const stock = document.createElement('small'); stock.textContent = 'Agotado'; name.append(stock);
+        }
+        const color = (option.dataset.title || '').toLowerCase();
+        const swatch = document.createElement('i'); swatch.setAttribute('aria-hidden','true');
+        if (/rosa|pink/.test(color)) swatch.style.background = '#e7b7ce';
+        else if (/azul|blue/.test(color)) swatch.style.background = '#b6dce0';
+        else if (/verde|green/.test(color)) swatch.style.background = '#a8b9a0';
+        else swatch.hidden = true;
+        label.append(input,swatch,name); choices.append(label);
+        input.addEventListener('change', () => { select.value = input.value; select.dispatchEvent(new Event('change',{bubbles:true})); });
+      });
+      if (select.options.length > 1 || select.options[0]?.dataset.title !== 'Default Title') {
+        select.before(choices);
+      }
+      select.hidden = true;
+      const nativeLabel = product.querySelector('[data-variant-label]');
+      if(nativeLabel) nativeLabel.hidden = true;
+      if (quantity) {
+        const control = document.createElement('div'); control.className = 'quantity-control';
+        quantity.before(control);
+        const less = document.createElement('button'); less.type='button';less.textContent='−';less.setAttribute('aria-label','Reducir cantidad');
+        const more = document.createElement('button'); more.type='button';more.textContent='+';more.setAttribute('aria-label','Aumentar cantidad');
+        control.append(less,quantity,more);
+        const syncQuantity = () => { less.disabled = Number(quantity.value) <= Number(quantity.min || 1); more.disabled = Boolean(quantity.max) && Number(quantity.value) >= Number(quantity.max); };
+        less.addEventListener('click', () => { quantity.stepDown(); syncQuantity(); });
+        more.addEventListener('click', () => { quantity.stepUp(); syncQuantity(); });
+        quantity.addEventListener('input',syncQuantity);
+        select.addEventListener('change', () => queueMicrotask(syncQuantity));
+        syncQuantity();
+      }
+      form?.addEventListener('submit', () => {
+        const button = product.querySelector('[data-add]');
+        button.disabled = true; button.textContent = 'Añadiendo…'; form.setAttribute('aria-busy','true');
+      });
+      window.addEventListener('pageshow', () => {
+        const button = product.querySelector('[data-add]');
+        button.disabled = select.selectedOptions[0].dataset.available !== 'true';
+        button.textContent = button.disabled ? 'Agotado' : 'Añadir al carrito';
+        form?.removeAttribute('aria-busy');
+      });
       select.addEventListener('change', () => {
         const variant = select.selectedOptions[0];
         const button = product.querySelector('[data-add]');
         product.querySelector('[data-price]').textContent = variant.dataset.price;
+        choices.querySelectorAll('input').forEach(input => {input.checked = input.value === select.value;});
+        document.querySelectorAll('[data-mobile-price]').forEach(price => {price.textContent = variant.dataset.price;});
         button.disabled = variant.dataset.available !== 'true';
         button.textContent = button.disabled ? 'Agotado' : 'Añadir al carrito';
         const hero = product.closest('[data-product-page]')?.querySelector('[data-variant-image]');
