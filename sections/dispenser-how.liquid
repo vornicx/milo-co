@@ -1,35 +1,34 @@
+{% capture food_src %}{% render 'milo-photo-src', name: 'food' %}{% endcapture %}
+{% capture waste_src %}{% render 'milo-photo-src', name: 'waste' %}{% endcapture %}
 <section class="product-use wrap" id="como-funciona">
   <div class="product-use-head">
     <p class="eyebrow">EN EL PASEO</p>
     <h2>Lo esencial.<br>En una mano.</h2>
   </div>
 
-  <div class="product-use-gallery">
+  <div class="product-use-gallery" aria-label="El dispensador en uso">
     <figure class="product-use-shot product-use-shot--primary">
       {% if section.settings.image_water != blank %}
-        {{ section.settings.image_water | image_url: width: 1600 | image_tag: widths: '520, 820, 1200, 1600', sizes: '(max-width: 760px) 84vw, 56vw', loading: 'lazy', alt: 'El dispensador durante una pausa para beber' }}
+        {{ section.settings.image_water | image_url: width: 1600 | image_tag: widths: '520, 820, 1200, 1600', sizes: '(max-width: 760px) 84vw, 54vw', loading: 'lazy', alt: 'Una pausa para beber durante el paseo' }}
       {% else %}
         <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="Una pausa durante el paseo">
       {% endif %}
-      <figcaption><span>01</span><strong>Agua</strong></figcaption>
     </figure>
 
-    <figure class="product-use-shot">
+    <figure class="product-use-shot product-use-shot--food">
       {% if section.settings.image_food != blank %}
-        {{ section.settings.image_food | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 84vw, 28vw', loading: 'lazy', alt: 'El compartimento de comida o snacks del dispensador' }}
+        {{ section.settings.image_food | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 84vw, 30vw', loading: 'lazy', alt: 'Comida guardada en el dispensador' }}
       {% else %}
-        <img src="{{ 'paseo-esenciales.webp' | asset_url }}" width="1254" height="1254" loading="lazy" alt="El dispensador preparado para salir">
+        <img src="{{ food_src | strip }}" width="1122" height="1402" loading="lazy" alt="Comida guardada en el dispensador">
       {% endif %}
-      <figcaption><span>02</span><strong>Snacks</strong></figcaption>
     </figure>
 
-    <figure class="product-use-shot">
+    <figure class="product-use-shot product-use-shot--waste">
       {% if section.settings.image_waste != blank %}
-        {{ section.settings.image_waste | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 84vw, 28vw', loading: 'lazy', alt: 'El compartimento de residuos del dispensador' }}
+        {{ section.settings.image_waste | image_url: width: 1400 | image_tag: widths: '480, 800, 1100, 1400', sizes: '(max-width: 760px) 84vw, 30vw', loading: 'lazy', alt: 'Bolsa de residuos saliendo de su compartimento' }}
       {% else %}
-        <img src="{{ 'dispensador-detalle.webp' | asset_url }}" width="1254" height="1254" loading="lazy" alt="Detalle del dispensador">
+        <img src="{{ waste_src | strip }}" width="1536" height="1024" loading="lazy" alt="Bolsa de residuos saliendo de su compartimento">
       {% endif %}
-      <figcaption><span>03</span><strong>Residuos</strong></figcaption>
     </figure>
   </div>
 

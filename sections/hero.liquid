@@ -1,6 +1,6 @@
 <section id="paseo" class="hero wrap">
   <div class="hero-copy">
-    <p class="eyebrow">MILO & CO · PARA LA VIDA FUERA</p>
+    <p class="eyebrow">MILO & CO · LA VIDA FUERA</p>
     <h1>{{ section.settings.heading | escape | newline_to_br }}</h1>
     <p>{{ section.settings.text | escape }}</p>
     <a class="button" href="#dispensador">Descubre el dispensador {% render 'arrow' %}</a>
@@ -9,7 +9,7 @@
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '480, 760, 1100, 1500, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 57vw', loading: 'eager', fetchpriority: 'high', alt: 'Un paseo con perro al aire libre' }}
     {% else %}
-      <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" alt="Una pausa durante el paseo" fetchpriority="high">
+      <img src="{{ 'paseo.jpg' | asset_url }}" width="1536" height="1024" alt="Un perro durante una escapada al aire libre" fetchpriority="high">
     {% endif %}
   </div>
 </section>
@@ -17,9 +17,9 @@
 {
   "name":"Hero",
   "settings":[
-    {"type":"textarea","id":"heading","label":"Título","default":"Su paseo favorito.\nTambién el tuyo."},
-    {"type":"textarea","id":"text","label":"Texto","default":"Agua, snacks y residuos. En un solo accesorio."},
-    {"type":"image_picker","id":"image","label":"Fotografía de portada"}
+    {"type":"textarea","id":"heading","label":"Título","default":"La vida fuera.\nEn buena compañía."},
+    {"type":"textarea","id":"text","label":"Texto","default":"Objetos bien pensados para salir juntos."},
+    {"type":"image_picker","id":"image","label":"Fotografía de campaña"}
   ]
 }
 {% endschema %}

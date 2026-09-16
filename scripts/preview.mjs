@@ -1,11 +1,12 @@
 // Local visual preview only. Shopify remains the authoritative Liquid renderer.
 import { Liquid } from 'liquidjs';
-import { readFile, writeFile, mkdir, cp } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, cp, readdir } from 'node:fs/promises';
 await mkdir('.preview/snippets',{recursive:true});
-for (const file of ['arrow','product-form','dispenser-gallery','color-preview']) {
- let text=await readFile(`snippets/${file}.liquid`,'utf8');
- text=text.replace(/{% form[^%]*%}/g, '<form>').replace(/{% endform %}/g,'</form>');
- await writeFile(`.preview/snippets/${file}.liquid`,text);
+for (const filename of await readdir('snippets')) {
+ if (!filename.endsWith('.liquid')) continue;
+ let content=await readFile(`snippets/${filename}`,'utf8');
+ content=content.replace(/{% form[^%]*%}/g, '<form>').replace(/{% endform %}/g,'</form>');
+ await writeFile(`.preview/snippets/${filename}`,content);
 }
 const engine = new Liquid({root: '.preview/snippets', extname: '.liquid'});
 engine.registerFilter('asset_url', x => `/assets/${x}`);

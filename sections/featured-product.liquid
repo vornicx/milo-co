@@ -1,15 +1,18 @@
 {% assign item = section.settings.product | default: settings.featured_product %}
 {% assign product_link = item.url | default: settings.product_page.url | default: '/pages/dispensador' %}
+{% capture food_src %}{% render 'milo-photo-src', name: 'food' %}{% endcapture %}
 <section id="dispensador" class="spotlight wrap">
   <div class="spotlight-photo">
-    {% if item.featured_image %}
-      {{ item.featured_image | image_url: width: 1500 | image_tag: widths: '500, 800, 1100, 1500', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: item.title }}
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '500, 800, 1100, 1600', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: 'Dispensador Milo & Co preparado para salir' }}
+    {% elsif item.featured_image %}
+      {{ item.featured_image | image_url: width: 1600 | image_tag: widths: '500, 800, 1100, 1600', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: item.title }}
     {% else %}
-      <img src="{{ 'paseo-esenciales.webp' | asset_url }}" width="1254" height="1254" loading="lazy" alt="El dispensador Milo & Co listo para salir">
+      <img src="{{ food_src | strip }}" width="1122" height="1402" loading="lazy" alt="Dispensador Milo & Co con agua y comida preparado para salir">
     {% endif %}
   </div>
   <div class="spotlight-copy">
-    <p class="eyebrow">EL DISPENSADOR 3 EN 1</p>
+    <p class="eyebrow">PRIMER PRODUCTO · DISPENSADOR 3 EN 1</p>
     <h2>Menos cosas.<br>Más paseo.</h2>
     <div class="mini-specs" aria-label="Datos principales">
       <span><strong>400 ml</strong> Agua</span>
@@ -21,5 +24,11 @@
   </div>
 </section>
 {% schema %}
-{"name":"Featured Product","settings":[{"type":"product","id":"product","label":"Producto estrella"}]}
+{
+  "name":"Featured Product",
+  "settings":[
+    {"type":"product","id":"product","label":"Producto estrella"},
+    {"type":"image_picker","id":"image","label":"Fotografía editorial del producto"}
+  ]
+}
 {% endschema %}

@@ -1,15 +1,16 @@
+{% capture parts_src %}{% render 'milo-photo-src', name: 'parts' %}{% endcapture %}
 <section id="detalles" class="product-clean-details wrap">
   <div class="product-clean-heading">
     <p class="eyebrow">DETALLES</p>
-    <h2>Lo importante,<br>claro.</h2>
+    <h2>Todo en su sitio.</h2>
   </div>
 
   <div class="product-detail-composition">
     <div class="product-macro">
       {% if section.settings.image != blank %}
-        {{ section.settings.image | image_url: width: 1400 | image_tag: widths: '480, 800, 1100, 1400', sizes: '(max-width: 760px) calc(100vw - 32px), 54vw', loading: 'lazy', alt: 'Detalle del dispensador Milo & Co' }}
+        {{ section.settings.image | image_url: width: 1400 | image_tag: widths: '480, 800, 1100, 1400', sizes: '(max-width: 760px) calc(100vw - 32px), 54vw', loading: 'lazy', alt: 'Piezas del dispensador Milo & Co' }}
       {% else %}
-        <img src="{{ 'dispensador-detalle.webp' | asset_url }}" alt="Detalle del dispensador azul: botón, bebedero y cuerda de transporte" width="1254" height="1254" loading="lazy">
+        <img src="{{ parts_src | strip }}" alt="Dispensador Milo & Co desmontado con sus piezas y accesorios" width="1254" height="1254" loading="lazy">
       {% endif %}
     </div>
     <dl class="product-clean-detail-list">
@@ -28,7 +29,7 @@
 {
   "name":"Dispensador · detalles",
   "settings":[
-    {"type":"image_picker","id":"image","label":"Fotografía macro / detalle"}
+    {"type":"image_picker","id":"image","label":"Fotografía de piezas / detalle"}
   ]
 }
 {% endschema %}
