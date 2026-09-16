@@ -1,3 +1,4 @@
+{% assign dispenser = product | default: settings.featured_product %}
 <section class="product-top wrap" data-product-page>
   <nav class="breadcrumbs" aria-label="Migas de pan">
     <a href="{{ routes.root_url }}">Inicio</a><span>/</span>
@@ -7,7 +8,7 @@
 
   <div class="product-top-grid">
     <div class="product-top-gallery">
-      {% render 'dispenser-gallery' %}
+      {% render 'dispenser-gallery', item: dispenser %}
     </div>
 
     <aside class="product-top-info" id="product-purchase">
@@ -22,8 +23,8 @@
         <div>{% render 'milo-icon', name: 'ruler' %}<span><strong>29 cm</strong><small>de alto</small></span></div>
       </div>
 
-      {% if settings.featured_product != blank and settings.sales_enabled %}
-        {% render 'product-form', item: settings.featured_product %}
+      {% if dispenser != blank and settings.sales_enabled %}
+        {% render 'product-form', item: dispenser %}
       {% else %}
         <div class="product-color-row">
           <span>Color</span>
@@ -35,11 +36,11 @@
   </div>
 </section>
 
-{% if settings.featured_product != blank and settings.sales_enabled %}
+{% if dispenser != blank and settings.sales_enabled %}
   <div class="mobile-product-bar" aria-label="Compra rápida">
     <div>
-      <small>{{ settings.featured_product.title | escape }}</small>
-      <strong>{{ settings.featured_product.selected_or_first_available_variant.price | money }}</strong>
+      <small>{{ dispenser.title | escape }}</small>
+      <strong>{{ dispenser.selected_or_first_available_variant.price | money }}</strong>
     </div>
     <a class="button" href="#product-purchase">Comprar</a>
   </div>

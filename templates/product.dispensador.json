@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "0": {"type":"dispenser-detail","settings":{}},
+    "3": {"type":"dispenser-how","settings":{}},
+    "4": {"type":"dispenser-details","settings":{}},
+    "5": {"type":"faq","settings":{}}
+  },
+  "order": ["0","3","4","5"]
+}

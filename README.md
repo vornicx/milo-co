@@ -4,7 +4,7 @@ Tema nativo Shopify Online Store 2.0 para Milo & Co: una marca de objetos para p
 
 ## Estado
 
-Diseño en fase de aprobación. Shopify todavía no está conectado y la venta permanece desactivada por defecto.
+Tema conectado a Shopify mediante GitHub. La venta permanece desactivada por defecto hasta configurar el catálogo y las condiciones de compra.
 
 La vista previa pública de Vercel sirve únicamente para revisar diseño y estructura. No procesa pagos, no emula inventario y está excluida de indexación.
 
@@ -71,3 +71,24 @@ La dirección de Milo & Co está documentada en:
 - `docs/qa.md`
 
 Regla de producto: cada nueva ficha debe poder convivir con una colección de veinte productos sin requerir rediseñar la marca.
+
+## Configuración tras importar el tema
+
+La conexión GitHub sincroniza archivos del tema, no crea registros de páginas ni productos.
+
+En Tienda online → Páginas, crear y hacer visibles estas páginas (el contenido puede quedar vacío porque lo aporta la plantilla):
+
+| Título | Identificador URL | Plantilla |
+| --- | --- | --- |
+| Productos | productos | productos |
+| Dispensador | dispensador | dispensador |
+| Paseos | paseos | paseos |
+| Nuestra idea | nosotros | nosotros |
+| Contacto | contacto | contact |
+
+En Personalizar → Ajustes del tema → Navegación, seleccionar las cuatro páginas. En el pie de página seleccionar Contacto.
+En Productos, crear el dispensador real, añadir sus variantes e imágenes, publicarlo en el canal Tienda online y asignarle la plantilla de tema `dispensador`.
+En Ajustes del tema → Venta seleccionar ese producto como Producto destacado. Activar venta cuando precio, disponibilidad y envío estén preparados.
+La ficha usa las imágenes del producto de Shopify si existen; en ausencia de imágenes mantiene la galería de marca. Las variantes muestran su imagen asignada.
+Las plantillas alternativas deben pertenecer al tema publicado para poder asignarlas desde el administrador.
+Comprobar en la tienda real: cinco páginas, variantes, añadir al carrito, modificar cantidades, eliminar líneas, checkout y contacto. La compilación local no sustituye esta prueba.

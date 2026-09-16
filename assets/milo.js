@@ -11,7 +11,10 @@
         button.disabled = variant.dataset.available !== 'true';
         button.textContent = button.disabled ? 'Agotado' : 'Añadir al carrito';
         const hero = product.closest('[data-product-page]')?.querySelector('[data-variant-image]');
-        if (hero && variant.dataset.image) {
+        const gallery = product.closest('[data-product-page]')?.querySelector('[data-gallery]');
+        if (gallery && variant.dataset.image) {
+          gallery.dispatchEvent(new CustomEvent('milo:photo', {detail:{photo:variant.dataset.image,alt:variant.dataset.imageAlt || ''}}));
+        } else if (hero && variant.dataset.image) {
           hero.removeAttribute('srcset');
           hero.src = variant.dataset.image;
           hero.alt = variant.dataset.imageAlt || '';
@@ -77,6 +80,7 @@
   root.querySelectorAll('[data-gallery]').forEach(gallery => {
    if (gallery.dataset.bound) return;
    gallery.dataset.bound = 'true';
+   gallery.addEventListener('milo:photo', event => setGalleryPhoto(gallery,event.detail.photo,event.detail.alt));
    const main = gallery.querySelector('[data-gallery-main]');
    const error = gallery.querySelector('.image-error');
    const stage = gallery.querySelector('.gallery-stage');
@@ -84,6 +88,8 @@
    controls.className = 'gallery-controls';
    controls.innerHTML = '<button type="button" data-gallery-prev aria-label="Fotografía anterior">←</button><span data-gallery-status role="status" aria-live="polite" aria-atomic="true">1 / ' + gallery.querySelectorAll('[data-photo]').length + '</span><button type="button" data-gallery-next aria-label="Fotografía siguiente">→</button>';
    stage.append(controls);
+   const initialButtons = [...gallery.querySelectorAll('[data-photo]')];
+   controls.querySelector('[data-gallery-status]').textContent = `${Math.max(0, initialButtons.findIndex(button => button.getAttribute('aria-pressed') === 'true')) + 1} / ${initialButtons.length}`;
    const advance = step => {
     const buttons = [...gallery.querySelectorAll('[data-photo]')];
     const current = buttons.findIndex(button => button.getAttribute('aria-pressed') === 'true');
