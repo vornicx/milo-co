@@ -7,6 +7,7 @@
     "dev": "shopify theme dev",
     "check": "shopify theme check",
     "validate": "node scripts/validate-preview.mjs",
+    "test:security": "node --test tests/security.test.mjs",
     "quality": "npm run check && npm run build",
     "package": "python3 scripts/package.py",
     "build": "node scripts/build-preview.mjs && node scripts/validate-preview.mjs"

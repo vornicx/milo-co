@@ -5,12 +5,21 @@ import { readFileSync } from 'node:fs';
 const code = readFileSync('assets/milo.js', 'utf8');
 function fixture() {
  const handlers = {};
+ const element = () => ({
+  children: [], style: {}, dataset: {},
+  append(...children) { this.children.push(...children); },
+  before() {}, setAttribute() {}, addEventListener() {},
+  querySelectorAll() { return this.children.flatMap(child => [child, ...(child.children || [])]).filter(child => child.type === 'radio'); },
+ });
  const variant = { dataset: { price: '24,90 €', available: 'true', min: '2', step: '2', max: '8' } };
- const select = { dataset: {}, selectedOptions: [variant], addEventListener: (name, fn) => handlers[name] = fn };
- const price = {}, button = {}, quantity = { removeAttribute(name) { delete this[name]; } };
+ const select = { ...element(), options: [variant], selectedOptions: [variant], addEventListener: (name, fn) => {
+  const previous = handlers[name];
+  handlers[name] = (...args) => { previous?.(...args); fn(...args); };
+ } };
+ const price = {}, button = {}, quantity = { ...element(), removeAttribute(name) { delete this[name]; } };
  const product = { querySelector: selector => ({ '[data-variant]': select, '[data-price]': price, '[data-add]': button, '[name="quantity"]': quantity }[selector]), closest: () => null };
- const document = { querySelectorAll: selector => selector === '[data-product]' ? [product] : [], addEventListener() {} };
- vm.runInNewContext(code, { document, window: { location: { pathname: '/' } }, URL });
+ const document = { createElement: element, querySelectorAll: selector => selector === '[data-product]' ? [product] : [], addEventListener() {} };
+ vm.runInNewContext(code, { document, window: { location: { pathname: '/' }, addEventListener() {}, matchMedia: () => ({ matches: true }) }, URL, queueMicrotask });
  return { variant, handlers, price, button, quantity };
 }
 test('Variant changes update price and enforce quantity rules', () => {

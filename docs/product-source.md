@@ -10,7 +10,6 @@ SPU: SUPEGDN00040. Portable Pet Outdoor Water Dispenser.
 - Incluye dispensador, cuerda de transporte y caja de residuos.
 - Material declarado: TPE. No se afirma libre de BPA, certificación alimentaria o estanqueidad: no comprobado.
 - Peso contradictorio: selector 309 g, descripción 218 g netos y 289 g «with color». No publicar hasta comprobar muestra.
-- Coste cotizado USD: 2,55 producto + 6,96 envío + 4,32 impuestos = 13,83. No es precio de venta ni coste garantizado.
 - Preparación 1–3 días para 80% de pedidos; tránsito estimado 3–5 días. No anunciar entrega garantizada en 3–5 días.
 - «Automatic Feeding» es descripción del proveedor, no evidencia de motor, programación o alimentación automática. No usar esa promesa.
 - MOQ 1 no prueba personalización de logo o embalaje. No representar producto con logo impreso.
