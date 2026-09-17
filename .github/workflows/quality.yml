@@ -28,6 +28,9 @@ jobs:
       - name: Shopify Theme Check
         run: npm run check
 
+      - name: Security regression tests
+        run: npm run test:security
+
       - name: Archic preview gate
         run: npm run build
 
