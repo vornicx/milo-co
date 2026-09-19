@@ -8,6 +8,23 @@
     "theme_support_url": "https://github.com/vornicx/milo-co/issues"
   },
   {
+    "name": "Identidad y enlaces compartidos",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Icono personalizado",
+        "info": "Opcional. Imagen cuadrada de al menos 192 × 192 px. Por defecto se utiliza la m con punto naranja."
+      },
+      {
+        "type": "image_picker",
+        "id": "social_image",
+        "label": "Imagen de marca al compartir",
+        "info": "Opcional. Recomendado: 1200 × 630 px. Las imágenes de cada página o producto tienen prioridad."
+      }
+    ]
+  },
+  {
     "name": "Venta",
     "settings": [
       {

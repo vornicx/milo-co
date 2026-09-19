@@ -2,11 +2,12 @@
 <html lang="{{ request.locale.iso_code | escape }}">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#193E32">
+<meta name="theme-color" content="#183D31">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>{{ page_title | escape }}{% unless page_title contains shop.name %} · {{ shop.name | escape }}{% endunless %}</title>
+<title>{% if request.page_type == 'index' %}Milo &amp; Co · Para salir juntos{% else %}{{ page_title | escape }}{% unless page_title contains 'Milo' or page_title contains 'milo' %} · Milo &amp; Co{% endunless %}{% endif %}</title>
 {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
 <link rel="canonical" href="{{ canonical_url | escape }}">
+{% render 'brand-meta' %}
 {{ 'milo-system.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'milo.js' | asset_url }}" defer></script>
 {{ content_for_header }}

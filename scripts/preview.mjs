@@ -5,6 +5,7 @@ await mkdir('.preview/snippets',{recursive:true});
 for (const filename of await readdir('snippets')) {
  if (!filename.endsWith('.liquid')) continue;
  let content=await readFile(`snippets/${filename}`,'utf8');
+ content=content.replace(/{% doc %}[\s\S]*?{% enddoc %}/g, '');
  content=content.replace(/{% form[^%]*%}/g, '<form>').replace(/{% endform %}/g,'</form>');
  await writeFile(`.preview/snippets/${filename}`,content);
 }

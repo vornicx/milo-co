@@ -1,0 +1,58 @@
+{% doc %}
+  Browser icons and social previews, with page-specific images taking precedence.
+{% enddoc %}
+{% if settings.favicon != blank %}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ settings.favicon | image_url: width: 192, height: 192 }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
+{% else %}
+  <link rel="icon" type="image/x-icon" href="{{ 'favicon.ico' | asset_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ 'favicon-32.png' | asset_url }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ 'icon-192.png' | asset_url }}">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="{{ 'favicon.svg' | asset_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
+{% endif %}
+<meta name="apple-mobile-web-app-title" content="Milo &amp; Co">
+<meta name="application-name" content="Milo &amp; Co">
+{% liquid
+  assign social_title = page_title | default: 'Milo & Co'
+  if request.page_type == 'index'
+    assign social_title = 'Milo & Co · Para salir juntos'
+  endif
+  assign social_description = page_description | default: shop.description | strip_html | strip
+  assign social_image = page_image | default: settings.social_image
+  assign social_type = 'website'
+  if request.page_type == 'product'
+    assign social_type = 'product'
+  elsif request.page_type == 'article'
+    assign social_type = 'article'
+  endif
+  if social_image
+    assign social_image_url = social_image | image_url: width: 1200
+    assign social_image_alt = social_image.alt | default: social_title
+  else
+    assign social_image_url = 'social-card.png' | asset_url
+    assign social_image_alt = 'Milo & Co · Para salir juntos'
+  endif
+  assign image_prefix = social_image_url | slice: 0, 2
+  if image_prefix == '//'
+    assign social_image_url = social_image_url | prepend: 'https:'
+  endif
+%}
+<meta property="og:site_name" content="Milo &amp; Co">
+<meta property="og:url" content="{{ canonical_url | escape }}">
+<meta property="og:type" content="{{ social_type }}">
+<meta property="og:title" content="{{ social_title | escape }}">
+{% if social_description != blank %}<meta property="og:description" content="{{ social_description | escape }}">{% endif %}
+<meta property="og:image" content="{{ social_image_url | escape }}">
+<meta property="og:image:secure_url" content="{{ social_image_url | escape }}">
+<meta property="og:image:alt" content="{{ social_image_alt | escape }}">
+{% unless social_image %}
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+{% endunless %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ social_title | escape }}">
+{% if social_description != blank %}<meta name="twitter:description" content="{{ social_description | escape }}">{% endif %}
+<meta name="twitter:image" content="{{ social_image_url | escape }}">
+<meta name="twitter:image:alt" content="{{ social_image_alt | escape }}">
