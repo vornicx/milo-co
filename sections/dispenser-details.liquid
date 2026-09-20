@@ -10,7 +10,7 @@
         {% if section.settings.image != blank %}
           {{ section.settings.image | image_url: width: 1500 | image_tag: widths: '520, 820, 1200, 1500', sizes: '(max-width: 760px) calc(100vw - 32px), 52vw', loading: 'lazy', alt: 'Detalle del dispensador Milo & Co' }}
         {% else %}
-          <img src="{{ 'dispensador-detalle.webp' | asset_url }}" alt="Detalle del botón y la cuerda del dispensador Milo & Co" width="1254" height="1254" loading="lazy">
+          <img src="{{ 'milo-parts-original.jpg' | asset_url }}" alt="Dispensador Milo & Co desmontado con sus componentes y accesorios" width="1254" height="1254" loading="lazy">
         {% endif %}
       </figure>
 
@@ -30,7 +30,7 @@
 {
   "name":"Dispensador · detalles",
   "settings":[
-    {"type":"image_picker","id":"image","label":"Fotografía de detalle"}
+    {"type":"image_picker","id":"image","label":"Fotografía de los componentes"}
   ]
 }
 {% endschema %}
