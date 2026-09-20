@@ -19,6 +19,7 @@
       <label for="ContactBody">¿Cómo podemos ayudarte?</label>
       <textarea id="ContactBody" name="contact[body]" rows="7" required>{{ form.body | escape }}</textarea>
     </div>
+    {% if shop.privacy_policy.body != blank %}<p class="fine">Consulta cómo tratamos tus datos en nuestra <a href="{{ shop.privacy_policy.url }}">política de privacidad</a>.</p>{% endif %}
     <button class="button button--dark" type="submit">Enviar mensaje</button>
   {% endform %}
 </section>

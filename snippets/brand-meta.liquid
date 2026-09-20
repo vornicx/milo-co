@@ -19,7 +19,7 @@
   if request.page_type == 'index'
     assign social_title = 'Milo & Co · Para salir juntos'
   endif
-  assign social_description = page_description | default: shop.description | strip_html | strip
+  assign social_description = page_description | default: shop.description | default: 'Milo & Co. Accesorios para paseos y escapadas con tu perro.' | strip_html | strip
   assign social_image = page_image | default: settings.social_image
   assign social_type = 'website'
   if request.page_type == 'product'

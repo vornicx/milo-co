@@ -7,7 +7,7 @@
   <a href="{{ settings.brand_page.url | default: "/pages/nosotros" }}">Nuestra idea</a>
 </nav>
 {% if settings.sales_enabled %}
-  <a class="bag" href="{{ routes.cart_url }}" aria-label="Carrito, {{ cart.item_count }} artículos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z M8 8V5a4 4 0 0 1 8 0v3"/></svg><span>{{ cart.item_count }}</span></a>
+  <a class="bag" href="{{ routes.cart_url }}" aria-label="Carrito, {{ cart.item_count }} {% if cart.item_count == 1 %}artículo{% else %}artículos{% endif %}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z M8 8V5a4 4 0 0 1 8 0v3"/></svg><span>{{ cart.item_count }}</span></a>
 {% else %}
   <span class="header-note">Para salir juntos</span>
 {% endif %}

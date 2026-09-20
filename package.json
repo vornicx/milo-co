@@ -2,7 +2,7 @@
   "name": "milo-co",
   "version": "0.1.0",
   "private": true,
-  "description": "Milo & Co — native Shopify Online Store 2.0 theme",
+  "description": "Milo & Co \u2014 native Shopify Online Store 2.0 theme",
   "scripts": {
     "dev": "shopify theme dev",
     "check": "shopify theme check",
@@ -10,7 +10,8 @@
     "test:security": "node --test tests/security.test.mjs",
     "quality": "npm run check && npm run build",
     "package": "python3 scripts/package.py",
-    "build": "node scripts/build-preview.mjs && node scripts/validate-preview.mjs"
+    "build": "node scripts/build-preview.mjs && node scripts/validate-preview.mjs",
+    "test:commerce": "node --test tests/commerce.test.mjs"
   },
   "devDependencies": {
     "@shopify/cli": "4.8.0",

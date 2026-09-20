@@ -31,6 +31,9 @@ jobs:
       - name: Security regression tests
         run: npm run test:security
 
+      - name: Commerce regression tests
+        run: npm run test:commerce
+
       - name: Archic preview gate
         run: npm run build
 

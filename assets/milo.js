@@ -116,7 +116,7 @@
    const buttons = [...gallery.querySelectorAll('[data-photo]')];
    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.photo === photo)));
    const index = buttons.findIndex(button => button.dataset.photo === photo);
-   if (status) status.textContent = `${index + 1} / ${buttons.length}`;
+   if (status) status.textContent = index < 0 ? 'Color seleccionado' : `${index + 1} / ${buttons.length}`;
    if (!reducedMotion.matches) main.animate([{opacity:.35, transform:'scale(1.015)'},{opacity:1, transform:'scale(1)'}], {duration:260, easing:'ease-out'});
   } catch {
    if (gallery.photoRequest === request && status) status.textContent = 'No se pudo cargar. Prueba otra foto.';

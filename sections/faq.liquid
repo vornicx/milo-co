@@ -1,3 +1,4 @@
+{% assign faq_product = product | default: settings.featured_product %}
 <section id="preguntas" class="faq">
   <div class="wrap faq-grid">
     <div class="faq-heading">
@@ -8,7 +9,7 @@
       <details><summary>¿Qué incluye?</summary><p>Dispensador 3 en 1, cuerda de transporte y compartimento para residuos.</p></details>
       <details><summary>¿Cuánto mide y qué capacidad tiene?</summary><p>29 × 7,5 × 7,5 cm, con 400 ml para agua y 150 ml para comida o snacks.</p></details>
       <details><summary>¿Es automático?</summary><p>No. Es portátil y no necesita baterías ni electrónica.</p></details>
-      <details><summary>¿Puedo comprarlo ya?</summary><p>{% if settings.sales_enabled and settings.featured_product != blank %}Consulta precio y disponibilidad en la ficha de producto.{% else %}Todavía no. Abriremos la compra cuando estén cerrados precio, stock y envío.{% endif %}</p></details>
+      <details><summary>¿Puedo comprarlo ya?</summary><p>{% if settings.sales_enabled and faq_product != blank %}Consulta precio y disponibilidad en la ficha de producto.{% else %}Todavía no. Abriremos la compra cuando estén cerrados precio, stock y envío.{% endif %}</p></details>
       <details><summary>¿Sirve para una excursión larga?</summary><p>Como complemento, sí. Para salidas largas puede hacer falta llevar agua adicional según el perro, la temperatura y la duración.</p></details>
     </div>
   </div>
