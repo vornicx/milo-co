@@ -667,3 +667,9 @@ textarea{resize:vertical}
  .cart-row>p{grid-column:2/4}
  .variant-choice{min-height:58px}
 }
+
+.product-details-content{min-width:0}
+.product-details-content .product-preparation{max-width:none;margin:0 0 28px}
+.product-details-content .product-preparation li{padding:14px 0}
+.product-details-content .product-preparation li:first-child{border-top:0;padding-top:0}
+.product-details-grid{align-items:start}
