@@ -611,6 +611,7 @@ textarea{resize:vertical}
 @media(max-width:760px){
  .campaign-hero{height:clamp(540px,78svh,680px);min-height:0}
  .campaign-media img{object-position:center 48%}
+ .campaign-media--lake img{object-position:74% 48%}
  .campaign-copy{align-self:end;padding:28px 24px 32px;gap:18px}
  .campaign-copy h1{font-size:clamp(44px,11.5vw,60px)}
  .campaign-hero::after{background:linear-gradient(180deg,transparent 48%,rgba(13,35,27,.15) 62%,rgba(13,35,27,.78) 100%)}
