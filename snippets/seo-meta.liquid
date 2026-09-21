@@ -30,9 +30,7 @@
         assign seo_key = 'guides'
       endif
     when 'article'
-      if seo_description == blank
-        assign seo_description = article.excerpt_or_content | strip_html | strip | truncate: 160
-      endif
+      assign seo_description = article.excerpt | default: page_description | default: article.content | strip_html | strip | truncate: 160
     when 'collection'
       if collection.handle == 'all' and current_page <= 1
         assign seo_key = 'products'
@@ -60,7 +58,7 @@
     assign seo_description = 'seo.home_description' | t
   endif
   assign seo_title = seo_title | replace: '&amp;', '&'
-  assign seo_description = seo_description | replace: '&amp;', '&'
+  assign seo_description = seo_description | replace: '&amp;amp;', '&' | replace: '&amp;', '&'
   assign seo_noindex = false
   if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == '404' or request.page_type == 'password' or request.page_type contains 'customers/'
     assign seo_noindex = true

@@ -31,9 +31,9 @@
 ]}
 </script>
 {% if request.page_type == 'product' %}
-<script type="application/ld+json">{{ product | structured_data }}</script>
+<script type="application/ld+json">{{ product | structured_data | replace: '&amp;', '&' }}</script>
 {% elsif request.page_type == 'article' %}
-<script type="application/ld+json">{{ article | structured_data }}</script>
+<script type="application/ld+json">{{ article | structured_data | replace: '&amp;', '&' }}</script>
 {% endif %}
 {% unless request.page_type == 'index' %}
 <script type="application/ld+json">
