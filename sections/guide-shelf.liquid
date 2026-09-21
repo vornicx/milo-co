@@ -1,0 +1,17 @@
+{% assign journal = blogs['guias'] %}
+{% if journal.articles_count > 0 %}
+<section class="guide-shelf wrap" aria-labelledby="Guides-{{ section.id }}">
+  <div class="guide-shelf-heading">
+    <div><p class="eyebrow">{{ 'organic.journal' | t }}</p><h2 id="Guides-{{ section.id }}">{{ 'organic.guides_heading' | t }}</h2></div>
+    <a class="text-link" href="{{ journal.url }}">{{ 'organic.all_guides' | t }} {% render 'arrow' %}</a>
+  </div>
+  <div class="guide-grid">
+    {% for guide in journal.articles limit: 3 %}
+      {% render 'guide-card', guide: guide %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% schema %}
+{"name":"Guías de paseo","settings":[],"presets":[{"name":"Guías de paseo"}]}
+{% endschema %}

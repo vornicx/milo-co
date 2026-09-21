@@ -1,0 +1,24 @@
+<article class="journal-article wrap">
+  <nav class="breadcrumbs" aria-label="{{ 'organic.breadcrumbs' | t }}"><a href="{{ routes.root_url }}">{{ 'organic.home' | t }}</a><span aria-hidden="true">/</span><a href="{{ blog.url }}">{{ blog.title | escape }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ article.title | escape }}</span></nav>
+  <header class="journal-heading">
+    <p class="eyebrow">{{ 'organic.journal' | t }}</p>
+    <h1>{{ article.title | escape }}</h1>
+    <p class="journal-byline"><a href="{{ settings.brand_page.url | default: '/pages/nosotros' }}">{{ article.author | escape }}</a><span aria-hidden="true"> · </span><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d/%m/%Y' }}</time></p>
+    {% if article.excerpt != blank %}<div class="journal-summary">{{ article.excerpt }}</div>{% endif %}
+  </header>
+  {% if article.image %}<figure class="journal-cover">{{ article.image | image_url: width: 1600 | image_tag: widths: '480, 800, 1200, 1600', sizes: '(max-width: 760px) 90vw, 1000px', loading: 'eager', fetchpriority: 'high' }}</figure>{% endif %}
+  <div class="journal-body prose">{{ article.content }}</div>
+  {% assign featured = settings.featured_product %}
+  {% if featured != blank %}
+    <aside class="journal-product">
+      <p class="eyebrow">{{ 'organic.for_your_walk' | t }}</p>
+      <h2>{{ featured.title | escape }}</h2>
+      <p>{{ 'organic.product_summary' | t }}</p>
+      <a class="button" href="{{ featured.url }}">{{ 'organic.view_product' | t }} {% render 'arrow' %}</a>
+    </aside>
+  {% endif %}
+  <a class="text-link" href="{{ blog.url }}">{{ 'organic.all_guides' | t }} {% render 'arrow' %}</a>
+</article>
+{% schema %}
+{"name":"Artículo de guía","settings":[]}
+{% endschema %}

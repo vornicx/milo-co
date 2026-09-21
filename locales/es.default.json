@@ -1,1 +1,51 @@
-{"general":{"accessibility":{"skip_to_content":"Saltar al contenido"}}}
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Saltar al contenido"
+    }
+  },
+  "seo": {
+    "home_title": "Milo & Co | Accesorios para pasear con tu perro",
+    "home_description": "Accesorios para paseos y escapadas con tu perro. Descubre el bebedero portátil 3 en 1 de Milo & Co: agua, comida y espacio para bolsas en un solo diseño.",
+    "products_title": "Accesorios de paseo para perros | Milo & Co",
+    "products_description": "Descubre los accesorios de paseo de Milo & Co. Bebedero portátil para perros con 400 ml de agua, compartimento de comida y espacio para bolsas.",
+    "walks_title": "Paseos con perros: ideas y accesorios | Milo & Co",
+    "walks_description": "Prepara los paseos y escapadas con tu perro: agua, bolsas y accesorios prácticos. Encuentra ideas y guías para salir juntos con Milo & Co.",
+    "about_title": "Sobre Milo & Co | Accesorios para la vida con perros",
+    "about_description": "Conoce Milo & Co y nuestra forma de elegir accesorios para perros: utilidad, sencillez y diseño para paseos, escapadas y la vida fuera.",
+    "contact_title": "Contacto y atención al cliente | Milo & Co",
+    "contact_description": "Contacta con Milo & Co para resolver dudas sobre el dispensador de paseo, sus medidas, disponibilidad o tu pedido. Escríbenos a info@miloandcompany.es.",
+    "dispenser_title": "Bebedero portátil para perros 3 en 1 | Milo & Co",
+    "dispenser_description": "Bebedero portátil para perros con 400 ml de agua, 150 ml para comida y espacio para bolsas. Descubre el dispensador 3 en 1 en azul cielo o rosa.",
+    "guides_title": "Guías de paseo y accesorios para perros | Milo & Co",
+    "guides_description": "Qué llevar al pasear con tu perro, cómo elegir un bebedero portátil y cómo preparar una escapada. Guías prácticas de Milo & Co para salir juntos.",
+    "page": "Página {{ number }}"
+  },
+  "organic": {
+    "home": "Inicio",
+    "products": "Productos",
+    "journal": "EL CUADERNO DE MILO",
+    "guides_heading": "Para disfrutar del camino.",
+    "all_guides": "Todas las guías",
+    "read_guide": "Leer la guía",
+    "walk_guides": "Guías de paseo",
+    "guides_intro": "Respuestas claras para preparar el paseo, elegir lo que llevas y salir con menos dudas.",
+    "empty_guides": "Estamos preparando las próximas guías.",
+    "breadcrumbs": "Migas de pan",
+    "pagination": "Paginación",
+    "for_your_walk": "PARA VUESTRO PRÓXIMO PASEO",
+    "product_summary": "Bebedero portátil para perros con agua, comida y espacio para bolsas en un solo diseño.",
+    "view_product": "Ver el dispensador",
+    "catalog_intro": "Accesorios para pasear con tu perro: agua, comida y lo esencial preparado para salir.",
+    "empty_products": "Todavía no hay productos en esta colección.",
+    "home_intro": "Accesorios para paseos y escapadas con tu perro.",
+    "product_eyebrow": "BEBEDERO PORTÁTIL PARA PERROS",
+    "faq_included": "¿Incluye comida y bolsas?",
+    "faq_included_answer": "Incluye el dispensador, la cuerda de transporte y la caja para residuos. La comida y las bolsas que aparecen en las fotografías ilustran su uso y no están incluidas.",
+    "faq_capacity": "¿400 ml de agua son suficientes para todo el paseo?",
+    "faq_capacity_answer": "400 ml es la capacidad del depósito, no una cantidad suficiente para todos los perros o recorridos. Prepara agua adicional según la duración de la salida, el tiempo y las necesidades de tu perro.",
+    "faq_compare": "¿En qué se diferencia de una botella normal?",
+    "faq_compare_answer": "Reúne el depósito de agua, un compartimento de 150 ml para comida o snacks y espacio para bolsas. Una botella y un cuenco separados permiten elegir otra capacidad y transportar cada pieza por separado.",
+    "faq_more": "Cómo elegir un bebedero portátil para tu perro"
+  }
+}

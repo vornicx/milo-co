@@ -7,10 +7,15 @@
     "1": {
       "type": "product-cta",
       "settings": {}
+    },
+    "guides": {
+      "type": "guide-shelf",
+      "settings": {}
     }
   },
   "order": [
     "0",
-    "1"
+    "1",
+    "guides"
   ]
 }

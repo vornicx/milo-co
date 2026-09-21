@@ -1,8 +1,26 @@
 {
   "sections": {
-    "0": {"type":"dispenser-detail","settings":{}},
-    "4": {"type":"dispenser-details","settings":{}},
-    "5": {"type":"faq","settings":{}}
+    "0": {
+      "type": "dispenser-detail",
+      "settings": {}
+    },
+    "4": {
+      "type": "dispenser-details",
+      "settings": {}
+    },
+    "5": {
+      "type": "faq",
+      "settings": {}
+    },
+    "guides": {
+      "type": "guide-shelf",
+      "settings": {}
+    }
   },
-  "order": ["0","4","5"]
+  "order": [
+    "0",
+    "4",
+    "5",
+    "guides"
+  ]
 }

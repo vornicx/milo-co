@@ -4,11 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#183D31">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>{% if request.page_type == 'index' %}Milo &amp; Co · Para salir juntos{% else %}{{ page_title | escape }}{% unless page_title contains 'Milo' or page_title contains 'milo' %} · Milo &amp; Co{% endunless %}{% endif %}</title>
-{% assign meta_description = page_description | default: shop.description | default: 'Milo & Co. Accesorios para paseos y escapadas con tu perro. Descubre nuestro dispensador portátil de agua y comida.' %}
-<meta name="description" content="{{ meta_description | strip_html | escape }}">
-<link rel="canonical" href="{{ canonical_url | escape }}">
-{% render 'brand-meta' %}
+{% render 'seo-meta' %}
 {{ 'milo-system.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'milo.js' | asset_url }}" defer></script>
 {{ content_for_header }}

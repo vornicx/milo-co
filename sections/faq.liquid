@@ -11,6 +11,10 @@
       <details><summary>¿Es automático?</summary><p>No. Es portátil y no necesita baterías ni electrónica.</p></details>
       <details><summary>¿Puedo comprarlo ya?</summary><p>{% if settings.sales_enabled and faq_product != blank %}Consulta precio y disponibilidad en la ficha de producto.{% else %}Todavía no. Abriremos la compra cuando estén cerrados precio, stock y envío.{% endif %}</p></details>
       <details><summary>¿Sirve para una excursión larga?</summary><p>Como complemento, sí. Para salidas largas puede hacer falta llevar agua adicional según el perro, la temperatura y la duración.</p></details>
+      <details><summary>{{ 'organic.faq_included' | t }}</summary><p>{{ 'organic.faq_included_answer' | t }}</p></details>
+      <details><summary>{{ 'organic.faq_capacity' | t }}</summary><p>{{ 'organic.faq_capacity_answer' | t }}</p></details>
+      <details><summary>{{ 'organic.faq_compare' | t }}</summary><p>{{ 'organic.faq_compare_answer' | t }}</p></details>
+      {% if articles['guias/como-elegir-bebedero-portatil-perros'] != blank %}<a class="text-link faq-guide" href="{{ articles['guias/como-elegir-bebedero-portatil-perros'].url }}">{{ 'organic.faq_more' | t }} {% render 'arrow' %}</a>{% endif %}
     </div>
   </div>
 </section>

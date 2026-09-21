@@ -1,0 +1,12 @@
+{% doc %}
+  An article preview with its complete title and an accessible link.
+  @param {article} guide - Article to display
+{% enddoc %}
+<article class="guide-card">
+  <a href="{{ guide.url }}">
+    {% if guide.image %}{{ guide.image | image_url: width: 900 | image_tag: widths: '360, 600, 900', sizes: '(max-width: 760px) 90vw, 30vw', loading: 'lazy' }}{% endif %}
+    <h3>{{ guide.title | escape }}</h3>
+    <p>{{ guide.excerpt_or_content | strip_html | truncate: 155 }}</p>
+    <span class="text-link">{{ 'organic.read_guide' | t }} {% render 'arrow' %}</span>
+  </a>
+</article>

@@ -13,11 +13,16 @@
     "story": {
       "type": "walk-story",
       "settings": {}
+    },
+    "guides": {
+      "type": "guide-shelf",
+      "settings": {}
     }
   },
   "order": [
     "section0",
     "section1",
-    "story"
+    "story",
+    "guides"
   ]
 }

@@ -1,0 +1,52 @@
+{% doc %}
+  Structured data from the same live catalog and page information shown to readers.
+  @param {string} seo_title - Page title
+  @param {string} seo_description - Page summary
+  @param {string} seo_canonical - Canonical page URL
+{% enddoc %}
+{% liquid
+  assign organization_id = shop.url | append: '/#organization'
+  assign website_id = shop.url | append: '/#website'
+  assign logo_url = 'icon-192.png' | asset_url
+  assign logo_prefix = logo_url | slice: 0, 2
+  if logo_prefix == '//'
+    assign logo_url = logo_url | prepend: 'https:'
+  endif
+  assign products_url = settings.products_page.url | default: '/pages/productos' | prepend: shop.url
+  assign page_schema_type = 'WebPage'
+  if request.page_type == 'collection' or request.page_type == 'blog' or page.handle == 'productos'
+    assign page_schema_type = 'CollectionPage'
+  elsif page.handle == 'nosotros'
+    assign page_schema_type = 'AboutPage'
+  elsif page.handle == 'contact' or page.handle == 'contacto'
+    assign page_schema_type = 'ContactPage'
+  endif
+%}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"OnlineStore","@id":{{ organization_id | json }},"name":"Milo & Co","alternateName":"Milo & Company","url":{{ shop.url | json }},"logo":{{ logo_url | json }},"description":{{ 'seo.home_description' | t | json }},"email":"info@miloandcompany.es","contactPoint":{"@type":"ContactPoint","contactType":"customer service","email":"info@miloandcompany.es","availableLanguage":"Spanish"}},
+  {"@type":"WebSite","@id":{{ website_id | json }},"name":"Milo & Co","alternateName":"Milo & Company","url":{{ shop.url | json }},"inLanguage":{{ request.locale.iso_code | json }},"publisher":{"@id":{{ organization_id | json }}}},
+  {"@type":{{ page_schema_type | json }},"@id":{{ seo_canonical | append: '#webpage' | json }},"url":{{ seo_canonical | json }},"name":{{ seo_title | json }},"description":{{ seo_description | json }},"inLanguage":{{ request.locale.iso_code | json }},"isPartOf":{"@id":{{ website_id | json }}}}
+]}
+</script>
+{% if request.page_type == 'product' %}
+<script type="application/ld+json">{{ product | structured_data }}</script>
+{% elsif request.page_type == 'article' %}
+<script type="application/ld+json">{{ article | structured_data }}</script>
+{% endif %}
+{% unless request.page_type == 'index' %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":{{ 'organic.home' | t | json }},"item":{{ shop.url | json }}},
+  {% if request.page_type == 'product' %}
+    {"@type":"ListItem","position":2,"name":{{ 'organic.products' | t | json }},"item":{{ products_url | json }}},
+    {"@type":"ListItem","position":3,"name":{{ product.title | json }},"item":{{ seo_canonical | json }}}
+  {% elsif request.page_type == 'article' %}
+    {"@type":"ListItem","position":2,"name":{{ blog.title | json }},"item":{{ blog.url | prepend: shop.url | json }}},
+    {"@type":"ListItem","position":3,"name":{{ article.title | json }},"item":{{ seo_canonical | json }}}
+  {% else %}
+    {"@type":"ListItem","position":2,"name":{{ page_title | json }},"item":{{ seo_canonical | json }}}
+  {% endif %}
+]}
+</script>
+{% endunless %}

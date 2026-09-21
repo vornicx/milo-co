@@ -7,6 +7,7 @@
     <nav aria-label="Información">
       <a href="{{ settings.products_page.url | default: "/pages/productos" }}">Productos</a>
       <a href="{{ settings.walk_page.url | default: "/pages/paseos" }}">Paseos y escapadas</a>
+      {% if blogs['guias'].articles_count > 0 %}<a href="{{ blogs['guias'].url }}">{{ 'organic.walk_guides' | t }}</a>{% endif %}
       <a href="{{ settings.brand_page.url | default: "/pages/nosotros" }}">Nuestra idea</a>
       {% assign contact_page = section.settings.contact_page | default: pages['contact'] | default: pages['contacto'] %}
       {% if contact_page != blank %}<a href="{{ contact_page.url }}">Contacto</a>{% endif %}

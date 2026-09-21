@@ -1,0 +1,80 @@
+{% doc %}
+  Page metadata, canonical URLs and structured data for the public storefront.
+{% enddoc %}
+{% liquid
+  assign seo_title = page_title | default: shop.name
+  assign seo_description = page_description | strip_html | strip
+  assign seo_canonical = canonical_url
+  assign seo_key = ''
+  case request.page_type
+    when 'index'
+      assign seo_key = 'home'
+    when 'page'
+      case page.handle
+        when 'productos'
+          assign seo_key = 'products'
+        when 'paseos'
+          assign seo_key = 'walks'
+        when 'nosotros'
+          assign seo_key = 'about'
+        when 'contact', 'contacto'
+          assign seo_key = 'contact'
+        when 'dispensador'
+          assign seo_key = 'dispenser'
+          if settings.featured_product != blank
+            assign seo_canonical = settings.featured_product.url | prepend: shop.url
+          endif
+      endcase
+    when 'blog'
+      if blog.handle == 'guias'
+        assign seo_key = 'guides'
+      endif
+    when 'article'
+      if seo_description == blank
+        assign seo_description = article.excerpt_or_content | strip_html | strip | truncate: 160
+      endif
+    when 'collection'
+      if collection.handle == 'all' and current_page <= 1
+        assign seo_key = 'products'
+        assign seo_canonical = settings.products_page.url | default: '/pages/productos' | prepend: shop.url
+      endif
+  endcase
+  if seo_key != blank
+    assign title_key = 'seo.' | append: seo_key | append: '_title'
+    assign description_key = 'seo.' | append: seo_key | append: '_description'
+    if request.page_type == 'index' or page_title == page.title or request.page_type == 'collection' or request.page_type == 'blog'
+      assign seo_title = title_key | t
+    endif
+    if seo_description == blank
+      assign seo_description = description_key | t
+    endif
+  endif
+  unless seo_title contains 'Milo'
+    assign seo_title = seo_title | append: ' | Milo & Co'
+  endunless
+  if current_page > 1
+    assign page_label = 'seo.page' | t: number: current_page
+    assign seo_title = seo_title | append: ' · ' | append: page_label
+  endif
+  if seo_description == blank
+    assign seo_description = 'seo.home_description' | t
+  endif
+  assign seo_noindex = false
+  if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == '404' or request.page_type == 'password' or request.page_type contains 'customers/'
+    assign seo_noindex = true
+  endif
+  if current_tags != blank
+    assign seo_noindex = true
+  endif
+  if request.page_type == 'blog' and blog.articles_count == 0
+    assign seo_noindex = true
+  endif
+%}
+<title>{{ seo_title | escape }}</title>
+<meta name="description" content="{{ seo_description | escape }}">
+<link rel="canonical" href="{{ seo_canonical | escape }}">
+{% if seo_noindex %}<meta name="robots" content="noindex,follow">{% else %}<meta name="robots" content="max-image-preview:large,max-snippet:-1,max-video-preview:-1">{% endif %}
+{% render 'brand-meta', seo_title: seo_title, seo_description: seo_description, seo_canonical: seo_canonical %}
+{% unless seo_noindex %}
+  {% render 'structured-data', seo_title: seo_title, seo_description: seo_description, seo_canonical: seo_canonical %}
+{% endunless %}

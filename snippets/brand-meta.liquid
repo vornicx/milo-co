@@ -1,5 +1,8 @@
 {% doc %}
   Browser icons and social previews, with page-specific images taking precedence.
+  @param {string} [seo_title] - Page title
+  @param {string} [seo_description] - Page summary
+  @param {string} [seo_canonical] - Canonical page URL
 {% enddoc %}
 {% if settings.favicon != blank %}
   <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -15,11 +18,8 @@
 <meta name="apple-mobile-web-app-title" content="Milo &amp; Co">
 <meta name="application-name" content="Milo &amp; Co">
 {% liquid
-  assign social_title = page_title | default: 'Milo & Co'
-  if request.page_type == 'index'
-    assign social_title = 'Milo & Co · Para salir juntos'
-  endif
-  assign social_description = page_description | default: shop.description | default: 'Milo & Co. Accesorios para paseos y escapadas con tu perro.' | strip_html | strip
+  assign social_title = seo_title | default: page_title | default: 'Milo & Co'
+  assign social_description = seo_description | default: page_description | default: shop.description | strip_html | strip
   assign social_image = page_image | default: settings.social_image
   assign social_type = 'website'
   if request.page_type == 'product'
@@ -40,7 +40,7 @@
   endif
 %}
 <meta property="og:site_name" content="Milo &amp; Co">
-<meta property="og:url" content="{{ canonical_url | escape }}">
+<meta property="og:url" content="{{ seo_canonical | default: canonical_url | escape }}">
 <meta property="og:type" content="{{ social_type }}">
 <meta property="og:title" content="{{ social_title | escape }}">
 {% if social_description != blank %}<meta property="og:description" content="{{ social_description | escape }}">{% endif %}
