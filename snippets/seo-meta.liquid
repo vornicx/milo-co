@@ -59,6 +59,8 @@
   if seo_description == blank
     assign seo_description = 'seo.home_description' | t
   endif
+  assign seo_title = seo_title | replace: '&amp;', '&'
+  assign seo_description = seo_description | replace: '&amp;', '&'
   assign seo_noindex = false
   if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == '404' or request.page_type == 'password' or request.page_type contains 'customers/'
     assign seo_noindex = true
@@ -67,6 +69,9 @@
     assign seo_noindex = true
   endif
   if request.page_type == 'blog' and blog.articles_count == 0
+    assign seo_noindex = true
+  endif
+  if request.page_type == 'collection' and collection.products_count == 0
     assign seo_noindex = true
   endif
 %}

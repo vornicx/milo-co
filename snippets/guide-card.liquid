@@ -5,7 +5,7 @@
 <article class="guide-card">
   <a href="{{ guide.url }}">
     {% if guide.image %}{{ guide.image | image_url: width: 900 | image_tag: widths: '360, 600, 900', sizes: '(max-width: 760px) 90vw, 30vw', loading: 'lazy' }}{% endif %}
-    <h3>{{ guide.title | escape }}</h3>
+    {% if request.page_type == 'blog' %}<h2>{{ guide.title | escape }}</h2>{% else %}<h3>{{ guide.title | escape }}</h3>{% endif %}
     <p>{{ guide.excerpt_or_content | strip_html | truncate: 155 }}</p>
     <span class="text-link">{{ 'organic.read_guide' | t }} {% render 'arrow' %}</span>
   </a>

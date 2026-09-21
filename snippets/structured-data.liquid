@@ -13,6 +13,7 @@
     assign logo_url = logo_url | prepend: 'https:'
   endif
   assign products_url = settings.products_page.url | default: '/pages/productos' | prepend: shop.url
+  assign organization_description = 'seo.home_description' | t | replace: '&amp;', '&'
   assign page_schema_type = 'WebPage'
   if request.page_type == 'collection' or request.page_type == 'blog' or page.handle == 'productos'
     assign page_schema_type = 'CollectionPage'
@@ -24,7 +25,7 @@
 %}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-  {"@type":"OnlineStore","@id":{{ organization_id | json }},"name":"Milo & Co","alternateName":"Milo & Company","url":{{ shop.url | json }},"logo":{{ logo_url | json }},"description":{{ 'seo.home_description' | t | json }},"email":"info@miloandcompany.es","contactPoint":{"@type":"ContactPoint","contactType":"customer service","email":"info@miloandcompany.es","availableLanguage":"Spanish"}},
+  {"@type":"OnlineStore","@id":{{ organization_id | json }},"name":"Milo & Co","alternateName":"Milo & Company","url":{{ shop.url | json }},"logo":{{ logo_url | json }},"description":{{ organization_description | json }},"email":"info@miloandcompany.es","contactPoint":{"@type":"ContactPoint","contactType":"customer service","email":"info@miloandcompany.es","availableLanguage":"Spanish"}},
   {"@type":"WebSite","@id":{{ website_id | json }},"name":"Milo & Co","alternateName":"Milo & Company","url":{{ shop.url | json }},"inLanguage":{{ request.locale.iso_code | json }},"publisher":{"@id":{{ organization_id | json }}}},
   {"@type":{{ page_schema_type | json }},"@id":{{ seo_canonical | append: '#webpage' | json }},"url":{{ seo_canonical | json }},"name":{{ seo_title | json }},"description":{{ seo_description | json }},"inLanguage":{{ request.locale.iso_code | json }},"isPartOf":{"@id":{{ website_id | json }}}}
 ]}
