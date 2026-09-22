@@ -9,14 +9,13 @@
   {% if article.image %}<figure class="journal-cover">{{ article.image | image_url: width: 1600 | image_tag: widths: '480, 800, 1200, 1600', sizes: '(max-width: 760px) 90vw, 1000px', loading: 'eager', fetchpriority: 'high' }}</figure>{% endif %}
   <div class="journal-body prose">{{ article.content }}</div>
   {% assign featured = settings.featured_product %}
-  {% if featured != blank %}
+  {% assign product_link = featured.url | default: settings.product_page.url | default: '/pages/dispensador' %}
     <aside class="journal-product">
       <p class="eyebrow">{{ 'organic.for_your_walk' | t }}</p>
-      <h2>{{ featured.title | escape }}</h2>
+      <h2>{{ featured.title | default: 'Dispensador de paseo 3 en 1' | escape }}</h2>
       <p>{{ 'organic.product_summary' | t }}</p>
-      <a class="button" href="{{ featured.url }}">{{ 'organic.view_product' | t }} {% render 'arrow' %}</a>
+      <a class="button" href="{{ product_link }}">{{ 'organic.view_product' | t }} {% render 'arrow' %}</a>
     </aside>
-  {% endif %}
   <a class="text-link" href="{{ blog.url }}">{{ 'organic.all_guides' | t }} {% render 'arrow' %}</a>
 </article>
 {% schema %}

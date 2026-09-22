@@ -1,6 +1,6 @@
 {
   "current": {
-    "sales_enabled": true,
+    "sales_enabled": false,
     "sections": {
       "header": {
         "type": "header",
