@@ -1,9 +1,9 @@
 <section class="brand-intro wrap">
   <p class="eyebrow">MILO & CO</p>
   <h1>La vida, en<br>buena compañía.</h1>
-  <p class="brand-lead">Accesorios para perros pensados para acompañar la vida fuera.</p>
+  <p class="brand-lead">Milo &amp; Co es una marca de accesorios para pasear con perros. Empezamos por reunir agua, comida y bolsas en un dispensador portátil, con una idea sencilla: preparar lo esencial y disfrutar de salir juntos.</p>
   <figure class="brand-photo">
-    <img src="{{ 'paseo-esenciales.webp' | asset_url }}" alt="Dispensador y accesorios preparados para salir" width="1254" height="1254" fetchpriority="high">
+    {% render 'theme-image', filename: 'paseo-esenciales.webp', alt: 'Dispensador y accesorios preparados para salir', width: 1254, height: 1254, sizes: '(max-width: 760px) 90vw, 50vw', loading: 'eager', priority: 'high' %}
   </figure>
 </section>
 
@@ -23,6 +23,16 @@
     <h2>Que apetezca llevarlo.</h2>
     <p>Formas claras, colores tranquilos y atención al detalle.</p>
   </article>
+</section>
+
+<section class="brand-editorial wrap" aria-labelledby="Our-guides">
+  <div><p class="eyebrow">EL CUADERNO DE MILO</p><h2 id="Our-guides">Elegir con<br>las cosas claras.</h2></div>
+  <div class="prose">
+    <p>En nuestras guías encontrarás comparaciones de formatos, listas para preparar el paseo y explicaciones de la ficha del dispensador. Puedes elegir una botella con bebedero, un cuenco separado o varios compartimentos: lo útil depende de lo que ya llevas y del espacio que tienes.</p>
+    <p>Los datos de capacidad, medidas y contenido proceden de la ficha del producto. Distinguimos esos datos de las recomendaciones de organización: 400 ml describen un depósito; no garantizan agua suficiente para cualquier salida. Del mismo modo, 150 ml para comida indican volumen, no gramos ni una ración.</p>
+    <p>Si una característica no está confirmada, puedes consultarnos antes de decidir. Para dudas sobre el dispensador o una corrección en las guías, escribe a <a href="mailto:info@miloandcompany.es">info@miloandcompany.es</a> o utiliza nuestra <a href="/pages/contact">página de contacto</a>.</p>
+    <a class="text-link" href="/blogs/guias">Explorar las guías de paseo {% render 'arrow' %}</a>
+  </div>
 </section>
 
 <section class="brand-closing wrap">

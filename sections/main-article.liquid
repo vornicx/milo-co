@@ -3,7 +3,7 @@
   <header class="journal-heading">
     <p class="eyebrow">{{ 'organic.journal' | t }}</p>
     <h1>{{ article.title | escape }}</h1>
-    <p class="journal-byline"><a href="{{ settings.brand_page.url | default: '/pages/nosotros' }}">{{ article.author | escape }}</a><span aria-hidden="true"> · </span><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d/%m/%Y' }}</time></p>
+    <p class="journal-byline"><a href="{{ settings.brand_page.url | default: '/pages/nosotros' }}">{{ article.author | escape }}</a><span aria-hidden="true"> · </span><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d/%m/%Y' }}</time>{% assign published_day = article.published_at | date: '%Y-%m-%d' %}{% assign updated_day = article.updated_at | date: '%Y-%m-%d' %}{% if updated_day != published_day %}<span class="journal-updated">Actualizado el <time datetime="{{ updated_day }}">{{ article.updated_at | date: '%d/%m/%Y' }}</time></span>{% endif %}</p>
     {% if article.excerpt != blank %}<div class="journal-summary">{{ article.excerpt }}</div>{% endif %}
   </header>
   {% if article.image %}<figure class="journal-cover">{{ article.image | image_url: width: 1600 | image_tag: widths: '480, 800, 1200, 1600', sizes: '(max-width: 760px) 90vw, 1000px', loading: 'eager', fetchpriority: 'high' }}</figure>{% endif %}
@@ -17,6 +17,22 @@
       <a class="button" href="{{ product_link }}">{{ 'organic.view_product' | t }} {% render 'arrow' %}</a>
     </aside>
   <a class="text-link" href="{{ blog.url }}">{{ 'organic.all_guides' | t }} {% render 'arrow' %}</a>
+  {% if blog.articles_count > 1 %}
+    <section class="journal-related" aria-labelledby="Related-{{ section.id }}">
+      <p class="eyebrow">SEGUIR PREPARANDO EL PASEO</p>
+      <h2 id="Related-{{ section.id }}">También te puede ayudar.</h2>
+      <div class="guide-grid">
+        {% assign related_count = 0 %}
+        {% for guide in blog.articles %}
+          {% if guide.id != article.id %}
+            {% render 'guide-card', guide: guide %}
+            {% assign related_count = related_count | plus: 1 %}
+            {% if related_count == 2 %}{% break %}{% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
 </article>
 {% schema %}
 {"name":"Artículo de guía","settings":[]}

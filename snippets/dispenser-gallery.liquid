@@ -3,12 +3,12 @@
 {% capture parts_src %}{% render 'milo-photo-src', name: 'parts' %}{% endcapture %}
 <div class="product-gallery" data-gallery>
   <div class="gallery-thumbnails" aria-label="Fotografías del dispensador">
-    <button type="button" data-photo="{{ food_src | strip }}" data-alt="Dispensador Milo & Co con agua y comida preparado para salir" aria-label="Producto completo" aria-pressed="true"><img src="{{ food_src | strip }}" alt="" width="80" height="100" loading="lazy"></button>
-    <button type="button" data-photo="{{ 'paseo-colores.webp' | asset_url }}" data-alt="Dispensadores Milo & Co en azul cielo y rosa" aria-label="Azul cielo y rosa" aria-pressed="false"><img src="{{ 'paseo-colores.webp' | asset_url }}" alt="" width="120" height="80" loading="lazy"></button>
-    <button type="button" data-photo="{{ parts_src | strip }}" data-alt="Dispensador desmontado con sus piezas y accesorios" aria-label="Piezas del dispensador" aria-pressed="false"><img src="{{ parts_src | strip }}" alt="" width="80" height="80" loading="lazy"></button>
-    <button type="button" data-photo="{{ 'paseo-pausa.webp' | asset_url }}" data-alt="Dispensador durante una pausa del paseo" aria-label="Uso durante el paseo" aria-pressed="false"><img src="{{ 'paseo-pausa.webp' | asset_url }}" alt="" width="80" height="100" loading="lazy"></button>
-    <button type="button" data-photo="{{ waste_src | strip }}" data-alt="Compartimento para bolsas de residuos en uso" aria-label="Compartimento para residuos" aria-pressed="false"><img src="{{ waste_src | strip }}" alt="" width="100" height="67" loading="lazy"></button>
-    <button type="button" data-photo="{{ 'dispensador-detalle.webp' | asset_url }}" data-alt="Detalle del botón y la cuerda del dispensador" aria-label="Detalle del dispensador" aria-pressed="false"><img src="{{ 'dispensador-detalle.webp' | asset_url }}" alt="" width="80" height="80" loading="lazy"></button>
+    <button type="button" data-photo="{{ food_src | strip }}" data-alt="Dispensador Milo & Co con agua y comida preparado para salir" aria-label="Producto completo" aria-pressed="true"><img src="{{ 'milo-food-original.jpg' | asset_img_url: '160x' }}" alt="" width="80" height="100" loading="lazy"></button>
+    <button type="button" data-photo="{{ 'paseo-colores.webp' | asset_url }}" data-alt="Dispensadores Milo & Co en azul cielo y rosa" aria-label="Azul cielo y rosa" aria-pressed="false"><img src="{{ 'paseo-colores.webp' | asset_img_url: '160x' }}" alt="" width="120" height="80" loading="lazy"></button>
+    <button type="button" data-photo="{{ parts_src | strip }}" data-alt="Dispensador desmontado con sus piezas y accesorios" aria-label="Piezas del dispensador" aria-pressed="false"><img src="{{ 'milo-parts-original.jpg' | asset_img_url: '160x' }}" alt="" width="80" height="80" loading="lazy"></button>
+    <button type="button" data-photo="{{ 'paseo-pausa.webp' | asset_url }}" data-alt="Dispensador durante una pausa del paseo" aria-label="Uso durante el paseo" aria-pressed="false"><img src="{{ 'paseo-pausa.webp' | asset_img_url: '160x' }}" alt="" width="80" height="100" loading="lazy"></button>
+    <button type="button" data-photo="{{ waste_src | strip }}" data-alt="Compartimento para bolsas de residuos en uso" aria-label="Compartimento para residuos" aria-pressed="false"><img src="{{ 'milo-waste-original.jpg' | asset_img_url: '160x' }}" alt="" width="100" height="67" loading="lazy"></button>
+    <button type="button" data-photo="{{ 'dispensador-detalle.webp' | asset_url }}" data-alt="Detalle del botón y la cuerda del dispensador" aria-label="Detalle del dispensador" aria-pressed="false"><img src="{{ 'dispensador-detalle.webp' | asset_img_url: '160x' }}" alt="" width="80" height="80" loading="lazy"></button>
     {% for variant in item.variants %}
       {% if variant.featured_image %}
         <button type="button" data-photo="{{ variant.featured_image | image_url: width: 1600 }}" data-alt="{{ item.title | escape }} — {{ variant.title | escape }}" aria-label="Ver color {{ variant.title | escape }}" aria-pressed="false">{{ variant.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}</button>
@@ -17,7 +17,7 @@
   </div>
 
   <div class="gallery-stage">
-    <img data-gallery-main src="{{ food_src | strip }}" alt="Dispensador Milo & Co con agua y comida preparado para salir" width="1122" height="1402" loading="eager">
+    <img data-gallery-main src="{{ 'milo-food-original.jpg' | asset_img_url: '1200x' }}" srcset="{{ 'milo-food-original.jpg' | asset_img_url: '480x' }} 480w, {{ 'milo-food-original.jpg' | asset_img_url: '800x' }} 800w, {{ food_src | strip }} 1122w" sizes="(max-width: 760px) 90vw, 55vw" fetchpriority="high" alt="Dispensador Milo & Co con agua y comida preparado para salir" width="1122" height="1402" loading="eager">
     <p class="image-error" hidden>No se ha podido cargar esta fotografía.</p>
   </div>
 </div>

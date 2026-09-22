@@ -4,6 +4,7 @@
 <nav aria-label="Navegación principal">
   <a href="{{ settings.products_page.url | default: "/pages/productos" }}">Productos</a>
   <a href="{{ settings.walk_page.url | default: "/pages/paseos" }}">Paseos</a>
+  {% if blogs['guias'].articles_count > 0 %}<a href="{{ blogs['guias'].url }}">Guías</a>{% endif %}
   <a href="{{ settings.brand_page.url | default: "/pages/nosotros" }}">Nuestra idea</a>
 </nav>
 {% if settings.sales_enabled %}

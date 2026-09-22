@@ -17,6 +17,7 @@ engine.registerFilter('t', (key, ...args) => {
  return value;
 });
 engine.registerFilter('asset_url', x => `/assets/${x}`);
+engine.registerFilter('asset_img_url', x => `/assets/${x}`);
 engine.registerFilter('stylesheet_tag', x => `<link rel="stylesheet" href="${x}">`);
 engine.registerFilter('money', x => new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(x/100));
 const clean = s => s.replace(/{% schema %}[\s\S]*?{% endschema %}/g,'');

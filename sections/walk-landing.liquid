@@ -6,7 +6,7 @@
   </div>
 
   <figure class="walk-v2-hero">
-    <img src="{{ 'paseo.jpg' | asset_url }}" alt="Un perro durante una escapada al aire libre" width="1536" height="1024" fetchpriority="high">
+    {% render 'theme-image', filename: 'paseo.jpg', alt: 'Un perro durante una escapada al aire libre', width: 1536, height: 1024, sizes: '(max-width: 1440px) 100vw, 1440px', loading: 'eager', priority: 'high' %}
   </figure>
 
   <div class="walk-v2-moments" aria-label="Tres formas de salir">
@@ -30,13 +30,13 @@
 
 <section class="walk-v2-gallery wrap">
   <figure class="walk-v2-gallery-main">
-    <img src="{{ 'paseo-pausa.webp' | asset_url }}" alt="Una pausa durante el paseo" width="1122" height="1402" loading="lazy">
+    {% render 'theme-image', filename: 'paseo-pausa.webp', alt: 'Una pausa durante el paseo', width: 1122, height: 1402, sizes: '(max-width: 760px) 90vw, 50vw', loading: 'lazy', priority: 'auto' %}
   </figure>
   <figure>
-    <img src="{{ 'paseo-esenciales.webp' | asset_url }}" alt="Lo esencial preparado para salir" width="1254" height="1254" loading="lazy">
+    {% render 'theme-image', filename: 'paseo-esenciales.webp', alt: 'Lo esencial preparado para salir', width: 1254, height: 1254, sizes: '(max-width: 760px) 90vw, 50vw', loading: 'lazy', priority: 'auto' %}
   </figure>
   <figure>
-    <img src="{{ 'dispensador-detalle.webp' | asset_url }}" alt="Detalle del dispensador de paseo" width="1254" height="1254" loading="lazy">
+    {% render 'theme-image', filename: 'dispensador-detalle.webp', alt: 'Detalle del dispensador de paseo', width: 1254, height: 1254, sizes: '(max-width: 760px) 90vw, 50vw', loading: 'lazy', priority: 'auto' %}
   </figure>
 </section>
 

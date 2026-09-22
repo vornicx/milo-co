@@ -19,7 +19,7 @@
       {% if section.settings.image != blank %}
         {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 59vw', loading: 'lazy', alt: 'Dispensadores Milo & Co en azul cielo y rosa' }}
       {% else %}
-        <img src="{{ 'paseo-colores.webp' | asset_url }}" width="1500" height="1000" loading="lazy" alt="Dispensadores Milo & Co en azul cielo y rosa">
+        {% render 'theme-image', filename: 'paseo-colores.webp', alt: 'Dispensadores Milo & Co en azul cielo y rosa', width: 1500, height: 1000, sizes: '(max-width: 760px) 90vw, 50vw', loading: 'lazy', priority: 'auto' %}
       {% endif %}
     </figure>
   </div>

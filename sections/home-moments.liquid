@@ -1,5 +1,3 @@
-{% capture food_src %}{% render 'milo-photo-src', name: 'food' %}{% endcapture %}
-{% capture waste_src %}{% render 'milo-photo-src', name: 'waste' %}{% endcapture %}
 <section class="home-functions wrap" aria-labelledby="home-functions-title">
   <div class="home-functions-head">
     <p class="eyebrow">LISTO PARA CADA MOMENTO</p>
@@ -12,7 +10,7 @@
         {% if section.settings.image_water != blank %}
           {{ section.settings.image_water | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 82vw, 33vw', loading: 'lazy', alt: 'El dispensador durante una pausa para beber' }}
         {% else %}
-          <img src="{{ 'paseo-pausa.webp' | asset_url }}" width="1122" height="1402" loading="lazy" alt="El dispensador durante una pausa para beber">
+          {% render 'theme-image', filename: 'paseo-pausa.webp', alt: 'El dispensador durante una pausa para beber', width: 1122, height: 1402, sizes: '(max-width: 760px) 90vw, 50vw', loading: 'lazy', priority: 'auto' %}
         {% endif %}
       </figure>
       <div class="home-function-copy"><span>01</span><div><h3>Agua</h3><p>400 ml y bebedero integrado.</p></div></div>
@@ -23,7 +21,7 @@
         {% if section.settings.image_food != blank %}
           {{ section.settings.image_food | image_url: width: 1200 | image_tag: widths: '420, 720, 1000, 1200', sizes: '(max-width: 760px) 82vw, 33vw', loading: 'lazy', alt: 'Comida preparada en el dispensador' }}
         {% else %}
-          <img src="{{ food_src | strip }}" width="1122" height="1402" loading="lazy" alt="Comida preparada en el dispensador">
+          {% render 'theme-image', filename: 'milo-food-original.jpg', alt: 'Comida preparada en el dispensador', width: 1122, height: 1402, sizes: '(max-width: 760px) 90vw, 30vw' %}
         {% endif %}
       </figure>
       <div class="home-function-copy"><span>02</span><div><h3>Comida</h3><p>150 ml para una pequeña ración.</p></div></div>
@@ -34,7 +32,7 @@
         {% if section.settings.image_waste != blank %}
           {{ section.settings.image_waste | image_url: width: 1400 | image_tag: widths: '480, 800, 1100, 1400', sizes: '(max-width: 760px) 82vw, 33vw', loading: 'lazy', alt: 'Compartimento para bolsas de residuos' }}
         {% else %}
-          <img src="{{ waste_src | strip }}" width="1536" height="1024" loading="lazy" alt="Compartimento para bolsas de residuos">
+          {% render 'theme-image', filename: 'milo-waste-original.jpg', alt: 'Compartimento para bolsas de residuos', width: 1536, height: 1024, sizes: '(max-width: 760px) 90vw, 30vw' %}
         {% endif %}
       </figure>
       <div class="home-function-copy"><span>03</span><div><h3>Residuos</h3><p>Las bolsas también tienen su sitio.</p></div></div>

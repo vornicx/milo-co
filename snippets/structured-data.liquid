@@ -13,6 +13,7 @@
     assign logo_url = logo_url | prepend: 'https:'
   endif
   assign products_url = settings.products_page.url | default: '/pages/productos' | prepend: shop.url
+  assign about_url = settings.brand_page.url | default: '/pages/nosotros' | prepend: shop.url
   assign organization_description = 'seo.home_description' | t | replace: '&amp;', '&'
   assign page_schema_type = 'WebPage'
   if request.page_type == 'collection' or request.page_type == 'blog' or page.handle == 'productos'
@@ -22,26 +23,42 @@
   elsif page.handle == 'contact' or page.handle == 'contacto'
     assign page_schema_type = 'ContactPage'
   endif
+  assign primary_image = ''
+  if request.page_type == 'article' and article.image
+    assign primary_image = article.image | image_url: width: 1600
+  elsif request.page_type == 'product' and product.featured_image
+    assign primary_image = product.featured_image | image_url: width: 1600
+  elsif page.handle == 'dispensador'
+    assign primary_image = 'milo-food-original.jpg' | asset_url
+  elsif request.page_type == 'index' or page.handle == 'paseos'
+    assign primary_image = 'paseo.jpg' | asset_url
+  endif
+  assign primary_image_prefix = primary_image | slice: 0, 2
+  if primary_image_prefix == '//'
+    assign primary_image = primary_image | prepend: 'https:'
+  endif
 %}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
   {"@type":"OnlineStore","@id":{{ organization_id | json }},"name":"Milo & Co","alternateName":"Milo & Company","url":{{ shop.url | json }},"logo":{{ logo_url | json }},"description":{{ organization_description | json }},"email":"info@miloandcompany.es","contactPoint":{"@type":"ContactPoint","contactType":"customer service","email":"info@miloandcompany.es","availableLanguage":"Spanish"}},
   {"@type":"WebSite","@id":{{ website_id | json }},"name":"Milo & Co","alternateName":"Milo & Company","url":{{ shop.url | json }},"inLanguage":{{ request.locale.iso_code | json }},"publisher":{"@id":{{ organization_id | json }}}},
-  {"@type":{{ page_schema_type | json }},"@id":{{ seo_canonical | append: '#webpage' | json }},"url":{{ seo_canonical | json }},"name":{{ seo_title | json }},"description":{{ seo_description | json }},"inLanguage":{{ request.locale.iso_code | json }},"isPartOf":{"@id":{{ website_id | json }}}}
+  {"@type":{{ page_schema_type | json }},"@id":{{ seo_canonical | append: '#webpage' | json }},"url":{{ seo_canonical | json }},"name":{{ seo_title | json }},"description":{{ seo_description | json }},"inLanguage":{{ request.locale.iso_code | json }},"isPartOf":{"@id":{{ website_id | json }}},"about":{"@id":{{ organization_id | json }}}{% if primary_image != blank %},"primaryImageOfPage":{{ primary_image | json }}{% endif %}{% if request.page_type == 'article' %},"mainEntity":{"@id":{{ seo_canonical | append: '#article' | json }}}{% endif %}}
 ]}
 </script>
 {% if request.page_type == 'product' %}
 <script type="application/ld+json">{{ product | structured_data | replace: '&amp;', '&' }}</script>
 {% elsif request.page_type == 'article' %}
-<script type="application/ld+json">{{ article | structured_data | replace: '&amp;', '&' }}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","@id":{{ seo_canonical | append: '#article' | json }},"headline":{{ article.title | json }},"description":{{ seo_description | json }},"url":{{ seo_canonical | json }},"mainEntityOfPage":{"@id":{{ seo_canonical | append: '#webpage' | json }}},"inLanguage":{{ request.locale.iso_code | json }},"datePublished":{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }},"dateModified":{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }},"author":{% if article.author == 'Milo & Co' %}{"@type":"Organization","@id":{{ organization_id | json }},"name":"Milo & Co","url":{{ about_url | json }}}{% else %}{"@type":"Person","name":{{ article.author | json }}}{% endif %},"publisher":{"@id":{{ organization_id | json }}}{% if primary_image != blank %},"image":{{ primary_image | json }}{% endif %}}
+</script>
 {% endif %}
 {% unless request.page_type == 'index' %}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
   {"@type":"ListItem","position":1,"name":{{ 'organic.home' | t | json }},"item":{{ shop.url | json }}},
-  {% if request.page_type == 'product' %}
+  {% if request.page_type == 'product' or page.handle == 'dispensador' %}
     {"@type":"ListItem","position":2,"name":{{ 'organic.products' | t | json }},"item":{{ products_url | json }}},
-    {"@type":"ListItem","position":3,"name":{{ product.title | json }},"item":{{ seo_canonical | json }}}
+    {"@type":"ListItem","position":3,"name":{{ product.title | default: page.title | json }},"item":{{ seo_canonical | json }}}
   {% elsif request.page_type == 'article' %}
     {"@type":"ListItem","position":2,"name":{{ blog.title | json }},"item":{{ blog.url | prepend: shop.url | json }}},
     {"@type":"ListItem","position":3,"name":{{ article.title | json }},"item":{{ seo_canonical | json }}}

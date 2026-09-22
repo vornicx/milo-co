@@ -5,6 +5,7 @@
 <meta name="theme-color" content="#183D31">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 {% render 'seo-meta' %}
+{% if blogs['guias'].articles_count > 0 %}<link rel="alternate" type="application/atom+xml" title="Guías de paseo · Milo &amp; Co" href="{{ blogs['guias'].url }}.atom">{% endif %}
 {{ 'milo-system.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'milo.js' | asset_url }}" defer></script>
 {{ content_for_header }}

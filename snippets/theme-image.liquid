@@ -1,0 +1,16 @@
+{% doc %}
+  Responsive versions of an existing theme photograph, served by Shopify CDN.
+  @param {string} filename - Theme asset filename
+  @param {string} alt - Description of the image
+  @param {number} width - Original image width
+  @param {number} height - Original image height
+  @param {string} [sizes] - Rendered width at each breakpoint
+  @param {string} [loading] - Lazy or eager loading
+  @param {string} [priority] - Browser fetch priority
+{% enddoc %}
+<img
+  src="{{ filename | asset_img_url: '1200x' }}"
+  srcset="{{ filename | asset_img_url: '480x' }} 480w, {{ filename | asset_img_url: '800x' }} 800w,{% if width > 1200 %} {{ filename | asset_img_url: '1200x' }} 1200w,{% endif %} {{ filename | asset_url }} {{ width }}w"
+  sizes="{{ sizes | default: '(max-width: 760px) 90vw, 50vw' }}"
+  alt="{{ alt | escape }}" width="{{ width }}" height="{{ height }}"
+  loading="{{ loading | default: 'lazy' }}" fetchpriority="{{ priority | default: 'auto' }}" decoding="async">
