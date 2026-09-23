@@ -6,7 +6,7 @@
     <a class="button button--dark" href="{{ settings.product_page.url | default: '/pages/dispensador' }}">Ver el dispensador {% render 'arrow' %}</a>
   {% else %}
   {% if cart.item_count == 0 %}
-    <div class="cart-empty"><p>Tu carrito está vacío.</p><p class="cart-empty-note">Lo esencial para vuestro próximo paseo empieza aquí.</p></div>
+    <div class="cart-empty"><p>Tu carrito está vacío.</p><p class="cart-empty-note">Lo esencial para tu próximo paseo empieza aquí.</p></div>
     <a class="button button--dark" href="{{ settings.products_page.url | default: '/pages/productos' }}">Ver productos {% render 'arrow' %}</a>
   {% else %}
     <form class="cart-layout" action="{{ routes.cart_url }}" method="post">
