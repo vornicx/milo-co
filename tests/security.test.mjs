@@ -73,3 +73,20 @@ test('Article structured data uses brand authorship rather than Shopify staff na
   assert.ok(!structured.includes('article.author | json'));
   assert.ok(structured.includes('"author":{"@type":"Organization"'));
 });
+
+
+test('Legacy prelaunch naming cannot return in public theme source', async () => {
+  const files = [
+    'snippets/prelaunch-form.liquid',
+    'sections/prelaunch-waitlist.liquid',
+    'sections/dispenser-detail.liquid',
+    'sections/featured-product.liquid',
+    'sections/product-index.liquid',
+    'sections/header.liquid',
+    'sections/footer.liquid'
+  ];
+  for (const file of files) {
+    const source = await readFile(file, 'utf8');
+    assert.ok(!/Objeto 01|NUESTRO PRIMER OBJETO|UN SOLO OBJETO|>\s*Avisadme\b/i.test(source), `${file}: legacy public naming found`);
+  }
+});
