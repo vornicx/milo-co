@@ -14,8 +14,9 @@ test('Imported product titles cannot create HTML elements', async () => {
     section: { settings: { product: { title, url: '/products/example' } } },
     settings: { sales_enabled: false },
   });
-  assert.ok(html.includes('&lt;img src=x onerror=alert(1)&gt;'));
+  assert.ok(html.includes('Dispensador 3 en 1'));
   assert.ok(!html.includes(title));
+  assert.ok(!html.includes('&lt;img src=x onerror=alert(1)&gt;'));
   assert.ok(!/<script\b/i.test(html));
 });
 
