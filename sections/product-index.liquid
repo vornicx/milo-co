@@ -3,7 +3,7 @@
 {% capture food_src %}{% render 'milo-photo-src', name: 'food' %}{% endcapture %}
 <section class="product-index wrap">
   <div class="product-index-intro">
-    <p class="eyebrow">PRODUCTOS</p>
+    <p class="eyebrow">{% if settings.sales_enabled %}PRODUCTOS{% else %}DISPENSADOR{% endif %}</p>
     <h1>Salir juntos,<br>con menos cosas.</h1>
     <p>{{ 'organic.catalog_intro' | t }}</p>
   </div>
