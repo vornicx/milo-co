@@ -2,8 +2,8 @@
   <p class="eyebrow">CARRITO</p>
   <h1>Vuestro próximo paseo.</h1>
   {% unless settings.sales_enabled %}
-    <div class="cart-empty"><p>Estamos preparando nuestro primer producto.</p><p>La compra todavía no está abierta.</p></div>
-    <a class="button button--dark" href="{{ settings.product_page.url | default: '/pages/dispensador' }}">Conocer el dispensador {% render 'arrow' %}</a>
+    <div class="cart-empty"><p>El dispensador 3 en 1 está en preparación.</p><p>La compra todavía no está abierta.</p></div>
+    <a class="button button--dark" href="{{ settings.product_page.url | default: '/pages/dispensador' }}">Ver el dispensador {% render 'arrow' %}</a>
   {% else %}
   {% if cart.item_count == 0 %}
     <div class="cart-empty"><p>Tu carrito está vacío.</p><p class="cart-empty-note">Lo esencial para vuestro próximo paseo empieza aquí.</p></div>
