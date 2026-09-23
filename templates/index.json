@@ -6,10 +6,13 @@
         "heading": "Fuera, juntos."
       }
     },
+    "essentials": {"type":"walk-essentials","settings":{}},
     "section1": {
       "type": "featured-product",
       "settings": {}
     },
+    "moments": {"type":"home-moments","settings":{}},
+    "validation": {"type":"product-validation","settings":{}},
     "story": {
       "type": "walk-story",
       "settings": {}
@@ -17,12 +20,17 @@
     "guides": {
       "type": "guide-shelf",
       "settings": {}
-    }
+    },
+    "waitlist": {"type":"prelaunch-waitlist","settings":{"source":"home_final"}}
   },
   "order": [
     "section0",
+    "essentials",
     "section1",
+    "moments",
+    "validation",
     "story",
-    "guides"
+    "guides",
+    "waitlist"
   ]
 }

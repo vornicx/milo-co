@@ -1,5 +1,5 @@
 {% assign dispenser = product | default: settings.featured_product %}
-<section class="product-top wrap" data-product-page>
+<section class="product-top wrap" data-product-page data-milo-product-landing>
   <nav class="breadcrumbs" aria-label="Migas de pan">
     <a href="{{ routes.root_url }}">Inicio</a><span>/</span>
     <a href="{{ settings.products_page.url | default: '/pages/productos' }}">Productos</a><span>/</span>
@@ -13,8 +13,8 @@
 
     <aside class="product-top-info" id="product-purchase">
       <p class="eyebrow">{{ 'organic.product_eyebrow' | t }}</p>
-      <h1>Dispensador<br>de paseo <span class="keep-together">3 en 1</span></h1>
-      <p class="product-top-lead">{{ 'organic.product_summary' | t }}</p>
+      <h1>Todo para el paseo.<br><span class="keep-together">Una sola pieza.</span></h1>
+      <p class="product-top-lead">Agua, algo de comida y las bolsas: el dispensador reúne lo que sueles preparar por separado.</p>
       <nav class="product-section-links" aria-label="Información del dispensador"><a href="#como-funciona">Cómo se prepara</a><a href="#detalles">Detalles</a><a href="#preguntas">Preguntas</a></nav>
 
       <div class="product-icon-specs" aria-label="Características principales">
@@ -30,7 +30,11 @@
           <span>Color</span>
           {% render 'color-preview' %}
         </div>
-        <div class="product-availability" role="status"><span aria-hidden="true"></span>Próximamente</div>
+        <p class="product-prelaunch-note">Estamos validando el producto antes de abrir la compra. Sin fecha anunciada.</p>
+        <div class="prelaunch-inline" id="avisarme-{{ section.id }}">
+          <p class="eyebrow">AVÍSAME CUANDO ESTÉ LISTO</p>
+          {% render 'prelaunch-form', id: section.id, source: 'product_top', privacy_policy: shop.privacy_policy %}
+        </div>
       {% endif %}
     </aside>
   </div>
@@ -45,6 +49,9 @@
     <a class="button" href="#product-purchase">Comprar</a>
   </div>
 {% endif %}
+{% unless settings.sales_enabled %}
+  <a class="mobile-waitlist-bar" href="#avisarme-{{ section.id }}" data-milo-event="cta_click" data-milo-source="mobile_product_bar"><span>Objeto 01 <small>En preparación</small></span><strong>Avísame {% render 'arrow' %}</strong></a>
+{% endunless %}
 
 {% schema %}
 {"name":"Dispenser Detail","settings":[]}

@@ -12,7 +12,7 @@
 <label for="Quantity-{{ section.id }}">Cantidad</label><input id="Quantity-{{ section.id }}" name="quantity" type="number" value="{{ chosen.quantity_rule.min | default: 1 }}" min="{{ chosen.quantity_rule.min | default: 1 }}" step="{{ chosen.quantity_rule.increment | default: 1 }}" {% if chosen.quantity_rule.max %}max="{{ chosen.quantity_rule.max }}"{% endif %} required>
 <button class="button purchase-button" type="submit" data-add {% unless chosen.available %}disabled{% endunless %}>{% if chosen.available %}Añadir al carrito{% else %}Agotado{% endif %}</button>
 {% endform %}
-<p class="fine">{% if cart.taxes_included %}Impuestos incluidos. {% endif %}Envío calculado al finalizar la compra.</p>
+<p class="fine">{% if cart.taxes_included %}Impuestos incluidos. {% endif %}Envío calculado al finalizar la compra.{% if shop.shipping_policy.body != blank %} <a href="{{ shop.shipping_policy.url }}">Condiciones de envío</a>.{% endif %}{% if shop.refund_policy.body != blank %} <a href="{{ shop.refund_policy.url }}">Cambios y devoluciones</a>.{% endif %}</p>
 </div>
 {% else %}<p class="availability">Próximamente</p>{% endif %}
 {% else %}<div class="color-preview" aria-label="Colores previstos: azul cielo y rosa"><span class="sky"></span><span class="pink"></span></div><p class="availability">Próximamente</p>{% endif %}

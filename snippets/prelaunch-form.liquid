@@ -1,0 +1,32 @@
+{% doc %}
+  Native Shopify pre-launch signup. A customer form creates a marketing-consented customer;
+  the selected colour is stored as a customer tag. No email is sent to third-party code.
+  @param {string} id - Unique identifier for this placement
+  @param {string} [source] - Non-personal placement label for analytics
+  @param {policy} privacy_policy - Shopify privacy policy
+{% enddoc %}
+{% assign form_id = 'Prelaunch-' | append: id %}
+{% if privacy_policy.body != blank %}
+  {% form 'customer', id: form_id, class: 'prelaunch-form' %}
+    {% if form.posted_successfully? %}
+      <p class="prelaunch-success" role="status" data-milo-success data-milo-source="{{ source | escape }}">Ya estás en la lista. Te avisaremos por correo cuando el Objeto 01 esté listo.</p>
+    {% else %}
+      {% if form.errors %}<div class="prelaunch-error" role="alert">No hemos podido registrar tu correo. Revisa la dirección e inténtalo de nuevo. {{ form.errors | default_errors }}</div>{% endif %}
+      <label for="Email-{{ id }}">Tu correo electrónico</label>
+      <div class="prelaunch-input-row">
+        <input id="Email-{{ id }}" type="email" name="contact[email]" autocomplete="email" inputmode="email" placeholder="tu@email.com" value="{{ form.email | escape }}" required>
+        <button class="button" type="submit">Avisadme {% render 'arrow' %}</button>
+      </div>
+      <fieldset class="prelaunch-colors">
+        <legend>¿Qué color te interesa? <span>(opcional)</span></legend>
+        <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-azul-cielo"> Azul cielo</label>
+        <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-rosa"> Rosa</label>
+        <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-indiferente" checked> Me da igual</label>
+      </fieldset>
+      <label class="prelaunch-consent" for="Consent-{{ id }}"><input id="Consent-{{ id }}" type="checkbox" required> Acepto recibir por correo novedades de Milo &amp; Co sobre el Objeto 01. Podré darme de baja en cualquier momento.</label>
+      <p class="prelaunch-privacy">Usaremos tu correo y preferencia para esta comunicación. Consulta la <a href="{{ privacy_policy.url }}">política de privacidad</a>.</p>
+    {% endif %}
+  {% endform %}
+{% else %}
+  <p class="prelaunch-privacy">La lista de espera estará disponible cuando se publique la política de privacidad.</p>
+{% endif %}

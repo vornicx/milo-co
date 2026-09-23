@@ -12,7 +12,9 @@
     <p class="eyebrow">MILO & CO · PRODUCTO</p>
     <h1>{{ product.title | escape }}</h1>
     <div class="prose">{{ product.description }}</div>
-    {% render 'product-form', item: product %}
+    {% if settings.sales_enabled %}{% render 'product-form', item: product %}{% else %}
+      <div class="prelaunch-inline"><p>Estamos preparando el lanzamiento. Déjanos tu correo y te avisaremos.</p>{% render 'prelaunch-form', id: section.id, source: 'product_general_top', privacy_policy: shop.privacy_policy %}</div>
+    {% endif %}
   </div>
 </section>
 {% schema %}

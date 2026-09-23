@@ -1,4 +1,4 @@
-<article class="journal-article wrap">
+<article class="journal-article wrap" data-milo-guide="{{ article.handle | escape }}">
   <nav class="breadcrumbs" aria-label="{{ 'organic.breadcrumbs' | t }}"><a href="{{ routes.root_url }}">{{ 'organic.home' | t }}</a><span aria-hidden="true">/</span><a href="{{ blog.url }}">{{ blog.title | escape }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ article.title | escape }}</span></nav>
   <header class="journal-heading">
     <p class="eyebrow">{{ 'organic.journal' | t }}</p>
@@ -14,7 +14,7 @@
       <p class="eyebrow">{{ 'organic.for_your_walk' | t }}</p>
       <h2>{{ featured.title | default: 'Dispensador de paseo 3 en 1' | escape }}</h2>
       <p>{{ 'organic.product_summary' | t }}</p>
-      <a class="button" href="{{ product_link }}">{{ 'organic.view_product' | t }} {% render 'arrow' %}</a>
+      <a class="button" href="{{ product_link }}" data-milo-event="product_click" data-milo-source="guide" data-milo-guide="{{ article.handle | escape }}">{{ 'organic.view_product' | t }} {% render 'arrow' %}</a>
     </aside>
   <a class="text-link" href="{{ blog.url }}">{{ 'organic.all_guides' | t }} {% render 'arrow' %}</a>
   {% if blog.articles_count > 1 %}

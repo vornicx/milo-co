@@ -32,6 +32,12 @@ for (const file of pages) {
   const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]);
   const duplicates = ids.filter((id, i) => ids.indexOf(id) !== i);
   if (duplicates.length) fail(`${file}: duplicate id(s): ${[...new Set(duplicates)].join(', ')}`);
+  if (/<(?:button|input)\b[^>]*(?:data-add|name="checkout"|action="\/cart\/add")/i.test(html)) fail(`${file}: purchase control appears while sales are disabled`);
+  if (/<a\b[^>]*href="\/(?:cart|checkout)(?:[\/"?#])/i.test(html)) fail(`${file}: checkout/cart navigation appears while sales are disabled`);
+  if (file === 'index.html' || file === 'pages/dispensador.html') {
+    if (!html.includes('name="contact[email]"') || !html.includes('name="contact[tags]"')) fail(`${file}: pre-launch form or preference missing`);
+    if (!html.includes('type="checkbox" required') || !html.includes('/policies/privacy-policy')) fail(`${file}: privacy consent or policy link missing`);
+  }
 
   for (const match of html.matchAll(/<img\b[^>]*>/gi)) {
     if (!/\salt="[^"]*"/i.test(match[0])) fail(`${file}: image without alt attribute`);

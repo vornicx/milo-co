@@ -1,0 +1,15 @@
+{% unless settings.sales_enabled %}
+<section id="espera" class="prelaunch-section" aria-labelledby="Waitlist-{{ section.id }}" data-milo-product-landing>
+  <div class="wrap prelaunch-layout">
+    <div>
+      <p class="eyebrow">EL OBJETO 01</p>
+      <h2 id="Waitlist-{{ section.id }}">El próximo paseo empieza aquí.</h2>
+      <p>Estamos preparando nuestro primer dispensador. Déjanos tu correo y te avisaremos cuando podamos abrir las primeras unidades.</p>
+    </div>
+    <div>{% render 'prelaunch-form', id: section.id, source: section.settings.source, privacy_policy: shop.privacy_policy %}</div>
+  </div>
+</section>
+{% endunless %}
+{% schema %}
+{"name":"Lista de espera","settings":[{"type":"text","id":"source","label":"Ubicación para medición","default":"pagina"}],"presets":[{"name":"Lista de espera"}]}
+{% endschema %}

@@ -21,7 +21,7 @@ engine.registerFilter('asset_img_url', x => `/assets/${x}`);
 engine.registerFilter('stylesheet_tag', x => `<link rel="stylesheet" href="${x}">`);
 engine.registerFilter('money', x => new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(x/100));
 const clean = s => s.replace(/{% schema %}[\s\S]*?{% endschema %}/g,'');
-const base = {request:{locale:{iso_code:'es'},page_type:'index'},routes:{root_url:'index.html',cart_url:'cart.html'},cart:{item_count:0},shop:{name:'Milo & Co',url:'https://miloandcompany.es',policies:[]},settings:{sales_enabled:false,products_page:{url:'/pages/productos'},product_page:{url:'/pages/dispensador'},walk_page:{url:'/pages/paseos'},brand_page:{url:'/pages/nosotros'}},page_title:'Milo & Co',current_page:1,canonical_url:'https://miloandcompany.es/',content_for_header:''};
+const base = {request:{locale:{iso_code:'es'},page_type:'index'},routes:{root_url:'index.html',cart_url:'cart.html'},cart:{item_count:0},shop:{name:'Milo & Co',url:'https://miloandcompany.es',policies:[],privacy_policy:{body:'Configured on Shopify',url:'/policies/privacy-policy'}},settings:{sales_enabled:false,products_page:{url:'/pages/productos'},product_page:{url:'/pages/dispensador'},walk_page:{url:'/pages/paseos'},brand_page:{url:'/pages/nosotros'}},page_title:'Milo & Co',current_page:1,canonical_url:'https://miloandcompany.es/',content_for_header:''};
 async function section(type,id,settings={}) {
  const raw=clean(await readFile(`sections/${type}.liquid`,'utf8'));
  const schema=JSON.parse((await readFile(`sections/${type}.liquid`,'utf8')).match(/{% schema %}([\s\S]*?){% endschema %}/)[1]);
@@ -37,7 +37,7 @@ for(const name of ['index','cart','404','page.productos','page.dispensador','pag
  base.page_title=pageHandle || 'Milo & Co';
  base.canonical_url=`https://miloandcompany.es${pageHandle ? '/pages/'+pageHandle : name==='index' ? '/' : '/'+name}`;
  const template=JSON.parse(await readFile(`templates/${name}.json`,'utf8'));
- let content='';for(const id of template.order){const s=template.sections[id];content+=await section(s.type,id,s.settings);}
+ let content='';for(const id of template.order){const s=template.sections[id];if(s.disabled) continue;content+=await section(s.type,id,s.settings);}
  let layout=await readFile('layout/theme.liquid','utf8');
  layout=layout.replace("{% section 'header' %}",await section('header','header')).replace("{% section 'footer' %}",await section('footer','footer'));
  await writeFile(`.preview/${name}.html`,await engine.parseAndRender(layout,{...base,content_for_layout:content}));

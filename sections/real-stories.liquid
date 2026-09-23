@@ -1,0 +1,10 @@
+{% if section.settings.show_stories and section.blocks.size > 0 %}
+<section class="real-stories wrap" aria-labelledby="Stories-{{ section.id }}"><p class="eyebrow">HISTORIAS REALES</p><h2 id="Stories-{{ section.id }}">Visto en los paseos.</h2><div class="real-stories-grid">
+{% for block in section.blocks %}{% if block.settings.photo != blank and block.settings.quote != blank %}
+<figure {{ block.shopify_attributes }}>{{ block.settings.photo | image_url: width: 900 | image_tag: loading: 'lazy', alt: block.settings.photo.alt }}<blockquote>{{ block.settings.quote | escape }}</blockquote>{% if block.settings.attribution != blank %}<figcaption>{{ block.settings.attribution | escape }}</figcaption>{% endif %}</figure>
+{% endif %}{% endfor %}
+</div></section>
+{% endif %}
+{% schema %}
+{"name":"Experiencias reales","settings":[{"type":"checkbox","id":"show_stories","label":"Mostrar experiencias verificadas","default":false}],"blocks":[{"type":"story","name":"Experiencia","settings":[{"type":"image_picker","id":"photo","label":"Imagen cedida por cliente o tester"},{"type":"textarea","id":"quote","label":"Texto real autorizado"},{"type":"text","id":"attribution","label":"Nombre autorizado"}]}],"presets":[{"name":"Experiencias reales"}]}
+{% endschema %}

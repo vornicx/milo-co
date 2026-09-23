@@ -92,6 +92,43 @@
   document.addEventListener('shopify:section:load', (event) => bind(event.target));
 })();
 
+// Shopify customer events are routed to configured web pixels, which apply
+// Shopify's visitor consent settings. No email, IP or customer ID is published.
+(() => {
+ const publish = (name, data) => {
+  if (window.Shopify?.analytics?.publish) window.Shopify.analytics.publish(`milo:${name}`, data);
+ };
+ const init = (root = document) => {
+  root.querySelectorAll('[data-milo-product-landing]').forEach(node => {
+   if (node.dataset.miloVisitBound) return;
+   node.dataset.miloVisitBound = 'true';
+   if (node.matches('[data-product-page]')) publish('product_landing_view', {path: window.location.pathname});
+  });
+  root.querySelectorAll('[data-milo-success]').forEach(node => {
+   if (node.dataset.miloSuccessBound) return;
+   node.dataset.miloSuccessBound = 'true';
+   publish('waitlist_success', {placement: node.dataset.miloSource || 'unknown'});
+  });
+ };
+ init();
+ document.addEventListener('shopify:section:load', event => init(event.target));
+ document.addEventListener('click', event => {
+  const link = event.target.closest?.('a');
+  if (!link) return;
+  const guide = link.closest('.journal-article[data-milo-guide]');
+  if (guide && link.closest('.journal-body') && /^\/(pages\/dispensador|products\/)/.test(link.pathname)) {
+   publish('product_click', {placement:'guide_body', guide:guide.dataset.miloGuide, path:window.location.pathname});
+  } else if (link.dataset.miloEvent) {
+   publish(link.dataset.miloEvent, {placement:link.dataset.miloSource || 'unknown', guide:link.dataset.miloGuide || undefined, path:window.location.pathname});
+  }
+ });
+ document.addEventListener('toggle', event => {
+  if (event.target.matches?.('.faq details') && event.target.open) {
+   publish('faq_open', {question:event.target.querySelector('summary')?.textContent?.trim()?.slice(0,100),path:window.location.pathname});
+  }
+ }, true);
+})();
+
 (() => {
  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
  const setGalleryPhoto = async (gallery, photo, alt = '') => {
