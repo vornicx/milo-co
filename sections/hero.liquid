@@ -2,7 +2,7 @@
   <div class="campaign-copy">
     <h1>{{ section.settings.heading | escape | newline_to_br }}</h1>
     <p class="campaign-description">{{ 'organic.home_intro' | t }}</p>
-    <a class="button" href="{{ settings.product_page.url | default: '/pages/dispensador' }}" data-milo-event="product_click" data-milo-source="home_hero">Conocer el dispensador {% render 'arrow' %}</a>
+    <a class="button" href="#espera" data-milo-event="waitlist_click" data-milo-source="home_hero">Avisadme en el lanzamiento {% render 'arrow' %}</a>
   </div>
 
   <figure class="campaign-media{% if section.settings.image == blank and section.settings.mobile_image == blank %} campaign-media--lake{% endif %}">
