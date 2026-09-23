@@ -3,7 +3,7 @@
   <header class="journal-heading">
     <p class="eyebrow">{{ 'organic.journal' | t }}</p>
     <h1>{{ article.title | escape }}</h1>
-    <p class="journal-byline"><a href="{{ settings.brand_page.url | default: '/pages/nosotros' }}">{{ article.author | escape }}</a><span aria-hidden="true"> · </span><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d/%m/%Y' }}</time>{% assign published_day = article.published_at | date: '%Y-%m-%d' %}{% assign updated_day = article.updated_at | date: '%Y-%m-%d' %}{% if updated_day != published_day %}<span class="journal-updated">Actualizado el <time datetime="{{ updated_day }}">{{ article.updated_at | date: '%d/%m/%Y' }}</time></span>{% endif %}</p>
+    <p class="journal-byline"><a href="{{ settings.brand_page.url | default: '/pages/nosotros' }}">Milo &amp; Co</a><span aria-hidden="true"> · </span><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d/%m/%Y' }}</time>{% assign published_day = article.published_at | date: '%Y-%m-%d' %}{% assign updated_day = article.updated_at | date: '%Y-%m-%d' %}{% if updated_day != published_day %}<span class="journal-updated">Actualizado el <time datetime="{{ updated_day }}">{{ article.updated_at | date: '%d/%m/%Y' }}</time></span>{% endif %}</p>
     {% if article.excerpt != blank %}<div class="journal-summary">{{ article.excerpt }}</div>{% endif %}
   </header>
   {% if article.image %}<figure class="journal-cover">{{ article.image | image_url: width: 1600 | image_tag: widths: '480, 800, 1200, 1600', sizes: '(max-width: 760px) 90vw, 1000px', loading: 'eager', fetchpriority: 'high' }}</figure>{% endif %}
@@ -12,7 +12,7 @@
   {% assign product_link = featured.url | default: settings.product_page.url | default: '/pages/dispensador' %}
     <aside class="journal-product">
       <p class="eyebrow">{{ 'organic.for_your_walk' | t }}</p>
-      <h2>{{ featured.title | default: 'Dispensador de paseo 3 en 1' | escape }}</h2>
+      <h2>{% if settings.sales_enabled and featured != blank %}{{ featured.title | escape }}{% else %}Dispensador 3 en 1{% endif %}</h2>
       <p>{{ 'organic.product_summary' | t }}</p>
       <a class="button" href="{{ product_link }}" data-milo-event="product_click" data-milo-source="guide" data-milo-guide="{{ article.handle | escape }}">{{ 'organic.view_product' | t }} {% render 'arrow' %}</a>
     </aside>
