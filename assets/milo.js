@@ -259,22 +259,3 @@
  document.querySelectorAll('.home-product-grid,.home-brand-grid,.brand-principles,.brand-closing,.walk-v2-moments,.walk-v2-gallery,.product-story-intro,.product-details-head,.faq-heading').forEach(section => observer.observe(section));
  preference.addEventListener('change', event => { if(event.matches) {observer.disconnect(); document.getAnimations().forEach(animation => animation.cancel());} });
 })();
-
-// Public-copy guard: Shopify can briefly serve an older form snippet while a GitHub theme sync is settling.
-(() => {
- const normalizePrelaunchCopy = (root = document) => {
-  root.querySelectorAll('.prelaunch-success, .prelaunch-consent').forEach(node => {
-   if (node.textContent.includes('Objeto 01')) node.innerHTML = node.innerHTML.replaceAll('Objeto 01','dispensador 3 en 1');
-  });
-  root.querySelectorAll('.prelaunch-form button[type="submit"]').forEach(button => {
-   const text = button.textContent.trim();
-   if (/^Avisadme/i.test(text)) {
-    const arrow = button.querySelector('.arrow');
-    button.textContent = 'Apuntarme ';
-    if (arrow) button.append(arrow);
-   }
-  });
- };
- normalizePrelaunchCopy();
- document.addEventListener('shopify:section:load', event => normalizePrelaunchCopy(event.target));
-})();
