@@ -4,7 +4,6 @@
       "type": "dispenser-detail",
       "settings": {}
     },
-    "validation": {"type":"product-validation","settings":{}},
     "4": {
       "type": "dispenser-details",
       "settings": {}
@@ -13,12 +12,23 @@
       "type": "faq",
       "settings": {}
     },
-    "stories": {"type":"real-stories","disabled":true,"settings":{"show_stories":false}},
-    "guides": {
-      "type": "guide-shelf",
+    "validation": {
+      "type": "product-validation",
       "settings": {}
     },
-    "waitlist": {"type":"prelaunch-waitlist","settings":{"source":"product_final"}}
+    "stories": {
+      "type": "real-stories",
+      "disabled": true,
+      "settings": {
+        "show_stories": false
+      }
+    },
+    "waitlist": {
+      "type": "prelaunch-waitlist",
+      "settings": {
+        "source": "product_final"
+      }
+    }
   },
   "order": [
     "0",
@@ -26,7 +36,6 @@
     "4",
     "5",
     "stories",
-    "guides",
     "waitlist"
   ]
 }
