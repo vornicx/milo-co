@@ -4,8 +4,6 @@
       "type": "dispenser-detail",
       "settings": {}
     },
-    "validation": {"type":"product-validation","settings":{}},
-    "use": {"type":"dispenser-use-cases","settings":{}},
     "4": {
       "type": "dispenser-details",
       "settings": {}
@@ -14,12 +12,27 @@
       "type": "faq",
       "settings": {}
     },
-    "stories": {"type":"real-stories","disabled":true,"settings":{"show_stories":false}},
-    "guides": {
-      "type": "guide-shelf",
+    "validation": {
+      "type": "product-validation",
       "settings": {}
     },
-    "waitlist": {"type":"prelaunch-waitlist","settings":{"source":"landing_final"}}
+    "use": {
+      "type": "dispenser-use-cases",
+      "settings": {}
+    },
+    "stories": {
+      "type": "real-stories",
+      "disabled": true,
+      "settings": {
+        "show_stories": false
+      }
+    },
+    "waitlist": {
+      "type": "prelaunch-waitlist",
+      "settings": {
+        "source": "landing_final"
+      }
+    }
   },
   "order": [
     "0",
@@ -28,7 +41,6 @@
     "use",
     "5",
     "stories",
-    "guides",
     "waitlist"
   ]
 }
