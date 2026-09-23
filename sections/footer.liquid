@@ -5,7 +5,11 @@
       <p>La vida, en buena compañía.</p>
     </div>
     <nav aria-label="Información">
-      <a href="{{ settings.products_page.url | default: "/pages/productos" }}">{% if settings.sales_enabled %}Productos{% else %}Dispensador 3 en 1{% endif %}</a>
+      {% if settings.sales_enabled %}
+        <a href="{{ settings.products_page.url | default: '/pages/productos' }}">Productos</a>
+      {% else %}
+        <a href="{{ settings.product_page.url | default: '/pages/dispensador' }}">Dispensador 3 en 1</a>
+      {% endif %}
       <a href="{{ settings.walk_page.url | default: "/pages/paseos" }}">Paseos y escapadas</a>
       {% if blogs['guias'].articles_count > 0 %}<a href="{{ blogs['guias'].url }}">{{ 'organic.walk_guides' | t }}</a>{% endif %}
       <a href="{{ settings.brand_page.url | default: "/pages/nosotros" }}">Nuestra idea</a>
