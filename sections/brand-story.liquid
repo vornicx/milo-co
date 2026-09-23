@@ -25,6 +25,7 @@
   </article>
 </section>
 
+{% if blogs['guias'].articles_count > 0 %}
 <section class="brand-editorial wrap" aria-labelledby="Our-guides">
   <div><p class="eyebrow">EL CUADERNO DE MILO</p><h2 id="Our-guides">Elegir con<br>las cosas claras.</h2></div>
   <div class="prose">
@@ -34,6 +35,7 @@
     <a class="text-link" href="/blogs/guias">Explorar las guías de paseo {% render 'arrow' %}</a>
   </div>
 </section>
+{% endif %}
 
 <section class="brand-closing wrap">
   <p class="eyebrow">PRIMER PRODUCTO</p>
