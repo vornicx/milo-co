@@ -810,3 +810,253 @@ textarea{resize:vertical}
  body:has(.prelaunch-success){padding-bottom:0}
  body:has(.prelaunch-success) .mobile-waitlist-bar{display:none}
 }
+
+
+/* Built by Designers discipline pass — Milo, not a clone. */
+:root{
+  --ui-fast:.16s;
+  --ui-panel:.24s;
+  --ui-ease:cubic-bezier(.32,.72,0,1);
+  --ui-radius:4px;
+  --hairline:rgba(24,61,49,.13);
+}
+body{letter-spacing:-.005em}
+.button{
+  min-height:48px;
+  padding:12px 18px;
+  border-radius:var(--ui-radius);
+  justify-content:center;
+  gap:12px;
+  transition:opacity var(--ui-fast) ease,background-color var(--ui-fast) ease,border-color var(--ui-fast) ease;
+}
+.button:hover{transform:none;opacity:.88}
+.text-link{font-weight:500;transition:opacity var(--ui-fast) ease}
+.text-link:hover{opacity:.62}
+
+.header{
+  background:rgba(247,243,232,.88);
+  border-bottom:1px solid var(--hairline);
+  box-shadow:none;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.header-inner{min-height:64px}
+.wordmark{font-size:30px}
+.header nav{gap:28px}
+.header nav a{opacity:.56;transition:opacity var(--ui-fast) ease}
+.header nav a:hover,.header nav a:focus-visible,.header nav a[aria-current=page]{opacity:1}
+.header-waitlist{
+  justify-self:end;
+  display:inline-flex;
+  align-items:center;
+  min-height:36px;
+  padding:0;
+  border-bottom:1px solid currentColor;
+  font-size:11px;
+  font-weight:600;
+  color:var(--ink);
+  transition:opacity var(--ui-fast) ease;
+}
+.header-waitlist:hover{opacity:.58}
+
+/* One image, one message, one action. */
+.campaign-hero{aspect-ratio:2.08/1;max-width:1440px}
+.campaign-hero::after{
+  background:linear-gradient(90deg,rgba(13,35,27,.54),rgba(13,35,27,.18) 43%,transparent 66%);
+}
+.campaign-copy{
+  width:49%;
+  gap:18px;
+  padding:50px clamp(28px,5vw,72px);
+}
+.campaign-copy h1{
+  max-width:5.4ch;
+  font-size:clamp(58px,7.2vw,96px);
+  line-height:.98;
+  letter-spacing:-.052em;
+}
+.campaign-description{
+  max-width:31ch;
+  margin:0 0 5px;
+  color:rgba(255,253,247,.78);
+  font-size:15px;
+  line-height:1.55;
+}
+.campaign-copy .button{
+  min-width:205px;
+  background:var(--cream);
+  border-color:var(--cream);
+  color:var(--forest);
+}
+
+/* Product content reads as an editorial spread, not a card. */
+.home-product{padding:clamp(78px,8vw,112px) 0}
+.home-product-grid{
+  gap:clamp(42px,7vw,92px);
+  padding:clamp(36px,4vw,58px) 0;
+  border-block:1px solid var(--hairline);
+  border-radius:0;
+  background:transparent;
+}
+.home-product-copy{padding:0}
+.home-product-copy h2{
+  margin-bottom:18px;
+  font-size:clamp(40px,4.4vw,58px);
+  line-height:1.02;
+}
+.home-product-copy>p:not(.eyebrow){margin-bottom:24px;line-height:1.7}
+.home-product-specs{margin-bottom:24px;border-color:var(--hairline)}
+.home-product-specs dd{font-size:23px}
+.home-product-status{margin-top:14px}
+.home-product-media{border-radius:0}
+
+/* Three functions as one system, separated by hairlines. */
+.home-functions{padding:clamp(76px,8vw,108px) 0}
+.home-functions-head{
+  grid-template-columns:.42fr 1.58fr;
+  margin-bottom:30px;
+}
+.home-functions-head h2{
+  font-size:clamp(40px,4.2vw,58px);
+  line-height:1.05;
+}
+.home-functions-grid{
+  gap:0;
+  border-block:1px solid var(--hairline);
+}
+.home-function-card{padding:20px}
+.home-function-card:first-child{padding-left:0}
+.home-function-card:last-child{padding-right:0}
+.home-function-card+.home-function-card{border-left:1px solid var(--hairline)}
+.home-function-card figure{border-radius:0}
+.home-function-copy{padding:16px 0 0}
+.home-function-copy h3{font-size:26px}
+.home-function-copy p{font-size:12px;line-height:1.6}
+
+/* Supporting blocks stay quiet; the product and signup keep the visual weight. */
+.walk-essentials-compare>div{border-radius:0}
+.walk-essentials-before{background:transparent;border-block:1px solid var(--hairline)}
+.walk-essentials-before li{border-radius:999px}
+.walk-essentials-after{border-radius:0}
+.guide-card figure,.guide-card img{border-radius:0!important}
+
+/* Prelaunch is the clear conversion finish. */
+.prelaunch-section{padding:clamp(74px,8vw,110px) 0}
+.prelaunch-layout{
+  grid-template-columns:minmax(0,.82fr) minmax(360px,1.18fr);
+  align-items:start;
+  gap:clamp(48px,8vw,120px);
+}
+.prelaunch-layout h2{
+  max-width:9.5ch;
+  margin-bottom:18px;
+  font-size:clamp(42px,4.7vw,64px);
+  line-height:1.02;
+}
+.prelaunch-layout>div>p{font-size:14px;line-height:1.7}
+.prelaunch-form{gap:12px}
+.prelaunch-input-row input,
+.prelaunch-input-row .button,
+.prelaunch-success,
+.prelaunch-error,
+.prelaunch-inline{
+  border-radius:var(--ui-radius);
+}
+.prelaunch-input-row input{border-color:rgba(255,255,255,.24)}
+.prelaunch-options{
+  padding-top:4px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.prelaunch-options summary{font-weight:500}
+.prelaunch-section .prelaunch-input-row .button:hover{opacity:.86}
+.prelaunch-inline{border-radius:0}
+
+.mobile-waitlist-bar{
+  box-shadow:none;
+  border-top:1px solid var(--hairline);
+  background:rgba(247,243,232,.94);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.mobile-waitlist-bar strong{border-radius:var(--ui-radius)}
+
+@media(max-width:760px){
+  .header-inner{padding:10px 0 2px}
+  .wordmark{font-size:28px}
+  .header-waitlist{
+    grid-column:2;
+    grid-row:1;
+    min-height:40px;
+    font-size:11px;
+  }
+  .header nav{margin-top:5px;border-top:1px solid var(--hairline)}
+  .header nav a{min-height:40px;font-size:11px}
+
+  .campaign-hero{
+    height:min(680px,calc(100svh - 102px));
+    min-height:540px;
+    max-height:none;
+  }
+  .campaign-hero::after{
+    background:linear-gradient(180deg,rgba(13,35,27,.60),rgba(13,35,27,.18) 39%,transparent 65%);
+  }
+  .campaign-copy{
+    width:100%;
+    gap:14px;
+    padding:28px 20px;
+  }
+  .campaign-copy h1{
+    max-width:8ch;
+    font-size:clamp(46px,12vw,60px);
+  }
+  .campaign-description{max-width:29ch;font-size:14px}
+  .campaign-copy .button{min-width:0;min-height:46px}
+
+  .home-product{padding:62px 0}
+  .home-product-grid{
+    grid-template-columns:1fr;
+    gap:28px;
+    padding:34px 0;
+  }
+  .home-product-media{
+    grid-column:1;
+    grid-row:1;
+    border-radius:0;
+  }
+  .home-product-copy{
+    grid-column:1;
+    grid-row:2;
+  }
+  .home-product-copy h2{font-size:40px}
+  .home-product-copy .button{align-self:flex-start;width:auto}
+
+  .home-functions{padding:62px 0}
+  .home-functions-head{grid-template-columns:1fr;gap:6px;margin-bottom:20px}
+  .home-functions-head h2{font-size:40px}
+  .home-functions-grid{display:block}
+  .home-function-card,
+  .home-function-card:first-child,
+  .home-function-card:last-child{padding:24px 0}
+  .home-function-card+.home-function-card{
+    border-left:0;
+    border-top:1px solid var(--hairline);
+  }
+  .home-function-card figure img{aspect-ratio:4/3}
+
+  .walk-essentials-compare{gap:0}
+  .walk-essentials-before,.walk-essentials-after{border-radius:0}
+
+  .prelaunch-layout{grid-template-columns:1fr;gap:30px}
+  .prelaunch-layout h2{font-size:42px}
+  .prelaunch-input-row .button{width:100%}
+  .mobile-waitlist-bar{min-height:64px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
