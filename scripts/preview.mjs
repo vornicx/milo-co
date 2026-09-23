@@ -23,7 +23,8 @@ engine.registerFilter('money', x => new Intl.NumberFormat('es-ES',{style:'curren
 const clean = s => s.replace(/{% schema %}[\s\S]*?{% endschema %}/g,'');
 const base = {request:{locale:{iso_code:'es'},page_type:'index'},routes:{root_url:'index.html',cart_url:'cart.html'},cart:{item_count:0},shop:{name:'Milo & Co',url:'https://miloandcompany.es',policies:[],privacy_policy:{body:'Configured on Shopify',url:'/policies/privacy-policy'}},settings:{sales_enabled:false,products_page:{url:'/pages/productos'},product_page:{url:'/pages/dispensador'},walk_page:{url:'/pages/paseos'},brand_page:{url:'/pages/nosotros'}},page_title:'Milo & Co',current_page:1,canonical_url:'https://miloandcompany.es/',content_for_header:''};
 async function section(type,id,settings={}) {
- const raw=clean(await readFile(`sections/${type}.liquid`,'utf8'));
+ let raw=clean(await readFile(`sections/${type}.liquid`,'utf8'));
+ raw=raw.replace(/{% form[^%]*%}/g, '<form>').replace(/{% endform %}/g,'</form>');
  const schema=JSON.parse((await readFile(`sections/${type}.liquid`,'utf8')).match(/{% schema %}([\s\S]*?){% endschema %}/)[1]);
  const defaults=Object.fromEntries(schema.settings.map(x=>[x.id,x.default??'']));
  return engine.parseAndRender(raw,{...base,section:{id,settings:{...defaults,...settings}}});
@@ -32,8 +33,8 @@ await mkdir('.preview',{recursive:true});
 await cp('assets','.preview/assets',{recursive:true});
 const previewPageTitles={productos:'Dispensador',dispensador:'Dispensador 3 en 1',paseos:'Paseos y escapadas',nosotros:'Nuestra idea',contact:'Contacto',page:'Información'};
 for(const name of ['index','cart','404','page.productos','page.dispensador','page.paseos','page.nosotros','page.contact','page']) {
- const pageHandle=name.startsWith('page.') ? name.slice(5) : '';
- base.request.page_type=pageHandle ? 'page' : name;
+ const pageHandle=name==='page' ? 'informacion' : name.startsWith('page.') ? name.slice(5) : '';
+ base.request.page_type=(pageHandle || name==='page') ? 'page' : name;
  base.page={handle:pageHandle,title:previewPageTitles[pageHandle] || pageHandle,content:''};
  base.page_title=previewPageTitles[pageHandle] || 'Milo & Co';
  base.canonical_url=`https://miloandcompany.es${pageHandle ? '/pages/'+pageHandle : name==='index' ? '/' : '/'+name}`;
