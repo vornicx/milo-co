@@ -26,6 +26,10 @@
       "settings": {
         "show_stories": false
       }
+    },
+    "waitlist_return": {
+      "type": "product-waitlist-return",
+      "settings": {}
     }
   },
   "order": [
@@ -34,6 +38,7 @@
     "4",
     "use",
     "5",
+    "waitlist_return",
     "stories"
   ]
 }
