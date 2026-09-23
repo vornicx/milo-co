@@ -745,7 +745,7 @@ textarea{resize:vertical}
 .product-validation{display:grid;grid-template-columns:1fr 1fr;gap:24px 64px;padding-top:70px;padding-bottom:70px;border-top:1px solid var(--line)}
 .product-validation h2{font-size:clamp(36px,4vw,56px);line-height:1.08;margin:0}
 .product-validation>p{max-width:43ch;align-self:end;margin:0}
-.validation-steps{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 0;padding:0;list-style:none}
+.validation-steps{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 0;padding:0;list-style:none}
 .validation-steps li{padding:15px 0;border-top:1px solid var(--forest);color:var(--forest)}
 .validation-steps li::before{content:'0' counter(list-item) ' / ';color:var(--orange)}
 .prelaunch-section{padding:clamp(68px,8vw,110px) 0;background:var(--forest);color:var(--cream)}
@@ -794,7 +794,7 @@ textarea{resize:vertical}
  .walk-essentials-compare>div{min-height:0;padding:23px}
  .walk-essentials-before ul{margin-top:14px}.walk-essentials-after p{font-size:32px;margin-top:12px}
  .product-validation{grid-template-columns:1fr;gap:16px;padding-block:48px}
- .validation-steps{grid-template-columns:repeat(2,1fr);gap:6px 16px;margin-top:4px}
+ .validation-steps{grid-template-columns:1fr;gap:0;margin-top:4px}
  .prelaunch-layout{grid-template-columns:1fr;gap:24px}.prelaunch-layout h2{font-size:44px;margin-bottom:14px}
  .prelaunch-section{padding-block:64px}.prelaunch-input-row{flex-direction:column}
  .prelaunch-input-row .button{min-height:52px}.prelaunch-colors{gap:4px 14px}
