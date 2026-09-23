@@ -3,14 +3,9 @@
     "main": {
       "type": "product-index",
       "settings": {}
-    },
-    "guides": {
-      "type": "guide-shelf",
-      "settings": {}
     }
   },
   "order": [
-    "main",
-    "guides"
+    "main"
   ]
 }
