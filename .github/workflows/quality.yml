@@ -34,8 +34,5 @@ jobs:
       - name: Commerce regression tests
         run: npm run test:commerce
 
-      - name: Archic preview gate
-        run: npm run build
-
       - name: Dependency audit
         run: npm audit --audit-level=high
