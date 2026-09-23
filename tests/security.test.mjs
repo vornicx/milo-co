@@ -66,3 +66,10 @@ test('Public editorial and prelaunch routes do not leak imported staff or suppli
   assert.ok(genericProduct.includes("assign public_product_title = 'Dispensador 3 en 1'"));
   assert.ok(!/Objeto 01|NUESTRO PRIMER OBJETO|UN SOLO OBJETO/.test(waitlist));
 });
+
+
+test('Article structured data uses brand authorship rather than Shopify staff names', async () => {
+  const structured = await readFile('snippets/structured-data.liquid', 'utf8');
+  assert.ok(!structured.includes('article.author | json'));
+  assert.ok(structured.includes('"author":{"@type":"Organization"'));
+});
