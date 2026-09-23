@@ -1,7 +1,18 @@
 <section class="product-validation wrap" aria-labelledby="Validation-{{ section.id }}">
-  <div><p class="eyebrow">ANTES DE ABRIR LA VENTA</p><h2 id="Validation-{{ section.id }}">Lo estamos comprobando.</h2></div>
-  {% unless settings.sales_enabled %}<p>Estamos comprobando la muestra, el uso y las condiciones de envío antes de abrir la compra. Te contaremos cuándo esté listo.</p>{% else %}<p>Consulta las características y las condiciones actuales en la ficha antes de elegir tu color.</p>{% endunless %}
-  <ol class="validation-steps" aria-label="Aspectos que estamos comprobando"><li>Muestra</li><li>Uso y calidad</li><li>Envío</li></ol>
+  <div>
+    <p class="eyebrow">ANTES DE ABRIR LA VENTA</p>
+    <h2 id="Validation-{{ section.id }}">Primero, que esté a la altura.</h2>
+  </div>
+  {% unless settings.sales_enabled %}
+    <p>Estamos revisando la muestra, cómo funciona en un paseo real y las condiciones de envío. Abriremos la venta cuando el conjunto esté listo.</p>
+  {% else %}
+    <p>Consulta las características y las condiciones actuales en la ficha antes de elegir tu color.</p>
+  {% endunless %}
+  <ol class="validation-steps" aria-label="Aspectos que estamos revisando">
+    <li>Muestra</li>
+    <li>Uso real</li>
+    <li>Envío</li>
+  </ol>
 </section>
 {% schema %}
 {"name":"Preparación del producto","settings":[],"presets":[{"name":"Preparación del producto"}]}
