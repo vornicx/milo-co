@@ -50,11 +50,10 @@ test('All pre-launch templates keep checkout and cart controls absent', async ()
   assert.match(preview, /name="contact\[email\]"/);
 });
 
-test('Home hero reaches the dispenser signup in one click', async () => {
+test('Home hero reaches the waitlist directly in one click', async () => {
   const home = await read('dist/index.html');
-  const dispenser = await read('dist/pages/dispensador.html');
-  assert.match(home, /href="\/pages\/dispensador" data-milo-event="product_click" data-milo-source="home_hero"/);
-  assert.match(dispenser, /class="prelaunch-inline"[\s\S]*?name="contact\[email\]"/);
+  assert.match(home, /href="#espera" data-milo-event="waitlist_click" data-milo-source="home_hero"/);
+  assert.match(home, /id="espera"[\s\S]*?name="contact\[email\]"/);
 });
 
 test('Theme WebP assets use their real URL rather than unsupported resized placeholders', async () => {
