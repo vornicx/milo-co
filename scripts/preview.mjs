@@ -37,7 +37,7 @@ async function section(type,id,settings={}) {
 }
 await mkdir('.preview',{recursive:true});
 await cp('assets','.preview/assets',{recursive:true});
-const previewPageTitles={productos:'Dispensador',dispensador:'Dispensador 3 en 1',paseos:'Paseos y escapadas',nosotros:'Nuestra idea',contact:'Contacto',page:'Información'};
+const previewPageTitles={productos:'Dispensador',dispensador:'Dispensador 3 en 1',paseos:'Paseos y escapadas',nosotros:'Nuestra idea',contact:'Contacto',informacion:'Información'};
 for(const name of ['index','cart','404','page.productos','page.dispensador','page.paseos','page.nosotros','page.contact','page']) {
  const pageHandle=name==='page' ? 'informacion' : name.startsWith('page.') ? name.slice(5) : '';
  base.request.page_type=(pageHandle || name==='page') ? 'page' : name;
