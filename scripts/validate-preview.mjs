@@ -8,7 +8,9 @@ const pages = [
   'pages/productos.html',
   'pages/dispensador.html',
   'pages/paseos.html',
-  'pages/nosotros.html'
+  'pages/nosotros.html',
+  'pages/contact.html',
+  'pages/page.html'
 ];
 
 const fail = (message) => {
@@ -38,6 +40,9 @@ for (const file of pages) {
     if (!html.includes('name="contact[email]"') || !html.includes('name="contact[tags]"')) fail(`${file}: pre-launch form or preference missing`);
     if (!html.includes('type="checkbox" required') || !html.includes('/policies/privacy-policy')) fail(`${file}: privacy consent or policy link missing`);
   }
+
+  if (!/<meta\s[^>]*name="robots"\s+content="noindex,nofollow"/i.test(html)) fail(`${file}: static preview must stay noindex`);
+  if (/<script type="application\/ld\+json">/i.test(html)) fail(`${file}: static preview should not simulate live structured data`);
 
   for (const match of html.matchAll(/<img\b[^>]*>/gi)) {
     if (!/\salt="[^"]*"/i.test(match[0])) fail(`${file}: image without alt attribute`);
