@@ -1,10 +1,12 @@
+{% assign public_product_title = product.title %}
+{% unless settings.sales_enabled %}{% assign public_product_title = 'Dispensador 3 en 1' %}{% endunless %}
 <section class="native-product wrap" data-product-page>
   <div class="native-product-media">
     {% assign primary_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-    {% if primary_image %}{{ primary_image | image_url: width: 1800 | image_tag: widths: '480, 800, 1200, 1800', sizes: '(max-width: 760px) 90vw, 58vw', loading: 'eager', fetchpriority: 'high', alt: product.title, data-variant-image: '' }}{% endif %}
+    {% if primary_image %}{{ primary_image | image_url: width: 1800 | image_tag: widths: '480, 800, 1200, 1800', sizes: '(max-width: 760px) 90vw, 58vw', loading: 'eager', fetchpriority: 'high', alt: public_product_title, data-variant-image: '' }}{% endif %}
     {% for image in product.images %}
       {% unless image.id == primary_image.id %}
-      {{ image | image_url: width: 1800 | image_tag: widths: '480, 800, 1200, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: product.title }}
+      {{ image | image_url: width: 1800 | image_tag: widths: '480, 800, 1200, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: public_product_title }}
       {% endunless %}
     {% endfor %}
   </div>
