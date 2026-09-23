@@ -1,19 +1,27 @@
 <section class="native-product wrap" data-product-page>
   <div class="native-product-media">
     {% assign primary_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-    {% if primary_image %}{{ primary_image | image_url: width: 1800 | image_tag: widths: '480, 800, 1200, 1800', sizes: '(max-width: 760px) 90vw, 58vw', loading: 'eager', data-variant-image: '' }}{% endif %}
+    {% if primary_image %}{{ primary_image | image_url: width: 1800 | image_tag: widths: '480, 800, 1200, 1800', sizes: '(max-width: 760px) 90vw, 58vw', loading: 'eager', fetchpriority: 'high', alt: product.title, data-variant-image: '' }}{% endif %}
     {% for image in product.images %}
       {% unless image.id == primary_image.id %}
-      {{ image | image_url: width: 1800 | image_tag: widths: '480, 800, 1200, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy' }}
+      {{ image | image_url: width: 1800 | image_tag: widths: '480, 800, 1200, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 58vw', loading: 'lazy', alt: product.title }}
       {% endunless %}
     {% endfor %}
   </div>
   <div class="native-product-panel">
-    <p class="eyebrow">MILO & CO</p>
-    <h1>{{ product.title | escape }}</h1>
-    <div class="prose">{{ product.description }}</div>
-    {% if settings.sales_enabled %}{% render 'product-form', item: product %}{% else %}
-      <div class="prelaunch-inline"><p>Este producto está en preparación. Déjanos tu correo y te avisaremos cuando esté listo.</p>{% render 'prelaunch-form', id: section.id, source: 'product_general_top', privacy_policy: shop.privacy_policy %}</div>
+    <p class="eyebrow">{% if settings.sales_enabled %}MILO &amp; CO{% else %}DISPENSADOR DE PASEO{% endif %}</p>
+    <h1>{% if settings.sales_enabled %}{{ product.title | escape }}{% else %}Dispensador 3 en 1{% endif %}</h1>
+    {% if settings.sales_enabled %}
+      <div class="prose">{{ product.description }}</div>
+      {% render 'product-form', item: product %}
+    {% else %}
+      <p class="native-product-lead">Agua, comida o snacks y espacio para bolsas reunidos en un solo dispensador para el paseo.</p>
+      <dl class="native-product-specs">
+        <div><dt>Agua</dt><dd>400 ml</dd></div>
+        <div><dt>Comida</dt><dd>150 ml</dd></div>
+        <div><dt>Altura</dt><dd>29 cm</dd></div>
+      </dl>
+      <div class="prelaunch-inline" id="product-purchase"><p class="eyebrow">LISTA DE ESPERA</p><p>La compra todavía no está abierta. Déjanos tu correo y te avisaremos cuando esté listo.</p>{% render 'prelaunch-form', id: section.id, source: 'product_general_top', privacy_policy: shop.privacy_policy %}</div>
     {% endif %}
   </div>
 </section>
