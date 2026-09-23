@@ -7,12 +7,10 @@
     "section1": {
       "type": "faq",
       "settings": {}
-    },
-    "waitlist": {"type":"prelaunch-waitlist","settings":{"source":"product_general_final"}}
+    }
   },
   "order": [
     "section0",
-    "section1",
-    "waitlist"
+    "section1"
   ]
 }
