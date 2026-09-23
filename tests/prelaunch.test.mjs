@@ -72,3 +72,19 @@ test('Theme WebP assets use their real URL rather than unsupported resized place
     assert.ok(thumbnail?.includes(`src="{{ '${thumb}' | asset_url }}"`));
   }
 });
+
+
+test('Pre-launch fallbacks do not expose supplier copy, catalogue prices, or duplicate conversion forms', async () => {
+  const genericProduct = await read('sections/main-product.liquid');
+  const collection = await read('sections/main-collection.liquid');
+  const article = await read('sections/main-article.liquid');
+  assert.ok(genericProduct.indexOf('{% if settings.sales_enabled %}') < genericProduct.indexOf('{{ product.description }}'));
+  assert.match(genericProduct, /Dispensador 3 en 1/);
+  assert.ok(collection.indexOf('{% unless settings.sales_enabled %}') < collection.indexOf('| money'));
+  assert.match(collection, /La compra todavía no está abierta/);
+  assert.match(article, /Milo &amp; Co/);
+  const dispenserTemplate = JSON.parse(await read('templates/page.dispensador.json'));
+  const types = dispenserTemplate.order.filter(id => !dispenserTemplate.sections[id].disabled).map(id => dispenserTemplate.sections[id].type);
+  assert.equal(types.filter(type => type === 'product-waitlist-return').length, 1);
+  assert.equal(types.filter(type => type === 'prelaunch-waitlist').length, 0);
+});
