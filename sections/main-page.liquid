@@ -1,9 +1,10 @@
-<article class="page wrap">
+<article class="page page--content wrap">
+  <nav class="breadcrumbs" aria-label="{{ 'organic.breadcrumbs' | t }}"><a href="{{ routes.root_url }}">{{ 'organic.home' | t }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ page.title | escape }}</span></nav>
   <header class="page-heading">
-    <p class="eyebrow">MILO & CO</p>
+    <p class="eyebrow">MILO &amp; CO</p>
     <h1>{{ page.title | escape }}</h1>
   </header>
-  <div class="prose prose--page">{{ page.content }}</div>
+  {% if page.content != blank %}<div class="prose prose--page">{{ page.content }}</div>{% else %}<p class="page-empty">Esta página todavía no tiene contenido publicado.</p>{% endif %}
 </article>
 {% schema %}
 {
