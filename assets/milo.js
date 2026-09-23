@@ -239,7 +239,7 @@
 
 (() => {
   const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
-  const path = currentPath === '/pages/dispensador' ? '/pages/productos' : currentPath;
+  const path = currentPath.startsWith('/products/') ? '/pages/dispensador' : currentPath;
   document.querySelectorAll('.header nav a').forEach(link => {
     if (!link.hash && (new URL(link.href).pathname.replace(/\/$/, '') || '/') === path) link.setAttribute('aria-current', 'page');
   });
