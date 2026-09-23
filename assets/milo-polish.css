@@ -281,3 +281,6 @@ p,li{ text-wrap:pretty }
     overflow-x:auto;
   }
 }
+
+/* Controlled headline wrapping for the final conversion block. */
+.prelaunch-layout h2{text-wrap:wrap}
