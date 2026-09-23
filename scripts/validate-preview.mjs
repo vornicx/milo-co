@@ -60,5 +60,9 @@ for (const name of ['milo-food-original.jpg','milo-waste-original.jpg','milo-par
     if (size > 800_000) fail(`${name}: image exceeds 800 KiB budget`);
   }
 }
+for (const name of ['paseo-colores-thumb.webp','paseo-pausa-thumb.webp','dispensador-detalle-thumb.webp']) {
+  if (!assets.includes(name)) fail(`missing gallery thumbnail: ${name}`);
+  else if ((await stat(join('dist/assets',name))).size > 30_000) fail(`${name}: thumbnail exceeds 30 KiB budget`);
+}
 
 if (!process.exitCode) console.log('ARCHIC GATE: preview structure, accessibility and performance budgets passed.');

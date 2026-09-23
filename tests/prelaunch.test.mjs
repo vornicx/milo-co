@@ -48,3 +48,15 @@ test('All pre-launch templates keep checkout and cart controls absent', async ()
   assert.doesNotMatch(preview, /name="checkout"|data-add|\/cart\/add/);
   assert.match(preview, /name="contact\[email\]"/);
 });
+
+test('Theme WebP assets use their real URL rather than unsupported resized placeholders', async () => {
+  const image = await read('snippets/theme-image.liquid');
+  assert.match(image, /file_extension == 'webp'.*file_extension == 'avif'/);
+  assert.match(image, /<img src="{{ filename \| asset_url }}"/);
+  const gallery = await read('snippets/dispenser-gallery.liquid');
+  for (const filename of ['paseo-colores.webp','paseo-pausa.webp','dispensador-detalle.webp']) {
+    const thumbnail = gallery.split('\n').find(line => line.includes(`data-photo="{{ '${filename}'`));
+    const thumb = filename.replace('.webp','-thumb.webp');
+    assert.ok(thumbnail?.includes(`src="{{ '${thumb}' | asset_url }}"`));
+  }
+});
