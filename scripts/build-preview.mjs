@@ -13,7 +13,7 @@ const previewTitles = {
   'page.paseos': 'Paseos y escapadas · Milo & Co · Preview',
   'page.nosotros': 'Nuestra idea · Milo & Co · Preview',
   'page.contact': 'Contacto · Milo & Co · Preview',
-  page: 'Página · Milo & Co · Preview'
+  page: 'Información · Milo & Co · Preview'
 };
 for (const name of ['index', 'cart', '404', 'page.productos', 'page.dispensador', 'page.paseos', 'page.nosotros', 'page.contact', 'page']) {
   let html = await readFile(`.preview/${name}.html`, 'utf8');
@@ -27,7 +27,7 @@ for (const name of ['index', 'cart', '404', 'page.productos', 'page.dispensador'
   html = html.replaceAll('href="assets/', 'href="/assets/').replaceAll('src="assets/', 'src="/assets/');
   html = html.replace('<link rel="canonical" href="">', '');
   if (/{[{%]/.test(html)) throw new Error(`Unrendered Liquid in ${name}`);
-  const output = name.startsWith('page.') ? `pages/${name.slice(5)}` : name;
+  const output = name === 'page' ? 'pages/informacion' : name.startsWith('page.') ? `pages/${name.slice(5)}` : name;
   if(name.startsWith('page.')) await mkdir('dist/pages',{recursive:true});
   await writeFile(`dist/${output}.html`, html);
 }
