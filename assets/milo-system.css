@@ -1232,3 +1232,106 @@ body{letter-spacing:-.005em}
   .shopify-policy__body{font-size:14px;line-height:1.75}
   .shopify-policy__body table{display:block;overflow-x:auto}
 }
+
+
+/* Mobile detail pass — calm hierarchy, precise states, no dead space. */
+.prelaunch-success{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr);
+  gap:14px;
+  align-items:start;
+  margin:0;
+  padding:22px 0;
+  border-block:1px solid rgba(255,255,255,.18);
+  border-inline:0;
+  border-radius:0;
+  color:inherit;
+}
+.prelaunch-success-mark{
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:50%;
+  color:var(--cream);
+  font:600 13px/1 var(--sans);
+}
+.prelaunch-success strong{
+  display:block;
+  margin:1px 0 6px;
+  color:var(--cream);
+  font:500 15px/1.25 var(--sans);
+  letter-spacing:-.01em;
+}
+.prelaunch-success p{
+  max-width:34ch!important;
+  margin:0!important;
+  color:#d7e0d6!important;
+  font-size:13px;
+  line-height:1.55;
+}
+.prelaunch-section:has(.prelaunch-success) .prelaunch-layout{align-items:start}
+
+@media(max-width:760px){
+  .prelaunch-section{padding-block:58px}
+  .prelaunch-layout{gap:34px}
+  .prelaunch-layout h2{
+    max-width:none;
+    margin-bottom:18px;
+    font-size:clamp(39px,10.8vw,44px);
+    line-height:.98;
+    letter-spacing:-.045em;
+    text-wrap:balance;
+  }
+  .prelaunch-layout>div>p{
+    max-width:34ch;
+    font-size:15px;
+    line-height:1.65;
+  }
+  .prelaunch-section:has(.prelaunch-success){
+    padding-top:54px;
+    padding-bottom:44px;
+  }
+  .prelaunch-section:has(.prelaunch-success) .prelaunch-layout{gap:30px}
+  .prelaunch-success{
+    grid-template-columns:26px minmax(0,1fr);
+    gap:12px;
+    padding:20px 0;
+  }
+  .prelaunch-success-mark{width:26px;height:26px}
+  .prelaunch-success strong{font-size:14px}
+  .prelaunch-success p{font-size:13px;line-height:1.5}
+
+  .footer{
+    padding:42px 0 max(28px,env(safe-area-inset-bottom));
+  }
+  .footer-top{
+    gap:34px;
+    padding-bottom:32px;
+  }
+  .footer .wordmark{font-size:31px}
+  .footer-top>div>p{margin-top:6px;font-size:13px}
+  .footer nav{
+    width:100%;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0 24px;
+    font-size:12px;
+  }
+  .footer nav a{
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    border-top:1px solid rgba(255,255,255,.10);
+  }
+  .footer-bottom{
+    width:100%;
+    gap:14px;
+    padding-top:18px;
+  }
+  .footer-bottom>div{
+    width:100%;
+    gap:4px 20px;
+  }
+  .footer-bottom a{min-height:40px}
+}
