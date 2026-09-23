@@ -5,11 +5,18 @@
   @param {string} [source] - Non-personal placement label for analytics
   @param {policy} privacy_policy - Shopify privacy policy
 {% enddoc %}
+{% comment %}Public product name: Dispensador 3 en 1 · sync 2026-09-23{% endcomment %}
 {% assign form_id = 'Prelaunch-' | append: id %}
 {% if privacy_policy.body != blank %}
   {% form 'customer', id: form_id, class: 'prelaunch-form' %}
     {% if form.posted_successfully? %}
-      <p class="prelaunch-success" role="status" data-milo-success data-milo-source="{{ source | escape }}">Ya estás en la lista. Te avisaremos por correo cuando el dispensador 3 en 1 esté listo.</p>
+      <div class="prelaunch-success" role="status" data-milo-success data-milo-source="{{ source | escape }}">
+        <span class="prelaunch-success-mark" aria-hidden="true">✓</span>
+        <div>
+          <strong>Ya estás en la lista.</strong>
+          <p>Te avisaremos por correo cuando el dispensador 3 en 1 esté listo.</p>
+        </div>
+      </div>
     {% else %}
       {% if form.errors %}<div class="prelaunch-error" role="alert">No hemos podido registrar tu correo. Revisa la dirección e inténtalo de nuevo. {{ form.errors | default_errors }}</div>{% endif %}
       <label for="Email-{{ id }}">Tu correo electrónico</label>
