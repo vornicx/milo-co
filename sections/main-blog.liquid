@@ -2,8 +2,15 @@
   <nav class="breadcrumbs" aria-label="{{ 'organic.breadcrumbs' | t }}"><a href="{{ routes.root_url }}">{{ 'organic.home' | t }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ blog.title | escape }}</span></nav>
   <header class="journal-heading"><p class="eyebrow">{{ 'organic.journal' | t }}</p><h1>{{ blog.title | escape }}</h1><p>{{ 'organic.guides_intro' | t }}</p></header>
   {% paginate blog.articles by 9 %}
-    <div class="guide-grid">{% for guide in blog.articles %}{% render 'guide-card', guide: guide %}{% else %}<p>{{ 'organic.empty_guides' | t }}</p>{% endfor %}</div>
-    {% if paginate.pages > 1 %}<nav class="journal-pagination" aria-label="{{ 'organic.pagination' | t }}">{{ paginate | default_pagination }}</nav>{% endif %}
+    {% if blog.articles_count > 0 %}
+      <div class="guide-grid">{% for guide in blog.articles %}{% render 'guide-card', guide: guide %}{% endfor %}</div>
+      {% if paginate.pages > 1 %}<nav class="journal-pagination" aria-label="{{ 'organic.pagination' | t }}">{{ paginate | default_pagination }}</nav>{% endif %}
+    {% else %}
+      <div class="route-state route-state--empty">
+        <div><p class="eyebrow">PRÓXIMAMENTE</p><h2>Estamos preparando las primeras guías.</h2><p>Mientras tanto, puedes conocer el dispensador o volver a ideas para el paseo.</p></div>
+        <div class="route-actions"><a class="button" href="{{ settings.product_page.url | default: '/pages/dispensador' }}">Ver el dispensador {% render 'arrow' %}</a><a class="text-link" href="{{ settings.walk_page.url | default: '/pages/paseos' }}">Paseos y escapadas {% render 'arrow' %}</a></div>
+      </div>
+    {% endif %}
   {% endpaginate %}
 </section>
 {% schema %}
