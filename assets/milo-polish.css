@@ -148,7 +148,7 @@ p,li{ text-wrap:pretty }
   .contact-intro{font-size:15px;line-height:1.65}
 
   .footer{
-    padding:42px 0 max(32px,env(safe-area-inset-bottom));
+    padding:42px 0 max(96px,calc(64px + env(safe-area-inset-bottom)));
   }
   .footer-top{
     gap:34px;
