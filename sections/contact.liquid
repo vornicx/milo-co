@@ -2,7 +2,7 @@
   <div class="page-heading">
     <p class="eyebrow">CONTACTO</p>
     <h1>{{ page.title | default: 'Hablemos.' | escape }}</h1>
-    <div class="prose">{{ page.content }}</div>
+    {% if page.content != blank %}<div class="prose">{{ page.content }}</div>{% else %}<p class="contact-intro">¿Tienes una duda sobre el dispensador, la lista de espera o Milo &amp; Co? Escríbenos desde aquí.</p>{% endif %}
   </div>
   {% form 'contact', class: 'milo-form' %}
     {% if form.posted_successfully? %}<p class="form-success" role="status">Gracias por escribirnos. Hemos recibido tu mensaje.</p>{% endif %}
