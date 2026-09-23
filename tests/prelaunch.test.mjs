@@ -114,13 +114,14 @@ test('Precision assets stay wired and customer-facing prelaunch copy stays expli
 test('Product detail keeps one concise prelaunch message and premium validation copy', async () => {
   const detail = await read('sections/dispenser-detail.liquid');
   const validation = await read('sections/product-validation.liquid');
-  const polish = await read('assets/milo-polish.css');
+  const premium = await read('assets/milo-product-premium.css');
 
   assert.doesNotMatch(detail, /Estamos comprobando la muestra y las condiciones de envío/);
   assert.match(detail, /En preparación · venta todavía cerrada/);
+  assert.match(detail, /milo-product-premium\.css/);
   assert.match(validation, /Primero, que esté a la altura\./);
   assert.match(validation, /Uso real/);
-  assert.match(polish, /Premium product-detail pass/);
-  assert.match(polish, /prelaunch-inline \.prelaunch-success strong/);
-  assert.match(polish, /product-icon-specs strong/);
+  assert.match(premium, /Premium product-detail pass/);
+  assert.match(premium, /prelaunch-inline \.prelaunch-success strong/);
+  assert.match(premium, /product-icon-specs strong/);
 });
