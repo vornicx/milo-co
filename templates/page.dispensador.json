@@ -26,12 +26,6 @@
       "settings": {
         "show_stories": false
       }
-    },
-    "waitlist": {
-      "type": "prelaunch-waitlist",
-      "settings": {
-        "source": "landing_final"
-      }
     }
   },
   "order": [
@@ -40,7 +34,6 @@
     "4",
     "use",
     "5",
-    "stories",
-    "waitlist"
+    "stories"
   ]
 }
