@@ -1,17 +1,33 @@
 <section class="journal wrap">
   <nav class="breadcrumbs" aria-label="{{ 'organic.breadcrumbs' | t }}"><a href="{{ routes.root_url }}">{{ 'organic.home' | t }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ collection.title | escape }}</span></nav>
-  <header class="journal-heading"><h1>{{ collection.title | escape }}</h1>{% if collection.description != blank %}<div class="prose">{{ collection.description }}</div>{% else %}<p>{{ 'organic.catalog_intro' | t }}</p>{% endif %}</header>
-  {% paginate collection.products by 12 %}
-  <div class="guide-grid">
-    {% for item in collection.products %}
-      <article class="guide-card"><a href="{{ item.url }}">
-        {% if item.featured_image %}{{ item.featured_image | image_url: width: 900 | image_tag: widths: '360, 600, 900', sizes: '(max-width: 760px) 90vw, 30vw', loading: 'lazy' }}{% endif %}
-        <h2>{{ item.title | escape }}</h2><p>{{ item.price | money }}</p><span class="text-link">{{ 'organic.view_product' | t }} {% render 'arrow' %}</span>
-      </a></article>
-    {% else %}<p>{{ 'organic.empty_products' | t }}</p>{% endfor %}
-  </div>
-  {% if paginate.pages > 1 %}<nav class="journal-pagination" aria-label="{{ 'organic.pagination' | t }}">{{ paginate | default_pagination }}</nav>{% endif %}
-  {% endpaginate %}
+  {% unless settings.sales_enabled %}
+    <header class="journal-heading">
+      <p class="eyebrow">MILO &amp; CO</p>
+      <h1>Estamos empezando por uno.</h1>
+      <p>Ahora mismo estamos preparando el dispensador 3 en 1 para el paseo. La compra todavía no está abierta.</p>
+    </header>
+    <div class="route-state">
+      <div>
+        <p class="eyebrow">DISPENSADOR 3 EN 1</p>
+        <h2>Agua, comida y bolsas.<br>Una sola pieza.</h2>
+        <p>400 ml para agua, 150 ml para comida o snacks y un compartimento para bolsas.</p>
+      </div>
+      <a class="button" href="{{ settings.product_page.url | default: '/pages/dispensador' }}">Ver el dispensador {% render 'arrow' %}</a>
+    </div>
+  {% else %}
+    <header class="journal-heading"><h1>{{ collection.title | escape }}</h1>{% if collection.description != blank %}<div class="prose">{{ collection.description }}</div>{% else %}<p>{{ 'organic.catalog_intro' | t }}</p>{% endif %}</header>
+    {% paginate collection.products by 12 %}
+    <div class="guide-grid">
+      {% for item in collection.products %}
+        <article class="guide-card"><a href="{{ item.url }}">
+          {% if item.featured_image %}{{ item.featured_image | image_url: width: 900 | image_tag: widths: '360, 600, 900', sizes: '(max-width: 760px) 90vw, 30vw', loading: 'lazy', alt: item.title }}{% endif %}
+          <h2>{{ item.title | escape }}</h2><p>{{ item.price | money }}</p><span class="text-link">{{ 'organic.view_product' | t }} {% render 'arrow' %}</span>
+        </a></article>
+      {% else %}<div class="route-state route-state--empty"><div><p class="eyebrow">SIN PRODUCTOS</p><h2>La colección está vacía.</h2><p>Vuelve a productos para seguir explorando.</p></div><a class="text-link" href="{{ settings.products_page.url | default: '/pages/productos' }}">Ver productos {% render 'arrow' %}</a></div>{% endfor %}
+    </div>
+    {% if paginate.pages > 1 %}<nav class="journal-pagination" aria-label="{{ 'organic.pagination' | t }}">{{ paginate | default_pagination }}</nav>{% endif %}
+    {% endpaginate %}
+  {% endunless %}
 </section>
 {% schema %}
 {"name":"Colección de productos","settings":[]}
