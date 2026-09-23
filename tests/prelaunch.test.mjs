@@ -88,3 +88,24 @@ test('Pre-launch fallbacks do not expose supplier copy, catalogue prices, or dup
   assert.equal(types.filter(type => type === 'product-waitlist-return').length, 1);
   assert.equal(types.filter(type => type === 'prelaunch-waitlist').length, 0);
 });
+
+
+test('Precision assets stay wired and customer-facing prelaunch copy stays explicit', async () => {
+  const header = await read('sections/header.liquid');
+  const form = await read('snippets/prelaunch-form.liquid');
+  const polish = await read('assets/milo-polish.css');
+  const guard = await read('assets/milo-guard.js');
+
+  assert.match(header, /milo-polish\.css/);
+  assert.match(header, /milo-guard\.js/);
+  assert.match(header, /data-milo-ui="precision-2026-09-23"/);
+
+  assert.doesNotMatch(form, /Objeto 01|Avisadme/);
+  assert.match(form, /Dispensador 3 en 1|dispensador 3 en 1/);
+  assert.match(form, /prelaunch-success-mark/);
+
+  assert.match(polish, /safe-area-inset-bottom/);
+  assert.match(polish, /-apple-system/);
+  assert.match(polish, /touch-action:manipulation/);
+  assert.match(guard, /replaceAll\('Objeto 01', 'dispensador 3 en 1'\)/);
+});
