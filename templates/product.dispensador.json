@@ -22,6 +22,10 @@
       "settings": {
         "show_stories": false
       }
+    },
+    "waitlist_return": {
+      "type": "product-waitlist-return",
+      "settings": {}
     }
   },
   "order": [
@@ -29,6 +33,7 @@
     "validation",
     "4",
     "5",
+    "waitlist_return",
     "stories"
   ]
 }
