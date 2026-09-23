@@ -5,7 +5,7 @@
     {% if settings.sales_enabled and settings.featured_product != blank %}<p>Elige tu color y prepara vuestro próximo paseo.</p><a class="button" href="{{ settings.featured_product.url }}">Ver disponibilidad {% render 'arrow' %}</a>{% else %}
     <p>Estamos preparando el lanzamiento del dispensador 3 en 1. Abriremos la compra cuando precio, stock y envío estén cerrados.</p>
     <div class="launch-color-line" aria-label="Disponible próximamente en azul cielo y rosa"><span class="sky"></span><span class="pink"></span><strong>Azul cielo · Rosa</strong></div>
-    <a class="button" href="{{ settings.product_page.url | default: '/pages/dispensador' }}#espera" data-milo-event="cta_click" data-milo-source="launch_final">Avísame cuando esté listo {% render 'arrow' %}</a>
+    <a class="button" href="{{ settings.product_page.url | default: '/pages/dispensador' }}#espera" data-milo-event="cta_click" data-milo-source="launch_final">Apuntarme a la lista {% render 'arrow' %}</a>
     {% endif %}
   </div>
 </section>
