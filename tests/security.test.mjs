@@ -56,3 +56,13 @@ test('Footer resolves both contact handles and respects the configured page', as
     assert.ok(html.includes(`href="${expected}">Contacto</a>`));
   }
 });
+
+
+test('Public editorial and prelaunch routes do not leak imported staff or supplier-facing labels', async () => {
+  const article = await readFile('sections/main-article.liquid', 'utf8');
+  const genericProduct = await readFile('sections/main-product.liquid', 'utf8');
+  const waitlist = await readFile('snippets/prelaunch-form.liquid', 'utf8');
+  assert.ok(!article.includes('{{ article.author | escape }}'));
+  assert.ok(genericProduct.includes("assign public_product_title = 'Dispensador 3 en 1'"));
+  assert.ok(!/Objeto 01|NUESTRO PRIMER OBJETO|UN SOLO OBJETO/.test(waitlist));
+});
