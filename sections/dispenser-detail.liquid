@@ -15,7 +15,7 @@
       <p class="eyebrow">{{ 'organic.product_eyebrow' | t }}</p>
       <h1>Dispensador 3 en 1.<br><span class="keep-together">Listo para el paseo.</span></h1>
       <p class="product-top-lead">Agua, algo de comida y las bolsas: el dispensador reúne lo que sueles preparar por separado.</p>
-      <nav class="product-section-links" aria-label="Información del dispensador"><a href="#como-funciona">Cómo se prepara</a><a href="#detalles">Detalles</a><a href="#preguntas">Preguntas</a></nav>
+      <nav class="product-section-links" aria-label="Información del dispensador"><a href="#como-funciona">Cómo funciona</a><a href="#detalles">Detalles</a><a href="#preguntas">Preguntas</a></nav>
 
       <div class="product-icon-specs" aria-label="Características principales">
         <div>{% render 'milo-icon', name: 'water' %}<span><strong>400 ml</strong><small>agua</small></span></div>
@@ -30,7 +30,7 @@
           <span>Color</span>
           {% render 'color-preview' %}
         </div>
-        <p class="product-prelaunch-note">Estamos comprobando la muestra y las condiciones de envío antes de abrir la compra. Sin fecha anunciada.</p>
+        <p class="product-prelaunch-status"><span aria-hidden="true"></span>En preparación · venta todavía cerrada</p>
         <div class="prelaunch-inline" id="avisarme-{{ section.id }}">
           <p class="eyebrow">LISTA DE ESPERA</p>
           {% render 'prelaunch-form', id: section.id, source: 'product_top', privacy_policy: shop.privacy_policy %}
