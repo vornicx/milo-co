@@ -21,7 +21,7 @@
           assign seo_key = 'contact'
         when 'dispensador'
           assign seo_key = 'dispenser'
-          if settings.featured_product != blank
+          if settings.sales_enabled and settings.featured_product != blank
             assign seo_canonical = settings.featured_product.url | prepend: shop.url
           endif
       endcase
