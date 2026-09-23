@@ -205,7 +205,7 @@
    const showError = () => { if (error) error.hidden = false; main.style.visibility = 'hidden'; };
    main.addEventListener('error', showError);
    main.addEventListener('load', () => { if (error) error.hidden = true; main.style.visibility = 'visible'; });
-   if(main.complete && !main.naturalWidth) showError();
+   if(main.complete && main.currentSrc && !main.naturalWidth) showError();
    gallery.querySelectorAll('[data-photo]').forEach(button => {
     button.addEventListener('keydown', event => {
       const buttons = [...gallery.querySelectorAll('[data-photo]')];
