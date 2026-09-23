@@ -30,11 +30,12 @@ async function section(type,id,settings={}) {
 }
 await mkdir('.preview',{recursive:true});
 await cp('assets','.preview/assets',{recursive:true});
-for(const name of ['index','cart','404','page.productos','page.dispensador','page.paseos','page.nosotros']) {
+const previewPageTitles={productos:'Dispensador',dispensador:'Dispensador 3 en 1',paseos:'Paseos y escapadas',nosotros:'Nuestra idea',contact:'Contacto',page:'Información'};
+for(const name of ['index','cart','404','page.productos','page.dispensador','page.paseos','page.nosotros','page.contact','page']) {
  const pageHandle=name.startsWith('page.') ? name.slice(5) : '';
  base.request.page_type=pageHandle ? 'page' : name;
- base.page={handle:pageHandle,title:pageHandle};
- base.page_title=pageHandle || 'Milo & Co';
+ base.page={handle:pageHandle,title:previewPageTitles[pageHandle] || pageHandle,content:''};
+ base.page_title=previewPageTitles[pageHandle] || 'Milo & Co';
  base.canonical_url=`https://miloandcompany.es${pageHandle ? '/pages/'+pageHandle : name==='index' ? '/' : '/'+name}`;
  const template=JSON.parse(await readFile(`templates/${name}.json`,'utf8'));
  let content='';for(const id of template.order){const s=template.sections[id];if(s.disabled) continue;content+=await section(s.type,id,s.settings);}
