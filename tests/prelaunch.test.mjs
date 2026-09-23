@@ -12,6 +12,7 @@ test('Waitlist renders consent and exactly one colour preference per signup', as
   const source = (await read('snippets/prelaunch-form.liquid')).replace(/{% doc %}[\s\S]*?{% enddoc %}/g,'');
   const html = await engine.parseAndRender(source, {id:'test',source:'home_final',privacy_policy:{body:'Policy published',url:'/policies/privacy-policy'}});
   assert.match(html, /name="contact\[email\]"[^>]*required/);
+  assert.match(html, /<details class="prelaunch-options">/);
   assert.equal((html.match(/name="contact\[tags\]"/g) || []).length, 3);
   assert.match(html, /preferencia-indiferente" checked/);
   assert.match(html, /type="checkbox" required/);
@@ -47,6 +48,13 @@ test('All pre-launch templates keep checkout and cart controls absent', async ()
   const preview = await read('dist/pages/dispensador.html');
   assert.doesNotMatch(preview, /name="checkout"|data-add|\/cart\/add/);
   assert.match(preview, /name="contact\[email\]"/);
+});
+
+test('Home hero reaches the dispenser signup in one click', async () => {
+  const home = await read('dist/index.html');
+  const dispenser = await read('dist/pages/dispensador.html');
+  assert.match(home, /href="\/pages\/dispensador" data-milo-event="product_click" data-milo-source="home_hero"/);
+  assert.match(dispenser, /class="prelaunch-inline"[\s\S]*?name="contact\[email\]"/);
 });
 
 test('Theme WebP assets use their real URL rather than unsupported resized placeholders', async () => {

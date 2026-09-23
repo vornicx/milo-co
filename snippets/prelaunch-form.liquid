@@ -17,12 +17,15 @@
         <input id="Email-{{ id }}" type="email" name="contact[email]" autocomplete="email" inputmode="email" placeholder="tu@email.com" value="{{ form.email | escape }}" required>
         <button class="button" type="submit">Avisadme {% render 'arrow' %}</button>
       </div>
-      <fieldset class="prelaunch-colors">
-        <legend>¿Qué color te interesa? <span>(opcional)</span></legend>
-        <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-azul-cielo"> Azul cielo</label>
-        <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-rosa"> Rosa</label>
-        <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-indiferente" checked> Me da igual</label>
-      </fieldset>
+      <details class="prelaunch-options">
+        <summary>Color preferido <span>(opcional)</span></summary>
+        <fieldset class="prelaunch-colors">
+          <legend>Color preferido</legend>
+          <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-azul-cielo"> Azul cielo</label>
+          <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-rosa"> Rosa</label>
+          <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-indiferente" checked> Me da igual</label>
+        </fieldset>
+      </details>
       <label class="prelaunch-consent" for="Consent-{{ id }}"><input id="Consent-{{ id }}" type="checkbox" required> Acepto recibir por correo novedades de Milo &amp; Co sobre el Objeto 01. Podré darme de baja en cualquier momento.</label>
       <p class="prelaunch-privacy">Usaremos tu correo y preferencia para esta comunicación. Consulta la <a href="{{ privacy_policy.url }}">política de privacidad</a>.</p>
     {% endif %}
