@@ -3,8 +3,10 @@
 :root{
   --precision-fast:.16s;
   --precision-ease:cubic-bezier(.32,.72,0,1);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
 }
 
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{overflow-x:clip}
 h1,h2,h3{text-wrap:balance}
 p,li{ text-wrap:pretty }
