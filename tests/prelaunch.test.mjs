@@ -34,10 +34,13 @@ test('Waitlist handles successful signup, server errors, and missing privacy pol
 });
 
 test('All pre-launch templates keep checkout and cart controls absent', async () => {
-  for (const name of ['index','page.dispensador','product.dispensador','product']) {
+  const home = JSON.parse(await read('templates/index.json'));
+  const homeTypes = home.order.filter(id => !home.sections[id].disabled).map(id => home.sections[id].type);
+  assert.ok(homeTypes.includes('prelaunch-waitlist'), 'home: missing final conversion');
+  for (const name of ['page.dispensador','product.dispensador','product']) {
     const template = JSON.parse(await read(`templates/${name}.json`));
     const types = template.order.filter(id => !template.sections[id].disabled).map(id => template.sections[id].type);
-    assert.ok(types.includes('prelaunch-waitlist'), `${name}: missing final conversion`);
+    assert.equal(types.filter(type => type === 'prelaunch-waitlist').length, 0, `${name}: duplicate waitlist section`);
   }
   const settings = JSON.parse(await read('config/settings_data.json'));
   assert.equal(settings.current.sales_enabled, false);
@@ -48,12 +51,14 @@ test('All pre-launch templates keep checkout and cart controls absent', async ()
   const preview = await read('dist/pages/dispensador.html');
   assert.doesNotMatch(preview, /name="checkout"|data-add|\/cart\/add/);
   assert.match(preview, /name="contact\[email\]"/);
+  assert.doesNotMatch(preview, /Objeto 01|NUESTRO PRIMER OBJETO|UN SOLO OBJETO/);
 });
 
 test('Home hero reaches the waitlist directly in one click', async () => {
   const home = await read('dist/index.html');
   assert.match(home, /href="#espera" data-milo-event="waitlist_click" data-milo-source="home_hero"/);
   assert.match(home, /id="espera"[\s\S]*?name="contact\[email\]"/);
+  assert.match(home, /Dispensador 3 en 1/);
 });
 
 test('Theme WebP assets use their real URL rather than unsupported resized placeholders', async () => {
