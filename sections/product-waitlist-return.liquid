@@ -1,0 +1,9 @@
+{% unless settings.sales_enabled %}
+<section class="closing-cta wrap" aria-label="Lista de espera">
+  <h2>¿Te avisamos cuando esté listo?</h2>
+  <a class="button" href="#product-purchase" data-milo-event="waitlist_click" data-milo-source="product_bottom">Apuntarme a la lista {% render 'arrow' %}</a>
+</section>
+{% endunless %}
+{% schema %}
+{"name":"Cierre · lista de espera","settings":[],"presets":[{"name":"Cierre · lista de espera"}]}
+{% endschema %}
