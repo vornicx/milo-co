@@ -21,6 +21,8 @@ for (const name of ['index', 'cart', '404', 'page.productos', 'page.dispensador'
   html = html.replace(/<meta name="robots"[^>]*>/g, '');
   html = html.replace('<head>', '<head><meta name="robots" content="noindex,nofollow">');
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${previewTitles[name]}</title>`);
+  html = html.replace(/<meta property="og:[^>]*>\s*/g, '');
+  html = html.replace(/<meta name="twitter:[^>]*>\s*/g, '');
   html = html.replaceAll('href="index.html"', 'href="/"');
   html = html.replaceAll('href="index.html#', 'href="/#');
   html = html.replaceAll('href="cart.html"', 'href="/cart.html"');
