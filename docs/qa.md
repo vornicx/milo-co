@@ -1,6 +1,6 @@
 # Archic Gate — Milo & Co
 
-Última revisión: 16 septiembre 2026.
+Última revisión: 23 septiembre 2026.
 
 ## Hard gate activo
 
@@ -32,6 +32,8 @@ Milo & Co se trata como un producto de producción, aunque Shopify todavía no e
 - HSTS, frame blocking, nosniff, permissions policy, COOP y noindex activos en preview.
 - La CSP de Vercel NO debe copiarse sin revisión a Shopify, porque puede interferir con scripts y checkout de plataforma.
 - `sales_enabled` es solo presentación. El control real de lanzamiento debe ser contraseña/canales de venta de Shopify.
+- El producto conectado está en borrador. La lista de espera depende del storefront Shopify y de su política de privacidad publicada; no funciona en la preview estática de Vercel.
+- El único instrumento de medición de microinteracciones integrado es `Shopify.analytics.publish`; requiere conectar un pixel compatible y verificar consentimiento antes de dar por medidos los clics. Ver `docs/prelaunch.md`.
 
 ### Datos y ecommerce
 Pendiente hasta conectar Shopify:

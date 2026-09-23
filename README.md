@@ -35,6 +35,7 @@ npm audit --audit-level=high
 `npm run build` genera la preview y ejecuta además `scripts/validate-preview.mjs`, que bloquea la build ante problemas estructurales, accesibilidad básica o presupuestos de rendimiento.
 
 Ver `docs/qa.md` para el estado del gate y lo que sigue pendiente hasta disponer de una tienda Shopify real.
+Ver `docs/prelaunch.md` para la lista de espera, medición y condiciones de apertura de ventas.
 
 ## Desarrollo
 
