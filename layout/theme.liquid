@@ -7,7 +7,9 @@
 {% render 'seo-meta' %}
 {% if blogs['guias'].articles_count > 0 %}<link rel="alternate" type="application/atom+xml" title="Guías de paseo · Milo &amp; Co" href="{{ blogs['guias'].url }}.atom">{% endif %}
 {{ 'milo-system.css' | asset_url | stylesheet_tag }}
+{{ 'milo-polish.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'milo.js' | asset_url }}" defer></script>
+<script src="{{ 'milo-guard.js' | asset_url }}" defer></script>
 {{ content_for_header }}
 </head><body>
 <a class="skip" href="#MainContent">Saltar al contenido</a>
