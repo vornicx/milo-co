@@ -1,5 +1,6 @@
 {% assign dispenser = product | default: settings.featured_product %}
 <section class="product-top wrap" data-product-page data-milo-product-landing>
+  {{ 'milo-product-premium.css' | asset_url | stylesheet_tag }}
   <nav class="breadcrumbs" aria-label="Migas de pan">
     <a href="{{ routes.root_url }}">Inicio</a><span>/</span>
     {% if settings.sales_enabled %}<a href="{{ settings.products_page.url | default: '/pages/productos' }}">Productos</a><span>/</span>{% endif %}
