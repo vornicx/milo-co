@@ -10,7 +10,7 @@ const pages = [
   'pages/paseos.html',
   'pages/nosotros.html',
   'pages/contact.html',
-  'pages/page.html'
+  'pages/informacion.html'
 ];
 
 const fail = (message) => {
