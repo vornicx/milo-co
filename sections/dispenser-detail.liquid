@@ -2,7 +2,7 @@
 <section class="product-top wrap" data-product-page data-milo-product-landing>
   <nav class="breadcrumbs" aria-label="Migas de pan">
     <a href="{{ routes.root_url }}">Inicio</a><span>/</span>
-    <a href="{{ settings.products_page.url | default: '/pages/productos' }}">Productos</a><span>/</span>
+    {% if settings.sales_enabled %}<a href="{{ settings.products_page.url | default: '/pages/productos' }}">Productos</a><span>/</span>{% endif %}
     <span aria-current="page">Dispensador 3 en 1</span>
   </nav>
 
