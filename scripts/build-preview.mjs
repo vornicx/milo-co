@@ -4,9 +4,23 @@ await import('./preview.mjs');
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
 await cp('.preview/assets', 'dist/assets', { recursive: true });
-for (const name of ['index', 'cart', '404', 'page.productos', 'page.dispensador', 'page.paseos', 'page.nosotros']) {
+const previewTitles = {
+  index: 'Milo & Co · Preview',
+  cart: 'Carrito · Milo & Co · Preview',
+  '404': '404 · Milo & Co · Preview',
+  'page.productos': 'Dispensador · Milo & Co · Preview',
+  'page.dispensador': 'Dispensador 3 en 1 · Milo & Co · Preview',
+  'page.paseos': 'Paseos y escapadas · Milo & Co · Preview',
+  'page.nosotros': 'Nuestra idea · Milo & Co · Preview',
+  'page.contact': 'Contacto · Milo & Co · Preview',
+  page: 'Página · Milo & Co · Preview'
+};
+for (const name of ['index', 'cart', '404', 'page.productos', 'page.dispensador', 'page.paseos', 'page.nosotros', 'page.contact', 'page']) {
   let html = await readFile(`.preview/${name}.html`, 'utf8');
+  html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+  html = html.replace(/<meta name="robots"[^>]*>/g, '');
   html = html.replace('<head>', '<head><meta name="robots" content="noindex,nofollow">');
+  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${previewTitles[name]}</title>`);
   html = html.replaceAll('href="index.html"', 'href="/"');
   html = html.replaceAll('href="index.html#', 'href="/#');
   html = html.replaceAll('href="cart.html"', 'href="/cart.html"');
