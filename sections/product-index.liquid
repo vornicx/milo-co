@@ -4,7 +4,7 @@
 <section class="product-index wrap">
   <div class="product-index-intro">
     <p class="eyebrow">PRODUCTOS</p>
-    <h1>Objetos para<br>salir juntos.</h1>
+    <h1>Salir juntos,<br>con menos cosas.</h1>
     <p>{{ 'organic.catalog_intro' | t }}</p>
   </div>
 
@@ -21,7 +21,7 @@
       <div>
         <p class="eyebrow">PARA EL PASEO</p>
         <h2>{{ item.title | default: 'Dispensador 3 en 1' | escape }}</h2>
-        <p class="product-index-summary">Agua, comida y bolsas.</p>
+        <p class="product-index-summary">Lo que sueles llevar por separado, en una sola pieza.</p>
       </div>
       <div class="product-index-action">
         {% if settings.sales_enabled and item != blank %}

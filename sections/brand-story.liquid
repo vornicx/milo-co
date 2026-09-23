@@ -38,7 +38,7 @@
 <section class="brand-closing wrap">
   <p class="eyebrow">LA COLECCIÓN</p>
   <h2>Empezamos por<br>lo esencial.</h2>
-  <a class="button" href="{{ settings.products_page.url | default: '/pages/productos' }}">Ver productos {% render 'arrow' %}</a>
+  <a class="button" href="{{ settings.product_page.url | default: '/pages/dispensador' }}" data-milo-event="product_click" data-milo-source="about_page">Conocer el dispensador {% render 'arrow' %}</a>
 </section>
 {% schema %}
 {"name":"Nuestra idea","settings":[]}
