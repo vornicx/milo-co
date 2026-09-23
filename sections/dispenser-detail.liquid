@@ -13,7 +13,7 @@
 
     <aside class="product-top-info" id="product-purchase">
       <p class="eyebrow">{{ 'organic.product_eyebrow' | t }}</p>
-      <h1>Todo para el paseo.<br><span class="keep-together">Una sola pieza.</span></h1>
+      <h1>Dispensador 3 en 1.<br><span class="keep-together">Listo para el paseo.</span></h1>
       <p class="product-top-lead">Agua, algo de comida y las bolsas: el dispensador reúne lo que sueles preparar por separado.</p>
       <nav class="product-section-links" aria-label="Información del dispensador"><a href="#como-funciona">Cómo se prepara</a><a href="#detalles">Detalles</a><a href="#preguntas">Preguntas</a></nav>
 
@@ -32,7 +32,7 @@
         </div>
         <p class="product-prelaunch-note">Estamos validando el producto antes de abrir la compra. Sin fecha anunciada.</p>
         <div class="prelaunch-inline" id="avisarme-{{ section.id }}">
-          <p class="eyebrow">AVÍSAME CUANDO ESTÉ LISTO</p>
+          <p class="eyebrow">LISTA DE ESPERA</p>
           {% render 'prelaunch-form', id: section.id, source: 'product_top', privacy_policy: shop.privacy_policy %}
         </div>
       {% endif %}
@@ -50,7 +50,7 @@
   </div>
 {% endif %}
 {% unless settings.sales_enabled %}
-  <a class="mobile-waitlist-bar" href="#avisarme-{{ section.id }}" data-milo-event="cta_click" data-milo-source="mobile_product_bar"><span>Objeto 01 <small>En preparación</small></span><strong>Avísame {% render 'arrow' %}</strong></a>
+  <a class="mobile-waitlist-bar" href="#avisarme-{{ section.id }}" data-milo-event="cta_click" data-milo-source="mobile_product_bar"><span>Dispensador 3 en 1 <small>En preparación</small></span><strong>Apuntarme {% render 'arrow' %}</strong></a>
 {% endunless %}
 
 {% schema %}
