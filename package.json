@@ -2,7 +2,7 @@
   "name": "milo-co",
   "version": "0.1.0",
   "private": true,
-  "description": "Milo & Co — native Shopify Online Store 2.0 theme",
+  "description": "Milo & Co \u2014 native Shopify Online Store 2.0 theme",
   "scripts": {
     "dev": "shopify theme dev",
     "check": "shopify theme check",
@@ -11,10 +11,22 @@
     "quality": "npm run check && npm run build",
     "package": "python3 scripts/package.py",
     "build": "node scripts/build-preview.mjs && node scripts/validate-preview.mjs",
-    "test:commerce": "npm run build && node --test tests/commerce.test.mjs tests/prelaunch.test.mjs"
+    "test:commerce": "npm run build && node --test tests/commerce.test.mjs tests/prelaunch.test.mjs",
+    "test:reviews": "node --test tests/reviews*.test.mjs",
+    "reviews:migrate": "node --env-file-if-exists=.env scripts/reviews-migrate.mjs",
+    "reviews:cleanup": "node --env-file-if-exists=.env scripts/reviews-cleanup.mjs"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
     "@shopify/cli": "4.8.0",
+    "jsdom": "30.1.1",
     "liquidjs": "10.29.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1141.0",
+    "@aws-sdk/s3-presigned-post": "3.1141.0",
+    "@aws-sdk/s3-request-presigner": "3.1141.0",
+    "file-type": "22.1.1",
+    "pg": "8.23.0"
   }
 }

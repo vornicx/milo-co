@@ -29,6 +29,11 @@ const clean = s => s
 const base = {request:{locale:{iso_code:'es'},page_type:'index'},routes:{root_url:'index.html',cart_url:'cart.html'},cart:{item_count:0},pages:{contact:{url:'/pages/contact'}},shop:{name:'Milo & Co',url:'https://miloandcompany.es',policies:[],privacy_policy:{body:'Configured on Shopify',url:'/policies/privacy-policy'}},settings:{sales_enabled:false,products_page:{url:'/pages/productos'},product_page:{url:'/pages/dispensador'},walk_page:{url:'/pages/paseos'},brand_page:{url:'/pages/nosotros'}},page_title:'Milo & Co',current_page:1,canonical_url:'https://miloandcompany.es/',content_for_header:''};
 async function section(type,id,settings={}) {
  let raw=clean(await readFile(`sections/${type}.liquid`,'utf8'));
+ const javascript = raw.match(/{% javascript %}([\s\S]*?){% endjavascript %}/);
+ if (javascript) {
+   await writeFile(`.preview/assets/${type}.js`, javascript[1]);
+   raw = raw.replace(javascript[0], `<script src="/assets/${type}.js" defer></script>`);
+ }
  raw=raw
    .replace(/{% form[^%]*class:\s*'([^']+)'[^%]*%}/g, '<form class="$1">')
    .replace(/{% form[^%]*%}/g, '<form>')

@@ -33,4 +33,7 @@ for (const name of ['index', 'cart', '404', 'page.productos', 'page.dispensador'
   if(name.startsWith('page.')) await mkdir('dist/pages',{recursive:true});
   await writeFile(`dist/${output}.html`, html);
 }
-console.log('Static Milo & Co preview built in dist/');
+await cp('admin/reviews.html', 'dist/reviews-admin.html');
+await cp('admin/reviews-admin.js', 'dist/assets/reviews-admin.js');
+await cp('admin/reviews-admin.css', 'dist/assets/reviews-admin.css');
+console.log('Static Milo & Co preview and private review panel built in dist/');

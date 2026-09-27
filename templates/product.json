@@ -11,7 +11,7 @@
     "reviews": {
       "type": "product-reviews",
       "settings": {
-        "judgeme_enabled": false
+        "product_key": "dispensador-de-paseo-3-en-1"
       }
     }
   },

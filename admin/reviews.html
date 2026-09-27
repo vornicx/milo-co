@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow"><title>Revisar opiniones · Milo & Co</title>
+  <link rel="stylesheet" href="/assets/reviews-admin.css"><script src="/assets/reviews-admin.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><a href="/">MILO & CO</a><span>Opiniones de clientes</span></header>
+    <section id="login">
+      <p class="eyebrow">ESPACIO PRIVADO</p><h1>Una conversación honesta.</h1>
+      <p>Revisa las experiencias que comparten los clientes antes de publicarlas.</p>
+      <form id="login-form">
+        <label for="secret">Clave de acceso</label><input id="secret" type="password" required minlength="32" autocomplete="current-password">
+        <button type="submit">Entrar a las opiniones</button>
+      </form>
+    </section>
+    <section id="workspace" hidden>
+      <div class="heading"><h1>Revisar opiniones</h1><button id="logout" class="secondary" type="button">Salir</button></div>
+      <p class="guidance">Publica tanto las buenas experiencias como las críticas. Retira únicamente spam, contenido ajeno al producto, datos personales o material sin permiso. No se verifica la compra en este formulario.</p>
+      <div class="toolbar"><label for="status">Mostrar</label><select id="status"><option value="pending">Pendientes</option><option value="approved">Publicadas</option><option value="rejected">Retiradas o rechazadas</option></select><button id="refresh" class="secondary" type="button">Actualizar</button></div>
+      <div id="list"></div>
+      <div class="pagination"><button id="previous" type="button" class="secondary">Anterior</button><span id="page"></span><button id="next" type="button" class="secondary">Siguiente</button></div>
+    </section>
+    <p id="message" role="status" aria-live="polite"></p>
+    <noscript>Activa JavaScript para revisar las opiniones.</noscript>
+  </main>
+</body>
+</html>
