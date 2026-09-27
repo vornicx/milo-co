@@ -7,10 +7,17 @@
     "section1": {
       "type": "faq",
       "settings": {}
+    },
+    "reviews": {
+      "type": "product-reviews",
+      "settings": {
+        "judgeme_enabled": false
+      }
     }
   },
   "order": [
     "section0",
+    "reviews",
     "section1"
   ]
 }

@@ -1,0 +1,107 @@
+{% liquid
+  assign review_product = product | default: section.settings.review_product | default: settings.featured_product
+  assign has_app_block = false
+  for block in section.blocks
+    if block.type == '@app'
+      assign has_app_block = true
+    endif
+  endfor
+  assign show_judgeme = false
+  if section.settings.judgeme_enabled and review_product != blank and has_app_block == false
+    assign show_judgeme = true
+  endif
+%}
+
+<section class="product-reviews wrap" id="opiniones" aria-labelledby="Reviews-{{ section.id }}">
+  <header class="product-reviews__heading">
+    <div>
+      <p class="eyebrow">{{ 'reviews.eyebrow' | t }}</p>
+      <h2 id="Reviews-{{ section.id }}">{{ 'reviews.heading' | t }}</h2>
+    </div>
+    <p>{{ 'reviews.intro' | t }}</p>
+  </header>
+
+  {% if has_app_block %}
+    <div class="product-reviews__content">
+      {% for block in section.blocks %}
+        {% if block.type == '@app' %}{% render block %}{% endif %}
+      {% endfor %}
+    </div>
+  {% elsif show_judgeme %}
+    <div class="product-reviews__content">
+      <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget" data-product-title="{{ review_product.title | escape }}" data-id="{{ review_product.id }}" data-product-id="{{ review_product.id }}" data-review-widget-data="{{ review_product.metafields.judgeme.review_widget_data | escape }}" data-widget="review" data-auto-install="false" data-shop-reviews-count="{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}" data-entry-point="review_widget.js" data-entry-key="review-widget/main.js">
+        {% if review_product.metafields.judgeme.widget.size > 20 %}
+          <div class="jdgm-legacy-widget-content" style="display: none;">{{ review_product.metafields.judgeme.widget }}</div>
+        {% endif %}
+      </div>
+      {% if review_product.metafields.judgeme.review_widget_data %}
+        <script>
+          window.jdgm = window.jdgm || {};
+          window.jdgm.data = window.jdgm.data || {};
+          window.jdgm.data.reviewWidget = window.jdgm.data.reviewWidget || {};
+          window.jdgm.data.reviewWidget[{{ review_product.id | json }}] = JSON.parse(document.currentScript.previousElementSibling.dataset.reviewWidgetData);
+        </script>
+      {% endif %}
+      <noscript><p class="product-reviews__notice">{{ 'reviews.javascript_required' | t }}</p></noscript>
+    </div>
+  {% else %}
+    <div class="product-reviews__empty">
+      <span class="product-reviews__icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M16 4.5 19.5 12l8.2 1.1-6 5.8 1.5 8.1-7.2-3.9L8.8 27l1.5-8.1-6-5.8 8.2-1.1L16 4.5Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/></svg>
+      </span>
+      <div>
+        <h3>{{ 'reviews.pending_heading' | t }}</h3>
+        <p>{% if settings.sales_enabled %}{{ 'reviews.pending_live' | t }}{% else %}{{ 'reviews.pending_prelaunch' | t }}{% endif %}</p>
+      </div>
+      <span class="product-reviews__caption">{{ 'reviews.media_caption' | t }}</span>
+    </div>
+  {% endif %}
+
+  {% if request.design_mode %}
+    {% unless has_app_block %}
+      <p class="product-reviews__setup">{{ 'reviews.setup' | t }}</p>
+      {% if section.settings.judgeme_enabled and review_product == blank %}<p class="product-reviews__setup" role="status">{{ 'reviews.missing_product' | t }}</p>{% endif %}
+    {% endunless %}
+  {% endif %}
+</section>
+
+{% stylesheet %}
+  .product-reviews { padding-block: clamp(48px, 6vw, 88px); }
+  .product-reviews__heading { display: grid; grid-template-columns: 1fr minmax(220px, .7fr); gap: 32px; align-items: end; padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+  .product-reviews__heading h2 { margin: 0; font: 500 clamp(28px, 3.5vw, 42px)/1.15 var(--sans); letter-spacing: -.045em; }
+  .product-reviews__heading > p { max-width: 37ch; margin: 0 0 2px; justify-self: end; font-size: 14px; line-height: 1.65; }
+  .product-reviews__empty { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 24px; align-items: center; padding-block: 38px; border-bottom: 1px solid var(--line); }
+  .product-reviews__icon { width: 34px; height: 34px; color: var(--forest); }
+  .product-reviews__icon svg { display: block; width: 100%; height: 100%; }
+  .product-reviews__empty h3 { margin: 0 0 9px; font: 500 16px/1.4 var(--sans); letter-spacing: -.02em; }
+  .product-reviews__empty p { max-width: 60ch; margin: 0; font-size: 13px; line-height: 1.65; }
+  .product-reviews__caption { color: var(--muted); font-size: 11px; white-space: nowrap; }
+  .product-reviews__content { padding-top: 24px; min-width: 0; }
+  .product-reviews__content > * { max-width: 100%; }
+  .product-reviews__notice, .product-reviews__setup { font-size: 13px; line-height: 1.6; }
+  .product-reviews__setup { padding: 16px; border: 1px dashed var(--line); margin-top: 18px; }
+  @media (max-width: 760px) {
+    .product-reviews__heading { grid-template-columns: 1fr; gap: 16px; padding-bottom: 24px; }
+    .product-reviews__heading > p { max-width: 38ch; justify-self: start; font-size: 13px; }
+    .product-reviews__empty { grid-template-columns: 28px minmax(0, 1fr); gap: 16px; align-items: start; padding-block: 28px; }
+    .product-reviews__icon { width: 26px; height: 26px; }
+    .product-reviews__caption { grid-column: 2; margin-top: 2px; }
+    .product-reviews__content { padding-top: 18px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Opiniones de clientes",
+  "limit": 1,
+  "enabled_on": { "templates": ["product", "page"] },
+  "settings": [
+    { "type": "paragraph", "content": "Instala Judge.me (plan gratuito), activa su inserción de aplicación y configura el formulario en castellano con fotos y vídeos. Después activa la conexión aquí. No se crean opiniones de ejemplo." },
+    { "type": "checkbox", "id": "judgeme_enabled", "label": "Conectar Judge.me", "default": false, "info": "Activar solo después de instalar la app y habilitar su inserción en este tema." },
+    { "type": "product", "id": "review_product", "label": "Producto para páginas", "info": "En una ficha se usa su producto. En páginas se usa esta selección o el producto destacado del tema." }
+  ],
+  "max_blocks": 1,
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "Opiniones de clientes" }]
+}
+{% endschema %}

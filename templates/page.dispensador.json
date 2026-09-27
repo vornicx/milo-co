@@ -30,6 +30,12 @@
     "waitlist_return": {
       "type": "product-waitlist-return",
       "settings": {}
+    },
+    "reviews": {
+      "type": "product-reviews",
+      "settings": {
+        "judgeme_enabled": false
+      }
     }
   },
   "order": [
@@ -37,6 +43,7 @@
     "validation",
     "4",
     "use",
+    "reviews",
     "5",
     "waitlist_return",
     "stories"

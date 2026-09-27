@@ -17,6 +17,7 @@ La vista previa pública de Vercel sirve únicamente para revisar diseño y estr
 - Producto destacado configurable para el futuro editor de Shopify.
 - Formularios y carrito basados en primitivas nativas de Shopify.
 - Venta oculta mientras `sales_enabled=false`.
+- Opiniones de clientes preparadas para Judge.me: estrellas, texto, fotos y vídeos. Activación pendiente de instalar y configurar la aplicación; ver `docs/reviews.md`.
 - Sin reseñas, descuentos, certificaciones, stock, precio o disponibilidad inventados.
 
 ## Archic Production Gate

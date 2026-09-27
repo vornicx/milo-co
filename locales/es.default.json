@@ -47,5 +47,18 @@
     "faq_compare": "¿En qué se diferencia de una botella normal?",
     "faq_compare_answer": "Reúne el depósito de agua, un compartimento de 150 ml para comida o snacks y espacio para bolsas. Una botella y un cuenco separados permiten elegir otra capacidad y transportar cada pieza por separado.",
     "faq_more": "Cómo elegir un bebedero portátil para tu perro"
+  },
+  "reviews": {
+    "eyebrow": "DESPUÉS DEL PASEO",
+    "heading": "Opiniones de clientes",
+    "intro": "Experiencias con el producto, contadas por quienes lo llevan de paseo.",
+    "nav": "Opiniones",
+    "pending_heading": "Este espacio espera vuestros paseos.",
+    "pending_prelaunch": "Estamos preparando el lanzamiento. Aquí podréis compartir vuestra experiencia cuando hayáis probado el producto.",
+    "pending_live": "Estamos preparando este espacio para que podáis compartir vuestra experiencia con el producto.",
+    "media_caption": "Valoraciones · Fotos · Vídeos",
+    "javascript_required": "Activa JavaScript para leer y escribir opiniones o adjuntar fotos y vídeos.",
+    "setup": "Para recibir opiniones, instala Judge.me en su plan gratuito, activa su inserción de aplicación en este tema y marca «Conectar Judge.me». También puedes añadir su bloque de opiniones dentro de esta sección en la ficha de producto. Usa solo una de las dos opciones.",
+    "missing_product": "Selecciona un producto publicado en Tienda online para vincular las opiniones de esta página."
   }
 }
