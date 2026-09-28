@@ -109,3 +109,22 @@ test('Moderator panel requires a secret and clears rendered private data on logo
     assert.equal(window.document.querySelector('#list').children.length, 0);
   } finally { page.window.close(); }
 });
+
+test('Compatible S3 upload sends the File body with its MIME and no scripted Content-Length', async () => {
+  let upload;
+  const page = await dom(async (url, options) => {
+    const action = new URL(url).searchParams.get('action');
+    if (action === 'start') return { ok: true, json: async () => ({ id: 'ddc647da-76a6-4271-ab2f-9117b52dbd20', token: 'test' }) };
+    if (action === 'tickets') return { ok: true, json: async () => ({ uploads: [{ method: 'PUT', url: 'https://storage.example/upload' }] }) };
+    if (action === 'finish') return { ok: true, json: async () => ({ received: true, id: 'ddc647da-76a6-4271-ab2f-9117b52dbd20' }) };
+    upload = options; return { ok: true };
+  });
+  try {
+    const widget = page.window.document.querySelector('milo-reviews'); complete(widget);
+    const file = new page.window.File(['video bytes'], 'paseo.mp4', { type: 'video/mp4' });
+    widget.selectFiles([file]); await widget.submit({ preventDefault() {} });
+    assert.equal(upload.method, 'PUT'); assert.equal(upload.body, file);
+    assert.equal(upload.headers['Content-Type'], 'video/mp4'); assert.equal(upload.headers['Content-Length'], undefined);
+    assert.match(widget.find('[data-form-status]').textContent, /revisión/i);
+  } finally { page.window.close(); }
+});

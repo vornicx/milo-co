@@ -133,3 +133,21 @@ test('Server fails closed without configuration and does not expose database err
   const response = await broken(new Request('https://api.example/api/reviews?action=start', { method: 'POST', headers: { origin, 'content-type': 'application/json' }, body: '{}' }));
   assert.equal(response.status, 503); assert.doesNotMatch(await response.text(), /postgres|password/);
 });
+
+test('Compatible S3 PUT tickets cryptographically bind the exact size and MIME without automatic checksum fields', async () => {
+  const real = createStorage({ REVIEWS_S3_BUCKET: 'reviews', REVIEWS_S3_REGION: 'eu-west-1',
+    REVIEWS_S3_ENDPOINT: 'https://storage.example.test/storage/v1/s3', REVIEWS_S3_UPLOAD_METHOD: 'put',
+    REVIEWS_S3_ACCESS_KEY: 'test-access-only', REVIEWS_S3_SECRET_KEY: 'test-secret-only' });
+  const upload = { key: 'staging/test/file', type: 'image/png', size: 123 };
+  const first = await real.ticket(upload), url = new URL(first.url);
+  assert.equal(first.method, 'PUT'); assert.equal(url.searchParams.get('X-Amz-Expires'), '60');
+  assert.equal(url.searchParams.get('X-Amz-SignedHeaders'), 'content-length;content-type;host');
+  assert.deepEqual(first.headers, { 'Content-Type': 'image/png' });
+  assert.equal(url.searchParams.has('x-amz-checksum-crc32'), false);
+  assert.equal(url.searchParams.has('x-amz-sdk-checksum-algorithm'), false);
+  const larger = new URL((await real.ticket({ ...upload, size: 124 })).url);
+  const otherType = new URL((await real.ticket({ ...upload, type: 'image/jpeg' })).url);
+  assert.notEqual(url.searchParams.get('X-Amz-Signature'), larger.searchParams.get('X-Amz-Signature'));
+  assert.notEqual(url.searchParams.get('X-Amz-Signature'), otherType.searchParams.get('X-Amz-Signature'));
+  assert.throws(() => createStorage({ REVIEWS_S3_UPLOAD_METHOD: 'unexpected' }), /INVALID_UPLOAD_METHOD/);
+});

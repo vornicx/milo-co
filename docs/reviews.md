@@ -1,6 +1,6 @@
 # Opiniones propias de Milo & Co
 
-## Estado — 27 de septiembre de 2026
+## Estado — 28 de septiembre de 2026
 
 Implementación propia, sin Judge.me. Incluye sección Shopify, API, almacenamiento de archivos privados y panel de moderación. Las plantillas `product`, `product.dispensador` y `page.dispensador` incluyen la sección y la landing enlaza a `#opiniones`.
 
@@ -19,7 +19,7 @@ Implementación propia, sin Judge.me. Incluye sección Shopify, API, almacenamie
 
 `sections/product-reviews.liquid` → `api/reviews.mjs` (Vercel, Node) → PostgreSQL + bucket S3 privado.
 
-Las fotos y vídeos se suben directamente al bucket mediante un formulario firmado con duración de 60 segundos, ruta aleatoria y límites exactos de tamaño/tipo. Al finalizar, el servidor contrasta tamaño, MIME y firma del archivo; copia el objeto validado a una ruta privada nueva mediante copia condicional vinculada a su ETag. Reutilizar el formulario firmado de subida no puede reemplazar el archivo revisado. La opinión se confirma solamente después de guardar el estado `pending` en PostgreSQL.
+Las fotos y vídeos se suben directamente al bucket mediante un formulario POST firmado (modo predeterminado) o una URL PUT firmada (proveedores compatibles). Ambos duran 60 segundos y vinculan la ruta aleatoria, el tamaño exacto y el tipo de archivo. En PUT, la firma incluye `Content-Length` y `Content-Type`; el navegador calcula la longitud del cuerpo `File`. Al finalizar, el servidor contrasta tamaño, MIME y firma del archivo; copia el objeto validado a una ruta privada nueva mediante copia condicional vinculada a su ETag. Reutilizar el formulario firmado de subida no puede reemplazar el archivo revisado. La opinión se confirma solamente después de guardar el estado `pending` en PostgreSQL.
 
 Los archivos pendientes solo reciben enlaces en el panel autenticado. Los aprobados reciben enlaces firmados de lectura que caducan a los cinco minutos. Retirar una opinión elimina su entrada pública inmediatamente; los enlaces ya emitidos pueden seguir funcionando hasta que caduquen. Las firmas no son un antivirus ni una eliminación de metadatos: el moderador debe revisar contenido, datos personales y permisos antes de publicar.
 
@@ -34,11 +34,25 @@ El panel `/reviews-admin` utiliza una clave aleatoria enviada en `Authorization`
 3. Generar `REVIEWS_ADMIN_SECRET` y `REVIEWS_HASH_SECRET` independientes, con al menos 32 bytes aleatorios cada uno. No pegarlos en el repositorio ni en una conversación. Configurar secretos distintos para pruebas y producción.
 4. Ejecutar `npm run reviews:migrate` con las variables privadas disponibles. El script usa una transacción y puede repetirse. La migración no importa opiniones.
 5. Mantener bloqueado el acceso público al bucket y desactivar ACL públicas. La credencial de la API necesita `s3:GetObject`, `s3:PutObject` y `s3:DeleteObject` sobre `staging/*` y `reviews/*`. El mantenimiento necesita además `s3:ListBucket` para esos prefijos. No conceder administración del bucket. Usar HTTPS y cifrado del proveedor.
-6. Configurar CORS del bucket para `POST`, `GET` y `HEAD` desde los orígenes exactos de la tienda y el panel, con cabeceras `Content-Type` y exposición opcional de `ETag`. No usar `*`. Añadir una regla de ciclo de vida que elimine **solo `staging/`** después de un día; nunca aplicar esa expiración a `reviews/`. Para un proveedor compatible, comprobar que admite POST policies, rangos de tamaño y COPY condicional antes de activarlo.
+6. Configurar CORS del bucket para `POST` o `PUT` según el modo elegido, `GET` y `HEAD` desde los orígenes exactos de la tienda y el panel, con cabeceras `Content-Type` y exposición opcional de `ETag`. No usar `*`. Añadir una regla de ciclo de vida que elimine **solo `staging/`** después de un día; nunca aplicar esa expiración a `reviews/`. Para un proveedor compatible, comprobar el modo de subida elegido y COPY condicional antes de activarlo. Ver la preparación específica de Supabase a continuación.
 7. Desplegar la API y el panel. `vercel.json` limita la función a 30 segundos. `REVIEWS_ALLOWED_ORIGINS` debe incluir los orígenes reales completos sin barra final. El dominio público elegido para la API debe aceptar visitas de clientes; conservar la protección de los despliegues de prueba. No enviar datos de producción a vistas previas.
 8. Autorizar el identificador real del producto en `REVIEWS_PRODUCTS`. En Shopify, abrir **Opiniones de clientes → Dirección HTTPS de la API** en las tres plantillas y poner `https://<dominio-api>/api/reviews`. La ficha usa el handle de su producto; la landing usa el producto seleccionado, el destacado o el identificador configurado cuando el producto está en borrador.
 9. Revisar el texto de privacidad para la publicación de nombre/alias, opinión, imágenes y vídeos y el canal de solicitud de retirada. El formulario requiere permiso para publicar y recuerda no compartir datos personales. No solicita email.
 10. Completar la prueba real siguiente antes de anunciar que las opiniones están disponibles. Publicar el tema no requiere abrir la venta.
+
+## Preparación para Supabase
+
+La cuenta conectada encontrada es **vornicx-7872's projects**, actualmente en plan Free. Esto no confirma el precio ni la disponibilidad de un proyecto nuevo. La herramienta exige que el propietario elija la organización y confirme el coste antes de crearlo. No se ha creado ningún proyecto ni cambiado el plan.
+
+Para un proyecto dedicado `milo-co-opiniones`:
+
+- Usar PostgreSQL y un bucket privado del mismo proyecto, preferentemente en una región europea, con límite de objeto de 25 MiB y lista de MIME permitidos. No crear políticas públicas sobre `storage.objects` ni sobre las tablas de opiniones.
+- Configurar `REVIEWS_S3_UPLOAD_METHOD=put`. Copiar endpoint, región y credenciales S3 desde los ajustes de ese proyecto; las claves solo se guardan en el servidor. No usar el secreto `service_role` como token de sesión en enlaces firmados que vayan a entregarse a clientes.
+- Supabase documenta PUT firmado, lectura por rango y copia con `x-amz-copy-source-if-match`. No asumir compatibilidad con formularios POST de AWS. El SDK está configurado para no añadir checksums opcionales que el proveedor no admite.
+- Supabase no implementa las operaciones S3 `PutBucketCors` y `PutBucketLifecycleConfiguration`. Comprobar el comportamiento de CORS de su servicio y los ajustes que proporcione su consola; la API de opiniones mantiene su propia lista de orígenes. Usar la tarea diaria de limpieza del proyecto para eliminar los archivos temporales caducados.
+- Antes de activar, probar con su almacenamiento real tanto una foto como un vídeo, rechazo por tamaño o tipo alterado, copia condicional, lectura privada y retirada. Las pruebas locales de firma y formulario ya cubren el modo PUT, pero no demuestran el comportamiento de un proyecto aún inexistente.
+
+Referencias: [compatibilidad S3 de Supabase](https://supabase.com/docs/guides/storage/s3/compatibility), [autenticación S3](https://supabase.com/docs/guides/storage/s3/authentication) y [cabeceras firmadas en AWS SDK](https://github.com/aws/aws-sdk-js-v3/tree/main/packages/s3-request-presigner).
 
 ## Moderación y mantenimiento
 
@@ -46,7 +60,7 @@ Entrar en `https://<dominio-api>/reviews-admin` con la clave privada. Revisar la
 
 Se conservan los contenidos enviados, rechazados y el historial hasta que se gestione su eliminación. Para una solicitud de borrado, localizar la referencia, retirar la opinión, eliminar sus objetos privados y borrar la fila correspondiente mediante una operación administrativa con copia de seguridad y confirmación del propietario; el historial asociado se elimina en cascada. Las copias de seguridad requieren su propia política de retención.
 
-`npm run reviews:cleanup` simula la limpieza de borradores incompletos de más de dos días, incluidos sus archivos. `npm run reviews:cleanup -- --apply` la ejecuta y elimina contadores caducados. Programar esta tarea diaria con credenciales privadas después de comprobar la simulación; no hay un cron activado en esta entrega. Las opiniones pendientes, publicadas y rechazadas no se eliminan con este script. Los objetos finales huérfanos de un fallo justo antes de completar el borrador se eliminan junto con el borrador caducado.
+`npm run reviews:cleanup` simula la limpieza de borradores incompletos de más de dos días, incluidos sus archivos, y de todos los objetos de `staging/` con más de dos días aunque su opinión ya se haya enviado. `npm run reviews:cleanup -- --apply` la ejecuta y elimina contadores caducados. Programar esta tarea diaria con credenciales privadas después de comprobar la simulación; no hay un cron activado en esta entrega. Las opiniones pendientes, publicadas y rechazadas no se eliminan con este script. Los objetos finales huérfanos de un fallo justo antes de completar el borrador se eliminan junto con el borrador caducado.
 
 Límites iniciales: tres borradores por IP/día, cincuenta por tienda/día, 200 MiB declarados por tienda/día, treinta renovaciones de subida/hora y veinte finalizaciones/hora por IP. Los contadores persisten en PostgreSQL. Las IP se usan mediante HMAC para los contadores, no se guardan en las opiniones. Diez intentos administrativos fallidos cada diez minutos por IP. Estos límites y el honeypot reducen abuso, pero no garantizan un techo absoluto de costes; un formulario firmado puede reutilizarse durante sus 60 segundos. Configurar límites y alertas del proveedor antes de abrir el servicio.
 

@@ -39,7 +39,7 @@
         <div class="reviews-form-actions"><button class="button" type="submit" data-submit disabled>{{ 'reviews.submit' | t }}</button><button type="button" class="reviews-reset" data-reset hidden>{{ 'reviews.reset' | t }}</button><span>{{ 'reviews.before_publication' | t }}</span></div>
       </form>
     </div>
-    <dialog class="reviews-dialog" data-dialog><button type="button" class="reviews-close" data-dialog-close aria-label="{{ 'reviews.close' | t }}">×</button><div data-dialog-media></div></dialog>
+    <dialog class="reviews-dialog" data-dialog aria-label="{{ 'reviews.attach' | t }}"><button type="button" class="reviews-close" data-dialog-close aria-label="{{ 'reviews.close' | t }}">×</button><div data-dialog-media></div></dialog>
     <noscript><p>{{ 'reviews.javascript_required' | t }}</p></noscript>
   </milo-reviews>
 </section>
@@ -234,8 +234,14 @@ if (!customElements.get('milo-reviews')) {
           this.message(this.text('uploading', { current: index + 1, total: this.files.length }));
           const { uploads } = await this.request('tickets', { id: this.draft.id, token: this.draft.token });
           const ticket = uploads[index]; const target = new URL(ticket.url); if (target.protocol !== 'https:') throw new Error(this.labels.failed);
-          const form = new FormData(); Object.entries(ticket.fields).forEach(([key, value]) => form.append(key, value)); form.append('file', this.files[index]);
-          const response = await fetch(target, { method: 'POST', body: form, credentials: 'omit', signal: AbortSignal.timeout(300000) });
+          let options;
+          if (ticket.method === 'PUT') {
+            options = { method: 'PUT', headers: { 'Content-Type': this.files[index].type }, body: this.files[index] };
+          } else {
+            const form = new FormData(); Object.entries(ticket.fields).forEach(([key, value]) => form.append(key, value)); form.append('file', this.files[index]);
+            options = { method: 'POST', body: form };
+          }
+          const response = await fetch(target, { ...options, credentials: 'omit', signal: AbortSignal.timeout(300000) });
           if (!response.ok) throw new Error(this.labels.upload_failed);
           this.draft.uploaded = index + 1;
         }
