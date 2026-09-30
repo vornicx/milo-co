@@ -2,7 +2,7 @@
 {{ 'milo-polish.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'milo-guard.js' | asset_url }}" defer></script>
 <div class="header-inner wrap">
-<a class="wordmark" href="{{ routes.root_url }}" aria-label="Milo & Co, inicio">milo & co<span class="brand-dot">.</span></a>
+<a class="wordmark" href="{{ routes.root_url }}" aria-label="Tilo & Nube, inicio">tilo & nube<span class="brand-dot">.</span></a>
 <nav aria-label="Navegación principal">
   {% if settings.sales_enabled %}
     <a href="{{ settings.products_page.url | default: '/pages/productos' }}">Productos</a>
