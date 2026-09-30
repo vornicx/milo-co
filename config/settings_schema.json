@@ -1,9 +1,9 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Milo & Co",
+    "theme_name": "Tilo & Nube",
     "theme_version": "0.2.0",
-    "theme_author": "Milo & Co",
+    "theme_author": "Tilo & Nube",
     "theme_documentation_url": "https://github.com/vornicx/milo-co",
     "theme_support_url": "https://github.com/vornicx/milo-co/issues"
   },
@@ -14,7 +14,7 @@
         "type": "image_picker",
         "id": "favicon",
         "label": "Icono personalizado",
-        "info": "Opcional. Imagen cuadrada de al menos 192 × 192 px. Por defecto se utiliza la m con punto naranja."
+        "info": "Opcional. Imagen cuadrada de al menos 192 × 192 px. Por defecto se utiliza el monograma de Tilo & Nube."
       },
       {
         "type": "image_picker",
