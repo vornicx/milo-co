@@ -7,10 +7,17 @@
     "section1": {
       "type": "faq",
       "settings": {}
+    },
+    "reviews": {
+      "type": "product-reviews",
+      "settings": {
+        "product_key": "dispensador-de-paseo-3-en-1"
+      }
     }
   },
   "order": [
     "section0",
+    "reviews",
     "section1"
   ]
 }

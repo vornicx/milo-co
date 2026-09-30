@@ -17,6 +17,7 @@ La vista previa pública de Vercel sirve únicamente para revisar diseño y estr
 - Producto destacado configurable para el futuro editor de Shopify.
 - Formularios y carrito basados en primitivas nativas de Shopify.
 - Venta oculta mientras `sales_enabled=false`.
+- Sistema propio de opiniones: estrellas, texto, fotos y vídeos, filtros y panel privado de moderación. Código preparado; activación pendiente de conectar PostgreSQL y almacenamiento privado S3. Ver `docs/reviews.md`.
 - Sin reseñas, descuentos, certificaciones, stock, precio o disponibilidad inventados.
 
 ## Archic Production Gate

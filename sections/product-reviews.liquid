@@ -1,0 +1,361 @@
+{% liquid
+  assign review_product = product | default: section.settings.review_product | default: settings.featured_product
+  assign review_key = review_product.handle | default: section.settings.product_key
+%}
+{% capture review_labels %}{"eyebrow":{{ 'reviews.eyebrow' | t | json }},"heading":{{ 'reviews.heading' | t | json }},"intro":{{ 'reviews.intro' | t | json }},"nav":{{ 'reviews.nav' | t | json }},"write":{{ 'reviews.write' | t | json }},"loading":{{ 'reviews.loading' | t | json }},"distribution":{{ 'reviews.distribution' | t | json }},"filter_rating":{{ 'reviews.filter_rating' | t | json }},"all":{{ 'reviews.all' | t | json }},"sort":{{ 'reviews.sort' | t | json }},"recent":{{ 'reviews.recent' | t | json }},"highest":{{ 'reviews.highest' | t | json }},"lowest":{{ 'reviews.lowest' | t | json }},"with_media":{{ 'reviews.with_media' | t | json }},"more":{{ 'reviews.more' | t | json }},"moderation_title":{{ 'reviews.moderation_title' | t | json }},"moderation_body":{{ 'reviews.moderation_body' | t | json }},"close":{{ 'reviews.close' | t | json }},"unavailable":{{ 'reviews.unavailable' | t | json }},"your_rating":{{ 'reviews.your_rating' | t | json }},"name":{{ 'reviews.name' | t | json }},"title":{{ 'reviews.title' | t | json }},"experience":{{ 'reviews.experience' | t | json }},"body_help":{{ 'reviews.body_help' | t | json }},"attach":{{ 'reviews.attach' | t | json }},"file_help":{{ 'reviews.file_help' | t | json }},"website":{{ 'reviews.website' | t | json }},"consent":{{ 'reviews.consent' | t | json }},"privacy":{{ 'reviews.privacy' | t | json }},"submit":{{ 'reviews.submit' | t | json }},"reset":{{ 'reviews.reset' | t | json }},"before_publication":{{ 'reviews.before_publication' | t | json }},"javascript_required":{{ 'reviews.javascript_required' | t | json }},"failed":{{ 'reviews.failed' | t | json }},"file_error":{{ 'reviews.file_error' | t | json }},"remove":{{ 'reviews.remove' | t | json }},"sending":{{ 'reviews.sending' | t | json }},"uploading":{{ 'reviews.uploading' | t | json }},"upload_failed":{{ 'reviews.upload_failed' | t | json }},"checking":{{ 'reviews.checking' | t | json }},"success":{{ 'reviews.success' | t | json }},"network_error":{{ 'reviews.network_error' | t | json }},"retry":{{ 'reviews.retry' | t | json }},"count":{{ 'reviews.count' | t | json }},"distribution_label":{{ 'reviews.distribution_label' | t | json }},"empty_filter":{{ 'reviews.empty_filter' | t | json }},"empty":{{ 'reviews.empty' | t | json }},"load_error":{{ 'reviews.load_error' | t | json }},"stars":{{ 'reviews.stars' | t | json }},"open_video":{{ 'reviews.open_video' | t | json }},"open_photo":{{ 'reviews.open_photo' | t | json }},"photo_alt":{{ 'reviews.photo_alt' | t | json }},"media_expired":{{ 'reviews.media_expired' | t | json }}}{% endcapture %}
+<section class="product-reviews wrap" id="opiniones" aria-labelledby="Reviews-{{ section.id }}">
+  <pupit-reviews data-api="{{ section.settings.api_url | escape }}" data-product="{{ review_key | escape }}" data-texts="{{ review_labels | escape }}">
+    <header class="reviews-heading">
+      <div><p class="eyebrow">{{ 'reviews.eyebrow' | t }}</p><h2 id="Reviews-{{ section.id }}">{{ 'reviews.heading' | t }}</h2><p>{{ 'reviews.intro' | t }}</p></div>
+      <button type="button" class="button reviews-write" data-open aria-expanded="false" aria-controls="ReviewForm-{{ section.id }}">{{ 'reviews.write' | t }} <span aria-hidden="true">↗</span></button>
+    </header>
+    <p class="reviews-status" data-status role="status" aria-live="polite">{{ 'reviews.loading' | t }}</p>
+    <div class="reviews-overview" data-overview hidden>
+      <div class="reviews-score"><strong data-average></strong><span data-stars aria-hidden="true"></span><p data-count></p></div>
+      <div class="reviews-distribution" aria-label="{{ 'reviews.distribution' | t }}" data-distribution></div>
+    </div>
+    <div class="reviews-tools" data-tools hidden>
+      <label>{{ 'reviews.filter_rating' | t }}<select data-rating><option value="0">{{ 'reviews.all' | t }}</option>{% for n in (1..5) %}<option value="{{ n }}">{{ n }} / 5</option>{% endfor %}</select></label>
+      <label>{{ 'reviews.sort' | t }}<select data-sort><option value="recent">{{ 'reviews.recent' | t }}</option><option value="highest">{{ 'reviews.highest' | t }}</option><option value="lowest">{{ 'reviews.lowest' | t }}</option></select></label>
+      <label class="reviews-media-filter"><input type="checkbox" data-media-only>{{ 'reviews.with_media' | t }}</label>
+    </div>
+    <div data-list aria-live="polite"></div>
+    <button type="button" class="reviews-more" data-more hidden>{{ 'reviews.more' | t }}</button>
+    <details class="reviews-policy"><summary>{{ 'reviews.moderation_title' | t }}</summary><p>{{ 'reviews.moderation_body' | t }}</p></details>
+    <div class="reviews-form-panel" id="ReviewForm-{{ section.id }}" data-panel hidden>
+      <div class="reviews-form-heading"><h3>{{ 'reviews.write' | t }}</h3><button type="button" class="reviews-close" data-close aria-label="{{ 'reviews.close' | t }}">×</button></div>
+      <p class="reviews-notice" data-unavailable hidden>{{ 'reviews.unavailable' | t }}</p>
+      <form data-form>
+        <fieldset class="reviews-form-fields" data-fields>
+          <fieldset class="reviews-stars"><legend>{{ 'reviews.your_rating' | t }}</legend><div>{% for n in (1..5) %}<label><input type="radio" name="rating" value="{{ n }}" required><span aria-hidden="true">☆</span><span class="reviews-sr">{{ n }} / 5</span></label>{% endfor %}</div></fieldset>
+          <div class="reviews-form-row"><label for="ReviewName-{{ section.id }}">{{ 'reviews.name' | t }}<input id="ReviewName-{{ section.id }}" name="author" type="text" minlength="2" maxlength="40" required autocomplete="nickname"></label><label for="ReviewTitle-{{ section.id }}">{{ 'reviews.title' | t }}<input id="ReviewTitle-{{ section.id }}" name="title" type="text" maxlength="100"></label></div>
+          <label for="ReviewBody-{{ section.id }}">{{ 'reviews.experience' | t }}<textarea id="ReviewBody-{{ section.id }}" name="body" minlength="10" maxlength="2000" rows="4" required aria-describedby="ReviewBodyHelp-{{ section.id }}"></textarea></label>
+          <p class="reviews-help" id="ReviewBodyHelp-{{ section.id }}">{{ 'reviews.body_help' | t }}</p>
+          <div class="reviews-upload"><label for="ReviewFiles-{{ section.id }}">{{ 'reviews.attach' | t }}</label><input id="ReviewFiles-{{ section.id }}" type="file" name="media" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime" multiple aria-describedby="ReviewFileHelp-{{ section.id }}"><p id="ReviewFileHelp-{{ section.id }}" class="reviews-help">{{ 'reviews.file_help' | t }}</p><div class="reviews-previews" data-previews></div></div>
+          <div class="reviews-honeypot" aria-hidden="true"><label>{{ 'reviews.website' | t }}<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="reviews-consent"><input type="checkbox" name="consent" required><span>{{ 'reviews.consent' | t }} {% if shop.privacy_policy.url != blank %}<a href="{{ shop.privacy_policy.url }}" target="_blank" rel="noopener">{{ 'reviews.privacy' | t }}</a>{% endif %}</span></label>
+        </fieldset>
+        <p class="reviews-form-status" data-form-status role="status" aria-live="polite"></p>
+        <div class="reviews-form-actions"><button class="button" type="submit" data-submit disabled>{{ 'reviews.submit' | t }}</button><button type="button" class="reviews-reset" data-reset hidden>{{ 'reviews.reset' | t }}</button><span>{{ 'reviews.before_publication' | t }}</span></div>
+      </form>
+    </div>
+    <dialog class="reviews-dialog" data-dialog aria-label="{{ 'reviews.attach' | t }}"><button type="button" class="reviews-close" data-dialog-close aria-label="{{ 'reviews.close' | t }}">×</button><div data-dialog-media></div></dialog>
+    <noscript><p>{{ 'reviews.javascript_required' | t }}</p></noscript>
+  </pupit-reviews>
+</section>
+
+{% stylesheet %}
+.product-reviews { padding-block:clamp(48px,6vw,88px); }
+pupit-reviews { display:block; }
+pupit-reviews [hidden] { display:none!important; }
+.reviews-heading { display:flex;justify-content:space-between;gap:32px;align-items:center;padding-bottom:30px;border-bottom:1px solid var(--line); }
+.reviews-heading h2 { margin:0 0 14px;font:500 clamp(28px,3.5vw,42px)/1.15 var(--sans);letter-spacing:-.045em; }
+.reviews-heading p:not(.eyebrow) { margin:0;max-width:52ch;font-size:14px;line-height:1.65; }
+.reviews-write { flex-shrink:0;background:transparent;color:var(--forest);min-height:46px;cursor:pointer; }
+.reviews-write:hover { color:white; }
+.reviews-status { padding-block:24px;margin:0;font-size:14px; }
+.reviews-overview { display:grid;grid-template-columns:minmax(150px,.65fr) 1fr;gap:64px;align-items:center;max-width:720px;padding-block:36px; }
+.reviews-score strong { display:block;font:500 56px/1 var(--sans);letter-spacing:-.06em; }
+.reviews-score>span { display:block;color:var(--forest);letter-spacing:.1em;margin-block:12px 4px; }
+.reviews-score p { margin:0;font-size:13px; }
+.reviews-distribution { display:grid;gap:7px; }
+.reviews-distribution button { display:grid;grid-template-columns:35px 1fr 28px;align-items:center;gap:12px;background:none;border:0;padding:4px 0;cursor:pointer;color:var(--ink);font-size:12px;text-align:left;min-height:28px; }
+.reviews-distribution meter { width:100%;height:10px;appearance:none;border:0;background:var(--cream-2);border-radius:10px; }
+.reviews-distribution meter::-webkit-meter-bar { border:0;background:var(--cream-2); }
+.reviews-distribution meter::-webkit-meter-optimum-value { background:var(--forest); }
+.reviews-distribution meter::-moz-meter-bar { background:var(--forest); }
+.reviews-distribution button>span:last-child { color:var(--muted);text-align:right; }
+.reviews-tools { display:flex;align-items:end;flex-wrap:wrap;gap:22px;padding:20px 0;border-block:1px solid var(--line); }
+.reviews-tools label { display:grid;gap:5px;font-size:11px;color:var(--muted); }
+.reviews-tools select { background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:8px 20px 8px 0;font:400 13px var(--sans);color:var(--ink);max-width:100%; }
+.reviews-tools .reviews-media-filter { display:flex;align-items:center;gap:9px;min-height:40px;margin-left:auto;font-size:13px; }
+pupit-reviews input[type=checkbox],pupit-reviews input[type=radio] { accent-color:var(--forest); }
+.review-item { display:grid;grid-template-columns:180px minmax(0,1fr);gap:32px;padding:30px 0;border-bottom:1px solid var(--line); }
+.review-author { font-size:13px;font-weight:600;color:var(--ink);margin:0 0 6px; }
+.review-date { font-size:11px;color:var(--muted); }
+.review-stars { color:var(--forest);letter-spacing:.08em;font-size:14px;margin-bottom:12px; }
+.review-content h3 { font:600 16px/1.4 var(--sans);letter-spacing:-.015em;margin:0 0 9px;overflow-wrap:anywhere; }
+.review-content p { font-size:14px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;max-width:75ch;margin:0; }
+.review-attachments { display:flex;gap:10px;flex-wrap:wrap;margin-top:18px; }
+.review-attachments button { position:relative;display:grid;place-items:center;width:94px;height:94px;padding:0;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--cream-2);color:var(--forest);cursor:pointer; }
+.review-attachments img { width:100%;height:100%;object-fit:cover; }
+.review-attachments .review-video-mark { font-size:25px; }
+.reviews-more { display:block;margin:24px auto 0;background:none;padding:12px 20px;border:1px solid var(--line);border-radius:30px;cursor:pointer;color:var(--forest);font-size:13px; }
+.reviews-policy { margin-top:22px;font-size:12px;color:var(--muted); }
+.reviews-policy summary { cursor:pointer;padding-block:8px; }
+.reviews-policy p { max-width:80ch;margin:8px 0 0;line-height:1.7; }
+.reviews-form-panel { margin-top:30px;padding:clamp(20px,4vw,44px);background:var(--white);border:1px solid var(--line);border-radius:10px; }
+.reviews-form-heading { display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px; }
+.reviews-form-heading h3 { margin:0;font:500 24px/1.2 var(--sans);letter-spacing:-.04em; }
+.reviews-close { display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink);font-size:25px;cursor:pointer; }
+.reviews-form-fields { margin:0;padding:0;border:0; }
+.reviews-form-fields>label,.reviews-form-row>label { display:grid;gap:9px;font-size:13px; }
+.reviews-form-fields input[type=text],.reviews-form-fields textarea { width:100%;min-height:46px;padding:12px 14px;border:1px solid var(--line);border-radius:5px;background:transparent;color:var(--ink);font-size:16px; }
+.reviews-form-fields textarea { resize:vertical; }
+.reviews-form-row { display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-block:24px; }
+.reviews-stars { padding:0;border:0;margin:0; }
+.reviews-stars legend { font-size:13px;margin-bottom:8px; }
+.reviews-stars>div { display:flex;gap:6px; }
+.reviews-stars label { position:relative;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;color:var(--forest);font-size:30px; }
+.reviews-stars input { position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer; }
+.reviews-stars label:has(input:focus-visible) { outline:2px solid var(--orange);outline-offset:2px; }
+.reviews-stars label:has(input:checked),.reviews-stars label:has(~label input:checked) { background:var(--cream-2);border-radius:5px; }
+.reviews-help { font-size:11px;line-height:1.6;margin:8px 0 0; }
+.reviews-upload { margin-block:24px;padding:20px;border:1px dashed var(--line);border-radius:6px; }
+.reviews-upload>label { display:block;font-size:13px;font-weight:500;margin-bottom:12px; }
+.reviews-upload input { font-size:12px;max-width:100%; }
+.reviews-upload input::file-selector-button { background:var(--cream);color:var(--forest);padding:9px 12px;border:1px solid var(--line);border-radius:5px;margin-right:10px;cursor:pointer; }
+.reviews-previews { display:flex;gap:10px;flex-wrap:wrap;margin-top:14px; }
+.reviews-preview { position:relative;width:100px; }
+.reviews-preview img,.reviews-preview video { width:100px;height:80px;object-fit:cover;border-radius:5px;background:var(--cream-2); }
+.reviews-preview span { display:block;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:5px; }
+.reviews-preview button { position:absolute;right:3px;top:3px;border:0;border-radius:50%;width:28px;height:28px;background:var(--white);color:var(--ink);cursor:pointer; }
+.reviews-form-fields>.reviews-consent { display:flex;align-items:start;gap:10px;font-size:12px;line-height:1.65; }
+.reviews-consent input { flex-shrink:0;margin-top:5px;width:16px;height:16px; }
+.reviews-consent a { text-decoration:underline;text-underline-offset:3px; }
+.reviews-form-actions { display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:20px; }
+.reviews-form-actions>span { max-width:32ch;font-size:11px;color:var(--muted); }
+.reviews-form-actions button { cursor:pointer; }
+.reviews-form-actions button:disabled { opacity:.45;cursor:not-allowed; }
+.reviews-reset { background:none;border:0;text-decoration:underline;font-size:12px;color:var(--muted);padding:10px 0; }
+.reviews-form-status,.reviews-notice { font-size:13px;line-height:1.65;margin-top:16px; }
+.reviews-form-status[data-error=true] { color:#943724; }
+.reviews-dialog { position:fixed;padding:20px;border:0;border-radius:10px;background:var(--white);max-width:min(900px,94vw);max-height:90dvh;color:var(--ink); }
+.reviews-dialog::backdrop { background:rgba(15,28,23,.75); }
+.reviews-dialog>.reviews-close { margin:0 0 12px auto; }
+.reviews-dialog img,.reviews-dialog video { max-width:100%;max-height:70dvh;object-fit:contain;margin:auto; }
+.reviews-sr,.reviews-honeypot { position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap; }
+@media(max-width:760px) {
+ .reviews-heading { align-items:start;flex-direction:column;gap:20px;padding-bottom:24px; }
+ .reviews-heading p:not(.eyebrow) { font-size:13px; }
+ .reviews-overview { grid-template-columns:95px 1fr;gap:24px;padding-block:28px; }
+ .reviews-score strong { font-size:44px; }
+ .reviews-score>span { font-size:13px;letter-spacing:0; }
+ .reviews-tools { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+ .reviews-tools .reviews-media-filter { grid-column:1/-1;margin:0;min-height:24px; }
+ .review-item { grid-template-columns:1fr;gap:15px;padding-block:24px; }
+ .review-author { display:inline;margin-right:10px; }
+ .review-attachments button { width:76px;height:76px; }
+ .reviews-form-row { grid-template-columns:1fr;gap:18px; }
+ .reviews-form-heading h3 { font-size:22px; }
+ .reviews-form-panel { padding:20px 16px; }
+ .reviews-upload { padding:15px; }
+ .reviews-form-actions { align-items:start; }
+ .reviews-form-actions>span { max-width:none; }
+}
+{% endstylesheet %}
+
+{% javascript %}
+if (!customElements.get('pupit-reviews')) {
+  customElements.define('pupit-reviews', class extends HTMLElement {
+    connectedCallback() {
+      if (this.initialized) return;
+      this.initialized = true;
+      this.labels = JSON.parse(this.dataset.texts);
+      this.find = selector => this.querySelector(selector);
+      this.form = this.find('[data-form]'); this.files = []; this.urls = []; this.draft = null;
+      this.page = 1; this.sequence = 0; this.ready = false;
+      this.api = null;
+      try { const url = new URL(this.dataset.api); if (url.protocol === 'https:') this.api = url; } catch {}
+      this.find('[data-open]').addEventListener('click', () => this.openForm());
+      this.find('[data-close]').addEventListener('click', () => { this.find('[data-panel]').hidden = true; this.find('[data-open]').setAttribute('aria-expanded', 'false'); this.find('[data-open]').focus(); });
+      this.form.addEventListener('submit', event => this.submit(event));
+      this.find('[name=media]').addEventListener('change', event => this.selectFiles([...event.target.files]));
+      this.find('[data-reset]').addEventListener('click', () => { this.draft = null; this.find('[data-fields]').disabled = false; this.find('[data-reset]').hidden = true; this.find('[data-submit]').textContent = this.labels.submit; this.message(''); });
+      for (const selector of ['[data-rating]','[data-sort]','[data-media-only]']) this.find(selector).addEventListener('change', () => this.load());
+      this.find('[data-more]').addEventListener('click', () => this.load(this.page + 1));
+      this.find('[data-dialog-close]').addEventListener('click', () => this.find('[data-dialog]').close());
+      this.find('[data-dialog]').addEventListener('close', () => this.find('[data-dialog-media]').replaceChildren());
+      if (this.api && this.dataset.product) this.connect(); else this.unavailable();
+    }
+    disconnectedCallback() { this.sequence++; this.urls.forEach(url => URL.revokeObjectURL(url)); }
+    text(key, values = {}) { return Object.entries(values).reduce((s, [key, value]) => s.replaceAll(`{${key}}`, value), this.labels[key] || key); }
+    node(tag, text, className) { const el = document.createElement(tag); if (text !== undefined) el.textContent = text; if (className) el.className = className; return el; }
+    async request(action, data, params = {}) {
+      const url = new URL(this.api); url.searchParams.set('action', action);
+      Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
+      const response = await fetch(url, { method: data ? 'POST' : 'GET', mode: 'cors', credentials: 'omit',
+        headers: data ? { 'Content-Type': 'application/json' } : {}, body: data ? JSON.stringify(data) : undefined, signal: AbortSignal.timeout(30000) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || this.labels.failed);
+      return result;
+    }
+    async connect() {
+      try { this.config = await this.request('config'); this.ready = true; this.find('[data-submit]').disabled = false; await this.load(); }
+      catch { this.unavailable(); }
+    }
+    unavailable() {
+      this.ready = false; this.find('[data-status]').textContent = this.labels.unavailable;
+      this.find('[data-unavailable]').hidden = false; this.find('[data-submit]').disabled = true;
+    }
+    openForm() {
+      this.find('[data-panel]').hidden = false;
+      this.find('[data-open]').setAttribute('aria-expanded', 'true');
+      this.find('[data-panel]').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      this.find('[name=rating]').focus({ preventScroll: true });
+    }
+    message(text, error = false) { const el = this.find('[data-form-status]'); el.textContent = text; el.dataset.error = String(error); }
+    selectFiles(files) {
+      const limits = this.config?.limits || { files: 4, videos: 1, image: 5242880, video: 26214400, total: 31457280 };
+      const types = ['image/jpeg','image/png','image/webp','video/mp4','video/webm','video/quicktime'];
+      const invalid = files.length > limits.files || files.filter(f => f.type.startsWith('video/')).length > limits.videos ||
+        files.reduce((s, f) => s + f.size, 0) > limits.total || files.some(f => !types.includes(f.type) || f.size < 1 || f.size > (f.type.startsWith('video/') ? limits.video : limits.image));
+      if (invalid) { this.find('[name=media]').value = ''; this.files = []; this.renderPreviews(); this.message(this.labels.file_error, true); return; }
+      this.files = files; this.message(''); this.renderPreviews();
+    }
+    renderPreviews() {
+      this.urls.forEach(url => URL.revokeObjectURL(url)); this.urls = [];
+      const parent = this.find('[data-previews]'); parent.replaceChildren();
+      this.files.forEach((file, index) => {
+        const item = this.node('div', undefined, 'reviews-preview');
+        const media = this.node(file.type.startsWith('image/') ? 'img' : 'video');
+        const url = URL.createObjectURL(file); this.urls.push(url); media.src = url;
+        if (media.tagName === 'IMG') media.alt = file.name; else { media.preload = 'metadata'; media.muted = true; media.playsInline = true; }
+        const remove = this.node('button', '×'); remove.type = 'button'; remove.setAttribute('aria-label', this.text('remove', { file: file.name }));
+        remove.addEventListener('click', () => { this.files.splice(index, 1); this.find('[name=media]').value = ''; this.renderPreviews(); });
+        item.append(media, this.node('span', file.name), remove); parent.append(item);
+      });
+    }
+    async submit(event) {
+      event.preventDefault(); if (!this.ready || this.busy || (!this.draft && !this.form.reportValidity())) return;
+      this.busy = true; this.find('[data-submit]').disabled = true; this.find('[data-close]').disabled = true; this.find('[data-reset]').disabled = true;
+      try {
+        if (!this.draft) {
+          const values = new FormData(this.form);
+          this.find('[data-fields]').disabled = true;
+          this.message(this.labels.sending);
+          this.draft = await this.request('start', { product: this.dataset.product, author: values.get('author'), title: values.get('title'),
+            body: values.get('body'), rating: Number(values.get('rating')), consent: values.has('consent'), consentVersion: this.config.consentVersion,
+            website: values.get('website'), files: this.files.map(({ type, size }) => ({ type, size })) });
+          this.draft.uploaded = 0;
+        }
+        this.find('[data-fields]').disabled = true;
+        for (let index = this.draft.uploaded; index < this.files.length; index++) {
+          this.message(this.text('uploading', { current: index + 1, total: this.files.length }));
+          const { uploads } = await this.request('tickets', { id: this.draft.id, token: this.draft.token });
+          const ticket = uploads[index]; const target = new URL(ticket.url); if (target.protocol !== 'https:') throw new Error(this.labels.failed);
+          let options;
+          if (ticket.method === 'PUT') {
+            options = { method: 'PUT', headers: { 'Content-Type': this.files[index].type }, body: this.files[index] };
+          } else {
+            const form = new FormData(); Object.entries(ticket.fields).forEach(([key, value]) => form.append(key, value)); form.append('file', this.files[index]);
+            options = { method: 'POST', body: form };
+          }
+          const response = await fetch(target, { ...options, credentials: 'omit', signal: AbortSignal.timeout(300000) });
+          if (!response.ok) throw new Error(this.labels.upload_failed);
+          this.draft.uploaded = index + 1;
+        }
+        this.message(this.labels.checking);
+        const result = await this.request('finish', { id: this.draft.id, token: this.draft.token });
+        if (result.received !== true) throw new Error(this.labels.failed);
+        this.form.reset(); this.files = []; this.renderPreviews(); this.draft = null;
+        this.find('[data-fields]').disabled = false; this.find('[data-reset]').hidden = true;
+        this.message(this.text('success', { id: result.id.slice(0, 8) }));
+        this.find('[data-submit]').textContent = this.labels.submit;
+      } catch (error) {
+        if (!this.draft) this.find('[data-fields]').disabled = false;
+        this.message(error.message === 'Failed to fetch' || error.name === 'TimeoutError' ? this.labels.network_error : error.message || this.labels.failed, true);
+        if (this.draft) {
+          this.find('[data-reset]').hidden = false;
+          this.find('[data-submit]').textContent = this.labels.retry;
+          if (error.message && error.message.includes('comprobar los archivos')) this.draft.uploaded = 0;
+        }
+      } finally { this.busy = false; this.find('[data-submit]').disabled = !this.ready; this.find('[data-close]').disabled = false; this.find('[data-reset]').disabled = false; }
+    }
+    async load(page = 1) {
+      const sequence = ++this.sequence;
+      this.find('[data-more]').disabled = true;
+      this.find('[data-status]').textContent = this.labels.loading;
+      this.find('[data-status]').hidden = false;
+      const params = { product: this.dataset.product, rating: this.find('[data-rating]').value,
+        sort: this.find('[data-sort]').value, media: this.find('[data-media-only]').checked, page };
+      try {
+        const result = await this.request('list', null, params); if (sequence !== this.sequence || !this.isConnected) return;
+        this.page = page; this.find('[data-tools]').hidden = result.summary.count === 0;
+        this.find('[data-overview]').hidden = result.summary.count === 0;
+        this.find('[data-average]').textContent = result.summary.average?.toLocaleString('es-ES') || '';
+        this.find('[data-stars]').textContent = '★'.repeat(Math.round(result.summary.average || 0)) + '☆'.repeat(5 - Math.round(result.summary.average || 0));
+        this.find('[data-count]').textContent = this.text('count', { count: result.summary.count });
+        const bars = this.find('[data-distribution]'); bars.replaceChildren();
+        for (let n = 5; n > 0; n--) {
+          const button = this.node('button'); button.type = 'button'; button.setAttribute('aria-label', this.text('distribution_label', { rating: n, count: result.summary.distribution[n] }));
+          const meter = this.node('meter'); meter.min = 0; meter.max = Math.max(result.summary.count, 1); meter.value = result.summary.distribution[n]; meter.setAttribute('aria-hidden', 'true');
+          button.append(this.node('span', `${n} ★`), meter, this.node('span', result.summary.distribution[n]));
+          button.addEventListener('click', () => { this.find('[data-rating]').value = String(n); this.load(); }); bars.append(button);
+        }
+        if (page === 1) this.find('[data-list]').replaceChildren();
+        result.reviews.forEach(review => this.find('[data-list]').append(this.renderReview(review)));
+        this.find('[data-more]').hidden = !result.hasMore;
+        this.find('[data-status]').textContent = result.total ? '' : (result.summary.count ? this.labels.empty_filter : this.labels.empty);
+        this.find('[data-status]').hidden = result.total > 0;
+      } catch { if (sequence === this.sequence) this.find('[data-status]').textContent = this.labels.load_error; }
+      finally { if (sequence === this.sequence) this.find('[data-more]').disabled = false; }
+    }
+    renderReview(review) {
+      const item = this.node('article', undefined, 'review-item'), aside = this.node('div'), content = this.node('div', undefined, 'review-content');
+      aside.append(this.node('p', review.author, 'review-author'));
+      const date = new Date(review.date), time = this.node('time', date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }), 'review-date'); time.dateTime = date.toISOString(); aside.append(time);
+      const stars = this.node('div', '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating), 'review-stars'); stars.setAttribute('aria-label', this.text('stars', { rating: review.rating })); content.append(stars);
+      if (review.title) content.append(this.node('h3', review.title)); content.append(this.node('p', review.body));
+      if (review.media.length) {
+        const list = this.node('div', undefined, 'review-attachments');
+        review.media.forEach(media => {
+          if (!['image/jpeg','image/png','image/webp','video/mp4','video/webm','video/quicktime'].includes(media.type)) return;
+          let url; try { url = new URL(media.url); if (url.protocol !== 'https:') return; } catch { return; }
+          const video = media.type.startsWith('video/'), button = this.node('button'); button.type = 'button';
+          button.setAttribute('aria-label', this.text(video ? 'open_video' : 'open_photo', { author: review.author }));
+          if (video) button.append(this.node('span', '▷', 'review-video-mark'));
+          else { const image = this.node('img'); image.src = url.href; image.alt = this.text('photo_alt', { author: review.author }); image.loading = 'lazy'; button.append(image); }
+          button.addEventListener('click', () => {
+            const element = this.node(video ? 'video' : 'img'); element.src = url.href;
+            if (video) { element.controls = true; element.playsInline = true; element.preload = 'metadata'; } else element.alt = this.text('photo_alt', { author: review.author });
+            const error = this.node('p', this.labels.media_expired); error.hidden = true; element.addEventListener('error', () => { error.hidden = false; });
+            this.find('[data-dialog-media]').replaceChildren(element, error); this.find('[data-dialog]').showModal();
+          }); list.append(button);
+        }); content.append(list);
+      }
+      item.append(aside, content); return item;
+    }
+  });
+}
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Opiniones de clientes",
+  "limit": 1,
+  "enabled_on": {
+    "templates": [
+      "product",
+      "page"
+    ]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Sistema propio de Pupit & Co. Configura la API después de conectar la base de datos y el almacenamiento privado. No requiere aplicaciones de opiniones."
+    },
+    {
+      "type": "url",
+      "id": "api_url",
+      "label": "Dirección HTTPS de la API"
+    },
+    {
+      "type": "product",
+      "id": "review_product",
+      "label": "Producto para páginas"
+    },
+    {
+      "type": "text",
+      "id": "product_key",
+      "label": "Identificador del producto",
+      "info": "Identificador autorizado por el servidor. Se usa cuando el producto aún está en borrador."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Opiniones de clientes"
+    }
+  ]
+}
+{% endschema %}

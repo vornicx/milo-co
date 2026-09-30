@@ -26,12 +26,19 @@
     "waitlist_return": {
       "type": "product-waitlist-return",
       "settings": {}
+    },
+    "reviews": {
+      "type": "product-reviews",
+      "settings": {
+        "product_key": "dispensador-de-paseo-3-en-1"
+      }
     }
   },
   "order": [
     "0",
     "validation",
     "4",
+    "reviews",
     "5",
     "waitlist_return",
     "stories"
