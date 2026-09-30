@@ -1,6 +1,6 @@
-# Milo & Co
+# Tilo & Nube
 
-Tema nativo Shopify Online Store 2.0 para Milo & Co: una marca de objetos para paseos, escapadas y vida cotidiana con perros. El dispensador 3 en 1 es el **Objeto 01**, no la definición completa de la marca.
+Tema nativo Shopify Online Store 2.0 para Tilo & Nube: una marca de objetos para paseos, escapadas y vida cotidiana con perros. El dispensador 3 en 1 es el **Objeto 01**, no la definición completa de la marca.
 
 ## Estado
 
@@ -21,7 +21,7 @@ La vista previa pública de Vercel sirve únicamente para revisar diseño y estr
 
 ## Archic Production Gate
 
-Milo & Co sigue el gate de producción Archic.
+Tilo & Nube sigue el gate de producción Archic.
 
 En cada push a `main` y en cada pull request, GitHub Actions ejecuta:
 
@@ -65,7 +65,7 @@ El interruptor `sales_enabled` **no es un mecanismo de seguridad**. El control d
 
 ## Estructura de marca
 
-La dirección de Milo & Co está documentada en:
+La dirección de Tilo & Nube está documentada en:
 
 - `docs/brand.md`
 - `docs/photography-system.md`
