@@ -1,11 +1,16 @@
-# Milo & Co — identidad v2
+# Tilo & Nube — identidad v1
 
 ## Idea central
 **La vida, en buena compañía.**
 
-Milo & Co es una marca de objetos para paseos, escapadas y vida cotidiana con perros. El dispensador es el primer producto, no la definición de la marca.
+## Nombre
+**Tilo & Nube** une dos ideas: calma y ligereza. Suena cercano en español, no encierra la marca en un único producto y permite crecer hacia una colección completa para la vida con perros.
 
-La pregunta que guía cada decisión es: **¿esto seguiría teniendo sentido si mañana Milo & Co tuviera veinte productos?**
+El nombre sustituye a Milo & Co tras una revisión de naming. No se harán inversiones en packaging o registro basándose solo en esta revisión interna: la disponibilidad jurídica debe confirmarse formalmente antes de registrar la marca.
+
+Tilo & Nube es una marca de objetos para paseos, escapadas y vida cotidiana con perros. El dispensador es el primer producto, no la definición de la marca.
+
+La pregunta que guía cada decisión es: **¿esto seguiría teniendo sentido si mañana Tilo & Nube tuviera veinte productos?**
 
 ## Personalidad
 Cercana, tranquila, práctica y cuidada. Premium accesible sin parecer lujo forzado. La marca no intenta impresionar con copy; transmite calidad mediante proporción, fotografía, materiales visuales y atención al detalle.
