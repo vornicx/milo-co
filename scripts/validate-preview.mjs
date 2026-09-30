@@ -52,13 +52,13 @@ for (const file of pages) {
   if (bytes > 260_000) fail(`${file}: HTML is ${Math.round(bytes / 1024)} KiB; budget is 254 KiB`);
 }
 
-const css = await readFile('dist/assets/milo-system.css', 'utf8');
-if (!css.includes(':focus-visible')) fail('milo-system.css: missing focus-visible treatment');
-if (!css.includes('prefers-reduced-motion')) fail('milo-system.css: missing reduced-motion treatment');
-if (Buffer.byteLength(css) > 90_000) fail('milo-system.css exceeds 90 KiB budget');
+const css = await readFile('dist/assets/pupit-system.css', 'utf8');
+if (!css.includes(':focus-visible')) fail('pupit-system.css: missing focus-visible treatment');
+if (!css.includes('prefers-reduced-motion')) fail('pupit-system.css: missing reduced-motion treatment');
+if (Buffer.byteLength(css) > 90_000) fail('pupit-system.css exceeds 90 KiB budget');
 
 const assets = await readdir('dist/assets');
-for (const name of ['milo-food-original.jpg','milo-waste-original.jpg','milo-parts-original.jpg']) {
+for (const name of ['pupit-food-original.jpg','pupit-waste-original.jpg','pupit-parts-original.jpg']) {
   if (!assets.includes(name)) fail(`missing product asset: ${name}`);
   else {
     const size = (await stat(join('dist/assets', name))).size;

@@ -1,4 +1,6 @@
-# Opiniones propias de Milo & Co
+# Opiniones propias de Pupit & Co
+
+La identidad pública y los orígenes previstos corresponden a Pupit & Co y `pupitandcompany.com`. Los identificadores de tablas existentes (`milo_reviews`, `milo_review_limits` y `milo_review_audit`) se conservan para mantener la compatibilidad con los datos anteriores. No hace falta volver a crear la base de datos para cambiar la marca.
 
 ## Estado — 28 de septiembre de 2026
 
@@ -29,7 +31,7 @@ El panel `/reviews-admin` utiliza una clave aleatoria enviada en `Authorization`
 
 ## Conexión pendiente
 
-1. Preparar una base de datos PostgreSQL **dedicada a Milo & Co** y un bucket S3 privado. No reutilizar bases de otros negocios. Elegir ubicación y presupuesto antes de contratar servicios; esta implementación no garantiza alojamiento gratuito.
+1. Preparar una base de datos PostgreSQL **dedicada a Pupit & Co** y un bucket S3 privado. No reutilizar bases de otros negocios. Elegir ubicación y presupuesto antes de contratar servicios; esta implementación no garantiza alojamiento gratuito.
 2. Configurar las variables de `.env.example` en el servidor. Usar conexión PostgreSQL con TLS y certificados verificados. El usuario de servidor/migración debe ser propietario de las tablas (o disponer de una política/rol de servidor equivalente); nunca entregar estas credenciales a Shopify o al navegador. Para Vercel con conexiones limitadas, usar la URL del pool del proveedor.
 3. Generar `REVIEWS_ADMIN_SECRET` y `REVIEWS_HASH_SECRET` independientes, con al menos 32 bytes aleatorios cada uno. No pegarlos en el repositorio ni en una conversación. Configurar secretos distintos para pruebas y producción.
 4. Ejecutar `npm run reviews:migrate` con las variables privadas disponibles. El script usa una transacción y puede repetirse. La migración no importa opiniones.
@@ -44,7 +46,7 @@ El panel `/reviews-admin` utiliza una clave aleatoria enviada en `Authorization`
 
 La cuenta conectada encontrada es **vornicx-7872's projects**, actualmente en plan Free. Esto no confirma el precio ni la disponibilidad de un proyecto nuevo. La herramienta exige que el propietario elija la organización y confirme el coste antes de crearlo. No se ha creado ningún proyecto ni cambiado el plan.
 
-Para un proyecto dedicado `milo-co-opiniones`:
+Para un proyecto dedicado `pupit-co-opiniones`:
 
 - Usar PostgreSQL y un bucket privado del mismo proyecto, preferentemente en una región europea, con límite de objeto de 25 MiB y lista de MIME permitidos. No crear políticas públicas sobre `storage.objects` ni sobre las tablas de opiniones.
 - Configurar `REVIEWS_S3_UPLOAD_METHOD=put`. Copiar endpoint, región y credenciales S3 desde los ajustes de ese proyecto; las claves solo se guardan en el servidor. No usar el secreto `service_role` como token de sesión en enlaces firmados que vayan a entregarse a clientes.

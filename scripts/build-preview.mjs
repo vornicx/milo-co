@@ -5,15 +5,15 @@ await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
 await cp('.preview/assets', 'dist/assets', { recursive: true });
 const previewTitles = {
-  index: 'Milo & Co · Preview',
-  cart: 'Carrito · Milo & Co · Preview',
-  '404': '404 · Milo & Co · Preview',
-  'page.productos': 'Dispensador · Milo & Co · Preview',
-  'page.dispensador': 'Dispensador 3 en 1 · Milo & Co · Preview',
-  'page.paseos': 'Paseos y escapadas · Milo & Co · Preview',
-  'page.nosotros': 'Nuestra idea · Milo & Co · Preview',
-  'page.contact': 'Contacto · Milo & Co · Preview',
-  page: 'Información · Milo & Co · Preview'
+  index: 'Pupit & Co · Preview',
+  cart: 'Carrito · Pupit & Co · Preview',
+  '404': '404 · Pupit & Co · Preview',
+  'page.productos': 'Dispensador · Pupit & Co · Preview',
+  'page.dispensador': 'Dispensador 3 en 1 · Pupit & Co · Preview',
+  'page.paseos': 'Paseos y escapadas · Pupit & Co · Preview',
+  'page.nosotros': 'Nuestra idea · Pupit & Co · Preview',
+  'page.contact': 'Contacto · Pupit & Co · Preview',
+  page: 'Información · Pupit & Co · Preview'
 };
 for (const name of ['index', 'cart', '404', 'page.productos', 'page.dispensador', 'page.paseos', 'page.nosotros', 'page.contact', 'page']) {
   let html = await readFile(`.preview/${name}.html`, 'utf8');
@@ -36,4 +36,4 @@ for (const name of ['index', 'cart', '404', 'page.productos', 'page.dispensador'
 await cp('admin/reviews.html', 'dist/reviews-admin.html');
 await cp('admin/reviews-admin.js', 'dist/assets/reviews-admin.js');
 await cp('admin/reviews-admin.css', 'dist/assets/reviews-admin.css');
-console.log('Static Milo & Co preview and private review panel built in dist/');
+console.log('Static Pupit & Co preview and private review panel built in dist/');

@@ -18,7 +18,7 @@ Mitigación temporal preparada: sustituir únicamente el último párrafo de Con
 
 > Para consultas sobre esta política de privacidad o para ejercer sus derechos de protección de datos, puede escribirnos a través de nuestro formulario de contacto.
 
-Enlazar «formulario de contacto» a `https://miloandcompany.es/pages/contact`.
+Enlazar «formulario de contacto» a `https://pupitandcompany.com/pages/contact`.
 
 Esta mitigación no completa los datos legales del comercio. Se necesitan identidad y datos de contacto comerciales válidos. El artículo 10 de la LSSI exige determinada información pública del prestador: https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758#a10 . No sustituirlos por datos inventados. El correo de contacto de Shopify también sigue siendo personal: debe cambiarse a un buzón comercial existente y operativo, sin confundirlo con las credenciales de acceso.
 

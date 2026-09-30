@@ -1,13 +1,13 @@
-# Archic Gate — Milo & Co
+# Archic Gate — Pupit & Co
 
 Última revisión: 23 septiembre 2026.
 
 ## Hard gate activo
 
-Milo & Co se trata como un producto de producción, aunque Shopify todavía no esté conectado. Ningún cambio importante se considera listo solo porque compile o se vea bien.
+Pupit & Co se trata como un producto de producción, aunque Shopify todavía no esté conectado. Ningún cambio importante se considera listo solo porque compile o se vea bien.
 
 ### Diseño
-- Un único sistema visual cargado: `assets/milo-system.css`.
+- Un único sistema visual cargado: `assets/pupit-system.css`.
 - Home, índice de productos, landing del dispensador, páginas editoriales, carrito, contacto y producto nativo comparten tokens y componentes.
 - Mobile tiene composición propia, no un simple apilado de desktop.
 - Sin copy de relleno, reseñas, descuentos, precio, certificaciones o disponibilidad inventados.

@@ -26,7 +26,7 @@ engine.registerFilter('money', x => new Intl.NumberFormat('es-ES',{style:'curren
 const clean = s => s
  .replace(/{% schema %}[\s\S]*?{% endschema %}/g,'')
  .replace(/{% stylesheet %}([\s\S]*?){% endstylesheet %}/g, '<style>$1</style>');
-const base = {request:{locale:{iso_code:'es'},page_type:'index'},routes:{root_url:'index.html',cart_url:'cart.html'},cart:{item_count:0},pages:{contact:{url:'/pages/contact'}},shop:{name:'Milo & Co',url:'https://miloandcompany.es',policies:[],privacy_policy:{body:'Configured on Shopify',url:'/policies/privacy-policy'}},settings:{sales_enabled:false,products_page:{url:'/pages/productos'},product_page:{url:'/pages/dispensador'},walk_page:{url:'/pages/paseos'},brand_page:{url:'/pages/nosotros'}},page_title:'Milo & Co',current_page:1,canonical_url:'https://miloandcompany.es/',content_for_header:''};
+const base = {request:{locale:{iso_code:'es'},page_type:'index'},routes:{root_url:'index.html',cart_url:'cart.html'},cart:{item_count:0},pages:{contact:{url:'/pages/contact'}},shop:{name:'Pupit & Co',url:'https://pupitandcompany.com',policies:[],privacy_policy:{body:'Configured on Shopify',url:'/policies/privacy-policy'}},settings:{sales_enabled:false,products_page:{url:'/pages/productos'},product_page:{url:'/pages/dispensador'},walk_page:{url:'/pages/paseos'},brand_page:{url:'/pages/nosotros'}},page_title:'Pupit & Co',current_page:1,canonical_url:'https://pupitandcompany.com/',content_for_header:''};
 async function section(type,id,settings={}) {
  let raw=clean(await readFile(`sections/${type}.liquid`,'utf8'));
  const javascript = raw.match(/{% javascript %}([\s\S]*?){% endjavascript %}/);
@@ -49,13 +49,13 @@ for(const name of ['index','cart','404','page.productos','page.dispensador','pag
  const pageHandle=name==='page' ? 'informacion' : name.startsWith('page.') ? name.slice(5) : '';
  base.request.page_type=(pageHandle || name==='page') ? 'page' : name;
  base.page={handle:pageHandle,title:previewPageTitles[pageHandle] || pageHandle,content:''};
- base.page_title=previewPageTitles[pageHandle] || 'Milo & Co';
- base.canonical_url=`https://miloandcompany.es${pageHandle ? '/pages/'+pageHandle : name==='index' ? '/' : '/'+name}`;
+ base.page_title=previewPageTitles[pageHandle] || 'Pupit & Co';
+ base.canonical_url=`https://pupitandcompany.com${pageHandle ? '/pages/'+pageHandle : name==='index' ? '/' : '/'+name}`;
  const template=JSON.parse(await readFile(`templates/${name}.json`,'utf8'));
  let content='';for(const id of template.order){const s=template.sections[id];if(s.disabled) continue;content+=await section(s.type,id,s.settings);}
  let layout=await readFile('layout/theme.liquid','utf8');
  layout=layout.replace("{% section 'header' %}",await section('header','header')).replace("{% section 'footer' %}",await section('footer','footer'));
  await writeFile(`.preview/${name}.html`,await engine.parseAndRender(layout,{...base,content_for_layout:content}));
 }
-await writeFile('.preview/mobile.html','<!doctype html><html><head><title>Revisión a 390 px</title></head><body style="margin:0;background:#d0d4c8"><iframe title="Milo & Co móvil" src="index.html" style="display:block;width:390px;height:2600px;border:0;margin:0 auto"></iframe></body></html>');
+await writeFile('.preview/mobile.html','<!doctype html><html><head><title>Revisión a 390 px</title></head><body style="margin:0;background:#d0d4c8"><iframe title="Pupit & Co móvil" src="index.html" style="display:block;width:390px;height:2600px;border:0;margin:0 auto"></iframe></body></html>');
 console.log('Preview rendered from actual Liquid sections in .preview/');

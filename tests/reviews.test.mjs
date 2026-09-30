@@ -35,7 +35,7 @@ function complete(widget) {
 test('Unconnected section shows honest status, has no fabricated ratings and cannot send', async () => {
   const page = await dom(() => { throw new Error('Must not call'); }, '');
   try {
-    const widget = page.window.document.querySelector('milo-reviews');
+    const widget = page.window.document.querySelector('pupit-reviews');
     assert.equal(widget.find('[data-submit]').disabled, true); assert.equal(widget.find('[data-overview]').hidden, true);
     assert.match(widget.find('[data-status]').textContent, /Todavía no/);
     widget.find('[data-open]').click(); assert.equal(widget.find('[data-panel]').hidden, false);
@@ -64,7 +64,7 @@ test('Form freezes files during submission, retries a failed upload and confirms
     return { ok: true };
   });
   try {
-    const widget = page.window.document.querySelector('milo-reviews'); complete(widget);
+    const widget = page.window.document.querySelector('pupit-reviews'); complete(widget);
     widget.selectFiles([new page.window.File(['image bytes'], 'photo.png', { type: 'image/png' })]);
     const first = widget.submit({ preventDefault() {} }); assert.equal(widget.find('[data-fields]').disabled, true); await first;
     assert.equal(finishResolved, false); assert.equal(widget.files.length, 1); assert.equal(widget.find('[data-reset]').hidden, false);
@@ -78,7 +78,7 @@ test('Form freezes files during submission, retries a failed upload and confirms
 test('Failed start keeps editable fields and never displays a successful receipt', async () => {
   const page = await dom(async () => ({ ok: false, json: async () => ({ error: 'Error de prueba' }) }));
   try {
-    const widget = page.window.document.querySelector('milo-reviews'); complete(widget); await widget.submit({ preventDefault() {} });
+    const widget = page.window.document.querySelector('pupit-reviews'); complete(widget); await widget.submit({ preventDefault() {} });
     assert.equal(widget.draft, null); assert.equal(widget.find('[data-fields]').disabled, false);
     assert.equal(widget.find('[name=body]').value, 'Mi experiencia con el dispensador.');
     assert.equal(widget.find('[data-form-status]').textContent, 'Error de prueba');
@@ -88,7 +88,7 @@ test('Failed start keeps editable fields and never displays a successful receipt
 test('Customer content is rendered as text and executable media URLs are ignored', async () => {
   const page = await dom(async () => { throw new Error('Unexpected'); });
   try {
-    const widget = page.window.document.querySelector('milo-reviews');
+    const widget = page.window.document.querySelector('pupit-reviews');
     const item = widget.renderReview({ author: '<img src=x onerror=alert(1)>', rating: 1, title: '<script>alert(1)</script>', body: '<svg onload=alert(1)>', date: '2026-09-27T10:00:00Z', media: [{ type: 'image/png', url: 'javascript:alert(1)' }] });
     assert.equal(item.querySelector('img,script,svg'), null); assert.match(item.textContent, /<svg onload/);
   } finally { page.window.close(); }
@@ -120,7 +120,7 @@ test('Compatible S3 upload sends the File body with its MIME and no scripted Con
     upload = options; return { ok: true };
   });
   try {
-    const widget = page.window.document.querySelector('milo-reviews'); complete(widget);
+    const widget = page.window.document.querySelector('pupit-reviews'); complete(widget);
     const file = new page.window.File(['video bytes'], 'paseo.mp4', { type: 'video/mp4' });
     widget.selectFiles([file]); await widget.submit({ preventDefault() {} });
     assert.equal(upload.method, 'PUT'); assert.equal(upload.body, file);

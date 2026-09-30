@@ -4,7 +4,7 @@
 %}
 {% capture review_labels %}{"eyebrow":{{ 'reviews.eyebrow' | t | json }},"heading":{{ 'reviews.heading' | t | json }},"intro":{{ 'reviews.intro' | t | json }},"nav":{{ 'reviews.nav' | t | json }},"write":{{ 'reviews.write' | t | json }},"loading":{{ 'reviews.loading' | t | json }},"distribution":{{ 'reviews.distribution' | t | json }},"filter_rating":{{ 'reviews.filter_rating' | t | json }},"all":{{ 'reviews.all' | t | json }},"sort":{{ 'reviews.sort' | t | json }},"recent":{{ 'reviews.recent' | t | json }},"highest":{{ 'reviews.highest' | t | json }},"lowest":{{ 'reviews.lowest' | t | json }},"with_media":{{ 'reviews.with_media' | t | json }},"more":{{ 'reviews.more' | t | json }},"moderation_title":{{ 'reviews.moderation_title' | t | json }},"moderation_body":{{ 'reviews.moderation_body' | t | json }},"close":{{ 'reviews.close' | t | json }},"unavailable":{{ 'reviews.unavailable' | t | json }},"your_rating":{{ 'reviews.your_rating' | t | json }},"name":{{ 'reviews.name' | t | json }},"title":{{ 'reviews.title' | t | json }},"experience":{{ 'reviews.experience' | t | json }},"body_help":{{ 'reviews.body_help' | t | json }},"attach":{{ 'reviews.attach' | t | json }},"file_help":{{ 'reviews.file_help' | t | json }},"website":{{ 'reviews.website' | t | json }},"consent":{{ 'reviews.consent' | t | json }},"privacy":{{ 'reviews.privacy' | t | json }},"submit":{{ 'reviews.submit' | t | json }},"reset":{{ 'reviews.reset' | t | json }},"before_publication":{{ 'reviews.before_publication' | t | json }},"javascript_required":{{ 'reviews.javascript_required' | t | json }},"failed":{{ 'reviews.failed' | t | json }},"file_error":{{ 'reviews.file_error' | t | json }},"remove":{{ 'reviews.remove' | t | json }},"sending":{{ 'reviews.sending' | t | json }},"uploading":{{ 'reviews.uploading' | t | json }},"upload_failed":{{ 'reviews.upload_failed' | t | json }},"checking":{{ 'reviews.checking' | t | json }},"success":{{ 'reviews.success' | t | json }},"network_error":{{ 'reviews.network_error' | t | json }},"retry":{{ 'reviews.retry' | t | json }},"count":{{ 'reviews.count' | t | json }},"distribution_label":{{ 'reviews.distribution_label' | t | json }},"empty_filter":{{ 'reviews.empty_filter' | t | json }},"empty":{{ 'reviews.empty' | t | json }},"load_error":{{ 'reviews.load_error' | t | json }},"stars":{{ 'reviews.stars' | t | json }},"open_video":{{ 'reviews.open_video' | t | json }},"open_photo":{{ 'reviews.open_photo' | t | json }},"photo_alt":{{ 'reviews.photo_alt' | t | json }},"media_expired":{{ 'reviews.media_expired' | t | json }}}{% endcapture %}
 <section class="product-reviews wrap" id="opiniones" aria-labelledby="Reviews-{{ section.id }}">
-  <milo-reviews data-api="{{ section.settings.api_url | escape }}" data-product="{{ review_key | escape }}" data-texts="{{ review_labels | escape }}">
+  <pupit-reviews data-api="{{ section.settings.api_url | escape }}" data-product="{{ review_key | escape }}" data-texts="{{ review_labels | escape }}">
     <header class="reviews-heading">
       <div><p class="eyebrow">{{ 'reviews.eyebrow' | t }}</p><h2 id="Reviews-{{ section.id }}">{{ 'reviews.heading' | t }}</h2><p>{{ 'reviews.intro' | t }}</p></div>
       <button type="button" class="button reviews-write" data-open aria-expanded="false" aria-controls="ReviewForm-{{ section.id }}">{{ 'reviews.write' | t }} <span aria-hidden="true">↗</span></button>
@@ -41,13 +41,13 @@
     </div>
     <dialog class="reviews-dialog" data-dialog aria-label="{{ 'reviews.attach' | t }}"><button type="button" class="reviews-close" data-dialog-close aria-label="{{ 'reviews.close' | t }}">×</button><div data-dialog-media></div></dialog>
     <noscript><p>{{ 'reviews.javascript_required' | t }}</p></noscript>
-  </milo-reviews>
+  </pupit-reviews>
 </section>
 
 {% stylesheet %}
 .product-reviews { padding-block:clamp(48px,6vw,88px); }
-milo-reviews { display:block; }
-milo-reviews [hidden] { display:none!important; }
+pupit-reviews { display:block; }
+pupit-reviews [hidden] { display:none!important; }
 .reviews-heading { display:flex;justify-content:space-between;gap:32px;align-items:center;padding-bottom:30px;border-bottom:1px solid var(--line); }
 .reviews-heading h2 { margin:0 0 14px;font:500 clamp(28px,3.5vw,42px)/1.15 var(--sans);letter-spacing:-.045em; }
 .reviews-heading p:not(.eyebrow) { margin:0;max-width:52ch;font-size:14px;line-height:1.65; }
@@ -69,7 +69,7 @@ milo-reviews [hidden] { display:none!important; }
 .reviews-tools label { display:grid;gap:5px;font-size:11px;color:var(--muted); }
 .reviews-tools select { background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:8px 20px 8px 0;font:400 13px var(--sans);color:var(--ink);max-width:100%; }
 .reviews-tools .reviews-media-filter { display:flex;align-items:center;gap:9px;min-height:40px;margin-left:auto;font-size:13px; }
-milo-reviews input[type=checkbox],milo-reviews input[type=radio] { accent-color:var(--forest); }
+pupit-reviews input[type=checkbox],pupit-reviews input[type=radio] { accent-color:var(--forest); }
 .review-item { display:grid;grid-template-columns:180px minmax(0,1fr);gap:32px;padding:30px 0;border-bottom:1px solid var(--line); }
 .review-author { font-size:13px;font-weight:600;color:var(--ink);margin:0 0 6px; }
 .review-date { font-size:11px;color:var(--muted); }
@@ -146,8 +146,8 @@ milo-reviews input[type=checkbox],milo-reviews input[type=radio] { accent-color:
 {% endstylesheet %}
 
 {% javascript %}
-if (!customElements.get('milo-reviews')) {
-  customElements.define('milo-reviews', class extends HTMLElement {
+if (!customElements.get('pupit-reviews')) {
+  customElements.define('pupit-reviews', class extends HTMLElement {
     connectedCallback() {
       if (this.initialized) return;
       this.initialized = true;
@@ -333,7 +333,7 @@ if (!customElements.get('milo-reviews')) {
   "settings": [
     {
       "type": "paragraph",
-      "content": "Sistema propio de Milo & Co. Configura la API después de conectar la base de datos y el almacenamiento privado. No requiere aplicaciones de opiniones."
+      "content": "Sistema propio de Pupit & Co. Configura la API después de conectar la base de datos y el almacenamiento privado. No requiere aplicaciones de opiniones."
     },
     {
       "type": "url",

@@ -10,7 +10,7 @@
 {% if privacy_policy.body != blank %}
   {% form 'customer', id: form_id, class: 'prelaunch-form' %}
     {% if form.posted_successfully? %}
-      <div class="prelaunch-success" role="status" data-milo-success data-milo-source="{{ source | escape }}">
+      <div class="prelaunch-success" role="status" data-pupit-success data-pupit-source="{{ source | escape }}">
         <span class="prelaunch-success-mark" aria-hidden="true">✓</span>
         <div>
           <strong>Ya estás en la lista.</strong>
@@ -28,12 +28,12 @@
         <summary>Color preferido <span>(opcional)</span></summary>
         <fieldset class="prelaunch-colors">
           <legend>Color preferido</legend>
-          <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-azul-cielo"> Azul cielo</label>
-          <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-rosa"> Rosa</label>
-          <label><input type="radio" name="contact[tags]" value="milo-prelaunch, preferencia-indiferente" checked> Me da igual</label>
+          <label><input type="radio" name="contact[tags]" value="pupit-prelaunch, preferencia-azul-cielo"> Azul cielo</label>
+          <label><input type="radio" name="contact[tags]" value="pupit-prelaunch, preferencia-rosa"> Rosa</label>
+          <label><input type="radio" name="contact[tags]" value="pupit-prelaunch, preferencia-indiferente" checked> Me da igual</label>
         </fieldset>
       </details>
-      <label class="prelaunch-consent" for="Consent-{{ id }}"><input id="Consent-{{ id }}" type="checkbox" required> Acepto recibir por correo novedades de Milo &amp; Co sobre el dispensador 3 en 1. Podré darme de baja en cualquier momento.</label>
+      <label class="prelaunch-consent" for="Consent-{{ id }}"><input id="Consent-{{ id }}" type="checkbox" required> Acepto recibir por correo novedades de Pupit &amp; Co sobre el dispensador 3 en 1. Podré darme de baja en cualquier momento.</label>
       <p class="prelaunch-privacy">Usaremos tu correo y preferencia para esta comunicación. Consulta la <a href="{{ privacy_policy.url }}">política de privacidad</a>.</p>
     {% endif %}
   {% endform %}

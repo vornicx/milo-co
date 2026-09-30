@@ -11,15 +11,15 @@
         <div><dt>Comida</dt><dd>150 ml</dd></div>
         <div><dt>Altura</dt><dd>29 cm</dd></div>
       </dl>
-      <a class="button" href="{{ product_link }}" data-milo-event="product_click" data-milo-source="home_product">Ver el dispensador {% render 'arrow' %}</a>
+      <a class="button" href="{{ product_link }}" data-pupit-event="product_click" data-pupit-source="home_product">Ver el dispensador {% render 'arrow' %}</a>
       {% unless settings.sales_enabled %}<span class="home-product-status">Lista de espera abierta</span>{% endunless %}
     </div>
 
     <figure class="home-product-media home-product-colors">
       {% if section.settings.image != blank %}
-        {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 59vw', loading: 'lazy', alt: 'Dispensadores Milo & Co en azul cielo y rosa' }}
+        {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1300, 1800', sizes: '(max-width: 760px) calc(100vw - 32px), 59vw', loading: 'lazy', alt: 'Dispensadores Pupit & Co en azul cielo y rosa' }}
       {% else %}
-        {% render 'theme-image', filename: 'paseo-colores.webp', alt: 'Dispensadores Milo & Co en azul cielo y rosa', width: 1500, height: 1000, sizes: '(max-width: 760px) 90vw, 50vw', loading: 'lazy', priority: 'auto' %}
+        {% render 'theme-image', filename: 'paseo-colores.webp', alt: 'Dispensadores Pupit & Co en azul cielo y rosa', width: 1500, height: 1000, sizes: '(max-width: 760px) 90vw, 50vw', loading: 'lazy', priority: 'auto' %}
       {% endif %}
     </figure>
   </div>

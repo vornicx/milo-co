@@ -6,7 +6,7 @@ SPU: SUPEGDN00040. Portable Pet Outdoor Water Dispenser.
 - Agua: 400 ml. Comida: 150 ml. Compartimento para residuos.
 - Dimensiones: 29 × 7,5 × 7,5 cm.
 - Colores de proveedor: Sky Blue, Grass Green, Pink, Navy Blue.
-- Selección inicial Milo & Co: **Sky Blue y Pink**. Verde y azul marino quedan fuera del lanzamiento.
+- Selección inicial Pupit & Co: **Sky Blue y Pink**. Verde y azul marino quedan fuera del lanzamiento.
 - Incluye dispensador, cuerda de transporte y caja de residuos.
 - Material declarado: TPE. No se afirma libre de BPA, certificación alimentaria o estanqueidad: no comprobado.
 - Peso contradictorio: selector 309 g, descripción 218 g netos y 289 g «with color». No publicar hasta comprobar muestra.
