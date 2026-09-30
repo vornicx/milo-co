@@ -24,7 +24,7 @@ test('Waitlist handles successful signup, server errors, and missing privacy pol
   const source = (await read('snippets/prelaunch-form.liquid')).replace(/{% doc %}[\s\S]*?{% enddoc %}/g,'');
   const privacy_policy = {body:'Policy published',url:'/policies/privacy-policy'};
   const success = await engine.parseAndRender(source, {id:'test',source:'product_top',privacy_policy,form:{'posted_successfully?':true}});
-  assert.match(success, /data-milo-success/);
+  assert.match(success, /data-pupit-success/);
   assert.doesNotMatch(success, /name="contact\[email\]"/);
   const error = await engine.parseAndRender(source, {id:'test',privacy_policy,form:{errors:{email:'invalid'}}});
   assert.match(error, /role="alert"/);
@@ -56,7 +56,7 @@ test('All pre-launch templates keep checkout and cart controls absent', async ()
 
 test('Home hero reaches the waitlist directly in one click', async () => {
   const home = await read('dist/index.html');
-  assert.match(home, /href="#espera" data-milo-event="waitlist_click" data-milo-source="home_hero"/);
+  assert.match(home, /href="#espera" data-pupit-event="waitlist_click" data-pupit-source="home_hero"/);
   assert.match(home, /id="espera"[\s\S]*?name="contact\[email\]"/);
   assert.match(home, /Dispensador 3 en 1/);
 });
@@ -82,7 +82,7 @@ test('Pre-launch fallbacks do not expose supplier copy, catalogue prices, or dup
   assert.match(genericProduct, /Dispensador 3 en 1/);
   assert.ok(collection.indexOf('{% unless settings.sales_enabled %}') < collection.indexOf('| money'));
   assert.match(collection, /La compra todavía no está abierta/);
-  assert.match(article, /Milo &amp; Co/);
+  assert.match(article, /Pupit &amp; Co/);
   const dispenserTemplate = JSON.parse(await read('templates/page.dispensador.json'));
   const types = dispenserTemplate.order.filter(id => !dispenserTemplate.sections[id].disabled).map(id => dispenserTemplate.sections[id].type);
   assert.equal(types.filter(type => type === 'product-waitlist-return').length, 1);
@@ -93,12 +93,12 @@ test('Pre-launch fallbacks do not expose supplier copy, catalogue prices, or dup
 test('Precision assets stay wired and customer-facing prelaunch copy stays explicit', async () => {
   const header = await read('sections/header.liquid');
   const form = await read('snippets/prelaunch-form.liquid');
-  const polish = await read('assets/milo-polish.css');
-  const guard = await read('assets/milo-guard.js');
+  const polish = await read('assets/pupit-polish.css');
+  const guard = await read('assets/pupit-guard.js');
 
-  assert.match(header, /milo-polish\.css/);
-  assert.match(header, /milo-guard\.js/);
-  assert.match(header, /data-milo-ui="precision-2026-09-23"/);
+  assert.match(header, /pupit-polish\.css/);
+  assert.match(header, /pupit-guard\.js/);
+  assert.match(header, /data-pupit-ui="precision-2026-09-23"/);
 
   assert.doesNotMatch(form, /Objeto 01|Avisadme/);
   assert.match(form, /Dispensador 3 en 1|dispensador 3 en 1/);
@@ -114,11 +114,11 @@ test('Precision assets stay wired and customer-facing prelaunch copy stays expli
 test('Product detail keeps one concise prelaunch message and premium validation copy', async () => {
   const detail = await read('sections/dispenser-detail.liquid');
   const validation = await read('sections/product-validation.liquid');
-  const premium = await read('assets/milo-product-premium.css');
+  const premium = await read('assets/pupit-product-premium.css');
 
   assert.doesNotMatch(detail, /Estamos comprobando la muestra y las condiciones de envío/);
   assert.match(detail, /En preparación · venta todavía cerrada/);
-  assert.match(detail, /milo-product-premium\.css/);
+  assert.match(detail, /pupit-product-premium\.css/);
   assert.match(validation, /Primero, que esté a la altura\./);
   assert.match(validation, /Uso real/);
   assert.match(premium, /Premium product-detail pass/);

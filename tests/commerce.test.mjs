@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
-const code = readFileSync('assets/milo.js', 'utf8');
+const code = readFileSync('assets/pupit.js', 'utf8');
 function fixture() {
  const handlers = {};
  const element = () => ({

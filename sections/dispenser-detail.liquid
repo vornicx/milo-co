@@ -1,6 +1,6 @@
 {% assign dispenser = product | default: settings.featured_product %}
-<section class="product-top wrap" data-product-page data-milo-product-landing>
-  {{ 'milo-product-premium.css' | asset_url | stylesheet_tag }}
+<section class="product-top wrap" data-product-page data-pupit-product-landing>
+  {{ 'pupit-product-premium.css' | asset_url | stylesheet_tag }}
   {% comment %}premium-section-sync-2026-09-23-1458{% endcomment %}
   <nav class="breadcrumbs" aria-label="Migas de pan">
     <a href="{{ routes.root_url }}">Inicio</a><span>/</span>
@@ -20,9 +20,9 @@
       <nav class="product-section-links" aria-label="Información del dispensador"><a href="#como-funciona">Cómo funciona</a><a href="#detalles">Detalles</a><a href="#preguntas">Preguntas</a></nav>
 
       <div class="product-icon-specs" aria-label="Características principales">
-        <div>{% render 'milo-icon', name: 'water' %}<span><strong>400 ml</strong><small>agua</small></span></div>
-        <div>{% render 'milo-icon', name: 'food' %}<span><strong>150 ml</strong><small>comida</small></span></div>
-        <div>{% render 'milo-icon', name: 'ruler' %}<span><strong>29 cm</strong><small>de alto</small></span></div>
+        <div>{% render 'pupit-icon', name: 'water' %}<span><strong>400 ml</strong><small>agua</small></span></div>
+        <div>{% render 'pupit-icon', name: 'food' %}<span><strong>150 ml</strong><small>comida</small></span></div>
+        <div>{% render 'pupit-icon', name: 'ruler' %}<span><strong>29 cm</strong><small>de alto</small></span></div>
       </div>
 
       {% if dispenser != blank and settings.sales_enabled %}
@@ -52,7 +52,7 @@
   </div>
 {% endif %}
 {% unless settings.sales_enabled %}
-  <a class="mobile-waitlist-bar" href="#avisarme-{{ section.id }}" data-milo-event="cta_click" data-milo-source="mobile_product_bar"><span>Dispensador 3 en 1 <small>En preparación</small></span><strong>Apuntarme {% render 'arrow' %}</strong></a>
+  <a class="mobile-waitlist-bar" href="#avisarme-{{ section.id }}" data-pupit-event="cta_click" data-pupit-source="mobile_product_bar"><span>Dispensador 3 en 1 <small>En preparación</small></span><strong>Apuntarme {% render 'arrow' %}</strong></a>
 {% endunless %}
 
 {% schema %}

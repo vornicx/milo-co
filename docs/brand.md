@@ -1,11 +1,20 @@
-# Milo & Co — identidad v2
+# Pupit & Co — identidad v3
+
+## Nombre y dominio
+
+- Marca: **Pupit & Co**.
+- Dominio elegido: **pupitandcompany.com**.
+- Wordmark: `pupit & co.`; el punto naranja se mantiene como firma.
+- Icono: `p` con punto naranja.
+- El nombre procede de Pupit, el perro de Haridian.
+- El formulario nativo de Shopify es el canal de contacto hasta configurar y comprobar el nuevo buzón.
 
 ## Idea central
 **La vida, en buena compañía.**
 
-Milo & Co es una marca de objetos para paseos, escapadas y vida cotidiana con perros. El dispensador es el primer producto, no la definición de la marca.
+Pupit & Co es una marca de objetos para paseos, escapadas y vida cotidiana con perros. El dispensador es el primer producto, no la definición de la marca.
 
-La pregunta que guía cada decisión es: **¿esto seguiría teniendo sentido si mañana Milo & Co tuviera veinte productos?**
+La pregunta que guía cada decisión es: **¿esto seguiría teniendo sentido si mañana Pupit & Co tuviera veinte productos?**
 
 ## Personalidad
 Cercana, tranquila, práctica y cuidada. Premium accesible sin parecer lujo forzado. La marca no intenta impresionar con copy; transmite calidad mediante proporción, fotografía, materiales visuales y atención al detalle.

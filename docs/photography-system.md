@@ -1,6 +1,6 @@
-# Milo & Co — sistema fotográfico v1
+# Pupit & Co — sistema fotográfico v1
 
-Objetivo: que cualquier fotografía pueda pertenecer a Milo & Co aunque el logotipo no aparezca. El producto debe verse real, útil y dentro de una vida cotidiana con perro. Nunca parecer un render, un catálogo de proveedor o una imagen publicitaria artificial.
+Objetivo: que cualquier fotografía pueda pertenecer a Pupit & Co aunque el logotipo no aparezca. El producto debe verse real, útil y dentro de una vida cotidiana con perro. Nunca parecer un render, un catálogo de proveedor o una imagen publicitaria artificial.
 
 ## 1. Familias de imagen
 
@@ -23,7 +23,7 @@ Cada producto nuevo debe intentar cubrir estas seis familias:
 - Nada debe flotar ni quedar físicamente imposible.
 - El perro no debe mirar siempre a cámara: priorizar escenas observadas.
 - Vestuario humano neutro y sin logos protagonistas.
-- Milo & Co no imprime un logo ficticio sobre un producto si la unidad real no lo lleva.
+- Pupit & Co no imprime un logo ficticio sobre un producto si la unidad real no lo lleva.
 
 ## 3. Composición
 

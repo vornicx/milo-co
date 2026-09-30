@@ -11,7 +11,7 @@
     {% endfor %}
   </div>
   <div class="native-product-panel">
-    <p class="eyebrow">{% if settings.sales_enabled %}MILO &amp; CO{% else %}DISPENSADOR DE PASEO{% endif %}</p>
+    <p class="eyebrow">{% if settings.sales_enabled %}PUPIT &amp; CO{% else %}DISPENSADOR DE PASEO{% endif %}</p>
     <h1>{% if settings.sales_enabled %}{{ product.title | escape }}{% else %}Dispensador 3 en 1{% endif %}</h1>
     {% if settings.sales_enabled %}
       <div class="prose">{{ product.description }}</div>

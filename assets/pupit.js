@@ -71,7 +71,7 @@
         const hero = product.closest('[data-product-page]')?.querySelector('[data-variant-image]');
         const gallery = product.closest('[data-product-page]')?.querySelector('[data-gallery]');
         if (gallery && variant.dataset.image) {
-          gallery.dispatchEvent(new CustomEvent('milo:photo', {detail:{photo:variant.dataset.image,alt:variant.dataset.imageAlt || ''}}));
+          gallery.dispatchEvent(new CustomEvent('pupit:photo', {detail:{photo:variant.dataset.image,alt:variant.dataset.imageAlt || ''}}));
         } else if (hero && variant.dataset.image) {
           hero.removeAttribute('srcset');
           hero.src = variant.dataset.image;
@@ -96,18 +96,18 @@
 // Shopify's visitor consent settings. No email, IP or customer ID is published.
 (() => {
  const publish = (name, data) => {
-  if (window.Shopify?.analytics?.publish) window.Shopify.analytics.publish(`milo:${name}`, data);
+  if (window.Shopify?.analytics?.publish) window.Shopify.analytics.publish(`pupit:${name}`, data);
  };
  const init = (root = document) => {
-  root.querySelectorAll('[data-milo-product-landing]').forEach(node => {
-   if (node.dataset.miloVisitBound) return;
-   node.dataset.miloVisitBound = 'true';
+  root.querySelectorAll('[data-pupit-product-landing]').forEach(node => {
+   if (node.dataset.pupitVisitBound) return;
+   node.dataset.pupitVisitBound = 'true';
    if (node.matches('[data-product-page]')) publish('product_landing_view', {path: window.location.pathname});
   });
-  root.querySelectorAll('[data-milo-success]').forEach(node => {
-   if (node.dataset.miloSuccessBound) return;
-   node.dataset.miloSuccessBound = 'true';
-   publish('waitlist_success', {placement: node.dataset.miloSource || 'unknown'});
+  root.querySelectorAll('[data-pupit-success]').forEach(node => {
+   if (node.dataset.pupitSuccessBound) return;
+   node.dataset.pupitSuccessBound = 'true';
+   publish('waitlist_success', {placement: node.dataset.pupitSource || 'unknown'});
   });
  };
  init();
@@ -115,11 +115,11 @@
  document.addEventListener('click', event => {
   const link = event.target.closest?.('a');
   if (!link) return;
-  const guide = link.closest('.journal-article[data-milo-guide]');
+  const guide = link.closest('.journal-article[data-pupit-guide]');
   if (guide && link.closest('.journal-body') && /^\/(pages\/dispensador|products\/)/.test(link.pathname)) {
-   publish('product_click', {placement:'guide_body', guide:guide.dataset.miloGuide, path:window.location.pathname});
-  } else if (link.dataset.miloEvent) {
-   publish(link.dataset.miloEvent, {placement:link.dataset.miloSource || 'unknown', guide:link.dataset.miloGuide || undefined, path:window.location.pathname});
+   publish('product_click', {placement:'guide_body', guide:guide.dataset.pupitGuide, path:window.location.pathname});
+  } else if (link.dataset.pupitEvent) {
+   publish(link.dataset.pupitEvent, {placement:link.dataset.pupitSource || 'unknown', guide:link.dataset.pupitGuide || undefined, path:window.location.pathname});
   }
  });
  document.addEventListener('toggle', event => {
@@ -175,7 +175,7 @@
   root.querySelectorAll('[data-gallery]').forEach(gallery => {
    if (gallery.dataset.bound) return;
    gallery.dataset.bound = 'true';
-   gallery.addEventListener('milo:photo', event => setGalleryPhoto(gallery,event.detail.photo,event.detail.alt));
+   gallery.addEventListener('pupit:photo', event => setGalleryPhoto(gallery,event.detail.photo,event.detail.alt));
    const main = gallery.querySelector('[data-gallery-main]');
    const error = gallery.querySelector('.image-error');
    const stage = gallery.querySelector('.gallery-stage');

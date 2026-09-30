@@ -1,6 +1,6 @@
-# Milo & Co
+# Pupit & Co
 
-Tema nativo Shopify Online Store 2.0 para Milo & Co: una marca de objetos para paseos, escapadas y vida cotidiana con perros. El dispensador 3 en 1 es el **Objeto 01**, no la definición completa de la marca.
+Tema nativo Shopify Online Store 2.0 para Pupit & Co: una marca de objetos para paseos, escapadas y vida cotidiana con perros. El dispensador 3 en 1 es el **Objeto 01**, no la definición completa de la marca.
 
 ## Estado
 
@@ -10,7 +10,7 @@ La vista previa pública de Vercel sirve únicamente para revisar diseño y estr
 
 ### Sistema actual
 
-- Un único sistema visual: `assets/milo-system.css`.
+- Un único sistema visual: `assets/pupit-system.css`.
 - Home de marca, índice de productos, landing editorial del dispensador, paseos y Nuestra idea.
 - Diseño móvil tratado como composición propia.
 - Fotografías principales del producto almacenadas como assets AVIF reales, no data URI.
@@ -21,7 +21,7 @@ La vista previa pública de Vercel sirve únicamente para revisar diseño y estr
 
 ## Archic Production Gate
 
-Milo & Co sigue el gate de producción Archic.
+Pupit & Co sigue el gate de producción Archic.
 
 En cada push a `main` y en cada pull request, GitHub Actions ejecuta:
 
@@ -52,7 +52,7 @@ No subir contraseñas, tokens, claves privadas ni archivos `.env` al repositorio
 
 Cuando el diseño esté aprobado:
 
-1. Conectar `vornicx/milo-co` rama `main` desde **Tienda online → Temas → Conectar desde GitHub**.
+1. Conectar `vornicx/pupit-co` rama `main` desde **Tienda online → Temas → Conectar desde GitHub**.
 2. Mantener la tienda protegida con contraseña durante configuración y pruebas.
 3. Crear el producto real con variantes, precio, inventario, peso y fotografías definitivas.
 4. Asignar las páginas `productos`, `dispensador`, `paseos` y `nosotros` a sus plantillas.
@@ -65,7 +65,7 @@ El interruptor `sales_enabled` **no es un mecanismo de seguridad**. El control d
 
 ## Estructura de marca
 
-La dirección de Milo & Co está documentada en:
+La dirección de Pupit & Co está documentada en:
 
 - `docs/brand.md`
 - `docs/photography-system.md`

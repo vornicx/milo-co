@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="wrap footer-top">
     <div>
-      <a class="wordmark" href="{{ routes.root_url }}">milo & co<span>.</span></a>
+      <a class="wordmark" href="{{ routes.root_url }}">pupit & co<span>.</span></a>
       <p>La vida, en buena compañía.</p>
     </div>
     <nav aria-label="Información">
@@ -18,7 +18,7 @@
     </nav>
   </div>
   <div class="wrap footer-bottom">
-    <small>© {{ 'now' | date: '%Y' }} Milo & Co</small>
+    <small>© {{ 'now' | date: '%Y' }} Pupit & Co</small>
     <div>{% for policy in shop.policies %}{% if policy.body != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}</div>
   </div>
 </footer>

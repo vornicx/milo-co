@@ -1,4 +1,4 @@
-/* Milo & Co — precision layer
+/* Pupit & Co — precision layer
    Small, deliberate overrides for typography, interaction states and mobile finishing. */
 :root{
   --precision-fast:.16s;
@@ -63,13 +63,13 @@ p,li{ text-wrap:pretty }
 }
 .prelaunch-section:has(.prelaunch-success) .prelaunch-layout{align-items:start}
 
-.milo-form label,.product-form label{letter-spacing:.01em}
-.milo-form input,.milo-form textarea,.product-form input,.product-form select{
+.pupit-form label,.product-form label{letter-spacing:.01em}
+.pupit-form input,.pupit-form textarea,.product-form input,.product-form select{
   min-height:48px;
   border-color:rgba(24,61,49,.18);
 }
-.milo-form input::placeholder,.prelaunch-input-row input::placeholder{color:rgba(24,61,49,.42)}
-.milo-form input:focus,.milo-form textarea:focus,.product-form input:focus,.product-form select:focus,.prelaunch-input-row input:focus{
+.pupit-form input::placeholder,.prelaunch-input-row input::placeholder{color:rgba(24,61,49,.42)}
+.pupit-form input:focus,.pupit-form textarea:focus,.product-form input:focus,.product-form select:focus,.prelaunch-input-row input:focus{
   border-color:rgba(24,61,49,.48);
   box-shadow:0 0 0 4px rgba(24,61,49,.055);
 }
@@ -124,8 +124,8 @@ p,li{ text-wrap:pretty }
   .prelaunch-success strong{font-size:14px}
   .prelaunch-success p{font-size:13px;line-height:1.5}
 
-  .prelaunch-input-row input,.milo-form input,.milo-form textarea,.product-form input,.product-form select{font-size:16px}
-  .prelaunch-input-row .button,.milo-form .button{min-height:50px}
+  .prelaunch-input-row input,.pupit-form input,.pupit-form textarea,.product-form input,.product-form select{font-size:16px}
+  .prelaunch-input-row .button,.pupit-form .button{min-height:50px}
 
   .product-top-info h1{
     font-size:clamp(43px,11.8vw,50px);
@@ -232,8 +232,8 @@ p,li{ text-wrap:pretty }
 .journal-body{hyphens:auto}
 
 .page-heading h1,.journal-heading h1{max-width:18ch}
-.milo-form .field{gap:9px}
-.milo-form label{font-weight:500}
+.pupit-form .field{gap:9px}
+.pupit-form label{font-weight:500}
 
 @media(max-width:760px){
   .product-section-links{
