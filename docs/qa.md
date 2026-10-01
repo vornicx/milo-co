@@ -22,6 +22,7 @@ Navegador Chrome, ventana de 1363 × 936 px. Revisión de la portada real, ancla
 - Consentimiento sin marcar bloquea el envío.
 - La pestaña y las etiquetas de marca muestran Pupit & Co; se retiró el título heredado Milo de la portada del borrador.
 - Sin desbordamiento horizontal en la ventana revisada.
+- Dispensador, Nuestra idea y Contacto renderizados en Shopify con un H1. La FAQ de lanzamiento abre sin prometer una fecha; ambas fotos del dispensador cargan. El correo de contacto también exige una dirección antes del envío.
 - Sin errores de consola de los assets Pupit; apareció un error ajeno del complemento del navegador.
 
 ## Comparación con los conceptos visuales
