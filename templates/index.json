@@ -42,8 +42,8 @@
   },
   "order": [
     "hero",
-    "product",
     "benefits",
+    "product",
     "manifesto",
     "waitlist"
   ]

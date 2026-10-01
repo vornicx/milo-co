@@ -1,5 +1,6 @@
 {% liquid
-  assign product_image_alt = 'pupit.product.alt' | t
+  assign blue_alt = 'pupit.product.blue_alt' | t
+  assign pink_alt = 'pupit.product.pink_alt' | t
   assign target_product = section.settings.product | default: settings.featured_product
   assign product_heading = section.settings.heading
   if product_heading == blank
@@ -10,25 +11,27 @@
     endif
   endif
 %}
-<section id="dispensador" class="pupit-product pupit-container" aria-labelledby="ProductTitle-{{ section.id }}" data-pupit-product>
-  <figure class="pupit-product__media">
-    {% render 'pupit-media', image: section.settings.image, filename: 'paseo-colores.webp', alt: product_image_alt, width: 1500, height: 1000, sizes: '(min-width: 990px) 56vw, 100vw' %}
-  </figure>
-  <div class="pupit-product__content">
-    {% if section.settings.main_heading %}<h1 id="ProductTitle-{{ section.id }}">{{ product_heading | escape | newline_to_br }}</h1>{% else %}<h2 id="ProductTitle-{{ section.id }}">{{ product_heading | escape | newline_to_br }}</h2>{% endif %}
-    <p class="pupit-product__text">{% if section.settings.text != blank %}{{ section.settings.text | escape | newline_to_br }}{% else %}{{ 'pupit.product.text' | t | escape | newline_to_br }}{% endif %}</p>
-    {% if settings.sales_enabled and target_product != blank %}
-      <a class="pupit-button" href="{{ target_product.url }}">{{ 'pupit.product.shop' | t }}{% render 'pupit-arrow' %}</a>
-    {% else %}
-      <fieldset class="pupit-swatches"><legend>{{ 'pupit.product.choose' | t }}</legend>
-        <label><input type="radio" name="pupit-color-{{ section.id }}" value="azul-cielo" data-pupit-color checked><span class="pupit-swatch pupit-swatch--blue" aria-hidden="true"></span><span>{{ 'pupit.product.blue' | t }}</span></label>
-        <label><input type="radio" name="pupit-color-{{ section.id }}" value="rosa" data-pupit-color><span class="pupit-swatch pupit-swatch--pink" aria-hidden="true"></span><span>{{ 'pupit.product.pink' | t }}</span></label>
-      </fieldset>
-      <a class="pupit-button" href="#espera" data-pupit-join>{{ 'pupit.product.cta' | t }}{% render 'pupit-arrow' %}</a>
-      <p class="pupit-product__note">{{ 'pupit.product.note' | t }}</p>
-    {% endif %}
+<section id="dispensador" class="pupit-product" aria-labelledby="ProductTitle-{{ section.id }}" data-pupit-product>
+  <div class="pupit-container">
+    {% if section.settings.main_heading %}<h1 class="pupit-product__heading" id="ProductTitle-{{ section.id }}">{{ product_heading | escape | newline_to_br }}</h1>{% else %}<h2 class="pupit-product__heading" id="ProductTitle-{{ section.id }}">{{ product_heading | escape | newline_to_br }}</h2>{% endif %}
+    <div class="pupit-product__layout">
+      <div class="pupit-product__media" data-pupit-reveal>
+        <div class="pupit-product__render" data-pupit-color-media="azul-cielo">{% render 'pupit-media', image: section.settings.blue_image, filename: 'pupit-blue-render.webp', alt: blue_alt, width: 1024, height: 1536, sizes: '(min-width: 750px) 500px, 90vw' %}</div>
+        <div class="pupit-product__render" data-pupit-color-media="rosa">{% render 'pupit-media', image: section.settings.pink_image, filename: 'pupit-pink-render.webp', alt: pink_alt, width: 1024, height: 1536, sizes: '(min-width: 750px) 500px, 90vw' %}</div>
+      </div>
+      <div class="pupit-product__content">
+        <div class="pupit-product__color-copy" data-pupit-color-copy="azul-cielo"><h3>{{ 'pupit.product.blue' | t }}.</h3><p>{% if section.settings.text != blank %}{{ section.settings.text | escape }}{% else %}{{ 'pupit.product.blue_text' | t }}{% endif %}</p></div>
+        <div class="pupit-product__color-copy" data-pupit-color-copy="rosa"><h3>{{ 'pupit.product.pink' | t }}.</h3><p>{% if section.settings.text != blank %}{{ section.settings.text | escape }}{% else %}{{ 'pupit.product.pink_text' | t }}{% endif %}</p></div>
+        <fieldset class="pupit-swatches"><legend class="visually-hidden">{{ 'pupit.product.choose' | t }}</legend>
+          <label><input type="radio" name="pupit-color-{{ section.id }}" value="azul-cielo" data-pupit-color checked><span class="pupit-swatch pupit-swatch--blue" aria-hidden="true"></span><span>{{ 'pupit.product.blue' | t }}</span></label>
+          <label><input type="radio" name="pupit-color-{{ section.id }}" value="rosa" data-pupit-color><span class="pupit-swatch pupit-swatch--pink" aria-hidden="true"></span><span>{{ 'pupit.product.pink' | t }}</span></label>
+        </fieldset>
+        <span class="visually-hidden" role="status" aria-live="polite" data-pupit-color-status></span>
+        {% if settings.sales_enabled and target_product != blank %}<a class="pupit-button pupit-button--light" href="{{ target_product.url }}">{{ 'pupit.product.shop' | t }}{% render 'pupit-arrow' %}</a>{% else %}<a class="pupit-button pupit-button--light" href="#espera" data-pupit-join>{{ 'pupit.product.cta' | t }}{% render 'pupit-arrow' %}</a><p class="pupit-product__note">{{ 'pupit.product.note' | t }}</p>{% endif %}
+      </div>
+    </div>
   </div>
 </section>
 {% schema %}
-{"name":"Pupit · Producto","settings":[{"type":"product","id":"product","label":"Producto real de Shopify"},{"type":"checkbox","id":"main_heading","label":"Usar como título principal de la página","default":false},{"type":"textarea","id":"heading","label":"Título"},{"type":"textarea","id":"text","label":"Texto"},{"type":"image_picker","id":"image","label":"Fotografía"}],"presets":[{"name":"Pupit · Producto"}]}
+{"name":"Pupit · Colores","settings":[{"type":"product","id":"product","label":"Producto real de Shopify"},{"type":"checkbox","id":"main_heading","label":"Usar como título principal de la página","default":false},{"type":"textarea","id":"heading","label":"Título"},{"type":"textarea","id":"text","label":"Texto (opcional)"},{"type":"image_picker","id":"blue_image","label":"Producto azul con fondo transparente"},{"type":"image_picker","id":"pink_image","label":"Producto rosa con fondo transparente"}],"presets":[{"name":"Pupit · Colores"}]}
 {% endschema %}

@@ -549,9 +549,9 @@
       "mobile": "Navegación móvil",
       "footer": "Pupit & Co",
       "policies": "Información legal",
-      "product": "El dispensador",
-      "story": "Nuestra idea",
-      "waitlist": "Lista de espera",
+      "product": "Dispensador",
+      "story": "Nosotros",
+      "waitlist": "Avísame",
       "contact": "Contacto",
       "cart": "Carrito",
       "privacy": "Privacidad",
@@ -561,38 +561,54 @@
       "close": "Cerrar menú"
     },
     "hero": {
-      "heading": "La vida, en\nbuena compañía.",
-      "text": "Objetos sencillos para disfrutar\nde los paseos juntos.",
-      "cta": "Descubrir el dispensador",
-      "alt": "Un golden retriever durante un paseo junto al lago"
+      "heading": "Todo su mundo.\nEn tu mano.",
+      "text": "Agua, comida y espacio para residuos. Un dispensador. Más paseo.",
+      "cta": "Descúbrelo",
+      "alt": "Dispensadores azul cielo y rosa",
+      "secondary": "Avísame del lanzamiento"
     },
     "product": {
-      "heading": "Menos cosas.\nMás paseo.",
+      "heading": "Dos colores.\nLa misma buena compañía.",
       "title": "Dispensador\n3 en 1.",
       "text": "Agua, comida y un espacio para los residuos.\nLo esencial, en un dispensador 3 en 1.",
       "alt": "Dispensadores azul cielo y rosa junto a una bolsa de paseo",
       "choose": "Elige tu color",
       "blue": "Azul cielo",
       "pink": "Rosa",
-      "cta": "Quiero enterarme",
-      "note": "Próximamente. Sin compra ni compromiso.",
-      "shop": "Ver el producto"
+      "cta": "Avísame del lanzamiento",
+      "note": "Próximamente.",
+      "shop": "Ver el producto",
+      "blue_alt": "Dispensador azul cielo con sus tres compartimentos y correa",
+      "pink_alt": "Dispensador rosa con sus tres compartimentos y correa",
+      "blue_text": "Para los que llevan un poquito de cielo a todas partes.",
+      "pink_text": "Un toque de rosa para vuestros paseos de cada día."
     },
     "benefits": {
       "label": "Las tres funciones del dispensador",
-      "water_heading": "Una pausa para beber.",
-      "water_text": "Depósito de agua de 400 ml.",
+      "water_heading": "Su pausa de agua.",
+      "water_text": "Agua para compartir el camino. Con bebedero integrado.",
       "food_heading": "Su comida, a mano.",
-      "food_text": "Compartimento de comida de 150 ml.",
-      "waste_heading": "Todo en su sitio.",
-      "waste_text": "Un espacio separado para los residuos."
+      "food_text": "Un compartimento de 150 ml para llevar su comida de paseo.",
+      "waste_heading": "Cada cosa en su sitio.",
+      "waste_text": "Un espacio separado para los residuos del paseo.",
+      "heading": "Lo esencial.\nEn uno.",
+      "text": "Tres funciones pensadas para salir con menos y disfrutar más.",
+      "water_metric": "400",
+      "food_metric": "150",
+      "waste_metric": "Aparte.",
+      "water_tab": "Agua",
+      "food_tab": "Comida",
+      "waste_tab": "Residuos",
+      "water_alt": "Detalle del bebedero y botón del dispensador azul cielo",
+      "food_alt": "Dispensador azul cielo con comida en su compartimento",
+      "waste_alt": "Detalle del compartimento inferior del dispensador"
     },
-    "manifesto": "Salir sin prisa. Volver con historias.",
+    "manifesto": "Salir sin prisa.\nVolver con historias.",
     "signup": {
-      "heading": "Los buenos paseos\nempiezan aquí.",
+      "heading": "El próximo paseo\nempieza aquí",
       "text": "Déjanos tu correo. Te avisaremos cuando el dispensador esté listo.",
       "email": "Tu correo electrónico",
-      "submit": "Apuntarme",
+      "submit": "Avísame del lanzamiento",
       "preference": "Color que te gusta más (opcional)",
       "any_color": "Me da igual",
       "consent": "Quiero recibir novedades de Pupit & Co. Puedo darme de baja cuando quiera.",
@@ -620,6 +636,7 @@
       "closed": "Los primeros paseos están por llegar.",
       "closed_text": "La compra todavía no está abierta. Apúntate a la lista y te avisaremos."
     },
-    "brand_name": "Pupit & Co"
+    "brand_name": "Pupit & Co",
+    "manifesto_alt": "Un golden retriever durante un paseo junto al lago"
   }
 }

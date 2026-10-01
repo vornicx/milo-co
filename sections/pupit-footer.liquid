@@ -5,7 +5,7 @@
 %}
 <footer class="pupit-footer pupit-container">
   <div class="pupit-footer__top">
-    <div><a class="pupit-wordmark pupit-wordmark--footer" href="{{ routes.root_url }}" aria-label="{{ 'pupit.brand_home' | t }}">pupit &amp; co<span class="pupit-dot">.</span></a><p>{{ 'pupit.tagline' | t }}</p></div>
+    <div><a class="pupit-wordmark pupit-wordmark--footer" href="{{ routes.root_url }}" aria-label="{{ 'pupit.brand_home' | t }}">pupit &amp; co<span class="pupit-dot">.</span></a><p>{{ 'pupit.tagline' | t }}</p><div class="pupit-footer__colors" aria-hidden="true"><span></span><span></span></div></div>
     <nav class="pupit-footer__links" aria-label="{{ 'pupit.navigation.footer' | t }}"><a href="{{ product_link }}">{{ 'pupit.navigation.product' | t }}</a><a href="{{ story_link }}">{{ 'pupit.navigation.story' | t }}</a><a href="{{ contact_link }}">{{ 'pupit.navigation.contact' | t }}</a></nav>
     <nav class="pupit-footer__links" aria-label="{{ 'pupit.navigation.policies' | t | escape }}">{% if shop.privacy_policy.body != blank %}<a href="{{ shop.privacy_policy.url }}">{{ 'pupit.navigation.privacy' | t }}</a>{% endif %}{% if shop.terms_of_service.body != blank %}<a href="{{ shop.terms_of_service.url }}">{{ 'pupit.navigation.terms' | t }}</a>{% endif %}{% if shop.refund_policy.body != blank %}<a href="{{ shop.refund_policy.url }}">{{ 'pupit.navigation.refunds' | t }}</a>{% endif %}</nav>
   </div>

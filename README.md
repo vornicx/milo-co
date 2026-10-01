@@ -1,18 +1,20 @@
-# Pupit v2 · Dawn
+# Pupit v2 · Apple
 
 Tema Shopify Online Store 2.0 de Pupit & Co, basado en **Dawn 16.0.0** (Shopify, licencia MIT). La base conserva las funciones nativas de Shopify; la identidad y las páginas de marca se construyen con secciones Liquid propias.
 
 ## Estado
 
-Tema importado en la tienda Pupit & Co con el nombre **Pupit v2 · Dawn**, ID `206260863319`, como borrador sin publicar. La rama de revisión es `pupit-v2` en `vornicx/milo-co`. El tema publicado anterior y el producto en estado DRAFT se conservan.
+Rediseño guardado en Shopify como **Pupit v2 · Apple**, ID `206265581911`, sin publicar. La rama de revisión es `pupit-v2` en `vornicx/milo-co`. Al empezar esta revisión, **Pupit v2 · Dawn** (`206260863319`) ya era el tema publicado; se conserva y el producto continúa DRAFT.
 
-Para revisar: Shopify → Tienda online → Temas → Pupit v2 · Dawn → Vista previa. El enlace de vista previa depende de la sesión o de un enlace temporal generado por Shopify.
+Para revisar: Shopify → Tienda online → Temas → Pupit v2 · Apple → Vista previa. La vista previa se comprobó en el storefront real. El enlace depende de la sesión o de un enlace temporal generado por Shopify.
 
 ## Diseño
 
-Crema, azul cielo, rosa y negro, con el punto naranja de la marca. Tipografía Arial/Helvetica, fotografías grandes, titulares breves y bloques abiertos. La portada muestra el contexto del paseo, después el dispensador, sus tres funciones y una lista de espera.
+Dirección inspirada en las páginas de producto de Apple: cabecera compacta, titulares muy grandes, producto aislado, espacios amplios, controles segmentados y transiciones discretas. Conserva la crema, azul cielo, rosa, negro y punto naranja de Pupit & Co.
 
-Las secciones `pupit-*` permiten editar imágenes, textos y páginas desde el editor. Las fotografías tienen un asset de respaldo; al seleccionar una imagen del editor, Shopify genera sus tamaños adaptables.
+La portada sigue: **Todo su mundo. En tu mano.** → explorador Agua/Comida/Residuos → producto azul/rosa sobre negro → paseo junto al lago → lista de espera y pie. Cambiar el color actualiza el render, el texto y la preferencia de la lista. Los controles de funciones son radios nativos y también funcionan con teclado.
+
+Las secciones `pupit-*` permiten editar imágenes, textos y páginas desde el editor. Se añadieron tres renders WebP transparentes; las fotos de funciones y del paseo conservan los assets del proyecto. Al seleccionar una imagen del editor, Shopify genera sus tamaños adaptables. La composición responde al ancho de `.pupit-page` mediante container queries y respeta reducción de movimiento.
 
 ## Páginas existentes
 

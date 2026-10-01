@@ -1,7 +1,7 @@
 {% unless settings.sales_enabled %}
 <section id="espera" class="pupit-waitlist" aria-labelledby="WaitlistTitle-{{ section.id }}">
   <div class="pupit-container pupit-waitlist__layout">
-    <div class="pupit-waitlist__copy"><h2 id="WaitlistTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape | newline_to_br }}{% else %}{{ 'pupit.signup.heading' | t | escape | newline_to_br }}{% endif %}</h2><p>{% if section.settings.text != blank %}{{ section.settings.text | escape }}{% else %}{{ 'pupit.signup.text' | t }}{% endif %}</p></div>
+    <div class="pupit-waitlist__copy" data-pupit-reveal><h2 id="WaitlistTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape | newline_to_br }}{% else %}{{ 'pupit.signup.heading' | t | escape | newline_to_br }}<span class="pupit-dot">.</span>{% endif %}</h2><p>{% if section.settings.text != blank %}{{ section.settings.text | escape }}{% else %}{{ 'pupit.signup.text' | t }}{% endif %}</p></div>
     <div class="pupit-waitlist__form">{% render 'pupit-signup', id: section.id, privacy_policy: shop.privacy_policy %}</div>
   </div>
 </section>

@@ -537,9 +537,9 @@
       "mobile": "Mobile navigation",
       "footer": "Pupit & Co",
       "policies": "Legal information",
-      "product": "The dispenser",
-      "story": "Our idea",
-      "waitlist": "Waiting list",
+      "product": "Dispenser",
+      "story": "About us",
+      "waitlist": "Notify me",
       "contact": "Contact",
       "cart": "Cart",
       "privacy": "Privacy",
@@ -549,38 +549,54 @@
       "close": "Close menu"
     },
     "hero": {
-      "heading": "Life, in\ngood company.",
-      "text": "Simple objects to enjoy\nyour walks together.",
-      "cta": "Discover the dispenser",
-      "alt": "A golden retriever on a lakeside walk"
+      "heading": "Their whole world.\nIn your hand.",
+      "text": "Water, food and space for waste. One dispenser. More walks.",
+      "cta": "Discover it",
+      "alt": "Dispensers in sky blue and pink",
+      "secondary": "Notify me at launch"
     },
     "product": {
-      "heading": "Carry less.\nWalk more.",
+      "heading": "Two colours.\nThe same great company.",
       "title": "3-in-1\ndispenser.",
       "text": "Water, food and a space for waste.\nYour essentials, in one 3-in-1 dispenser.",
       "alt": "Sky blue and pink dispensers beside a walking bag",
       "choose": "Choose your colour",
       "blue": "Sky blue",
       "pink": "Pink",
-      "cta": "Keep me posted",
-      "note": "Coming soon. No purchase or commitment.",
-      "shop": "View product"
+      "cta": "Notify me at launch",
+      "note": "Coming soon.",
+      "shop": "View product",
+      "blue_alt": "Sky blue dispenser with its three compartments and wrist loop",
+      "pink_alt": "Pink dispenser with its three compartments and wrist loop",
+      "blue_text": "For those who take a little sky wherever they go.",
+      "pink_text": "A touch of pink for your everyday walks."
     },
     "benefits": {
       "label": "Three functions of the dispenser",
-      "water_heading": "A pause for a drink.",
-      "water_text": "400 ml water reservoir.",
-      "food_heading": "Food, close at hand.",
-      "food_text": "150 ml food compartment.",
+      "water_heading": "Their water break.",
+      "water_text": "Water for the journey. With an integrated drinking trough.",
+      "food_heading": "Their food, at hand.",
+      "food_text": "A 150 ml compartment for taking their food along.",
       "waste_heading": "Everything in its place.",
-      "waste_text": "A separate space for waste."
+      "waste_text": "A separate space for waste from the walk.",
+      "heading": "The essentials.\nAll in one.",
+      "text": "Three functions for carrying less and enjoying more.",
+      "water_metric": "400",
+      "food_metric": "150",
+      "waste_metric": "Separate.",
+      "water_tab": "Water",
+      "food_tab": "Food",
+      "waste_tab": "Waste",
+      "water_alt": "Close-up of the sky blue dispenser drinking trough and button",
+      "food_alt": "Sky blue dispenser with food in its compartment",
+      "waste_alt": "Detail of the dispenser lower compartment"
     },
-    "manifesto": "Take your time. Bring back stories.",
+    "manifesto": "Head out slowly.\nCome back with stories.",
     "signup": {
-      "heading": "Good walks\nstart here.",
+      "heading": "Your next walk\nstarts here",
       "text": "Leave your email. We will let you know when the dispenser is ready.",
       "email": "Your email address",
-      "submit": "Join the list",
+      "submit": "Notify me at launch",
       "preference": "Preferred colour (optional)",
       "any_color": "Either colour",
       "consent": "I want to receive updates from Pupit & Co. I can unsubscribe at any time.",
@@ -608,6 +624,7 @@
       "closed": "The first walks are on their way.",
       "closed_text": "Shopping is not open yet. Join the list and we will let you know."
     },
-    "brand_name": "Pupit & Co"
+    "brand_name": "Pupit & Co",
+    "manifesto_alt": "A golden retriever on a walk by the lake"
   }
 }

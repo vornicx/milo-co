@@ -1,16 +1,38 @@
-<section class="pupit-benefits pupit-container" aria-label="{{ 'pupit.benefits.label' | t | escape }}">
-  {% for block in section.blocks %}
-    {% liquid
-      assign heading_key = 'pupit.benefits.' | append: block.type | append: '_heading'
-      assign text_key = 'pupit.benefits.' | append: block.type | append: '_text'
-    %}
-    <div class="pupit-benefits__item" {{ block.shopify_attributes }}>
-      <span class="pupit-benefits__number" aria-hidden="true">0{{ forloop.index }}</span>
-      <h2>{% if block.settings.heading != blank %}{{ block.settings.heading | escape }}{% else %}{{ heading_key | t }}{% endif %}</h2>
-      <p>{% if block.settings.text != blank %}{{ block.settings.text | escape }}{% else %}{{ text_key | t }}{% endif %}</p>
+<section id="funciones" class="pupit-benefits pupit-container" aria-labelledby="FunctionsTitle-{{ section.id }}">
+  <div class="pupit-benefits__intro" data-pupit-reveal><h2 id="FunctionsTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape | newline_to_br }}{% else %}{{ 'pupit.benefits.heading' | t | escape | newline_to_br }}{% endif %}</h2><p>{% if section.settings.text != blank %}{{ section.settings.text | escape }}{% else %}{{ 'pupit.benefits.text' | t }}{% endif %}</p></div>
+  <div class="pupit-feature">
+    <div class="pupit-feature__panels">
+      {% for block in section.blocks %}
+        {% liquid
+          assign heading_key = 'pupit.benefits.' | append: block.type | append: '_heading'
+          assign text_key = 'pupit.benefits.' | append: block.type | append: '_text'
+          assign metric_key = 'pupit.benefits.' | append: block.type | append: '_metric'
+          assign alt_key = 'pupit.benefits.' | append: block.type | append: '_alt'
+          assign photo_alt = alt_key | t
+          assign photo_width = 1254
+          assign photo_height = 1254
+          case block.type
+            when 'water'
+              assign filename = 'dispensador-detalle.webp'
+            when 'food'
+              assign filename = 'pupit-food-use.avif'
+              assign photo_width = 800
+              assign photo_height = 1000
+            when 'waste'
+              assign filename = 'pupit-waste-use.avif'
+              assign photo_width = 1000
+              assign photo_height = 667
+          endcase
+        %}
+        <div class="pupit-feature__panel" data-pupit-function-panel="{{ block.type }}" {{ block.shopify_attributes }}>
+          <div class="pupit-feature__copy"><p class="pupit-feature__metric">{{ metric_key | t }}{% unless block.type == 'waste' %}<span>ml</span>{% endunless %}</p><h3>{% if block.settings.heading != blank %}{{ block.settings.heading | escape }}{% else %}{{ heading_key | t }}{% endif %}</h3><p class="pupit-feature__text">{% if block.settings.text != blank %}{{ block.settings.text | escape }}{% else %}{{ text_key | t }}{% endif %}</p></div>
+          <figure class="pupit-feature__media">{% render 'pupit-media', image: block.settings.image, filename: filename, alt: photo_alt, width: photo_width, height: photo_height, sizes: '(min-width: 750px) 50vw, 100vw' %}</figure>
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
+    <fieldset class="pupit-feature__switcher"><legend class="visually-hidden">{{ 'pupit.benefits.label' | t }}</legend>{% for block in section.blocks %}{% assign tab_key = 'pupit.benefits.' | append: block.type | append: '_tab' %}<label><input type="radio" name="pupit-function-{{ section.id }}" value="{{ block.type }}" data-pupit-function="{{ block.type }}"{% if forloop.first %} checked{% endif %}><span>{{ tab_key | t }}</span></label>{% endfor %}</fieldset>
+  </div>
 </section>
 {% schema %}
-{"name":"Pupit · Tres funciones","max_blocks":3,"blocks":[{"type":"water","name":"Agua","limit":1,"settings":[{"type":"text","id":"heading","label":"Título"},{"type":"text","id":"text","label":"Texto"}]},{"type":"food","name":"Comida","limit":1,"settings":[{"type":"text","id":"heading","label":"Título"},{"type":"text","id":"text","label":"Texto"}]},{"type":"waste","name":"Residuos","limit":1,"settings":[{"type":"text","id":"heading","label":"Título"},{"type":"text","id":"text","label":"Texto"}]}],"presets":[{"name":"Pupit · Tres funciones","blocks":[{"type":"water"},{"type":"food"},{"type":"waste"}]}]}
+{"name":"Pupit · Tres funciones","settings":[{"type":"textarea","id":"heading","label":"Título"},{"type":"textarea","id":"text","label":"Texto"}],"max_blocks":3,"blocks":[{"type":"water","name":"Agua","limit":1,"settings":[{"type":"text","id":"heading","label":"Título"},{"type":"text","id":"text","label":"Texto"},{"type":"image_picker","id":"image","label":"Detalle del agua"}]},{"type":"food","name":"Comida","limit":1,"settings":[{"type":"text","id":"heading","label":"Título"},{"type":"text","id":"text","label":"Texto"},{"type":"image_picker","id":"image","label":"Detalle de la comida"}]},{"type":"waste","name":"Residuos","limit":1,"settings":[{"type":"text","id":"heading","label":"Título"},{"type":"text","id":"text","label":"Texto"},{"type":"image_picker","id":"image","label":"Detalle del compartimento"}]}],"presets":[{"name":"Pupit · Tres funciones","blocks":[{"type":"water"},{"type":"food"},{"type":"waste"}]}]}
 {% endschema %}

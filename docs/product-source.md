@@ -28,3 +28,5 @@ https://oss.teemdrop.com/goods-admin/2026/08/20/8b7da091-f721-4407-ac73-bd403e1f
 https://oss.teemdrop.com/goods-admin/2026/08/20/64d9d950-23cd-4952-950f-0be7d9890a58.jpg
 
 Fotografías de lanzamiento: las imágenes rosa y azul cielo facilitadas por el propietario se usan como assets locales, con un recorte 3:4 consistente para la web. No se modifica el producto mostrado.
+
+Rediseño Apple, 1 octubre 2026: la portada y la elección de color usan renders transparentes generados a partir de la apariencia del producto. Las fotos de funciones y paseo se conservan. Los renders son presentación visual y no acreditan materiales, prestaciones o una muestra final; no llevan logo impreso. Sustituibles desde el editor del tema.

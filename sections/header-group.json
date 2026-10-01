@@ -5,7 +5,7 @@
     "announcement": {
       "type": "pupit-announcement",
       "settings": {
-        "show_announcement": true
+        "show_announcement": false
       }
     },
     "header": {
