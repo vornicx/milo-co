@@ -1,44 +1,102 @@
 {
   "sections": {
-    "0": {
-      "type": "dispenser-detail",
-      "settings": {}
-    },
-    "4": {
-      "type": "dispenser-details",
-      "settings": {}
-    },
-    "5": {
-      "type": "faq",
-      "settings": {}
-    },
-    "validation": {
-      "type": "product-validation",
-      "settings": {}
-    },
-    "use": {
-      "type": "dispenser-use-cases",
-      "settings": {}
-    },
-    "stories": {
-      "type": "real-stories",
-      "disabled": true,
+    "product": {
+      "type": "pupit-product",
       "settings": {
-        "show_stories": false
+        "main_heading": true
       }
     },
-    "waitlist_return": {
-      "type": "product-waitlist-return",
+    "benefits": {
+      "type": "pupit-benefits",
+      "settings": {},
+      "blocks": {
+        "water": {
+          "type": "water",
+          "settings": {}
+        },
+        "food": {
+          "type": "food",
+          "settings": {}
+        },
+        "waste": {
+          "type": "waste",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "water",
+        "food",
+        "waste"
+      ]
+    },
+    "details": {
+      "type": "pupit-details",
+      "settings": {}
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "settings": {
+        "heading": "Lo que querrás saber.",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "layout": "none",
+        "color_scheme": "scheme-1",
+        "container_color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 60
+      },
+      "blocks": {
+        "water": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo se usa el depósito de agua?",
+            "row_content": "<p>Llena el depósito antes de salir y sirve agua en el bebedero cuando tu perro necesite una pausa. La capacidad del depósito es de 400 ml.</p>",
+            "icon": "none"
+          }
+        },
+        "food": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cuánta comida cabe?",
+            "row_content": "<p>El compartimento para comida tiene 150 ml de capacidad. Es una medida de volumen: la cantidad en gramos depende del alimento.</p>",
+            "icon": "none"
+          }
+        },
+        "waste": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Para qué sirve el compartimento inferior?",
+            "row_content": "<p>Es un espacio separado para guardar temporalmente los residuos del paseo. Vacíalo y límpialo después de usarlo.</p>",
+            "icon": "none"
+          }
+        },
+        "launch": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cuándo se podrá comprar?",
+            "row_content": "<p>Estamos preparando el lanzamiento. Apúntate a la lista de espera y te avisaremos cuando el dispensador esté listo.</p>",
+            "icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "water",
+        "food",
+        "waste",
+        "launch"
+      ]
+    },
+    "waitlist": {
+      "type": "pupit-waitlist",
       "settings": {}
     }
   },
   "order": [
-    "0",
-    "validation",
-    "4",
-    "use",
-    "5",
-    "waitlist_return",
-    "stories"
+    "product",
+    "benefits",
+    "details",
+    "faq",
+    "waitlist"
   ]
 }

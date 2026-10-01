@@ -1,0 +1,24 @@
+{% liquid
+  assign product_link = section.settings.product_page.url | default: '/pages/dispensador'
+  assign story_link = section.settings.story_page.url | default: '/pages/nosotros'
+  assign waitlist_link = routes.root_url | append: '#espera'
+%}
+<header class="pupit-header" data-pupit-header>
+  <a class="pupit-wordmark" href="{{ routes.root_url }}" aria-label="{{ 'pupit.brand_home' | t }}">pupit &amp; co<span class="pupit-dot">.</span></a>
+  <nav class="pupit-header__nav" aria-label="{{ 'pupit.navigation.main' | t | escape }}">
+    <a href="{{ product_link }}"{% if request.path == product_link %} aria-current="page"{% endif %}>{{ 'pupit.navigation.product' | t }}</a>
+    <a href="{{ story_link }}"{% if request.path == story_link %} aria-current="page"{% endif %}>{{ 'pupit.navigation.story' | t }}</a>
+  </nav>
+  <div class="pupit-header__actions">
+    {% if settings.sales_enabled %}<a class="pupit-header__cart" href="{{ routes.cart_url }}">{{ 'pupit.navigation.cart' | t }} <span>{{ cart.item_count }}</span></a>{% else %}<a class="pupit-link pupit-header__waitlist" href="{{ waitlist_link }}">{{ 'pupit.navigation.waitlist' | t }}{% render 'pupit-arrow' %}</a>{% endif %}
+    <button class="pupit-menu-toggle" type="button" aria-label="{{ 'pupit.navigation.open' | t | escape }}" aria-controls="PupitMenu-{{ section.id }}" aria-expanded="false" data-pupit-menu-open hidden><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8h18M3 16h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+  </div>
+  <dialog id="PupitMenu-{{ section.id }}" class="pupit-menu" aria-labelledby="PupitMenuTitle-{{ section.id }}" data-pupit-menu>
+    <div class="pupit-menu__top"><span id="PupitMenuTitle-{{ section.id }}" class="pupit-wordmark">pupit &amp; co<span class="pupit-dot">.</span></span><button type="button" class="pupit-menu-close" data-pupit-menu-close aria-label="{{ 'pupit.navigation.close' | t | escape }}"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 5 14 14M19 5 5 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+    <nav aria-label="{{ 'pupit.navigation.mobile' | t | escape }}"><a href="{{ product_link }}">{{ 'pupit.navigation.product' | t }}{% render 'pupit-arrow' %}</a><a href="{{ story_link }}">{{ 'pupit.navigation.story' | t }}{% render 'pupit-arrow' %}</a><a href="{{ waitlist_link }}">{{ 'pupit.navigation.waitlist' | t }}{% render 'pupit-arrow' %}</a><a href="{{ pages.contact.url | default: '/pages/contact' }}">{{ 'pupit.navigation.contact' | t }}{% render 'pupit-arrow' %}</a></nav>
+  </dialog>
+  <noscript><nav class="pupit-header__fallback" aria-label="{{ 'pupit.navigation.mobile' | t | escape }}"><a href="{{ product_link }}">{{ 'pupit.navigation.product' | t }}</a><a href="{{ story_link }}">{{ 'pupit.navigation.story' | t }}</a></nav></noscript>
+</header>
+{% schema %}
+{"name":"Pupit · Cabecera","settings":[{"type":"page","id":"product_page","label":"Página del dispensador"},{"type":"page","id":"story_page","label":"Página de marca"}]}
+{% endschema %}

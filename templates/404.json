@@ -1,11 +1,10 @@
 {
   "sections": {
-    "section0": {
-      "type": "not-found",
-      "settings": {}
+    "main": {
+      "type": "main-404"
     }
   },
   "order": [
-    "section0"
+    "main"
   ]
 }

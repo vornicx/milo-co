@@ -1,127 +1,58 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { Liquid } from 'liquidjs';
+import { createPreviewEngine, prepareLiquid } from '../scripts/preview-engine.mjs';
 
-const read = path => readFile(path, 'utf8');
-const engine = new Liquid({root:'snippets',extname:'.liquid'});
-engine.registerTag('form', {parse(){},render(){return '<form method="post" action="/contact">';}});
-engine.registerTag('endform', {render(){return '</form>';}});
+const engine = createPreviewEngine(process.cwd(), '.preview/snippets');
+const render = async (path, context) => engine.parseAndRender(prepareLiquid(await readFile(path, 'utf8')), context);
+const privacy_policy = { body: 'Published policy', url: '/policies/privacy-policy' };
 
-test('Waitlist renders consent and exactly one colour preference per signup', async () => {
-  const source = (await read('snippets/prelaunch-form.liquid')).replace(/{% doc %}[\s\S]*?{% enddoc %}/g,'');
-  const html = await engine.parseAndRender(source, {id:'test',source:'home_final',privacy_policy:{body:'Policy published',url:'/policies/privacy-policy'}});
-  assert.match(html, /name="contact\[email\]"[^>]*required/);
-  assert.match(html, /<details class="prelaunch-options">/);
-  assert.equal((html.match(/name="contact\[tags\]"/g) || []).length, 3);
-  assert.match(html, /preferencia-indiferente" checked/);
+test('Signup requires an email and consent, and sends one colour preference to Shopify', async () => {
+  const html = await render('snippets/pupit-signup.liquid', { id: 'test', privacy_policy, form: {} });
+  assert.match(html, /type="email"[^>]+name="contact\[email\]"[^>]+required/);
   assert.match(html, /type="checkbox" required/);
+  assert.equal((html.match(/name="contact\[tags\]"/g) ?? []).length, 3);
+  assert.match(html, /preferencia-indiferente[^>]+checked/);
+  assert.match(html, /name="form_type" value="customer"/);
   assert.match(html, /href="\/policies\/privacy-policy"/);
-  assert.match(html, /method="post" action="\/contact"/);
 });
 
-test('Waitlist handles successful signup, server errors, and missing privacy policy', async () => {
-  const source = (await read('snippets/prelaunch-form.liquid')).replace(/{% doc %}[\s\S]*?{% enddoc %}/g,'');
-  const privacy_policy = {body:'Policy published',url:'/policies/privacy-policy'};
-  const success = await engine.parseAndRender(source, {id:'test',source:'product_top',privacy_policy,form:{'posted_successfully?':true}});
-  assert.match(success, /data-pupit-success/);
+test('Signup handles server success, rejection and an unavailable policy without false confirmation', async () => {
+  const success = await render('snippets/pupit-signup.liquid', { id: 'test', privacy_policy, form: { 'posted_successfully?': true } });
+  assert.match(success, /Ya estás en la lista/);
   assert.doesNotMatch(success, /name="contact\[email\]"/);
-  const error = await engine.parseAndRender(source, {id:'test',privacy_policy,form:{errors:{email:'invalid'}}});
-  assert.match(error, /role="alert"/);
-  assert.match(error, /name="contact\[email\]"/);
-  const noPolicy = await engine.parseAndRender(source, {id:'test',privacy_policy:{}});
-  assert.doesNotMatch(noPolicy, /name="contact\[email\]"/);
+  const failure = await render('snippets/pupit-signup.liquid', { id: 'test', privacy_policy, form: { errors: { email: 'invalid' } } });
+  assert.match(failure, /role="alert"/);
+  assert.match(failure, /aria-invalid="true"/);
+  assert.doesNotMatch(failure, /Ya estás en la lista/);
+  const unavailable = await render('snippets/pupit-signup.liquid', { id: 'test', privacy_policy: {}, form: {} });
+  assert.doesNotMatch(unavailable, /<form|contact\[email\]/);
 });
 
-test('All pre-launch templates keep checkout and cart controls absent', async () => {
-  const home = JSON.parse(await read('templates/index.json'));
-  const homeTypes = home.order.filter(id => !home.sections[id].disabled).map(id => home.sections[id].type);
-  assert.ok(homeTypes.includes('prelaunch-waitlist'), 'home: missing final conversion');
-  for (const name of ['page.dispensador','product.dispensador','product']) {
-    const template = JSON.parse(await read(`templates/${name}.json`));
-    const types = template.order.filter(id => !template.sections[id].disabled).map(id => template.sections[id].type);
-    assert.equal(types.filter(type => type === 'prelaunch-waitlist').length, 0, `${name}: duplicate waitlist section`);
-  }
-  const settings = JSON.parse(await read('config/settings_data.json'));
-  assert.equal(settings.current.sales_enabled, false);
-  const productForm = await read('snippets/product-form.liquid');
-  assert.ok(productForm.indexOf('{% if settings.sales_enabled %}') < productForm.indexOf("{% form 'product'"));
-  const cart = await read('sections/main-cart.liquid');
-  assert.ok(cart.indexOf('{% else %}') < cart.indexOf('name="checkout"'));
-  const preview = await read('dist/pages/dispensador.html');
-  assert.doesNotMatch(preview, /name="checkout"|data-add|\/cart\/add/);
-  assert.match(preview, /name="contact\[email\]"/);
-  assert.doesNotMatch(preview, /Objeto 01|NUESTRO PRIMER OBJETO|UN SOLO OBJETO/);
+test('Returned email and contact text cannot inject HTML or attributes', async () => {
+  const email = '\" autofocus onfocus=alert(1) x=\"';
+  const body = '</textarea><script>alert(1)</script>';
+  const signup = await render('snippets/pupit-signup.liquid', { id: 'test', privacy_policy, form: { email } });
+  assert.ok(!signup.includes(`value="${email}"`));
+  assert.match(signup, /(?:&quot;|&#34;) autofocus/);
+  const contact = await render('sections/contact-form.liquid', { section: { id: 'test', settings: {} }, form: { email, name: email, body }, shop: { email: 'PRIVATE@example.invalid', address: 'PRIVATE_ADDRESS' } });
+  assert.doesNotMatch(contact, /<script>alert|PRIVATE@example|PRIVATE_ADDRESS/);
+  assert.match(contact, /&lt;\/textarea&gt;/);
 });
 
-test('Home hero reaches the waitlist directly in one click', async () => {
-  const home = await read('dist/index.html');
-  assert.match(home, /href="#espera" data-pupit-event="waitlist_click" data-pupit-source="home_hero"/);
-  assert.match(home, /id="espera"[\s\S]*?name="contact\[email\]"/);
-  assert.match(home, /Dispensador 3 en 1/);
+test('Prelaunch suppresses purchase forms even for an available product', async () => {
+  const product = { id: 1, title: 'Test', selected_or_first_available_variant: { id: 2, available: true, inventory_management: 'shopify', inventory_policy: 'deny', inventory_quantity: 10, quantity_rule: { min: 1 } } };
+  const html = await render('snippets/buy-buttons.liquid', { settings: { sales_enabled: false }, product, block: { settings: {} }, section_id: 'test' });
+  assert.doesNotMatch(html, /name="add"|form_type" value="product"|payment_button/);
+  assert.match(html, /href="#espera"/);
+  const enabled = await render('snippets/buy-buttons.liquid', { settings: { sales_enabled: true }, product, block: { settings: {} }, section_id: 'test' });
+  assert.match(enabled, /name="add"/);
+  assert.match(enabled, /form_type" value="product"/);
 });
 
-test('Theme WebP assets use their real URL rather than unsupported resized placeholders', async () => {
-  const image = await read('snippets/theme-image.liquid');
-  assert.match(image, /file_extension == 'webp'.*file_extension == 'avif'/);
-  assert.match(image, /<img src="{{ filename \| asset_url }}"/);
-  const gallery = await read('snippets/dispenser-gallery.liquid');
-  for (const filename of ['paseo-colores.webp','paseo-pausa.webp','dispensador-detalle.webp']) {
-    const thumbnail = gallery.split('\n').find(line => line.includes(`data-photo="{{ '${filename}'`));
-    const thumb = filename.replace('.webp','-thumb.webp');
-    assert.ok(thumbnail?.includes(`src="{{ '${thumb}' | asset_url }}"`));
-  }
-});
-
-
-test('Pre-launch fallbacks do not expose supplier copy, catalogue prices, or duplicate conversion forms', async () => {
-  const genericProduct = await read('sections/main-product.liquid');
-  const collection = await read('sections/main-collection.liquid');
-  const article = await read('sections/main-article.liquid');
-  assert.ok(genericProduct.indexOf('{% if settings.sales_enabled %}') < genericProduct.indexOf('{{ product.description }}'));
-  assert.match(genericProduct, /Dispensador 3 en 1/);
-  assert.ok(collection.indexOf('{% unless settings.sales_enabled %}') < collection.indexOf('| money'));
-  assert.match(collection, /La compra todavía no está abierta/);
-  assert.match(article, /Pupit &amp; Co/);
-  const dispenserTemplate = JSON.parse(await read('templates/page.dispensador.json'));
-  const types = dispenserTemplate.order.filter(id => !dispenserTemplate.sections[id].disabled).map(id => dispenserTemplate.sections[id].type);
-  assert.equal(types.filter(type => type === 'product-waitlist-return').length, 1);
-  assert.equal(types.filter(type => type === 'prelaunch-waitlist').length, 0);
-});
-
-
-test('Precision assets stay wired and customer-facing prelaunch copy stays explicit', async () => {
-  const header = await read('sections/header.liquid');
-  const form = await read('snippets/prelaunch-form.liquid');
-  const polish = await read('assets/pupit-polish.css');
-  const guard = await read('assets/pupit-guard.js');
-
-  assert.match(header, /pupit-polish\.css/);
-  assert.match(header, /pupit-guard\.js/);
-  assert.match(header, /data-pupit-ui="precision-2026-09-23"/);
-
-  assert.doesNotMatch(form, /Objeto 01|Avisadme/);
-  assert.match(form, /Dispensador 3 en 1|dispensador 3 en 1/);
-  assert.match(form, /prelaunch-success-mark/);
-
-  assert.match(polish, /safe-area-inset-bottom/);
-  assert.match(polish, /-apple-system/);
-  assert.match(polish, /touch-action:manipulation/);
-  assert.match(guard, /replaceAll\('Objeto 01', 'dispensador 3 en 1'\)/);
-});
-
-
-test('Product detail keeps one concise prelaunch message and premium validation copy', async () => {
-  const detail = await read('sections/dispenser-detail.liquid');
-  const validation = await read('sections/product-validation.liquid');
-  const premium = await read('assets/pupit-product-premium.css');
-
-  assert.doesNotMatch(detail, /Estamos comprobando la muestra y las condiciones de envío/);
-  assert.match(detail, /En preparación · venta todavía cerrada/);
-  assert.match(detail, /pupit-product-premium\.css/);
-  assert.match(validation, /Primero, que esté a la altura\./);
-  assert.match(validation, /Uso real/);
-  assert.match(premium, /Premium product-detail pass/);
-  assert.match(premium, /prelaunch-inline \.prelaunch-success strong/);
-  assert.match(premium, /product-icon-specs strong/);
+test('Footer uses configured routes and only published policies', async () => {
+  const html = await render('sections/pupit-footer.liquid', { section: { settings: { contact_page: { url: '/pages/help' } } }, routes: { root_url: '/' }, pages: { contact: { url: '/pages/contact' } }, shop: { privacy_policy, email: 'PRIVATE@example.invalid', terms_of_service: {}, refund_policy: {} } });
+  assert.match(html, /href="\/pages\/help"/);
+  assert.match(html, /href="\/policies\/privacy-policy"/);
+  assert.doesNotMatch(html, /PRIVATE@example|terms-of-service|refund-policy/);
 });

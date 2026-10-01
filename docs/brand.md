@@ -1,61 +1,25 @@
-# Pupit & Co — identidad v3
+# Pupit & Co · v2
 
-## Nombre y dominio
+La vida, en buena compañía. Una marca de accesorios para disfrutar de paseos con perros. El dispensador 3 en 1 es el primer producto.
 
-- Marca: **Pupit & Co**.
-- Dominio elegido: **pupitandcompany.com**.
-- Wordmark: `pupit & co.`; el punto naranja se mantiene como firma.
-- Icono: `p` con punto naranja.
-- El nombre procede de Pupit, el perro de Haridian.
-- El formulario nativo de Shopify es el canal de contacto hasta configurar y comprobar el nuevo buzón.
+## Dirección visual
 
-## Idea central
-**La vida, en buena compañía.**
+| Uso | Color |
+| --- | --- |
+| Fondo | Crema `#F7F5F0` |
+| Texto y botones | Negro `#181818` |
+| Anuncio y lista de espera | Azul `#DCEEF5` |
+| Variante rosa | Rosa `#F1DDE3` |
+| Punto de marca | Naranja `#F07945` |
 
-Pupit & Co es una marca de objetos para paseos, escapadas y vida cotidiana con perros. El dispensador es el primer producto, no la definición de la marca.
+Arial/Helvetica, titulares grandes y con peso, fotografía protagonista, líneas finas y mucho espacio. Botones en forma de píldora. Evitar sombras, tarjetas repetidas, decoraciones de huesos o huellas y tipografía serif.
 
-La pregunta que guía cada decisión es: **¿esto seguiría teniendo sentido si mañana Pupit & Co tuviera veinte productos?**
+El movimiento responde a acciones: flechas al pasar el cursor, navegación a secciones y apertura de menú. Se respeta `prefers-reduced-motion`.
 
-## Personalidad
-Cercana, tranquila, práctica y cuidada. Premium accesible sin parecer lujo forzado. La marca no intenta impresionar con copy; transmite calidad mediante proporción, fotografía, materiales visuales y atención al detalle.
+En móvil, el titular y la llamada a la acción van sobre crema, seguidos por la fotografía. El producto y el formulario se colocan en una columna; el menú usa un diálogo nativo.
 
-## Sistema visual
-- Crema: #F5F2E9
-- Verde bosque: #193E32
-- Naranja firma: #D66A38
-- Titulares: Georgia / serif editorial
-- Interfaz y cuerpo: Arial / system sans
-- Líneas finas, espacios amplios y radios suaves.
-- El naranja se usa como firma puntual, no como superficie dominante.
-- Motion breve y funcional; respetar reduced-motion.
+## Contenido
 
-## Jerarquía de marca
-1. Vida con perro / contexto.
-2. Producto.
-3. Función.
-4. Especificación.
-5. Copy.
+Titulares cortos y beneficios comprobables. La gama inicial es azul cielo y rosa. No afirmar que el compartimento de residuos sea un dispensador de bolsas; no inventar reseñas, certificaciones, disponibilidad, fechas, peso o logos impresos.
 
-La fotografía debe hacer gran parte del trabajo. No llenar una sección con frases cuando una imagen puede explicarla mejor.
-
-## Arquitectura de producto
-Las futuras fichas deben seguir la misma secuencia:
-1. Presentación editorial.
-2. Galería.
-3. Producto en uso.
-4. Variantes / color.
-5. Detalles y especificaciones.
-6. Preguntas.
-7. Compra / disponibilidad.
-
-Cada producto puede cambiar el contenido, pero no el lenguaje de marca.
-
-## Fotografía
-Ver `docs/photography-system.md`.
-
-## Reglas
-- No inventar certificaciones, materiales, disponibilidad, reseñas, descuentos o beneficios no confirmados.
-- No representar logos impresos que no existan físicamente.
-- No usar imágenes de proveedor pobres como dirección visual final.
-- Evitar “AI slop”: decoraciones gratuitas, texto excesivo, gradientes sin función y secciones repetitivas.
-- Mobile se diseña de forma específica; no es simplemente desktop apilado.
+La portada sigue: fotografía del paseo → producto → tres funciones → idea de marca → lista de espera → pie de página.

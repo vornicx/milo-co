@@ -1,58 +1,16 @@
-# Pupit & Co — sistema fotográfico v1
+# Fotografía Pupit v2
 
-Objetivo: que cualquier fotografía pueda pertenecer a Pupit & Co aunque el logotipo no aparezca. El producto debe verse real, útil y dentro de una vida cotidiana con perro. Nunca parecer un render, un catálogo de proveedor o una imagen publicitaria artificial.
+Se mantienen las fotografías reales del proyecto; los conceptos generados se usaron para decidir composición y jerarquía, no como fotos del producto publicadas.
 
-## 1. Familias de imagen
+| Bloque | Asset de respaldo |
+| --- | --- |
+| Portada | `paseo.jpg` |
+| Gama azul/rosa | `paseo-colores.webp` |
+| Nuestra idea | `paseo-esenciales.webp` |
+| Detalles | `dispensador-detalle.webp` |
 
-Cada producto nuevo debe intentar cubrir estas seis familias:
+Las imágenes se pueden sustituir desde el editor. `pupit-media` usa `image_tag` con tamaños adaptables para imágenes seleccionadas; los assets de respaldo conservan dimensiones, texto alternativo y carga apropiada.
 
-1. **Campaña** — persona + perro + entorno. La emoción manda; el producto acompaña.
-2. **Uso** — una acción real: beber, servir comida, guardar residuos, colocar una correa, etc.
-3. **Transporte** — producto en mano, muñeca, mochila, bolsillo o junto a otros objetos del paseo.
-4. **Still life** — producto sobre madera, piedra, tejido natural o una superficie crema; luz suave.
-5. **Macro** — mecanismo, textura, cierre, cuerda, material o detalle funcional.
-6. **Color / gama** — variantes juntas, sin texto impreso sobre la fotografía.
+La portada carga de forma prioritaria. Las fotos posteriores usan carga diferida. En escritorio, el perro queda a la derecha y el texto ocupa el lado izquierdo; en móvil, la fotografía va después del titular para mantener la lectura.
 
-## 2. Dirección visual
-
-- Luz natural suave; preferencia por mañana o tarde.
-- Contraste moderado, sombras reales y textura visible.
-- Paleta del entorno: crema, beige, piedra, madera clara, verde apagado y tierra.
-- Evitar césped radioactivo, cielos demasiado saturados y fondos de estudio blanco puro.
-- Profundidad de campo natural, no exagerada.
-- Nada debe flotar ni quedar físicamente imposible.
-- El perro no debe mirar siempre a cámara: priorizar escenas observadas.
-- Vestuario humano neutro y sin logos protagonistas.
-- Pupit & Co no imprime un logo ficticio sobre un producto si la unidad real no lo lleva.
-
-## 3. Composición
-
-- Dejar aire alrededor del producto.
-- No centrar todos los sujetos.
-- La web usa mucho recorte 4:5, 1:1 y panorámico; fotografiar dejando margen para esos formatos.
-- Preparar al menos una toma vertical y una horizontal por escena principal.
-- En móvil el sujeto debe seguir siendo legible después de un recorte 4:5.
-
-## 4. Uso en la web
-
-### Home
-- Hero: campaña / lifestyle.
-- Producto destacado: still life o transporte.
-- Momentos: uso + transporte + macro.
-
-### Landing de producto
-- Galería inicial: still life, color, uso, macro.
-- Bloque “En el paseo”: tres fotos diferentes — función principal, función secundaria y gestión de residuos.
-- Colores: gama completa del lanzamiento.
-- Detalles: macro técnico limpio.
-
-## 5. Regla de consistencia
-
-Antes de publicar una foto, comprobar:
-- ¿El producto es físicamente fiel?
-- ¿La escena podría haber sucedido de verdad?
-- ¿La imagen encaja junto a las otras cinco sin cambiar de marca?
-- ¿Funciona recortada en móvil?
-- ¿Aporta algo distinto a la foto anterior?
-
-Si una imagen solo es “bonita” pero no cumple esas cinco preguntas, no entra.
+Conservar textura, luz natural y fidelidad física del producto. No añadir marcas impresas, materiales ni accesorios no comprobados.

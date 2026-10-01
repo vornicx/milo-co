@@ -1,8 +1,8 @@
-name: Archic Quality Gate
+name: Pupit quality
 
 on:
   push:
-    branches: [main]
+    branches: [main, pupit-v2]
   pull_request:
 
 permissions:

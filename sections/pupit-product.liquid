@@ -1,0 +1,34 @@
+{% liquid
+  assign product_image_alt = 'pupit.product.alt' | t
+  assign target_product = section.settings.product | default: settings.featured_product
+  assign product_heading = section.settings.heading
+  if product_heading == blank
+    if section.settings.main_heading
+      assign product_heading = 'pupit.product.title' | t
+    else
+      assign product_heading = 'pupit.product.heading' | t
+    endif
+  endif
+%}
+<section id="dispensador" class="pupit-product pupit-container" aria-labelledby="ProductTitle-{{ section.id }}" data-pupit-product>
+  <figure class="pupit-product__media">
+    {% render 'pupit-media', image: section.settings.image, filename: 'paseo-colores.webp', alt: product_image_alt, width: 1500, height: 1000, sizes: '(min-width: 990px) 56vw, 100vw' %}
+  </figure>
+  <div class="pupit-product__content">
+    {% if section.settings.main_heading %}<h1 id="ProductTitle-{{ section.id }}">{{ product_heading | escape | newline_to_br }}</h1>{% else %}<h2 id="ProductTitle-{{ section.id }}">{{ product_heading | escape | newline_to_br }}</h2>{% endif %}
+    <p class="pupit-product__text">{% if section.settings.text != blank %}{{ section.settings.text | escape | newline_to_br }}{% else %}{{ 'pupit.product.text' | t | escape | newline_to_br }}{% endif %}</p>
+    {% if settings.sales_enabled and target_product != blank %}
+      <a class="pupit-button" href="{{ target_product.url }}">{{ 'pupit.product.shop' | t }}{% render 'pupit-arrow' %}</a>
+    {% else %}
+      <fieldset class="pupit-swatches"><legend>{{ 'pupit.product.choose' | t }}</legend>
+        <label><input type="radio" name="pupit-color-{{ section.id }}" value="azul-cielo" data-pupit-color checked><span class="pupit-swatch pupit-swatch--blue" aria-hidden="true"></span><span>{{ 'pupit.product.blue' | t }}</span></label>
+        <label><input type="radio" name="pupit-color-{{ section.id }}" value="rosa" data-pupit-color><span class="pupit-swatch pupit-swatch--pink" aria-hidden="true"></span><span>{{ 'pupit.product.pink' | t }}</span></label>
+      </fieldset>
+      <a class="pupit-button" href="#espera" data-pupit-join>{{ 'pupit.product.cta' | t }}{% render 'pupit-arrow' %}</a>
+      <p class="pupit-product__note">{{ 'pupit.product.note' | t }}</p>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{"name":"Pupit · Producto","settings":[{"type":"product","id":"product","label":"Producto real de Shopify"},{"type":"checkbox","id":"main_heading","label":"Usar como título principal de la página","default":false},{"type":"textarea","id":"heading","label":"Título"},{"type":"textarea","id":"text","label":"Texto"},{"type":"image_picker","id":"image","label":"Fotografía"}],"presets":[{"name":"Pupit · Producto"}]}
+{% endschema %}

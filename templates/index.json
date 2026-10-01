@@ -1,45 +1,50 @@
 {
   "sections": {
-    "section0": {
-      "type": "hero",
-      "settings": {
-        "heading": "Fuera, juntos."
-      }
-    },
-    "essentials": {
-      "type": "walk-essentials",
+    "hero": {
+      "type": "pupit-hero",
       "settings": {}
     },
-    "section1": {
-      "type": "featured-product",
+    "product": {
+      "type": "pupit-product",
       "settings": {}
     },
-    "moments": {
-      "type": "home-moments",
-      "settings": {}
+    "benefits": {
+      "type": "pupit-benefits",
+      "settings": {},
+      "blocks": {
+        "water": {
+          "type": "water",
+          "settings": {}
+        },
+        "food": {
+          "type": "food",
+          "settings": {}
+        },
+        "waste": {
+          "type": "waste",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "water",
+        "food",
+        "waste"
+      ]
     },
-    "story": {
-      "type": "walk-story",
-      "settings": {}
-    },
-    "guides": {
-      "type": "guide-shelf",
+    "manifesto": {
+      "type": "pupit-manifesto",
       "settings": {}
     },
     "waitlist": {
-      "type": "prelaunch-waitlist",
-      "settings": {
-        "source": "home_final"
-      }
+      "type": "pupit-waitlist",
+      "settings": {}
     }
   },
   "order": [
-    "section0",
-    "section1",
-    "moments",
-    "essentials",
-    "story",
-    "guides",
+    "hero",
+    "product",
+    "benefits",
+    "manifesto",
     "waitlist"
   ]
 }

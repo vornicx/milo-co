@@ -1,83 +1,43 @@
-# Archic Gate — Pupit & Co
+# Revisión Pupit v2
 
-Última revisión: 23 septiembre 2026.
+Revisión del 1 de octubre de 2026. Tema Shopify `206260863319`, Dawn 16.0.0, guardado como UNPUBLISHED.
 
-## Hard gate activo
+## Verificación automática
 
-Pupit & Co se trata como un producto de producción, aunque Shopify todavía no esté conectado. Ningún cambio importante se considera listo solo porque compile o se vea bien.
+- Validación Liquid de los 388 archivos del tema: éxito.
+- Shopify Theme Check: sin errores; siete advertencias heredadas de Dawn.
+- Build de la vista estática y comprobaciones de seis rutas: éxito.
+- Cinco pruebas de preventa: formulario nativo, consentimiento/preferencia, éxito/error, escapado, compra condicionada y políticas del pie.
+- JavaScript propio: comprobación de sintaxis.
+- Auditoría de dependencias: cero vulnerabilidades notificadas.
 
-### Diseño
-- Un único sistema visual cargado: `assets/pupit-system.css`.
-- Home, índice de productos, landing del dispensador, páginas editoriales, carrito, contacto y producto nativo comparten tokens y componentes.
-- Mobile tiene composición propia, no un simple apilado de desktop.
-- Sin copy de relleno, reseñas, descuentos, precio, certificaciones o disponibilidad inventados.
+## Revisión en Shopify
 
-### Accesibilidad
-- Un H1 por página de preview.
-- Skip link funcional.
-- Tratamiento global `:focus-visible`.
-- `prefers-reduced-motion`.
-- Todas las imágenes renderizadas en la preview deben incluir atributo `alt`.
-- Controles de galería con nombre accesible y estado `aria-pressed`.
+Navegador Chrome, ventana de 1363 × 936 px. Revisión de la portada real, anclas, selector y formulario; no se enviaron altas de clientes.
 
-### Rendimiento
-- Las fotografías principales del producto son assets AVIF cacheables; no data URI dentro del HTML.
-- Gate automático: ninguna página estática puede superar 254 KiB de HTML.
-- CSS principal: presupuesto máximo 90 KiB.
-- Fotografías de producto incluidas en el gate: máximo 600 KiB por asset.
+- Titular en dos líneas, fondo crema correcto y fotografía sin capa de color.
+- CTA de portada lleva al dispensador.
+- Rosa selecciona `pupit-prelaunch, preferencia-rosa` en la lista.
+- Correo inválido bloqueado por validación del navegador.
+- Consentimiento sin marcar bloquea el envío.
+- La pestaña y las etiquetas de marca muestran Pupit & Co; se retiró el título heredado Milo de la portada del borrador.
+- Sin desbordamiento horizontal en la ventana revisada.
+- Sin errores de consola de los assets Pupit; apareció un error ajeno del complemento del navegador.
 
-### Seguridad / plataforma
-- Vercel es solo preview y no procesa pagos ni datos de Shopify.
-- CSP de preview: scripts, estilos, imágenes y conexiones limitados a origen propio; formularios bloqueados.
-- HSTS, frame blocking, nosniff, permissions policy, COOP y noindex activos en preview.
-- La CSP de Vercel NO debe copiarse sin revisión a Shopify, porque puede interferir con scripts y checkout de plataforma.
-- `sales_enabled` es solo presentación. El control real de lanzamiento debe ser contraseña/canales de venta de Shopify.
-- El producto conectado está en borrador. La lista de espera depende del storefront Shopify y de su política de privacidad publicada; no funciona en la preview estática de Vercel.
-- El único instrumento de medición de microinteracciones integrado es `Shopify.analytics.publish`; requiere conectar un pixel compatible y verificar consentimiento antes de dar por medidos los clics. Ver `docs/prelaunch.md`.
+## Comparación con los conceptos visuales
 
-### Datos y ecommerce
-Pendiente hasta conectar Shopify:
-- variantes e inventario reales;
-- precio final;
-- IVA/mercados;
-- envío España/UE;
-- persistencia de carrito;
-- estados de agotado;
-- concurrencia de stock;
-- checkout y pasarela de prueba;
-- pedido, cancelación y reembolso de prueba.
+| Punto | Resultado |
+| --- | --- |
+| Estructura | Anuncio, cabecera, foto dominante, producto, beneficios, lista y pie en el orden previsto. |
+| Tipografía | Sans negra, títulos con peso y dos líneas en la portada. |
+| Colores | Crema, azul claro, rosa en el selector, negro y punto naranja. |
+| Producto | Composición abierta de fotografía y texto, dos colores y CTA de espera. |
+| Formulario | Banda azul, correo subrayado, botón negro, preferencia y consentimiento visible. |
+| Fotografías | Assets reales existentes; el recorte difiere de los bocetos generados para conservar la fotografía original. |
+| Legal | Solo Privacidad, porque términos y devoluciones aún no están publicados en la tienda. |
 
-No publicar la tienda hasta completar estos checks en Shopify.
+## Límites concretos
 
-## Gate automático del repositorio
+La CSS incluye composiciones a 749 y 1100 px y reducción de movimiento. No se pudo capturar una ventana móvil real en este navegador: no expone redimensionado y Shopify rechaza la página dentro de un iframe. La plantilla temporal de revisión fue restaurada. La revisión visual y del menú en móvil debe completarse en el editor de Shopify o en un teléfono.
 
-`npm run build` genera la preview y ejecuta `scripts/validate-preview.mjs`.
-
-Valida:
-1. render sin Liquid residual;
-2. exactamente un H1 por página;
-3. idioma y viewport;
-4. contrato del skip link;
-5. IDs duplicados;
-6. imágenes con `alt`;
-7. ausencia de data URI;
-8. presupuesto de HTML;
-9. presencia de focus-visible y reduced-motion;
-10. presupuesto de CSS;
-11. existencia y tamaño de los assets principales.
-
-Para la revisión completa con Shopify CLI:
-
-```sh
-npm ci
-npm run check
-npm run build
-```
-
-## No declarado como verificado
-
-- Checkout real.
-- Autenticación/pagos de Shopify.
-- Core Web Vitals de una tienda Shopify publicada.
-- Navegadores/dispositivos físicos fuera de las capturas revisadas.
-- Ausencia absoluta de vulnerabilidades.
+No se verificó una alta completa ni la llegada del correo, para no crear registros de prueba. Los estados de servidor se probaron con fixtures. Tampoco se verificó checkout, pagos, pedidos ni rendimiento en dispositivos físicos. El producto permanece DRAFT y no se ha activado la venta.

@@ -1,0 +1,8 @@
+{% if section.settings.show_announcement %}
+<div class="pupit-announcement">
+  <a href="{{ routes.root_url }}#espera">{% if section.settings.text != blank %}{{ section.settings.text | escape }}{% else %}{{ 'pupit.announcement' | t | escape }}{% endif %}</a>
+</div>
+{% endif %}
+{% schema %}
+{"name":"Pupit · Anuncio","settings":[{"type":"checkbox","id":"show_announcement","label":"Mostrar anuncio","default":true},{"type":"text","id":"text","label":"Texto del anuncio"}],"presets":[{"name":"Pupit · Anuncio"}]}
+{% endschema %}

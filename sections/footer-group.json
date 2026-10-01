@@ -1,0 +1,17 @@
+{
+  "name": "Pupit · Pie",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "pupit-footer",
+      "settings": {
+        "product_page": "dispensador",
+        "story_page": "nosotros",
+        "contact_page": "contact"
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

@@ -13,7 +13,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - run: node --check assets/pupit.js
+      - run: node --check assets/pupit-v2.js
       - run: npm run build
       - run: node --test tests/*.test.mjs
       - run: npm audit --audit-level=high

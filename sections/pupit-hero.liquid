@@ -1,0 +1,17 @@
+{% assign photo_alt = 'pupit.hero.alt' | t %}
+<section class="pupit-hero" aria-labelledby="HeroTitle-{{ section.id }}">
+  <div class="pupit-hero__media">
+    <picture>
+      {% if section.settings.mobile_image != blank %}<source media="(max-width: 749px)" srcset="{{ section.settings.mobile_image | image_url: width: 1000 }}">{% endif %}
+      {% render 'pupit-media', image: section.settings.image, filename: 'paseo.jpg', alt: photo_alt, width: 1536, height: 1024, sizes: '100vw', loading: 'eager' %}
+    </picture>
+  </div>
+  <div class="pupit-hero__content">
+    <h1 id="HeroTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape | newline_to_br }}{% else %}{{ 'pupit.hero.heading' | t | escape | newline_to_br }}{% endif %}</h1>
+    <p>{% if section.settings.text != blank %}{{ section.settings.text | escape | newline_to_br }}{% else %}{{ 'pupit.hero.text' | t | escape | newline_to_br }}{% endif %}</p>
+    <a class="pupit-button" href="{{ section.settings.link | default: '#dispensador' }}">{{ 'pupit.hero.cta' | t }}{% render 'pupit-arrow' %}</a>
+  </div>
+</section>
+{% schema %}
+{"name":"Pupit · Portada","settings":[{"type":"textarea","id":"heading","label":"Título"},{"type":"textarea","id":"text","label":"Texto"},{"type":"image_picker","id":"image","label":"Fotografía de escritorio"},{"type":"image_picker","id":"mobile_image","label":"Fotografía de móvil"},{"type":"url","id":"link","label":"Enlace del botón"}],"presets":[{"name":"Pupit · Portada"}]}
+{% endschema %}

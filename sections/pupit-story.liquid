@@ -1,0 +1,8 @@
+{% assign story_alt = 'pupit.story.alt' | t %}
+<section class="pupit-story pupit-container" aria-labelledby="StoryTitle-{{ section.id }}">
+  <div class="pupit-story__copy"><h1 id="StoryTitle-{{ section.id }}">{{ 'pupit.story.heading' | t | escape | newline_to_br }}</h1><p>{{ 'pupit.story.text' | t }}</p><a class="pupit-link" href="{{ routes.root_url }}#dispensador">{{ 'pupit.navigation.product' | t }}{% render 'pupit-arrow' %}</a></div>
+  <figure>{% render 'pupit-media', image: section.settings.image, filename: 'paseo-esenciales.webp', alt: story_alt, width: 1254, height: 1254, sizes: '(min-width: 990px) 50vw, 100vw', loading: 'eager' %}</figure>
+</section>
+{% schema %}
+{"name":"Pupit · Nuestra idea","settings":[{"type":"image_picker","id":"image","label":"Fotografía"}],"presets":[{"name":"Pupit · Nuestra idea"}]}
+{% endschema %}

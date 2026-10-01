@@ -1,11 +1,21 @@
 {
   "sections": {
-    "main": {
-      "type": "brand-story",
+    "story": {
+      "type": "pupit-story",
+      "settings": {}
+    },
+    "manifesto": {
+      "type": "pupit-manifesto",
+      "settings": {}
+    },
+    "waitlist": {
+      "type": "pupit-waitlist",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "story",
+    "manifesto",
+    "waitlist"
   ]
 }

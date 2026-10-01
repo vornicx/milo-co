@@ -1,0 +1,16 @@
+<section class="pupit-benefits pupit-container" aria-label="{{ 'pupit.benefits.label' | t | escape }}">
+  {% for block in section.blocks %}
+    {% liquid
+      assign heading_key = 'pupit.benefits.' | append: block.type | append: '_heading'
+      assign text_key = 'pupit.benefits.' | append: block.type | append: '_text'
+    %}
+    <div class="pupit-benefits__item" {{ block.shopify_attributes }}>
+      <span class="pupit-benefits__number" aria-hidden="true">0{{ forloop.index }}</span>
+      <h2>{% if block.settings.heading != blank %}{{ block.settings.heading | escape }}{% else %}{{ heading_key | t }}{% endif %}</h2>
+      <p>{% if block.settings.text != blank %}{{ block.settings.text | escape }}{% else %}{{ text_key | t }}{% endif %}</p>
+    </div>
+  {% endfor %}
+</section>
+{% schema %}
+{"name":"Pupit · Tres funciones","max_blocks":3,"blocks":[{"type":"water","name":"Agua","limit":1,"settings":[{"type":"text","id":"heading","label":"Título"},{"type":"text","id":"text","label":"Texto"}]},{"type":"food","name":"Comida","limit":1,"settings":[{"type":"text","id":"heading","label":"Título"},{"type":"text","id":"text","label":"Texto"}]},{"type":"waste","name":"Residuos","limit":1,"settings":[{"type":"text","id":"heading","label":"Título"},{"type":"text","id":"text","label":"Texto"}]}],"presets":[{"name":"Pupit · Tres funciones","blocks":[{"type":"water"},{"type":"food"},{"type":"waste"}]}]}
+{% endschema %}

@@ -1,0 +1,24 @@
+{% doc %}
+  Renders an editable Shopify image or an existing Pupit photograph.
+  @param {image} [image] - Image selected in the theme editor
+  @param {string} filename - Theme asset fallback
+  @param {string} alt - Accessible description
+  @param {number} width - Original fallback width
+  @param {number} height - Original fallback height
+  @param {string} [sizes] - Responsive image sizes
+  @param {string} [loading] - Image loading strategy
+  @example
+  {% render 'pupit-media', filename: 'paseo.jpg', alt: 'Paseo', width: 1536, height: 1024 %}
+{% enddoc %}
+{% liquid
+  assign image_loading = loading | default: 'lazy'
+  assign image_priority = 'auto'
+  if image_loading == 'eager'
+    assign image_priority = 'high'
+  endif
+%}
+{% if image != blank %}
+  {{ image | image_url: width: 2200 | image_tag: widths: '390, 640, 900, 1300, 1800, 2200', sizes: sizes, alt: alt, loading: image_loading, fetchpriority: image_priority }}
+{% else %}
+  <img src="{{ filename | asset_url }}" width="{{ width }}" height="{{ height }}" alt="{{ alt | escape }}" loading="{{ image_loading }}" fetchpriority="{{ image_priority }}" decoding="async">
+{% endif %}

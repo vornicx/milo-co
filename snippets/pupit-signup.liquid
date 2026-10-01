@@ -1,0 +1,29 @@
+{% doc %}
+  Renders a native customer signup with an explicit marketing consent.
+  @param {string} id - Unique section identifier
+  @param {policy} privacy_policy - Published privacy policy
+  @example
+  {% render 'pupit-signup', id: section.id, privacy_policy: shop.privacy_policy %}
+{% enddoc %}
+{% assign signup_id = 'PupitSignup-' | append: id %}
+{% if privacy_policy.body != blank %}
+  {% form 'customer', id: signup_id, class: 'pupit-signup' %}
+    {% if form.posted_successfully? %}
+      <div class="pupit-signup__success" role="status" tabindex="-1" data-pupit-success><h3>{{ 'pupit.signup.success' | t }}</h3><p>{{ 'pupit.signup.success_text' | t }}</p></div>
+    {% else %}
+      {% if form.errors %}<div class="pupit-signup__error" role="alert" id="SignupError-{{ id }}">{{ 'pupit.signup.error' | t }}{{ form.errors | default_errors }}</div>{% endif %}
+      <label class="pupit-signup__label" for="SignupEmail-{{ id }}">{{ 'pupit.signup.email' | t }}</label>
+      <input id="SignupEmail-{{ id }}" class="pupit-signup__email" type="email" name="contact[email]" autocomplete="email" inputmode="email" placeholder="tu@email.com" value="{{ form.email | escape }}" required{% if form.errors %} aria-invalid="true" aria-describedby="SignupError-{{ id }}"{% endif %}>
+      <button class="pupit-button" type="submit">{{ 'pupit.signup.submit' | t }}{% render 'pupit-arrow' %}</button>
+      <fieldset class="pupit-signup__colors"><legend>{{ 'pupit.signup.preference' | t }}</legend>
+        <label><input type="radio" name="contact[tags]" value="pupit-prelaunch, preferencia-azul-cielo" data-pupit-preference="azul-cielo">{{ 'pupit.product.blue' | t }}</label>
+        <label><input type="radio" name="contact[tags]" value="pupit-prelaunch, preferencia-rosa" data-pupit-preference="rosa">{{ 'pupit.product.pink' | t }}</label>
+        <label><input type="radio" name="contact[tags]" value="pupit-prelaunch, preferencia-indiferente" data-pupit-preference="indiferente" checked>{{ 'pupit.signup.any_color' | t }}</label>
+      </fieldset>
+      <label class="pupit-signup__consent" for="SignupConsent-{{ id }}"><input id="SignupConsent-{{ id }}" type="checkbox" required><span>{{ 'pupit.signup.consent' | t }}</span></label>
+      <a class="pupit-signup__privacy" href="{{ privacy_policy.url }}">{{ 'pupit.signup.privacy' | t }}</a>
+    {% endif %}
+  {% endform %}
+{% else %}
+  <p class="pupit-signup__unavailable">{{ 'pupit.signup.unavailable' | t }}</p>
+{% endif %}
