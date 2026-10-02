@@ -35,9 +35,36 @@ test('Returned email and contact text cannot inject HTML or attributes', async (
   const signup = await render('snippets/pupit-signup.liquid', { id: 'test', privacy_policy, form: { email } });
   assert.ok(!signup.includes(`value="${email}"`));
   assert.match(signup, /(?:&quot;|&#34;) autofocus/);
-  const contact = await render('sections/contact-form.liquid', { section: { id: 'test', settings: {} }, form: { email, name: email, body }, shop: { email: 'PRIVATE@example.invalid', address: 'PRIVATE_ADDRESS' } });
+  const contact = await render('sections/pupit-contact.liquid', { section: { id: 'test', settings: {} }, routes: { root_url: '/' }, form: { email, name: email, body }, shop: { email: 'PRIVATE@example.invalid', address: 'PRIVATE_ADDRESS', privacy_policy } });
   assert.doesNotMatch(contact, /<script>alert|PRIVATE@example|PRIVATE_ADDRESS/);
   assert.match(contact, /&lt;\/textarea&gt;/);
+});
+
+test('Contact form preserves Shopify server errors and only confirms a successful submission', async () => {
+  const context = { section: { id: 'test', settings: {} }, routes: { root_url: '/' }, shop: { privacy_policy } };
+  const initial = await render('sections/pupit-contact.liquid', { ...context, form: {} });
+  assert.match(initial, /name="form_type" value="contact"/);
+  assert.match(initial, /type="email"[^>]+name="contact\[email\]"[^>]+required/);
+  assert.match(initial, /name="contact\[body\]"[^>]+required/);
+  assert.doesNotMatch(initial, /Mensaje recibido/);
+  const success = await render('sections/pupit-contact.liquid', { ...context, form: { 'posted_successfully?': true } });
+  assert.match(success, /Mensaje recibido/);
+  assert.doesNotMatch(success, /name="contact\[(name|email|body)\]"|<textarea/);
+  const failure = await render('sections/pupit-contact.liquid', { ...context, form: { errors: ['email'] } });
+  assert.match(failure, /role="alert"/);
+  assert.match(failure, /aria-invalid="true"/);
+  assert.doesNotMatch(failure, /Mensaje recibido/);
+});
+
+test('Prelaunch cart renders a waiting list instead of cart or checkout controls', async () => {
+  const context = { settings: { sales_enabled: false }, section: { id: 'test', settings: {} }, routes: { root_url: '/' }, shop: { privacy_policy }, form: {} };
+  const items = await render('sections/main-cart-items.liquid', context);
+  assert.equal((items.match(/<h1\b/g) ?? []).length, 1);
+  assert.doesNotMatch(items, /<cart-items|action="\/cart"|quantity-input/);
+  const footer = await render('sections/main-cart-footer.liquid', context);
+  assert.match(footer, /id="espera"/);
+  assert.match(footer, /name="form_type" value="customer"/);
+  assert.doesNotMatch(footer, /name="checkout"|payment_button|additional-checkout-buttons/);
 });
 
 test('Prelaunch suppresses purchase forms even for an available product', async () => {

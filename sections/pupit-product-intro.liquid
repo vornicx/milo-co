@@ -1,0 +1,25 @@
+{% liquid
+  assign product_alt = 'pupit.hero.alt' | t
+  assign target_product = section.settings.product | default: settings.featured_product
+%}
+<section class="pupit-product-intro" aria-labelledby="ProductIntroTitle-{{ section.id }}">
+  <div class="pupit-product-intro__layout pupit-container">
+    <figure class="pupit-product-intro__media">{% render 'pupit-media', image: section.settings.image, filename: 'pupit-duo-cutout-v3.webp', alt: product_alt, width: 1536, height: 1024, sizes: '(min-width: 750px) 55vw, 100vw', loading: 'eager' %}</figure>
+    <div class="pupit-product-intro__copy">
+      <h1 id="ProductIntroTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape | newline_to_br }}{% else %}{{ 'pupit.intro.heading' | t | escape | newline_to_br }}{% endif %}</h1>
+      <p>{% if section.settings.text != blank %}{{ section.settings.text | escape }}{% else %}{{ 'pupit.intro.text' | t }}{% endif %}</p>
+      <div class="pupit-product-intro__actions">
+        {% if settings.sales_enabled and target_product != blank %}<a class="pupit-button" href="{{ target_product.url }}">{{ 'pupit.product.shop' | t }}{% render 'pupit-arrow' %}</a>{% else %}<a class="pupit-button" href="#espera">{{ 'pupit.product.cta' | t }}{% render 'pupit-arrow' %}</a>{% endif %}
+        <a class="pupit-link" href="#funciones">{{ 'pupit.intro.explore' | t }}{% render 'pupit-arrow' %}</a>
+      </div>
+      <dl class="pupit-product-intro__metrics">
+        <div><dd>400 <span>ml</span></dd><dt>{{ 'pupit.details.water' | t }}</dt></div>
+        <div><dd>150 <span>ml</span></dd><dt>{{ 'pupit.details.food' | t }}</dt></div>
+        <div><dd>3</dd><dt>{{ 'pupit.intro.compartments' | t }}</dt></div>
+      </dl>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Pupit · Producto","settings":[{"type":"textarea","id":"heading","label":"Título"},{"type":"textarea","id":"text","label":"Descripción"},{"type":"image_picker","id":"image","label":"Fotografía del dispensador"},{"type":"product","id":"product","label":"Producto para la compra"}],"presets":[{"name":"Pupit · Producto"}]}
+{% endschema %}

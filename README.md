@@ -4,7 +4,7 @@ Tema Shopify Online Store 2.0 de Pupit & Co, basado en **Dawn 16.0.0** (Shopify,
 
 ## Estado
 
-La versión **Pupit v2 · Apple**, ID `206265581911`, está publicada. La revisión de fotografía está guardada en una copia del tema, **Pupit v2 · Apple · Fotos**, ID `206268891479`, sin publicar. La rama de revisión es `pupit-v2` en `vornicx/milo-co`.
+La versión **Pupit v2 · Apple**, ID `206265581911`, está publicada. Las nuevas fotografías y la ampliación de todas las páginas de marca están guardadas en el mismo borrador **Pupit v2 · Apple · Fotos**, ID `206268891479`, sin publicar. La rama de revisión es `pupit-v2` en `vornicx/milo-co`.
 
 Para revisar: Shopify → Tienda online → Temas → Pupit v2 · Apple · Fotos → Vista previa. La vista previa se comprueba en el storefront real. El enlace depende de la sesión o de un enlace temporal generado por Shopify.
 
@@ -14,7 +14,7 @@ Dirección inspirada en las páginas de producto de Apple: cabecera compacta, ti
 
 La portada sigue: **Todo su mundo. En tu mano.** → explorador Agua/Comida/Residuos → producto azul/rosa sobre negro → paseo junto al lago → lista de espera y pie. Cambiar el color actualiza el render, el texto y la preferencia de la lista. Los controles de funciones son radios nativos y también funcionan con teclado.
 
-Las secciones `pupit-*` permiten editar imágenes, textos y páginas desde el editor. La portada y los colores usan tres renders WebP transparentes. Agua, Comida y Residuos usan una nueva serie de imágenes de estudio generadas: azul cielo, rosa y crema, con luz suave y detalles completos. La fotografía del paseo conserva el asset del proyecto. Al seleccionar una imagen del editor, Shopify genera sus tamaños adaptables. La composición responde al ancho de `.pupit-page` mediante container queries y respeta reducción de movimiento.
+Las secciones `pupit-*` permiten editar imágenes, textos y páginas desde el editor. La portada y los colores usan renders WebP transparentes. Agua, Comida y Residuos usan una serie de imágenes de estudio generadas: azul cielo, rosa y crema, con luz suave y detalles completos. La página Paseos incorpora una fotografía editorial nueva; Nosotros conserva la foto del proyecto. Al seleccionar una imagen del editor, Shopify genera sus tamaños adaptables. La composición responde al ancho de `.pupit-page` mediante container queries y respeta reducción de movimiento.
 
 ## Páginas existentes
 
@@ -26,6 +26,10 @@ Las secciones `pupit-*` permiten editar imágenes, textos y páginas desde el ed
 | `/pages/nosotros` | page.nosotros |
 | `/pages/paseos` | page.paseos |
 | `/pages/contact` | page.contact |
+| `/cart` | cart, estado de lanzamiento y lista nativa |
+| Ruta inexistente | 404, página de marca con enlaces de recuperación |
+
+Dispensador incorpora un hero propio, funciones, colores, ficha técnica y preguntas frecuentes. Productos presenta los dos colores y pasa la preferencia elegida al formulario. Nosotros cuenta la idea de la marca; Paseos combina fotografía y preparación del paseo. Contacto usa el formulario de Shopify con estados de servidor y preguntas frecuentes. La plantilla comercial `product.dispensador` conserva el producto, variantes y formularios nativos, y añade detalles, FAQ y lista. El producto permanece DRAFT.
 
 ## Desarrollo y validación
 
@@ -39,7 +43,7 @@ npm run package
 npm run dev -- --store bs11tg-1j.myshopify.com
 ```
 
-`build` genera una vista estática desde las secciones Liquid reales y comprueba seis rutas principales. Es una ayuda visual sin backend: los formularios y la compra se prueban en Shopify. `package` crea un ZIP con las siete carpetas del tema en su raíz. Los detalles de revisión están en `docs/qa.md`.
+`build` genera una vista estática desde las secciones Liquid reales y comprueba ocho rutas. Es una ayuda visual sin backend: los formularios y la compra se prueban en Shopify. `package` crea un ZIP con las siete carpetas del tema en su raíz. Los detalles de revisión están en `docs/qa.md`; la dirección y comparación de las páginas, en `docs/pages-design.md`.
 
 ## Preventa
 

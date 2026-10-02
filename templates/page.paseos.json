@@ -1,35 +1,8 @@
 {
   "sections": {
-    "hero": {
-      "type": "pupit-hero",
-      "settings": {
-        "heading": "Salir sin prisa.\nVolver con historias.",
-        "text": "Para la vuelta de siempre\ny los caminos por descubrir.",
-        "link": "/pages/dispensador"
-      }
-    },
-    "benefits": {
-      "type": "pupit-benefits",
-      "settings": {},
-      "blocks": {
-        "water": {
-          "type": "water",
-          "settings": {}
-        },
-        "food": {
-          "type": "food",
-          "settings": {}
-        },
-        "waste": {
-          "type": "waste",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "water",
-        "food",
-        "waste"
-      ]
+    "walks": {
+      "type": "pupit-walks",
+      "settings": {}
     },
     "waitlist": {
       "type": "pupit-waitlist",
@@ -37,8 +10,7 @@
     }
   },
   "order": [
-    "hero",
-    "benefits",
+    "walks",
     "waitlist"
   ]
 }

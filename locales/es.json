@@ -221,6 +221,10 @@
     }
   },
   "templates": {
+    "404": {
+      "title": "Página no encontrada",
+      "subtext": "404"
+    },
     "search": {
       "no_results": "No se encontraron resultados para “{{ terms }}” Revisa la ortografía o usa una palabra o frase diferente.",
       "results_with_count": {
@@ -269,10 +273,6 @@
         "error_heading": "Por favor, ajusta lo siguiente:",
         "title": "Formulario de contacto"
       }
-    },
-    "404": {
-      "title": "Página no encontrada",
-      "subtext": "404"
     }
   },
   "sections": {
@@ -558,7 +558,10 @@
       "terms": "Condiciones",
       "refunds": "Devoluciones",
       "open": "Abrir menú",
-      "close": "Cerrar menú"
+      "close": "Cerrar menú",
+      "catalog": "Productos",
+      "walks": "Paseos",
+      "shipping": "Envíos"
     },
     "hero": {
       "heading": "Todo su mundo.\nEn tu mano.",
@@ -620,23 +623,109 @@
     },
     "story": {
       "heading": "La vida, en\nbuena compañía.",
-      "text": "Pupit & Co es una marca de accesorios para pasear con perros. Empezamos con una idea sencilla: llevar lo esencial y disfrutar de salir juntos. Agua, comida y un espacio para los residuos, reunidos en nuestro primer dispensador.",
-      "alt": "Accesorios y dispensador preparados para un paseo"
+      "text": "Pupit & Co es una marca de accesorios para pasear con perros. Empezamos con un dispensador que reúne agua, comida y un espacio para los residuos. Para que lo esencial vaya contigo.",
+      "alt": "Accesorios y dispensador preparados para un paseo",
+      "intro": "Creemos en los paseos de todos los días. En salir con lo esencial y volver con algo más.",
+      "idea": "Una idea\nsencilla.",
+      "discover": "Conoce el dispensador",
+      "less_heading": "Menos cosas.",
+      "less_text": "Un solo dispensador para agua, comida y residuos. Todo lo esencial, en tu mano.",
+      "moments_heading": "Más momentos.",
+      "moments_text": "Menos complicaciones, más tiempo fuera. Para disfrutar de cada paseo, sin distracciones.",
+      "company_heading": "Buena compañía.",
+      "company_text": "Para acompañar su mundo. Porque los mejores días siempre son juntos."
     },
     "details": {
-      "heading": "Las cosas claras.",
+      "heading": "Todo, al detalle.",
       "water": "Agua",
       "food": "Comida",
       "size": "Medidas",
       "color": "Colores",
       "colors": "Azul cielo y rosa",
-      "alt": "Detalle de los compartimentos del dispensador"
+      "alt": "Detalle de los compartimentos del dispensador",
+      "includes": "Incluye",
+      "contents": "Dispensador, cordón gris y compartimento para residuos."
     },
     "commerce": {
-      "closed": "Los primeros paseos están por llegar.",
-      "closed_text": "La compra todavía no está abierta. Apúntate a la lista y te avisaremos."
+      "closed": "El próximo paseo\nestá por llegar.",
+      "closed_text": "La compra todavía no está abierta. Déjanos tu correo y te avisaremos cuando el dispensador esté listo.",
+      "explore": "Conoce el dispensador"
     },
     "brand_name": "Pupit & Co",
-    "manifesto_alt": "Un golden retriever durante un paseo junto al lago"
+    "manifesto_alt": "Un golden retriever durante un paseo junto al lago",
+    "intro": {
+      "heading": "Un pequeño\ngran paseo.",
+      "text": "Agua, comida y un espacio para los residuos. Nuestro dispensador 3 en 1, en azul cielo y rosa.",
+      "explore": "Explora los detalles",
+      "compartments": "Compartimentos"
+    },
+    "catalog": {
+      "heading": "Un dispensador.\nDos formas de llevarlo.",
+      "text": "El mismo 3 en 1. Elige el color que va contigo.",
+      "blue_text": "Un poquito de cielo, siempre a mano.",
+      "pink_text": "Un toque de rosa para cada paseo.",
+      "details": "Ver el dispensador",
+      "choose": "Me gusta este color",
+      "bridge": "Agua, comida y residuos.\nCada cosa, en su sitio.",
+      "discover": "Conoce el 3 en 1"
+    },
+    "walks": {
+      "heading": "La mejor parte\nes salir juntos.",
+      "text": "La vuelta de siempre. El camino por descubrir. Y todas las pausas entre medias.",
+      "alt": "Un golden retriever junto a una mano que sostiene el dispensador azul cielo durante un paseo",
+      "guide": "Antes\nde salir.",
+      "water_heading": "Agua preparada.",
+      "water_text": "Llena el depósito antes del paseo.",
+      "food_heading": "Su comida, a mano.",
+      "food_text": "Prepara el compartimento de comida.",
+      "waste_heading": "Un espacio aparte.",
+      "waste_text": "Lleva bolsas y deja sitio para los residuos.",
+      "bridge": "Para todas\nesas pausas."
+    },
+    "faq": {
+      "heading": "Las cosas\nclaras.",
+      "contents_question": "¿Qué incluye el dispensador?",
+      "contents_answer": "Dispensador 3 en 1, cordón de transporte gris y compartimento inferior para residuos.",
+      "capacity_question": "¿Cuánta agua y comida cabe?",
+      "capacity_answer": "El depósito de agua tiene 400 ml y el compartimento de comida, 150 ml. La cantidad de comida en gramos depende del alimento.",
+      "launch_question": "¿Cuándo se podrá comprar?",
+      "launch_answer": "Estamos preparando el lanzamiento. Déjanos tu correo en la lista de espera y te avisaremos cuando el dispensador esté listo.",
+      "price_question": "¿Ya hay fecha y precio de lanzamiento?",
+      "price_answer": "Todavía no hemos publicado una fecha ni un precio definitivo. Compartiremos ambos cuando el lanzamiento esté listo.",
+      "contact": "¿Te queda alguna duda? Escríbenos"
+    },
+    "contact": {
+      "heading": "Hablemos.",
+      "text": "Sobre Pupit, el dispensador o ese próximo paseo. Estamos al otro lado.",
+      "faq": "Ver preguntas frecuentes",
+      "waitlist": "Avisadme del lanzamiento",
+      "name": "Tu nombre",
+      "email": "Tu correo electrónico",
+      "topic": "Sobre qué quieres hablar",
+      "product": "El dispensador",
+      "launch": "El lanzamiento",
+      "collaborations": "Colaboraciones",
+      "other": "Otra consulta",
+      "message": "Tu mensaje",
+      "submit": "Enviar mensaje",
+      "privacy_text": "Usaremos tus datos para responder a tu consulta.",
+      "success": "Mensaje recibido.",
+      "success_text": "Gracias por escribirnos. Te responderemos en el correo que nos has dejado.",
+      "home": "Volver al inicio",
+      "error": "No hemos podido enviar tu mensaje. Revisa los campos e inténtalo de nuevo."
+    },
+    "not_found": {
+      "heading": "Este camino\nno lleva a ningún lado.",
+      "text": "La página que buscas no está aquí. Volvamos al próximo paseo.",
+      "home": "Volver al inicio"
+    },
+    "seo": {
+      "home": "Pupit & Co. Accesorios para pasear en buena compañía. Descubre nuestro dispensador 3 en 1 para agua, comida y residuos y apúntate al lanzamiento.",
+      "dispensador": "Conoce el dispensador de paseo 3 en 1 de Pupit & Co: 400 ml de agua, 150 ml para comida y un espacio para residuos. Azul cielo y rosa.",
+      "productos": "Un dispensador 3 en 1, dos colores. Descubre el azul cielo y el rosa de Pupit & Co y elige tu favorito para el próximo paseo.",
+      "nosotros": "Pupit & Co: una idea sencilla para llevar lo esencial y disfrutar de los paseos en buena compañía. Conoce nuestra marca.",
+      "paseos": "La mejor parte es salir juntos. Descubre el mundo de paseos de Pupit & Co y prepara agua, comida y un espacio para residuos.",
+      "contact": "Contacta con Pupit & Co sobre el dispensador 3 en 1, el lanzamiento o una colaboración. Encuentra respuestas a las preguntas frecuentes."
+    }
   }
 }

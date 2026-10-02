@@ -1,10 +1,8 @@
 {
   "sections": {
-    "product": {
-      "type": "pupit-product",
-      "settings": {
-        "main_heading": true
-      }
+    "intro": {
+      "type": "pupit-product-intro",
+      "settings": {}
     },
     "benefits": {
       "type": "pupit-benefits",
@@ -29,62 +27,43 @@
         "waste"
       ]
     },
+    "colors": {
+      "type": "pupit-product",
+      "settings": {}
+    },
     "details": {
       "type": "pupit-details",
       "settings": {}
     },
     "faq": {
-      "type": "collapsible-content",
+      "type": "pupit-faq",
       "settings": {
-        "heading": "Lo que querrás saber.",
-        "heading_size": "h1",
-        "heading_alignment": "left",
-        "layout": "none",
-        "color_scheme": "scheme-1",
-        "container_color_scheme": "scheme-1",
-        "open_first_collapsible_row": false,
-        "padding_top": 36,
-        "padding_bottom": 60
+        "show_image": true,
+        "open_first": true
       },
       "blocks": {
-        "water": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "¿Cómo se usa el depósito de agua?",
-            "row_content": "<p>Llena el depósito antes de salir y sirve agua en el bebedero cuando tu perro necesite una pausa. La capacidad del depósito es de 400 ml.</p>",
-            "icon": "none"
-          }
+        "contents": {
+          "type": "contents",
+          "settings": {}
         },
-        "food": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "¿Cuánta comida cabe?",
-            "row_content": "<p>El compartimento para comida tiene 150 ml de capacidad. Es una medida de volumen: la cantidad en gramos depende del alimento.</p>",
-            "icon": "none"
-          }
-        },
-        "waste": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "¿Para qué sirve el compartimento inferior?",
-            "row_content": "<p>Es un espacio separado para guardar temporalmente los residuos del paseo. Vacíalo y límpialo después de usarlo.</p>",
-            "icon": "none"
-          }
+        "capacity": {
+          "type": "capacity",
+          "settings": {}
         },
         "launch": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "¿Cuándo se podrá comprar?",
-            "row_content": "<p>Estamos preparando el lanzamiento. Apúntate a la lista de espera y te avisaremos cuando el dispensador esté listo.</p>",
-            "icon": "none"
-          }
+          "type": "launch",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
         }
       },
       "block_order": [
-        "water",
-        "food",
-        "waste",
-        "launch"
+        "contents",
+        "capacity",
+        "launch",
+        "price"
       ]
     },
     "waitlist": {
@@ -93,8 +72,9 @@
     }
   },
   "order": [
-    "product",
+    "intro",
     "benefits",
+    "colors",
     "details",
     "faq",
     "waitlist"

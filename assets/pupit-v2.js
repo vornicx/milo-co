@@ -57,6 +57,18 @@
         if (selected) syncPreference(selected.value);
       });
     });
+    document.querySelectorAll('[data-pupit-select-preference]').forEach((link) => {
+      if (link.dataset.pupitReady) return;
+      link.dataset.pupitReady = 'true';
+      link.addEventListener('click', () => {
+        syncPreference(link.dataset.pupitSelectPreference);
+      });
+    });
+    document.querySelectorAll('[data-pupit-contact-success]').forEach((success) => {
+      if (success.dataset.pupitReady) return;
+      success.dataset.pupitReady = 'true';
+      success.focus({ preventScroll: false });
+    });
     document.querySelectorAll('[data-pupit-reveal]').forEach((element) => {
       if (element.dataset.pupitObserved) return;
       element.dataset.pupitObserved = 'true';

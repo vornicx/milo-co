@@ -1,5 +1,27 @@
 # Imágenes Pupit v2 · Apple
 
+## Fotografías de las nuevas páginas
+
+| Uso | Asset final | Original seleccionado | Dimensiones / conversión |
+| --- | --- | --- | --- |
+| Dispensador, puente de Paseos y 404 | `assets/pupit-duo-cutout-v3.webp` | `exec-292c8396-9aa8-47ef-86de-ae1c92689786.png` | 1536 × 1024, RGBA, WebP calidad 91, 160.334 bytes |
+| Hero de Paseos | `assets/pupit-paseo-editorial-v2.webp` | `exec-5f55e6ca-197f-461b-b67b-faba71f9287d.png` | 1672 × 941, WebP calidad 90, 283.002 bytes |
+
+El dúo se editó con imagegen a partir del render de producto; el fondo y los halos del hero son CSS. La foto editorial se generó como asset independiente con referencia de identidad del producto y referencia de composición. Se comprobó perro, bebedero, tapa blanca, botón de tres líneas, correa, depósito y base. El perro observa el producto; no se representa un mecanismo de bebida sin verificar. La transparencia resultante y los encuadres se inspeccionaron tras la conversión y en Shopify. Solo se convirtió formato; no se editó fotografía mediante código. Estas imágenes siguen siendo presentación generada, pendiente de contraste con la muestra física.
+
+### Prompt del editorial de Paseos
+
+```text
+Use case: photorealistic-natural. Asset type: standalone wide 16:9 Pupit & Co Paseos editorial website photograph, NO UI or text. Input image 1 is supporting product identity reference and must preserve exactly its sky blue dispenser geometry, white semicircular upper lid, transparent oval water basin, blue button with three parallel embossed lines and grey wrist loop. Image 2 is the accepted WEBSITE CONCEPT used ONLY as composition reference for the standalone editorial photograph. Generate ONLY the photography, never any screenshot text or page UI. Natural warm sunny lake path, golden retriever on left looking calmly at a cropped human hand from right holding this accurate sky blue bottle slightly tilted toward dog; dog is looking, NOT drinking, so do not imply an invented mechanism. Subtle water visible in upper basin, exact bottle design and proportions, hand grips blue body below basin, grey loop hangs naturally, transparent food reservoir and blue base visible. Bowl, lid, button and dog's face stay entirely in frame. Product occupies right lower third and dog face leftmiddle. Authentic natural texture, daylight not orange washed, lake and hills and foliage softer behind, sharp real product edges, premium honest editorial campaign photo, 1536x1024 or 1792x1024 landscape. No printed branding, no people faces, no leashes crossing face, no extra props, no collage, no icons, no words, no watermark. Create a new standalone asset matching the photo portion of the reference concept, do not crop the page concept.
+```
+
+### Prompt de limpieza del dúo
+
+```text
+Use case: background-extraction. Edit target: supplied Pupit product duo photo. Change ONLY the backdrop. Remove the entire pastel blue/pink backdrop, every horizontal tinted stripe and rectangular remnant behind the bottles. Keep BOTH physical products exactly unchanged, pink on left blue on right, exact bottle geometry, white upper lids, clear oval bowls, three horizontal button lines, transparent middle compartments, blue/pink bases, grey wrist loops, reflections, relative positions and diagonal angles. Deliver a genuinely TRANSPARENT PNG with straight nonpremultiplied alpha outside the physical bottles and their cords, including all surrounding space. No backdrop pixels or gradient colour fields. Retain only a very faint natural ground shadow beneath the two bases, fading all the way to transparent before image edges. The bottles must be fully visible, with margin 10% on all sides; landscape1536x1024. No white background, no dark background, no colour wash, no new objects, no logo, no text, no change to product features. Preserve accurate transparent plastic reflections within the products. This is the same image prepared as a clean cutout asset to sit on a code-native cream background.
+```
+
+
 La portada, el capítulo de colores y las tres funciones usan renders generados para esta dirección visual. Los conceptos de página solo guían composición; los textos, controles, fondos y formularios se construyen en Liquid/CSS. No se usa una captura completa como página.
 
 | Bloque | Asset de respaldo | Tratamiento |

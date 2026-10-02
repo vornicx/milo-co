@@ -1,6 +1,6 @@
 import { readFile, stat } from 'node:fs/promises';
 
-const routes = ['index.html', 'pages/dispensador/index.html', 'pages/productos/index.html', 'pages/nosotros/index.html', 'pages/paseos/index.html', 'pages/contact/index.html'];
+const routes = ['index.html', 'pages/dispensador/index.html', 'pages/productos/index.html', 'pages/nosotros/index.html', 'pages/paseos/index.html', 'pages/contact/index.html', 'cart/index.html', '404.html'];
 for (const route of routes) {
   const html = await readFile(`dist/${route}`, 'utf8');
   if (!html.includes('<main') || !html.includes('pupit &amp; co')) throw new Error(`${route}: missing page content`);

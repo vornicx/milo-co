@@ -1,33 +1,8 @@
 {
   "sections": {
-    "product": {
-      "type": "pupit-product",
-      "settings": {
-        "main_heading": true
-      }
-    },
-    "benefits": {
-      "type": "pupit-benefits",
-      "settings": {},
-      "blocks": {
-        "water": {
-          "type": "water",
-          "settings": {}
-        },
-        "food": {
-          "type": "food",
-          "settings": {}
-        },
-        "waste": {
-          "type": "waste",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "water",
-        "food",
-        "waste"
-      ]
+    "catalog": {
+      "type": "pupit-catalog",
+      "settings": {}
     },
     "waitlist": {
       "type": "pupit-waitlist",
@@ -35,8 +10,7 @@
     }
   },
   "order": [
-    "product",
-    "benefits",
+    "catalog",
     "waitlist"
   ]
 }

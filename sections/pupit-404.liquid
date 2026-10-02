@@ -1,0 +1,8 @@
+{% assign product_alt = 'pupit.hero.alt' | t %}
+<section class="pupit-not-found pupit-container" aria-labelledby="NotFoundTitle-{{ section.id }}">
+  <div><h1 id="NotFoundTitle-{{ section.id }}">{{ 'pupit.not_found.heading' | t | escape | newline_to_br }}</h1><p>{{ 'pupit.not_found.text' | t }}</p><a class="pupit-button" href="{{ routes.root_url }}">{{ 'pupit.not_found.home' | t }}{% render 'pupit-arrow' %}</a><a class="pupit-link" href="{{ pages.dispensador.url | default: '/pages/dispensador' }}">{{ 'pupit.story.discover' | t }}{% render 'pupit-arrow' %}</a></div>
+  <figure>{% render 'pupit-media', image: section.settings.image, filename: 'pupit-duo-cutout-v3.webp', alt: product_alt, width: 1536, height: 1024, sizes: '(min-width: 750px) 50vw, 90vw', loading: 'eager' %}</figure>
+</section>
+{% schema %}
+{"name":"Pupit · Error 404","settings":[{"type":"image_picker","id":"image","label":"Fotografía"}]}
+{% endschema %}

@@ -6,8 +6,8 @@ Revisión original del 1 de octubre de 2026. Tema Shopify `206265581911`, Dawn 1
 
 - Validador oficial de Liquid: archivos del rediseño sin errores.
 - Shopify Theme Check: cero errores; siete advertencias heredadas de Dawn.
-- Build y comprobaciones de seis rutas: éxito.
-- Cinco pruebas de preventa: formulario nativo, consentimiento/preferencia, éxito/error, escapado, compra condicionada y políticas del pie.
+- Build y comprobaciones actuales de ocho rutas: éxito.
+- Siete pruebas actuales: lista nativa, consentimiento/preferencia, éxito/error, escapado, estados nativos de contacto, carrito de lanzamiento, compra condicionada y políticas del pie.
 - JavaScript propio: sintaxis correcta.
 - Paquete original: siete carpetas Shopify en la raíz, 391 archivos; con las tres imágenes nuevas, 394 archivos.
 
@@ -59,3 +59,21 @@ Implementación verificada contra la dirección de los conceptos: jerarquía, co
 ## Límites concretos
 
 No se verificó una alta completa ni recepción de correo; los estados de servidor se prueban con fixtures. No se verificaron checkout, pagos, pedidos ni rendimiento en dispositivos físicos. La reducción de movimiento está implementada en CSS/JS, sin cambiar preferencias del sistema del usuario. El producto permanece DRAFT y la venta desactivada.
+
+## Todas las páginas · 2 de octubre de 2026
+
+Revisión en el mismo borrador `206268891479`, sin crear otro tema ni modificar MAIN. Cinco páginas nativas publicadas conservan sus handles y sufijos. Se añadieron secciones antes de actualizar las plantillas que las referencian; Shopify confirmó las escrituras sin errores. La configuración nativa del tema se conserva.
+
+- `npm run build`: ocho rutas correctas. `npm run test:security`: siete pruebas, cero fallos. `npm run check`: cero errores nuevos; siete advertencias heredadas de Dawn en seis archivos.
+- Validador de Liquid, artefacto `pupit-all-pages`, revisión 2: los 25 archivos de tema modificados pasan. El validador empleó la documentación de respaldo del paquete al no poder refrescar su caché remota.
+- Shopify real, escritorio: un H1 por página, metadescripción propia, cinco enlaces de navegación y sin desbordamiento horizontal. Las nuevas fotos y las tres imágenes de funciones cargan en el CDN. Una captura inicial de Paseos precedió a la carga de la foto; se repitió la revisión y se confirmó `naturalWidth=1672` y la foto visible.
+- Producto: ancla de funciones, radios de comida/residuos y color Rosa correctos. Las tres fotografías de funciones cargan a 1536 × 1024. Rosa se conserva en el formulario sin marcar consentimiento. Ficha técnica contrastada con los datos de producto; FAQ de capacidad abierta mediante Enter.
+- Productos: ambos botones de color llevan a `#espera` y seleccionan su radio. Se verificó Rosa y después Azul cielo con la página estabilizada. Consentimiento obligatorio, sin marcar.
+- Contacto: selector de asunto operativo; intento vacío bloqueado por validación HTML5, foco en nombre y URL sin envío. FAQ de capacidad abierta correctamente. No se envió un mensaje real.
+- Contenedor nativo de 768 px: cabecera completa sin solapamientos y `scrollWidth=768`. Contenedor nativo de 390 px: Inicio, las cinco páginas, carrito y 404 sin desbordamiento; fotos y textos inspeccionados. Menú con todos los enlaces, diálogo de 390 px, Escape cierra, devuelve foco y restaura `aria-expanded=false` y el scroll.
+- Carrito de lanzamiento: un H1, lista nativa y cero controles de checkout. La 404 ofrece enlaces al inicio y al dispensador y muestra el producto.
+- Se restauró el CSS completo después de las comprobaciones estrechas. Una lectura posterior de Shopify confirmó igualdad exacta con el CSS local y ausencia de los estilos de 390/768 px. Captura final: `pupit-v2-native-desktop.jpg`, storefront nativo, 1348 × 926 px en ventana 1363 × 936.
+
+La revisión final usó `view_image` sobre el concepto de Dispensador y la captura nativa más reciente en la misma pasada. Se contrastaron copy, composición, tipografía, paleta/halos, encuadres, métricas, CTAs y navegación. El borde del halo inicial se corrigió con gradientes CSS que se desvanecen antes de los límites. El ledger de seis conceptos, diff de textos y desviaciones intencionadas está en `docs/pages-design.md`.
+
+El navegador no ofrece cambio de tamaño de viewport; las pruebas de 390/768 px usan las container queries reales del tema y no acreditan Safari o un teléfono físico. La plantilla comercial del producto DRAFT queda validada en Liquid y mediante fixtures, no mediante una compra ni una ficha pública publicada.

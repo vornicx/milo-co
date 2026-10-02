@@ -217,6 +217,10 @@
     }
   },
   "templates": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "404"
+    },
     "search": {
       "no_results": "No results found for “{{ terms }}”. Check the spelling or use a different word or phrase.",
       "page": "Page",
@@ -260,10 +264,6 @@
         "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
         "error_heading": "Please adjust the following:"
       }
-    },
-    "404": {
-      "title": "Page not found",
-      "subtext": "404"
     }
   },
   "sections": {
@@ -546,7 +546,10 @@
       "terms": "Terms",
       "refunds": "Returns",
       "open": "Open menu",
-      "close": "Close menu"
+      "close": "Close menu",
+      "catalog": "Products",
+      "walks": "Walks",
+      "shipping": "Shipping"
     },
     "hero": {
       "heading": "Their whole world.\nIn your hand.",
@@ -608,23 +611,109 @@
     },
     "story": {
       "heading": "Life, in\ngood company.",
-      "text": "Pupit & Co makes accessories for life with dogs. We started with a simple idea: take the essentials and enjoy your time outdoors. Water, food and a separate space for waste, brought together in our first dispenser.",
-      "alt": "A dispenser and accessories ready for a walk"
+      "text": "Pupit & Co is a brand of accessories for walks with dogs. We are starting with a dispenser that brings together water, food and a space for waste. To keep the essentials by your side.",
+      "alt": "A dispenser and accessories ready for a walk",
+      "intro": "We believe in everyday walks. In taking the essentials and coming home with a little more.",
+      "idea": "A simple\nidea.",
+      "discover": "Meet the dispenser",
+      "less_heading": "Fewer things.",
+      "less_text": "One dispenser for water, food and waste. All the essentials in your hand.",
+      "moments_heading": "More moments.",
+      "moments_text": "Fewer complications, more time outside. Enjoy every walk without distractions.",
+      "company_heading": "Good company.",
+      "company_text": "To accompany their world. Because the best days are always together."
     },
     "details": {
-      "heading": "The details, clearly.",
+      "heading": "Every little detail.",
       "water": "Water",
       "food": "Food",
       "size": "Dimensions",
       "color": "Colours",
       "colors": "Sky blue and pink",
-      "alt": "Detail of the dispenser compartments"
+      "alt": "Detail of the dispenser compartments",
+      "includes": "Includes",
+      "contents": "Dispenser, grey carry cord and waste compartment."
     },
     "commerce": {
-      "closed": "The first walks are on their way.",
-      "closed_text": "Shopping is not open yet. Join the list and we will let you know."
+      "closed": "The next walk\nis on its way.",
+      "closed_text": "Purchases are not open yet. Leave your email and we will let you know when the dispenser is ready.",
+      "explore": "Meet the dispenser"
     },
     "brand_name": "Pupit & Co",
-    "manifesto_alt": "A golden retriever on a walk by the lake"
+    "manifesto_alt": "A golden retriever on a walk by the lake",
+    "intro": {
+      "heading": "A little bottle.\nA big walk.",
+      "text": "Water, food and a separate space for waste. Our 3-in-1 dispenser, in sky blue and pink.",
+      "explore": "Explore the details",
+      "compartments": "Compartments"
+    },
+    "catalog": {
+      "heading": "One dispenser.\nTwo ways to carry it.",
+      "text": "The same 3-in-1. Choose the colour that feels like you.",
+      "blue_text": "A little sky, always close at hand.",
+      "pink_text": "A touch of pink for every walk.",
+      "details": "See the dispenser",
+      "choose": "I like this colour",
+      "bridge": "Water, food and waste.\nEverything in its place.",
+      "discover": "Meet the 3-in-1"
+    },
+    "walks": {
+      "heading": "The best part\nis going out together.",
+      "text": "The familiar loop. The path to discover. And every pause in between.",
+      "alt": "A golden retriever beside a hand holding the sky blue dispenser during a walk",
+      "guide": "Before\nheading out.",
+      "water_heading": "Water ready.",
+      "water_text": "Fill the water reservoir before the walk.",
+      "food_heading": "Their food, at hand.",
+      "food_text": "Prepare the food compartment.",
+      "waste_heading": "A separate space.",
+      "waste_text": "Bring bags and leave room for waste.",
+      "bridge": "For all\nthose pauses."
+    },
+    "faq": {
+      "heading": "Everything,\nclear.",
+      "contents_question": "What comes with the dispenser?",
+      "contents_answer": "3-in-1 dispenser, grey carry cord and lower waste compartment.",
+      "capacity_question": "How much water and food does it hold?",
+      "capacity_answer": "The water reservoir holds 400 ml and the food compartment holds 150 ml. Food weight in grams depends on the food.",
+      "launch_question": "When will it be available to buy?",
+      "launch_answer": "We are preparing the launch. Leave your email on the waiting list and we will let you know when the dispenser is ready.",
+      "price_question": "Is there a launch date and price?",
+      "price_answer": "We have not published a date or final price yet. We will share both when the launch is ready.",
+      "contact": "Still have a question? Write to us"
+    },
+    "contact": {
+      "heading": "Let's talk.",
+      "text": "About Pupit, the dispenser or that next walk. We are here.",
+      "faq": "See frequently asked questions",
+      "waitlist": "Let me know about the launch",
+      "name": "Your name",
+      "email": "Your email address",
+      "topic": "What would you like to discuss",
+      "product": "The dispenser",
+      "launch": "The launch",
+      "collaborations": "Collaborations",
+      "other": "Another question",
+      "message": "Your message",
+      "submit": "Send message",
+      "privacy_text": "We will use your details to respond to your enquiry.",
+      "success": "Message received.",
+      "success_text": "Thank you for writing to us. We will reply at the email address you provided.",
+      "home": "Back to home",
+      "error": "We could not send your message. Please check the fields and try again."
+    },
+    "not_found": {
+      "heading": "This path\ngoes nowhere.",
+      "text": "The page you are looking for is not here. Let's get back to the next walk.",
+      "home": "Back to home"
+    },
+    "seo": {
+      "home": "Pupit & Co. Accessories for walks in good company. Discover our 3-in-1 water, food and waste dispenser and join the launch waiting list.",
+      "dispensador": "Meet the Pupit & Co 3-in-1 walking dispenser: 400 ml of water, 150 ml for food and a separate space for waste. Sky blue and pink.",
+      "productos": "One 3-in-1 dispenser, two colours. Discover sky blue and pink from Pupit & Co and choose your favourite for the next walk.",
+      "nosotros": "Pupit & Co: a simple idea to carry the essentials and enjoy walks in good company. Meet our brand.",
+      "paseos": "The best part is going out together. Explore the world of Pupit & Co walks and prepare water, food and a space for waste.",
+      "contact": "Contact Pupit & Co about the 3-in-1 dispenser, the launch or a collaboration. Find answers to frequently asked questions."
+    }
   }
 }

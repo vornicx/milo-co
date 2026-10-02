@@ -5,8 +5,9 @@
   assign og_description = page_description | default: shop.description | default: shop.name
   if request.page_type == 'index'
     assign og_title = 'pupit.brand_name' | t
-    assign og_description = 'pupit.tagline' | t
+    assign og_description = 'pupit.seo.home' | t
   endif
+  assign og_description = og_description | replace: '&amp;', '&'
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -28,6 +29,12 @@
   <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
   <meta property="og:image:width" content="{{ page_image.width }}">
   <meta property="og:image:height" content="{{ page_image.height }}">
+{%- endif -%}
+
+{%- if page_image == blank -%}
+  <meta property="og:image" content="{{ 'pupit-water-studio-v2.webp' | asset_url | prepend: 'https:' }}">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
 {%- endif -%}
 
 {%- if request.page_type == 'product' and settings.sales_enabled -%}

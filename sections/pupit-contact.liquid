@@ -1,0 +1,30 @@
+{% assign contact_id = 'PupitContact-' | append: section.id %}
+<section id="contacto" class="pupit-contact pupit-container" aria-labelledby="ContactTitle-{{ section.id }}">
+  <div class="pupit-contact__copy">
+    <h1 id="ContactTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape }}{% else %}{{ 'pupit.contact.heading' | t }}{% endif %}</h1>
+    <p>{{ 'pupit.contact.text' | t }}</p>
+    <div class="pupit-contact__links"><a class="pupit-link" href="#preguntas">{{ 'pupit.contact.faq' | t }}{% render 'pupit-arrow' %}</a><a class="pupit-link" href="{{ routes.root_url }}#espera">{{ 'pupit.contact.waitlist' | t }}{% render 'pupit-arrow' %}</a></div>
+  </div>
+  <div class="pupit-contact__form">
+    {% form 'contact', id: contact_id, class: 'pupit-contact-form' %}
+      {% if form.posted_successfully? %}
+        <div class="pupit-contact-form__success" role="status" tabindex="-1" data-pupit-contact-success><h2>{{ 'pupit.contact.success' | t }}</h2><p>{{ 'pupit.contact.success_text' | t }}</p><a class="pupit-link" href="{{ routes.root_url }}">{{ 'pupit.contact.home' | t }}{% render 'pupit-arrow' %}</a></div>
+      {% else %}
+        {% if form.errors %}<div class="pupit-signup__error" role="alert" id="{{ contact_id }}-errors"><p>{{ 'pupit.contact.error' | t }}</p>{{ form.errors | default_errors }}</div>{% endif %}
+        <label for="{{ contact_id }}-name">{{ 'pupit.contact.name' | t }}</label>
+        <input id="{{ contact_id }}-name" type="text" name="contact[name]" autocomplete="name" required value="{{ form.name | escape }}">
+        <label for="{{ contact_id }}-email">{{ 'pupit.contact.email' | t }}</label>
+        <input id="{{ contact_id }}-email" type="email" name="contact[email]" autocomplete="email" autocorrect="off" autocapitalize="off" required value="{{ form.email | escape }}" aria-describedby="{{ contact_id }}-privacy{% if form.errors contains 'email' %} {{ contact_id }}-errors{% endif %}"{% if form.errors contains 'email' %} aria-invalid="true"{% endif %}>
+        <label for="{{ contact_id }}-topic">{{ 'pupit.contact.topic' | t }}</label>
+        <select id="{{ contact_id }}-topic" name="contact[{{ 'pupit.contact.topic' | t | escape }}]"><option>{{ 'pupit.contact.product' | t }}</option><option>{{ 'pupit.contact.launch' | t }}</option><option>{{ 'pupit.contact.collaborations' | t }}</option><option>{{ 'pupit.contact.other' | t }}</option></select>
+        <label for="{{ contact_id }}-body">{{ 'pupit.contact.message' | t }}</label>
+        <textarea id="{{ contact_id }}-body" name="contact[body]" rows="5" required>{{ form.body | escape }}</textarea>
+        <button class="pupit-button" type="submit">{{ 'pupit.contact.submit' | t }}{% render 'pupit-arrow' %}</button>
+        <p class="pupit-contact-form__privacy" id="{{ contact_id }}-privacy">{{ 'pupit.contact.privacy_text' | t }}{% if shop.privacy_policy.body != blank %} <a href="{{ shop.privacy_policy.url }}">{{ 'pupit.signup.privacy' | t }}</a>{% endif %}</p>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+{% schema %}
+{"name":"Pupit · Contacto","settings":[{"type":"text","id":"heading","label":"Título"}],"presets":[{"name":"Pupit · Contacto"}]}
+{% endschema %}

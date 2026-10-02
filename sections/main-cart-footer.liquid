@@ -136,7 +136,12 @@
 
 
 {% else %}
-<div class="pupit-container pupit-manifesto"><h2>{{ 'pupit.commerce.closed' | t }}</h2><p>{{ 'pupit.commerce.closed_text' | t }}</p><a class="pupit-button" href="{{ routes.root_url }}#espera">{{ 'pupit.signup.submit' | t }}{% render 'pupit-arrow' %}</a></div>
+<section id="espera" class="pupit-waitlist" aria-labelledby="CartSignupTitle-{{ section.id }}">
+  <div class="pupit-container pupit-waitlist__layout">
+    <div class="pupit-waitlist__copy"><h2 id="CartSignupTitle-{{ section.id }}">{{ 'pupit.signup.heading' | t | escape | newline_to_br }}<span class="pupit-dot">.</span></h2><p>{{ 'pupit.signup.text' | t }}</p></div>
+    <div class="pupit-waitlist__form">{% render 'pupit-signup', id: section.id, privacy_policy: shop.privacy_policy %}</div>
+  </div>
+</section>
 {% endif %}
 {% schema %}
 {

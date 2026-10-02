@@ -1,3 +1,4 @@
+{% if settings.sales_enabled %}
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 {{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
@@ -467,6 +468,14 @@
     </form>
   </div>
 </cart-items>
+{% else %}
+<section class="pupit-cart-intro pupit-container" aria-labelledby="CartIntroTitle-{{ section.id }}">
+  <h1 id="CartIntroTitle-{{ section.id }}">{{ 'pupit.commerce.closed' | t | escape | newline_to_br }}</h1>
+  <p>{{ 'pupit.commerce.closed_text' | t }}</p>
+  <a class="pupit-button" href="#espera">{{ 'pupit.product.cta' | t }}{% render 'pupit-arrow' %}</a>
+  <a class="pupit-link" href="{{ pages.dispensador.url | default: '/pages/dispensador' }}">{{ 'pupit.commerce.explore' | t }}{% render 'pupit-arrow' %}</a>
+</section>
+{% endif %}
 
 {% schema %}
 {

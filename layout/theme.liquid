@@ -11,8 +11,15 @@
       assign pupit_page_description = page_description
       if request.page_type == 'index'
         assign pupit_page_title = 'pupit.brand_name' | t
-        assign pupit_page_description = 'pupit.tagline' | t
+        assign pupit_page_description = 'pupit.seo.home' | t
+      elsif request.page_type == 'page' and pupit_page_description == blank
+        assign pupit_seo_pages = 'dispensador,productos,nosotros,paseos,contact' | split: ','
+        if pupit_seo_pages contains page.handle
+          assign pupit_description_key = 'pupit.seo.' | append: page.handle
+          assign pupit_page_description = pupit_description_key | t
+        endif
       endif
+      assign pupit_page_description = pupit_page_description | replace: '&amp;', '&'
     -%}
 
     {%- if settings.favicon == blank -%}<link rel="icon" type="image/svg+xml" href="{{ 'favicon.svg' | asset_url }}">{%- endif -%}
@@ -35,7 +42,7 @@
       <meta name="description" content="{{ pupit_page_description | escape }}">
     {% endif %}
 
-    {% render 'meta-tags' %}
+    {% render 'meta-tags', page_description: pupit_page_description %}
 
     <script type="module">
       import * as StandardEvents from 'https://cdn.shopify.com/storefront/standard-events.js';

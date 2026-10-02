@@ -1,8 +1,26 @@
-{% assign story_alt = 'pupit.story.alt' | t %}
+{% liquid
+  assign story_alt = 'pupit.manifesto_alt' | t
+  assign product_link = section.settings.product_page.url | default: pages.dispensador.url | default: '/pages/dispensador'
+%}
 <section class="pupit-story pupit-container" aria-labelledby="StoryTitle-{{ section.id }}">
-  <div class="pupit-story__copy"><h1 id="StoryTitle-{{ section.id }}">{{ 'pupit.story.heading' | t | escape | newline_to_br }}</h1><p>{{ 'pupit.story.text' | t }}</p><a class="pupit-link" href="{{ routes.root_url }}#dispensador">{{ 'pupit.navigation.product' | t }}{% render 'pupit-arrow' %}</a></div>
-  <figure>{% render 'pupit-media', image: section.settings.image, filename: 'paseo-esenciales.webp', alt: story_alt, width: 1254, height: 1254, sizes: '(min-width: 990px) 50vw, 100vw', loading: 'eager' %}</figure>
+  <div class="pupit-editorial-heading">
+    <h1 id="StoryTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape | newline_to_br }}{% else %}{{ 'pupit.story.heading' | t | escape | newline_to_br }}{% endif %}</h1>
+    <p>{{ 'pupit.story.intro' | t }}</p>
+  </div>
+  <figure class="pupit-editorial-photo">{% render 'pupit-media', image: section.settings.image, filename: 'paseo.jpg', alt: story_alt, width: 1536, height: 1024, sizes: '90vw', loading: 'eager' %}</figure>
+  <div class="pupit-story__narrative">
+    <h2>{{ 'pupit.story.idea' | t | escape | newline_to_br }}</h2>
+    <div><p>{{ 'pupit.story.text' | t }}</p><a class="pupit-link" href="{{ product_link }}">{{ 'pupit.story.discover' | t }}{% render 'pupit-arrow' %}</a></div>
+  </div>
+  <div class="pupit-story__values">
+    {% assign values = 'less,moments,company' | split: ',' %}
+    {% for value in values %}
+      {% assign heading_key = 'pupit.story.' | append: value | append: '_heading' %}
+      {% assign text_key = 'pupit.story.' | append: value | append: '_text' %}
+      <div><h3>{{ heading_key | t }}</h3><p>{{ text_key | t }}</p></div>
+    {% endfor %}
+  </div>
 </section>
 {% schema %}
-{"name":"Pupit · Nuestra idea","settings":[{"type":"image_picker","id":"image","label":"Fotografía"}],"presets":[{"name":"Pupit · Nuestra idea"}]}
+{"name":"Pupit · Nuestra idea","settings":[{"type":"textarea","id":"heading","label":"Título"},{"type":"image_picker","id":"image","label":"Fotografía"},{"type":"page","id":"product_page","label":"Página del dispensador"}],"presets":[{"name":"Pupit · Nuestra idea"}]}
 {% endschema %}

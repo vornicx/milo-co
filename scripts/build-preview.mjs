@@ -64,6 +64,7 @@ const previewPages = [
 ];
 for (const [name, route, title] of previewPages) {
   base.request.path = route;
+  base.request.page_type = name.split('.')[0];
   base.page = { handle: route.split('/').pop(), title, content: '' };
   const template = JSON.parse(await readFile(join(root, 'templates', `${name}.json`), 'utf8'));
   let content = '';

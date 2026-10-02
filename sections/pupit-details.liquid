@@ -1,8 +1,17 @@
-{% assign detail_alt = 'pupit.details.alt' | t %}
-<section class="pupit-details pupit-container" aria-labelledby="DetailsTitle-{{ section.id }}">
-  <div><h2 id="DetailsTitle-{{ section.id }}">{{ 'pupit.details.heading' | t }}</h2><dl><div><dt>{{ 'pupit.details.water' | t }}</dt><dd>400 ml</dd></div><div><dt>{{ 'pupit.details.food' | t }}</dt><dd>150 ml</dd></div><div><dt>{{ 'pupit.details.size' | t }}</dt><dd>29 × 7,5 × 7,5 cm</dd></div><div><dt>{{ 'pupit.details.color' | t }}</dt><dd>{{ 'pupit.details.colors' | t }}</dd></div></dl></div>
-  <figure>{% render 'pupit-media', image: section.settings.image, filename: 'dispensador-detalle.webp', alt: detail_alt, width: 1254, height: 1254, sizes: '(min-width: 990px) 50vw, 100vw' %}</figure>
+{% assign detail_alt = 'pupit.product.blue_alt' | t %}
+<section id="detalles" class="pupit-details pupit-container" aria-labelledby="DetailsTitle-{{ section.id }}">
+  <div>
+    <h2 id="DetailsTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape }}{% else %}{{ 'pupit.details.heading' | t }}{% endif %}</h2>
+    <dl>
+      <div><dt>{{ 'pupit.details.water' | t }}</dt><dd>400 ml</dd></div>
+      <div><dt>{{ 'pupit.details.food' | t }}</dt><dd>150 ml</dd></div>
+      <div><dt>{{ 'pupit.details.size' | t }}</dt><dd>29 × 7,5 × 7,5 cm</dd></div>
+      <div><dt>{{ 'pupit.details.color' | t }}</dt><dd>{{ 'pupit.details.colors' | t }}</dd></div>
+      <div><dt>{{ 'pupit.details.includes' | t }}</dt><dd>{{ 'pupit.details.contents' | t }}</dd></div>
+    </dl>
+  </div>
+  <figure>{% render 'pupit-media', image: section.settings.image, filename: 'pupit-blue-render.webp', alt: detail_alt, width: 1024, height: 1536, sizes: '(min-width: 750px) 42vw, 90vw' %}</figure>
 </section>
 {% schema %}
-{"name":"Pupit · Detalles","settings":[{"type":"image_picker","id":"image","label":"Fotografía de detalle"}],"presets":[{"name":"Pupit · Detalles"}]}
+{"name":"Pupit · Detalles","settings":[{"type":"text","id":"heading","label":"Título"},{"type":"image_picker","id":"image","label":"Fotografía de detalle"}],"presets":[{"name":"Pupit · Detalles"}]}
 {% endschema %}

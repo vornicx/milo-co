@@ -1,0 +1,49 @@
+{% liquid
+  assign product_link = section.settings.product_page.url | default: pages.dispensador.url | default: '/pages/dispensador'
+  assign target_product = section.settings.product | default: settings.featured_product
+  if settings.sales_enabled and target_product != blank
+    assign product_link = target_product.url
+  endif
+%}
+<section class="pupit-catalog pupit-container" aria-labelledby="CatalogTitle-{{ section.id }}">
+  <div class="pupit-editorial-heading">
+    <h1 id="CatalogTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape | newline_to_br }}{% else %}{{ 'pupit.catalog.heading' | t | escape | newline_to_br }}{% endif %}</h1>
+    <p>{{ 'pupit.catalog.text' | t }}</p>
+  </div>
+  <div class="pupit-catalog__grid">
+    {% assign colors = 'blue,pink' | split: ',' %}
+    {% for color in colors %}
+      {% liquid
+        assign color_key = 'pupit.product.' | append: color
+        assign text_key = 'pupit.catalog.' | append: color | append: '_text'
+        assign alt_key = color_key | append: '_alt'
+        assign color_alt = alt_key | t
+        assign color_value = 'azul-cielo'
+        assign color_filename = 'pupit-blue-render.webp'
+        assign color_image = section.settings.blue_image
+        if color == 'pink'
+          assign color_value = 'rosa'
+          assign color_filename = 'pupit-pink-render.webp'
+          assign color_image = section.settings.pink_image
+        endif
+      %}
+      <article class="pupit-catalog__item">
+        <figure class="pupit-catalog__media pupit-catalog__media--{{ color }}">{% render 'pupit-media', image: color_image, filename: color_filename, alt: color_alt, width: 1024, height: 1536, sizes: '(min-width: 750px) 45vw, 90vw', loading: 'eager' %}</figure>
+        <div class="pupit-catalog__copy">
+          <h2>{{ color_key | t }}</h2><p>{{ text_key | t }}</p>
+          <div class="pupit-catalog__actions">
+            <a class="pupit-link" href="{{ product_link }}">{{ 'pupit.catalog.details' | t }}{% render 'pupit-arrow' %}</a>
+            {% if settings.sales_enabled and target_product != blank %}<a class="pupit-button" href="{{ target_product.url }}">{{ 'pupit.product.shop' | t }}{% render 'pupit-arrow' %}</a>{% else %}<a class="pupit-button" href="#espera" data-pupit-select-preference="{{ color_value }}">{{ 'pupit.catalog.choose' | t }}</a>{% endif %}
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+  <div class="pupit-catalog__bridge">
+    <div><h2>{{ 'pupit.catalog.bridge' | t | escape | newline_to_br }}</h2><a class="pupit-link" href="{{ product_link }}">{{ 'pupit.catalog.discover' | t }}{% render 'pupit-arrow' %}</a></div>
+    <figure>{% assign bridge_alt = 'pupit.manifesto_alt' | t %}{% render 'pupit-media', image: section.settings.lifestyle_image, filename: 'paseo.jpg', alt: bridge_alt, width: 1536, height: 1024, sizes: '(min-width: 750px) 40vw, 90vw' %}</figure>
+  </div>
+</section>
+{% schema %}
+{"name":"Pupit · Catálogo","settings":[{"type":"textarea","id":"heading","label":"Título"},{"type":"page","id":"product_page","label":"Página del dispensador"},{"type":"product","id":"product","label":"Producto para la compra"},{"type":"image_picker","id":"blue_image","label":"Dispensador azul"},{"type":"image_picker","id":"pink_image","label":"Dispensador rosa"},{"type":"image_picker","id":"lifestyle_image","label":"Fotografía de paseo"}],"presets":[{"name":"Pupit · Catálogo"}]}
+{% endschema %}

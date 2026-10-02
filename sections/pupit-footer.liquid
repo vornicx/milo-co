@@ -1,4 +1,6 @@
 {% liquid
+  assign catalog_link = section.settings.catalog_page.url | default: pages.productos.url | default: '/pages/productos'
+  assign walks_link = section.settings.walks_page.url | default: pages.paseos.url | default: '/pages/paseos'
   assign product_link = section.settings.product_page.url | default: '/pages/dispensador'
   assign story_link = section.settings.story_page.url | default: '/pages/nosotros'
   assign contact_link = section.settings.contact_page.url | default: pages.contact.url | default: '/pages/contact'
@@ -6,11 +8,11 @@
 <footer class="pupit-footer pupit-container">
   <div class="pupit-footer__top">
     <div><a class="pupit-wordmark pupit-wordmark--footer" href="{{ routes.root_url }}" aria-label="{{ 'pupit.brand_home' | t }}">pupit &amp; co<span class="pupit-dot">.</span></a><p>{{ 'pupit.tagline' | t }}</p><div class="pupit-footer__colors" aria-hidden="true"><span></span><span></span></div></div>
-    <nav class="pupit-footer__links" aria-label="{{ 'pupit.navigation.footer' | t }}"><a href="{{ product_link }}">{{ 'pupit.navigation.product' | t }}</a><a href="{{ story_link }}">{{ 'pupit.navigation.story' | t }}</a><a href="{{ contact_link }}">{{ 'pupit.navigation.contact' | t }}</a></nav>
-    <nav class="pupit-footer__links" aria-label="{{ 'pupit.navigation.policies' | t | escape }}">{% if shop.privacy_policy.body != blank %}<a href="{{ shop.privacy_policy.url }}">{{ 'pupit.navigation.privacy' | t }}</a>{% endif %}{% if shop.terms_of_service.body != blank %}<a href="{{ shop.terms_of_service.url }}">{{ 'pupit.navigation.terms' | t }}</a>{% endif %}{% if shop.refund_policy.body != blank %}<a href="{{ shop.refund_policy.url }}">{{ 'pupit.navigation.refunds' | t }}</a>{% endif %}</nav>
+    <nav class="pupit-footer__links" aria-label="{{ 'pupit.navigation.footer' | t }}"><a href="{{ catalog_link }}">{{ 'pupit.navigation.catalog' | t }}</a><a href="{{ product_link }}">{{ 'pupit.navigation.product' | t }}</a><a href="{{ story_link }}">{{ 'pupit.navigation.story' | t }}</a><a href="{{ walks_link }}">{{ 'pupit.navigation.walks' | t }}</a><a href="{{ contact_link }}">{{ 'pupit.navigation.contact' | t }}</a></nav>
+    <nav class="pupit-footer__links" aria-label="{{ 'pupit.navigation.policies' | t | escape }}">{% if shop.privacy_policy.body != blank %}<a href="{{ shop.privacy_policy.url }}">{{ 'pupit.navigation.privacy' | t }}</a>{% endif %}{% if shop.terms_of_service.body != blank %}<a href="{{ shop.terms_of_service.url }}">{{ 'pupit.navigation.terms' | t }}</a>{% endif %}{% if shop.shipping_policy.body != blank %}<a href="{{ shop.shipping_policy.url }}">{{ 'pupit.navigation.shipping' | t }}</a>{% endif %}{% if shop.refund_policy.body != blank %}<a href="{{ shop.refund_policy.url }}">{{ 'pupit.navigation.refunds' | t }}</a>{% endif %}</nav>
   </div>
   <div class="pupit-footer__bottom"><small>&copy; {{ 'now' | date: '%Y' }} Pupit &amp; Co</small></div>
 </footer>
 {% schema %}
-{"name":"Pupit · Pie de página","settings":[{"type":"page","id":"product_page","label":"Página del dispensador"},{"type":"page","id":"story_page","label":"Página de marca"},{"type":"page","id":"contact_page","label":"Página de contacto"}]}
+{"name":"Pupit · Pie de página","settings":[{"type":"page","id":"catalog_page","label":"Página de productos"},{"type":"page","id":"product_page","label":"Página del dispensador"},{"type":"page","id":"story_page","label":"Página de marca"},{"type":"page","id":"walks_page","label":"Página de paseos"},{"type":"page","id":"contact_page","label":"Página de contacto"}]}
 {% endschema %}

@@ -1,0 +1,22 @@
+<section id="preguntas" class="pupit-faq pupit-container" aria-labelledby="FaqTitle-{{ section.id }}">
+  <div class="pupit-faq__intro">
+    <h2 id="FaqTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape | newline_to_br }}{% else %}{{ 'pupit.faq.heading' | t | escape | newline_to_br }}{% endif %}</h2>
+    {% if section.settings.show_image %}<figure>{% assign faq_alt = 'pupit.manifesto_alt' | t %}{% render 'pupit-media', image: section.settings.image, filename: 'paseo.jpg', alt: faq_alt, width: 1536, height: 1024, sizes: '(min-width: 750px) 40vw, 90vw' %}</figure>{% endif %}
+  </div>
+  <div class="pupit-faq__rows">
+    {% for block in section.blocks %}
+      {% liquid
+        assign question_key = 'pupit.faq.' | append: block.type | append: '_question'
+        assign answer_key = 'pupit.faq.' | append: block.type | append: '_answer'
+      %}
+      <details class="pupit-faq__row"{% if forloop.first and section.settings.open_first %} open{% endif %} {{ block.shopify_attributes }}>
+        <summary><span>{% if block.settings.question != blank %}{{ block.settings.question | escape }}{% else %}{{ question_key | t }}{% endif %}</span><span class="pupit-faq__plus" aria-hidden="true"></span></summary>
+        <div class="pupit-faq__answer">{% if block.settings.answer != blank %}{{ block.settings.answer }}{% else %}<p>{{ answer_key | t }}</p>{% endif %}</div>
+      </details>
+    {% endfor %}
+    <a class="pupit-link pupit-faq__contact" href="{% if page.handle == 'contact' %}#contacto{% else %}{{ pages.contact.url | default: '/pages/contact' }}{% endif %}">{{ 'pupit.faq.contact' | t }}{% render 'pupit-arrow' %}</a>
+  </div>
+</section>
+{% schema %}
+{"name":"Pupit · Preguntas","settings":[{"type":"textarea","id":"heading","label":"Título"},{"type":"checkbox","id":"open_first","label":"Abrir la primera pregunta","default":true},{"type":"checkbox","id":"show_image","label":"Mostrar fotografía","default":false},{"type":"image_picker","id":"image","label":"Fotografía"}],"blocks":[{"type":"contents","name":"Contenido","limit":1,"settings":[{"type":"text","id":"question","label":"Pregunta"},{"type":"richtext","id":"answer","label":"Respuesta"}]},{"type":"capacity","name":"Capacidades","limit":1,"settings":[{"type":"text","id":"question","label":"Pregunta"},{"type":"richtext","id":"answer","label":"Respuesta"}]},{"type":"launch","name":"Lanzamiento","limit":1,"settings":[{"type":"text","id":"question","label":"Pregunta"},{"type":"richtext","id":"answer","label":"Respuesta"}]},{"type":"price","name":"Fecha y precio","limit":1,"settings":[{"type":"text","id":"question","label":"Pregunta"},{"type":"richtext","id":"answer","label":"Respuesta"}]}],"presets":[{"name":"Pupit · Preguntas","blocks":[{"type":"contents"},{"type":"capacity"},{"type":"launch"},{"type":"price"}]}]}
+{% endschema %}

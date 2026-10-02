@@ -1,0 +1,30 @@
+{% liquid
+  assign walk_alt = 'pupit.walks.alt' | t
+  assign product_alt = 'pupit.hero.alt' | t
+  assign product_link = section.settings.product_page.url | default: pages.dispensador.url | default: '/pages/dispensador'
+%}
+<section class="pupit-walks pupit-container" aria-labelledby="WalksTitle-{{ section.id }}">
+  <div class="pupit-editorial-heading">
+    <h1 id="WalksTitle-{{ section.id }}">{% if section.settings.heading != blank %}{{ section.settings.heading | escape | newline_to_br }}{% else %}{{ 'pupit.walks.heading' | t | escape | newline_to_br }}{% endif %}</h1>
+    <p>{{ 'pupit.walks.text' | t }}</p>
+  </div>
+  <figure class="pupit-editorial-photo pupit-walks__photo">{% render 'pupit-media', image: section.settings.image, filename: 'pupit-paseo-editorial-v2.webp', alt: walk_alt, width: 1672, height: 941, sizes: '90vw', loading: 'eager' %}</figure>
+  <div class="pupit-walks__guide">
+    <h2>{{ 'pupit.walks.guide' | t | escape | newline_to_br }}</h2>
+    <ol class="pupit-walks__steps">
+      {% assign steps = 'water,food,waste' | split: ',' %}
+      {% for step in steps %}
+        {% assign heading_key = 'pupit.walks.' | append: step | append: '_heading' %}
+        {% assign text_key = 'pupit.walks.' | append: step | append: '_text' %}
+        <li><span class="pupit-walks__number" aria-hidden="true">0{{ forloop.index }}</span><div><h3>{{ heading_key | t }}</h3><p>{{ text_key | t }}</p></div></li>
+      {% endfor %}
+    </ol>
+  </div>
+  <div class="pupit-walks__bridge">
+    <div><h2>{{ 'pupit.walks.bridge' | t | escape | newline_to_br }}</h2><a class="pupit-button" href="{{ product_link }}">{{ 'pupit.story.discover' | t }}{% render 'pupit-arrow' %}</a></div>
+    <figure>{% render 'pupit-media', image: section.settings.product_image, filename: 'pupit-duo-cutout-v3.webp', alt: product_alt, width: 1536, height: 1024, sizes: '(min-width: 750px) 40vw, 80vw' %}</figure>
+  </div>
+</section>
+{% schema %}
+{"name":"Pupit · Paseos","settings":[{"type":"textarea","id":"heading","label":"Título"},{"type":"image_picker","id":"image","label":"Fotografía de paseo"},{"type":"image_picker","id":"product_image","label":"Fotografía del dispensador"},{"type":"page","id":"product_page","label":"Página del dispensador"}],"presets":[{"name":"Pupit · Paseos"}]}
+{% endschema %}
