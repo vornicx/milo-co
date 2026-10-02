@@ -599,9 +599,9 @@
       "water_tab": "Agua",
       "food_tab": "Comida",
       "waste_tab": "Residuos",
-      "water_alt": "Detalle del bebedero y botón del dispensador azul cielo",
-      "food_alt": "Dispensador azul cielo con comida en su compartimento",
-      "waste_alt": "Detalle del compartimento inferior del dispensador"
+      "water_alt": "Bebedero azul cielo con agua y botón de tres líneas",
+      "food_alt": "Dispensador rosa con comida en el compartimento superior",
+      "waste_alt": "Compartimento inferior azul cielo con una bolsa rosa saliendo de la abertura"
     },
     "manifesto": "Salir sin prisa.\nVolver con historias.",
     "signup": {

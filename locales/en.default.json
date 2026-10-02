@@ -587,9 +587,9 @@
       "water_tab": "Water",
       "food_tab": "Food",
       "waste_tab": "Waste",
-      "water_alt": "Close-up of the sky blue dispenser drinking trough and button",
-      "food_alt": "Sky blue dispenser with food in its compartment",
-      "waste_alt": "Detail of the dispenser lower compartment"
+      "water_alt": "Sky blue drinking trough with water and a three-line button",
+      "food_alt": "Pink dispenser with food in the upper compartment",
+      "waste_alt": "Sky blue lower compartment with a pink bag emerging from the opening"
     },
     "manifesto": "Head out slowly.\nCome back with stories.",
     "signup": {

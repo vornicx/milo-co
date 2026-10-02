@@ -9,19 +9,15 @@
           assign metric_key = 'pupit.benefits.' | append: block.type | append: '_metric'
           assign alt_key = 'pupit.benefits.' | append: block.type | append: '_alt'
           assign photo_alt = alt_key | t
-          assign photo_width = 1254
-          assign photo_height = 1254
+          assign photo_width = 1536
+          assign photo_height = 1024
           case block.type
             when 'water'
-              assign filename = 'dispensador-detalle.webp'
+              assign filename = 'pupit-water-studio-v2.webp'
             when 'food'
-              assign filename = 'pupit-food-use.avif'
-              assign photo_width = 800
-              assign photo_height = 1000
+              assign filename = 'pupit-food-studio-v2.webp'
             when 'waste'
-              assign filename = 'pupit-waste-use.avif'
-              assign photo_width = 1000
-              assign photo_height = 667
+              assign filename = 'pupit-waste-studio-v2.webp'
           endcase
         %}
         <div class="pupit-feature__panel" data-pupit-function-panel="{{ block.type }}" {{ block.shopify_attributes }}>
