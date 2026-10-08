@@ -1,6 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "sales_enabled": false,
+    "featured_product": "dispensador-de-paseo-3-en-1-archivo",
     "sections": {
       "header": {
         "type": "header",
@@ -13,7 +23,6 @@
         }
       }
     },
-    "content_for_index": [],
-    "featured_product": "dispensador-de-paseo-3-en-1"
+    "content_for_index": []
   }
 }
